@@ -1,0 +1,19 @@
+rootProject.name = 'platform'
+
+def MODULES_DIR = '../modules/'
+def MODULES = [
+        'uburaro-core',
+        'uburaro-facade',
+        'uburaro-web',
+        'uburaro-initialdata'
+]
+
+MODULES.forEach(module -> {
+    def modulePath = MODULES_DIR + module;
+    include(modulePath)
+    findProject(":" + modulePath)?.name = module
+})
+
+
+
+

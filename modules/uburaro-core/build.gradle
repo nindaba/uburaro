@@ -1,0 +1,31 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.3'
+    id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+    id 'java'
+}
+
+group 'bi.uburaro'
+version '3.0'
+buildDir = mkdir parent.buildDir.getPath()+'/modules/'+name
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+
+    useJUnitPlatform()
+}
+
+
+tasks.register('hello') {
+    doLast {
+        println parent.buildDir.getPath()+'/'+name
+    }
+}
