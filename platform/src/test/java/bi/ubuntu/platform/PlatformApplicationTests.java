@@ -20,7 +20,6 @@ class PlatformApplicationTests {
 
     @Test
     void springConfigs() {
-//        RoomType actual = typeService.<RoomType>create();
         RoomType expected = new RoomType();
         assertEquals(expected,expected);
     }
