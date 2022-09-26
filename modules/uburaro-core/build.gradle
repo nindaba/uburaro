@@ -1,4 +1,5 @@
 plugins {
+    id "io.freefair.lombok" version "6.5.1"
     id 'org.springframework.boot' version '2.7.3'
     id 'io.spring.dependency-management' version '1.0.13.RELEASE'
     id 'java'
@@ -6,7 +7,6 @@ plugins {
 
 group 'bi.uburaro'
 version '3.0'
-buildDir = mkdir parent.buildDir.getPath()+'/modules/'+name
 
 repositories {
     mavenCentral()
@@ -14,6 +14,8 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
@@ -21,11 +23,4 @@ dependencies {
 test {
 
     useJUnitPlatform()
-}
-
-
-tasks.register('hello') {
-    doLast {
-        println parent.buildDir.getPath()+'/'+name
-    }
 }
