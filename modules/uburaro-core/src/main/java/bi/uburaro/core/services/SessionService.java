@@ -11,8 +11,3 @@ public interface SessionService {
 
     Object getSessionAttribute(String key);
 }
-/**
-
-each user should have a session
- which means they will be user,session age, hotel, and anything that I want to store there
- */

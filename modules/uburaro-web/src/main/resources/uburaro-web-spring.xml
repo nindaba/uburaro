@@ -9,8 +9,8 @@
 
 
     <bean id="sessionInitFilter" class="bi.uburaro.web.filters.SessionInitFilter">
-        <constructor-arg name="typeService" ref="typeService"/>
         <constructor-arg name="environment" ref="environment"/>
+        <constructor-arg name="hotelService" ref="hotelService"/>
     </bean>
 
     <alias name="defaultSessionService" alias="sessionService"/>
