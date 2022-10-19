@@ -1,8 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/data/jpa
+       https://www.springframework.org/schema/data/jpa/spring-jpa.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+    <context:property-placeholder location="classpath:uburaro-core.properties"/>
+
+    <util:list id="itemBeforeSaveValidators" value-type="bi.uburaro.core.validators.Validator"/>
+    <bean id="beforeSaveValidatorListMerger" class="bi.uburaro.core.mergers.impl.ValidatorListMerger">
+        <constructor-arg name="target" ref="itemBeforeSaveValidators"/>
+    </bean>
+    <!--    Repositories-->
+    <jpa:repositories base-package="bi.uburaro.core.repositories"/>
+
+    <alias name="defaultRepositoryResolverStrategy" alias="repositoryResolverStrategy"/>
+    <bean id="defaultRepositoryResolverStrategy"
+          class="bi.uburaro.core.strategies.impl.DefaultRepositoryResolverStrategy">
+        <constructor-arg name="itemRepository" ref="itemRepository"/>
+        <constructor-arg name="repositories">
+            <list>
+                <ref bean="hotelRepository"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
 
     <alias name="defaultTypeService" alias="typeService"/>
-    <bean id="defaultTypeService" class="bi.uburaro.core.services.impl.DefaultTypeService"/>
+    <bean id="defaultTypeService" class="bi.uburaro.core.services.impl.DefaultTypeService">
+        <constructor-arg name="primaryKeyGeneratorStrategy" ref="primaryKeyGeneratorStrategy"/>
+        <constructor-arg name="itemRepository" ref="itemRepository"/>
+        <constructor-arg name="repositoryResolverStrategy" ref="repositoryResolverStrategy"/>
+        <constructor-arg name="itemBeforeSaveValidators" ref="itemBeforeSaveValidators"/>
+        <constructor-arg name="sessionService" ref="sessionService"/>
+    </bean>
+    <alias name="defaultHotelService" alias="hotelService"/>
+    <bean id="defaultHotelService" class="bi.uburaro.core.services.impl.DefaultHotelService">
+        <constructor-arg name="sessionService" ref="sessionService"/>
+        <constructor-arg name="typeService" ref="typeService"/>
+    </bean>
+    <bean id="primaryKeyModificationValidator" class="bi.uburaro.core.validators.PrimaryKeyModificationValidator">
+        <constructor-arg name="typeService" ref="typeService"/>
+    </bean>
+
+
+    <alias name="defaultPrimaryKeyGeneratorStrategy" alias="primaryKeyGeneratorStrategy"/>
+    <bean id="defaultPrimaryKeyGeneratorStrategy"
+          class="bi.uburaro.core.strategies.impl.DefaultPrimaryKeyGeneratorStrategy"/>
+
+
+    <bean parent="beforeSaveValidatorListMerger">
+        <property name="add" ref="primaryKeyModificationValidator"/>
+    </bean>
+
 </beans>
