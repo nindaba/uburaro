@@ -1,26 +1,51 @@
 plugins {
     id "io.freefair.lombok" version "6.5.1"
-    id 'org.springframework.boot' version '2.7.3'
-    id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
     id 'java'
 }
 
 group 'bi.uburaro'
 version '3.0'
-
 repositories {
     mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/snapshot' }
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.3'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation 'mysql:mysql-connector-java:8.0.30'
+
     compileOnly 'org.projectlombok:lombok:1.18.24'
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:4.8.0'
+
+    testImplementation 'org.mockito:mockito-core:4.8.0'
+
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
 }
 
 test {
 
     useJUnitPlatform()
 }
+
+//processResources {
+////    doLast{
+//
+////        def string = projectDir.s
+//
+//expand(project.properties.forEach((a,b)->{
+//    if(a.equals('resources')){
+//        println b;
+//    }
+//    println b
+//}))
+//        println '########### This is also executed during the configuration phase, because :configured is used in the build.'
+////    }
+//}

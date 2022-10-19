@@ -1,6 +1,153 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-<!--    <import resource="uburaro-core-spring.xml"/>-->
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+    <import resource="uburaro-core-spring.xml"/>
+
+    <!--Converters-->
+    <bean id="abstractConverter" class="bi.uburaro.facade.converters.AbstractConverter" abstract="true"/>
+
+    <bean id="hotelConverter" parent="abstractConverter">
+        <property name="targetClass" value="bi.uburaro.facade.data.HotelData"/>
+        <property name="populators" ref="hotelPopulators"/>
+    </bean>
+    <bean id="fullHotelConverter" parent="abstractConverter">
+        <property name="targetClass" value="bi.uburaro.facade.data.HotelData"/>
+        <property name="populators" ref="fullHotelPopulators"/>
+    </bean>
+
+    <bean id="languageConverter" parent="abstractConverter">
+        <property name="targetClass" value="bi.uburaro.facade.data.LanguageData"/>
+        <property name="populators" ref="languagePopulators"/>
+    </bean>
+
+    <bean id="roomConverter" parent="abstractConverter">
+        <property name="targetClass" value="bi.uburaro.facade.data.RoomData"/>
+        <property name="populators" ref="roomPopulators"/>
+    </bean>
+    <bean id="fullRoomConverter" parent="abstractConverter">
+        <property name="targetClass" value="bi.uburaro.facade.data.RoomData"/>
+        <property name="populators" ref="fullRoomPopulators"/>
+    </bean>
+
+    <bean id="branchGroupConverter" parent="abstractConverter">
+        <property name="targetClass" value="bi.uburaro.facade.data.BranchGroupData"/>
+        <property name="populators" ref="branchGroupPopulators"/>
+    </bean>
+
+    <bean id="addressConverter" parent="abstractConverter">
+        <property name="targetClass" value="bi.uburaro.core.types.AddressType"/>
+        <property name="populators" ref="addressPopulators"/>
+    </bean>
+    <bean id="taxGroupConverter" parent="abstractConverter">
+        <property name="targetClass" value="bi.uburaro.facade.data.groups.TaxGroupData"/>
+        <property name="populators" ref="taxGroupPopulators"/>
+    </bean>
+    <bean id="priceGroupConverter" parent="abstractConverter">
+        <property name="targetClass" value="bi.uburaro.facade.data.groups.PriceGroupData"/>
+        <property name="populators" ref="priceGroupPopulators"/>
+    </bean>
+    <bean id="roomGroupConverter" parent="abstractConverter">
+        <property name="targetClass" value="bi.uburaro.facade.data.groups.RoomGroupData"/>
+        <property name="populators" ref="roomGroupPopulators"/>
+    </bean>
+
+    <!--Populators-->
+    <bean id="itemPopulator" class="bi.uburaro.facade.pupulators.imp.ItemPopulator"/>
+    <bean id="groupPopulator" class="bi.uburaro.facade.pupulators.imp.GroupPopulator"/>
+
+    <util:list id="languagePopulators" value-type="bi.uburaro.facade.pupulators.Populator">
+        <ref bean="itemPopulator"/>
+        <ref bean="languagePopulator"/>
+    </util:list>
+    <bean id="languagePopulator" class="bi.uburaro.facade.pupulators.imp.LanguagePopulator"/>
+
+    <!--    Hotel Populators-->
+    <util:list id="hotelPopulators" value-type="bi.uburaro.facade.pupulators.Populator">
+        <ref bean="itemPopulator"/>
+        <ref bean="basicHotelPopulator"/>
+    </util:list>
+    <util:list id="fullHotelPopulators" value-type="bi.uburaro.facade.pupulators.Populator">
+        <ref bean="itemPopulator"/>
+        <ref bean="basicHotelPopulator"/>
+        <ref bean="fullHotelPopulator"/>
+    </util:list>
+    <bean id="basicHotelPopulator" class="bi.uburaro.facade.pupulators.imp.BasicHotelPopulator"/>
+    <bean id="fullHotelPopulator" class="bi.uburaro.facade.pupulators.imp.FullHotelPopulator"
+          parent="basicHotelPopulator">
+        <constructor-arg name="languageConverter" ref="languageConverter"/>
+        <constructor-arg name="roomConverter" ref="roomConverter"/>
+        <constructor-arg name="branchGroupConverter" ref="branchGroupConverter"/>
+        <constructor-arg name="addressConverter" ref="addressConverter"/>
+        <constructor-arg name="taxGroupConverter" ref="taxGroupConverter"/>
+    </bean>
+
+    <!--    Rooms Populators-->
+    <util:list id="roomPopulators" value-type="bi.uburaro.facade.pupulators.Populator">
+        <ref bean="itemPopulator"/>
+        <ref bean="basicRoomPopulator"/>
+    </util:list>
+
+    <util:list id="fullRoomPopulators" value-type="bi.uburaro.facade.pupulators.Populator">
+        <ref bean="itemPopulator"/>
+        <ref bean="basicRoomPopulator"/>
+        <ref bean="fullRoomPopulator"/>
+    </util:list>
+    <bean id="basicRoomPopulator" class="bi.uburaro.facade.pupulators.imp.BasicRoomPopulator"/>
+    <bean id="fullRoomPopulator" class="bi.uburaro.facade.pupulators.imp.FullRoomPopulator"
+          parent="basicRoomPopulator">
+        <constructor-arg name="taxGroupConverter" ref="taxGroupConverter"/>
+        <constructor-arg name="priceGroupConverter" ref="priceGroupConverter"/>
+        <constructor-arg name="roomGroupConverter" ref="roomGroupConverter"/>
+    </bean>
+
+    <!--    Branch Group Populators-->
+    <util:list id="branchGroupPopulators" value-type="bi.uburaro.facade.pupulators.Populator">
+        <ref bean="itemPopulator"/>
+        <ref bean="groupPopulator"/>
+        <ref bean="branchGroupPopulator"/>
+    </util:list>
+    <bean id="branchGroupPopulator" class="bi.uburaro.facade.pupulators.imp.BranchGroupPopulator">
+        <constructor-arg name="hotelConverter" ref="hotelConverter"/>
+    </bean>
+
+    <!--    Address Populators-->
+    <util:list id="addressPopulators" value-type="bi.uburaro.facade.pupulators.Populator">
+        <ref bean="itemPopulator"/>
+        <ref bean="addressPopulator"/>
+    </util:list>
+    <bean id="addressPopulator" class="bi.uburaro.facade.pupulators.imp.AddressPopulator"/>
+
+    <!--    Tax Group Populators-->
+    <util:list id="taxGroupPopulators" value-type="bi.uburaro.facade.pupulators.Populator">
+        <ref bean="itemPopulator"/>
+        <ref bean="groupPopulator"/>
+        <ref bean="taxGroupPopulator"/>
+    </util:list>
+    <bean id="taxGroupPopulator" class="bi.uburaro.facade.pupulators.imp.TaxGroupPopulator"/>
+
+    <!--    Price Group Populators-->
+    <util:list id="priceGroupPopulators" value-type="bi.uburaro.facade.pupulators.Populator">
+        <ref bean="itemPopulator"/>
+        <ref bean="groupPopulator"/>
+        <ref bean="priceGroupPopulator"/>
+    </util:list>
+    <bean id="priceGroupPopulator" class="bi.uburaro.facade.pupulators.imp.PriceGroupPopulator"/>
+
+    <!--    Room Group Populators-->
+    <util:list id="roomGroupPopulators" value-type="bi.uburaro.facade.pupulators.Populator">
+        <ref bean="roomGroupPopulator"/>
+    </util:list>
+    <bean id="roomGroupPopulator" class="bi.uburaro.facade.pupulators.imp.RoomGroupPopulator"/>
+    <!--    Facades-->
+
+    <alias name="defaultHotelFacade" alias="hotelFacade"/>
+    <bean id="defaultHotelFacade" class="bi.uburaro.facade.facades.impl.DefaultHotelFacade">
+        <constructor-arg name="converter" ref="hotelConverter"/>
+        <constructor-arg name="fullConverter" ref="fullHotelConverter"/>
+        <constructor-arg name="hotelService" ref="hotelService"/>
+        <constructor-arg name="sessionService" ref="sessionService"/>
+        <constructor-arg name="typeService" ref="typeService"/>
+    </bean>
+
 </beans>

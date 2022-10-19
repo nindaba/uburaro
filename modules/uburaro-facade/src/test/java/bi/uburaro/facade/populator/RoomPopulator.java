@@ -19,8 +19,5 @@ public class RoomPopulator {
 
     @Test
     void roomTypeToRoomData() {
-        RoomType expect = new RoomType();
-        RoomType actual = typeService.<RoomType>create();
-        Assert.assertEquals(expect.toString(),actual.toString());
     }
 }
