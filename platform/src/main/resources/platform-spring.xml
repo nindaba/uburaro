@@ -4,8 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <import resource="uburaro-web-spring.xml"/>
-    <import resource="uburaro-initialdata-spring.xml"/>
 
     <bean id="uburaroApplicationListener" class="bi.uburaro.platform.events.UburaroApplicationListener"/>
-
 </beans>

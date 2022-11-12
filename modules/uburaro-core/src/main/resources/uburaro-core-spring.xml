@@ -17,6 +17,7 @@
     <bean id="beforeSaveValidatorListMerger" class="bi.uburaro.core.mergers.impl.ValidatorListMerger">
         <constructor-arg name="target" ref="itemBeforeSaveValidators"/>
     </bean>
+
     <!--    Repositories-->
     <jpa:repositories base-package="bi.uburaro.core.repositories"/>
 
@@ -27,6 +28,8 @@
         <constructor-arg name="repositories">
             <list>
                 <ref bean="hotelRepository"/>
+                <ref bean="groupRepository"/>
+                <ref bean="principleRepository"/>
             </list>
         </constructor-arg>
     </bean>
@@ -40,12 +43,28 @@
         <constructor-arg name="itemBeforeSaveValidators" ref="itemBeforeSaveValidators"/>
         <constructor-arg name="sessionService" ref="sessionService"/>
     </bean>
+
     <alias name="defaultHotelService" alias="hotelService"/>
     <bean id="defaultHotelService" class="bi.uburaro.core.services.impl.DefaultHotelService">
         <constructor-arg name="sessionService" ref="sessionService"/>
         <constructor-arg name="typeService" ref="typeService"/>
     </bean>
-    <bean id="primaryKeyModificationValidator" class="bi.uburaro.core.validators.PrimaryKeyModificationValidator">
+
+    <alias name="defaultEmployeeService" alias="employeeService"/>
+    <bean id="defaultEmployeeService" class="bi.uburaro.core.services.impl.DefaultEmployeeService">
+        <constructor-arg name="hotelService" ref="hotelService"/>
+        <constructor-arg name="sessionService" ref="sessionService"/>
+        <constructor-arg name="typeService" ref="typeService"/>
+    </bean>
+
+    <alias name="defaultCustomerService" alias="customerService"/>
+    <bean id="defaultCustomerService" class="bi.uburaro.core.services.impl.DefaultCustomerService">
+        <constructor-arg name="hotelService" ref="hotelService"/>
+        <constructor-arg name="sessionService" ref="sessionService"/>
+        <constructor-arg name="typeService" ref="typeService"/>
+    </bean>
+
+    <bean id="primaryKeyModificationValidator" class="bi.uburaro.core.validators.impl.PrimaryKeyModificationValidator">
         <constructor-arg name="typeService" ref="typeService"/>
     </bean>
 

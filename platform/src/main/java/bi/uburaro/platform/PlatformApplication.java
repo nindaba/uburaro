@@ -11,7 +11,8 @@ import org.springframework.context.annotation.PropertySources;
 @EntityScan(basePackages = "bi.uburaro.core.types")
 @ImportResource(value = "classpath:platform-spring.xml")
 @PropertySources({
-        @PropertySource("classpath:uburaro-web.properties")
+        @PropertySource("classpath:uburaro-web.properties"),
+        @PropertySource("classpath:uburaro-initialdata.properties")
 })
 public class PlatformApplication {
 

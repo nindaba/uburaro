@@ -1,5 +1,6 @@
 package bi.uburaro.core.services.impl;
 
+import bi.uburaro.core.repositories.ItemRepository;
 import bi.uburaro.core.strategies.PrimaryKeyGeneratorStrategy;
 import bi.uburaro.core.types.HotelType;
 import bi.uburaro.core.types.PrimaryKeyType;

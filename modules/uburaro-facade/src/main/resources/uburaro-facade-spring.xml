@@ -3,6 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
     <import resource="uburaro-core-spring.xml"/>
+    <import resource="uburaro-initialdata-spring.xml"/>
 
     <!--Converters-->
     <bean id="abstractConverter" class="bi.uburaro.facade.converters.AbstractConverter" abstract="true"/>
@@ -51,6 +52,26 @@
         <property name="targetClass" value="bi.uburaro.facade.data.groups.RoomGroupData"/>
         <property name="populators" ref="roomGroupPopulators"/>
     </bean>
+
+    <bean id="fullCustomerConverter" parent="abstractConverter">
+        <property name="targetClass" value="bi.uburaro.facade.data.CustomerData"/>
+        <property name="populators" ref="fullCustomerPopulators"/>
+    </bean>
+    <bean id="customerConverter" parent="abstractConverter">
+        <property name="targetClass" value="bi.uburaro.facade.data.CustomerData"/>
+        <property name="populators" ref="customerPopulators"/>
+    </bean>
+
+    <bean id="employeeConverter" parent="abstractConverter">
+        <property name="targetClass" value="bi.uburaro.facade.data.EmployeeData"/>
+        <property name="populators" ref="employeePopulators"/>
+    </bean>
+    <bean id="fullEmployeeConverter" parent="abstractConverter">
+        <property name="targetClass" value="bi.uburaro.facade.data.EmployeeData"/>
+        <property name="populators" ref="fullEmployeePopulators"/>
+    </bean>
+
+    <bean id="companyConverter" parent="abstractConverter"/>
 
     <!--Populators-->
     <bean id="itemPopulator" class="bi.uburaro.facade.pupulators.imp.ItemPopulator"/>
@@ -139,8 +160,38 @@
         <ref bean="roomGroupPopulator"/>
     </util:list>
     <bean id="roomGroupPopulator" class="bi.uburaro.facade.pupulators.imp.RoomGroupPopulator"/>
-    <!--    Facades-->
 
+    <!--    Customer Populators-->
+    <util:list id="customerPopulators" value-type="bi.uburaro.facade.pupulators.Populator">
+        <ref bean="itemPopulator"/>
+        <ref bean="customerPopulator"/>
+    </util:list>
+    <util:list id="fullCustomerPopulators" value-type="bi.uburaro.facade.pupulators.Populator">
+        <ref bean="itemPopulator"/>
+        <ref bean="customerPopulator"/>
+        <ref bean="fullCustomerPopulator"/>
+    </util:list>
+    <bean id="customerPopulator" class="bi.uburaro.facade.pupulators.imp.BasicCustomerPopulator"/>
+    <bean id="fullCustomerPopulator" class="bi.uburaro.facade.pupulators.imp.FullCustomerPopulator">
+        <constructor-arg name="addressConverter" ref="addressConverter"/>
+        <constructor-arg name="companyConverter" ref="companyConverter"/>
+    </bean>
+
+    <!--    Employee Populators-->
+    <util:list id="employeePopulators" value-type="bi.uburaro.facade.pupulators.Populator">
+        <ref bean="itemPopulator"/>
+        <ref bean="employeePopulator"/>
+    </util:list>
+    <util:list id="fullEmployeePopulators" value-type="bi.uburaro.facade.pupulators.Populator">
+        <ref bean="itemPopulator"/>
+        <ref bean="employeePopulator"/>
+        <ref bean="fullEmployeePopulator"/>
+    </util:list>
+    <bean id="employeePopulator" class="bi.uburaro.facade.pupulators.imp.BasicEmployeePopulator"/>
+    <bean id="fullEmployeePopulator" class="bi.uburaro.facade.pupulators.imp.FullEmployeePopulator">
+<!--        <constructor-arg name=""-->
+    </bean>
+    <!--    Facades-->
     <alias name="defaultHotelFacade" alias="hotelFacade"/>
     <bean id="defaultHotelFacade" class="bi.uburaro.facade.facades.impl.DefaultHotelFacade">
         <constructor-arg name="converter" ref="hotelConverter"/>
@@ -150,4 +201,24 @@
         <constructor-arg name="typeService" ref="typeService"/>
     </bean>
 
+    <alias name="defaultCustomerFacade" alias="customerFacade"/>
+    <bean id="defaultCustomerFacade" class="bi.uburaro.facade.facades.impl.DefaultCustomerFacade">
+        <constructor-arg name="converter" ref="customerConverter"/>
+        <constructor-arg name="fullConverter" ref="fullCustomerConverter"/>
+        <constructor-arg name="customerService" ref="customerService"/>
+        <constructor-arg name="typeService" ref="typeService"/>
+    </bean>
+
+    <alias name="defaultEmployeeFacade" alias="employeeFacade"/>
+    <bean id="defaultEmployeeFacade" class="bi.uburaro.facade.facades.impl.DefaultEmployeeFacade">
+        <constructor-arg name="converter" ref="employeeConverter"/>
+        <constructor-arg name="fullConverter" ref="fullEmployeeConverter"/>
+        <constructor-arg name="employeeService" ref="employeeService"/>
+        <constructor-arg name="typeService" ref="typeService"/>
+    </bean>
+
+    <alias name="defaultInitialDataFacade" alias="initialDataFacade"/>
+    <bean id="defaultInitialDataFacade" class="bi.uburaro.facade.facades.impl.DefaultInitialDataFacade">
+        <constructor-arg name="dataImporterService" ref="dataImporterService"/>
+    </bean>
 </beans>

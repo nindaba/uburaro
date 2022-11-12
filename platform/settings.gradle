@@ -16,11 +16,11 @@ def MODULES = [
         'uburaro-initialdata'
 ]
 
-MODULES.forEach(module -> {
+MODULES.each {module ->
     def modulePath = MODULES_DIR + module;
     include(modulePath)
     findProject(":" + modulePath)?.name = module
-})
+}
 
 
 

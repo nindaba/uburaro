@@ -2,6 +2,7 @@ package bi.uburaro.web.controllers;
 
 import bi.uburaro.facade.data.HotelData;
 import bi.uburaro.facade.facades.HotelFacade;
+import bi.uburaro.facade.facades.InitialDataFacade;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,17 +11,19 @@ import javax.annotation.Resource;
 import java.util.Collection;
 
 import static bi.uburaro.web.UburaroWebConstants.Controller.Hotel.*;
+import static bi.uburaro.web.UburaroWebConstants.Controller;
 
-@Log4j2
 @RestController
 public class HotelController {
     @Resource(name = "hotelFacade")
     private HotelFacade hotelFacade;
+    @Resource(name = "initialDataFacade")
+    private InitialDataFacade initialDataFacade;
 
     @RequestMapping(path = hotel, method = RequestMethod.GET)
     public ResponseEntity<HotelData> getHotel(@PathVariable(name = hotelCode) String code,
-                                              @RequestParam(name = "allFields", required = false) boolean allFields) {
-        return ResponseEntity.ok(hotelFacade.getHotelByCode(code,allFields));
+                                              @RequestParam(name = Controller.allFields, required = false) boolean allFields) {
+        return ResponseEntity.ok(hotelFacade.getHotelByCode(code, allFields));
     }
 
     @RequestMapping(path = branches, method = RequestMethod.GET)
@@ -44,6 +47,12 @@ public class HotelController {
         return ResponseEntity.ok().build();
     }
 
+    @RequestMapping(path = importCurrent, method = RequestMethod.POST)
+    public ResponseEntity<Void> importCurrent() {
+        initialDataFacade.importCurrent();
+        return ResponseEntity.ok().build();
+    }
+
     @RequestMapping(path = hotel, method = RequestMethod.PATCH)
     public ResponseEntity<HotelData> updateHotel(@RequestBody HotelData hotelData) {
         return ResponseEntity.ok(hotelFacade.updateHotel(hotelData));
@@ -54,6 +63,4 @@ public class HotelController {
         hotelFacade.deleteHotel(code);
         return ResponseEntity.ok().build();
     }
-
-
 }

@@ -9,5 +9,5 @@ public interface SessionService {
     PrincipalType getCurrentUser();
 
 
-    Object getSessionAttribute(String key);
+    <T> T getSessionAttribute(String key);
 }

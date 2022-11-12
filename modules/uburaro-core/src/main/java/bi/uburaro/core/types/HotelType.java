@@ -1,7 +1,6 @@
 package bi.uburaro.core.types;
 
 import bi.uburaro.core.types.groups.BranchGroupType;
-import bi.uburaro.core.types.groups.GroupType;
 import bi.uburaro.core.types.groups.TaxGroupType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,7 +21,7 @@ public class HotelType extends ItemType{
     public static final String LANGUAGES = "languages";
     public static final String DEFAULT_LANGUAGE = "defaultLanguage";
     public static final String ADDRESS = "addresses";
-    public static final String GROUPS = "groups";
+    public static final String TAX_GROUPS = "taxGroups";
     public static final String DEFAULT_TAX_GROUP= "defaultTaxGroup";
     public static final String BRANCH_GROUP= "branchGroup";
 
@@ -40,7 +39,7 @@ public class HotelType extends ItemType{
     @OneToOne
     private TaxGroupType defaultTaxGroup;
     @OneToMany
-    private Set<TaxGroupType> taxGroupTypes;
+    private Set<TaxGroupType> taxGroups;
     @ManyToOne
     private BranchGroupType branchGroup;
 }

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 
-import static bi.uburaro.core.UburaroCoreConstants.COLUMN_PREFIX;
+import static bi.uburaro.core.UburaroCoreConstants.DATABASE_KEYWORDS_PREFIX;
 
 @Data
 @NoArgsConstructor
@@ -18,8 +18,8 @@ public class PrimaryKeyType implements Serializable {
     public static final String KEY = "key";
     public static final String ITEM_TYPE = "itemType";
 
-    @GeneratedValue
-    @Column(name = COLUMN_PREFIX  + KEY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = DATABASE_KEYWORDS_PREFIX + KEY)
     private long key;
     private String itemType;
     private long dateCreated;

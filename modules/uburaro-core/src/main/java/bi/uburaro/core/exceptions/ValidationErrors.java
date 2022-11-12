@@ -7,7 +7,7 @@ import org.springframework.validation.ObjectError;
 
 import java.util.List;
 
-public class ValidationErrors extends AbstractErrors {
+public class ValidationErrors extends AbstractErrors{
 
     @Override
     public String getObjectName() {

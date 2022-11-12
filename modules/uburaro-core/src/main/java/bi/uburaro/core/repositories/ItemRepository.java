@@ -15,9 +15,8 @@ public interface ItemRepository<TYPE extends ItemType> extends JpaRepository<TYP
      * @param code of the item
      * @param type of the item
      * @return Item
-     * @param <TYPE>
      */
-    <TYPE extends ItemType> TYPE findByCodeAndPrimaryKeyItemType(String code,String type);
+    TYPE findByCodeAndPrimaryKeyItemType(String code,String type);
 
     /**
      * Deletes an Item by code and type
@@ -28,7 +27,7 @@ public interface ItemRepository<TYPE extends ItemType> extends JpaRepository<TYP
     void deleteByCodeAndPrimaryKeyItemType(String code,String type);
 
     /**
-     * Checks if a repository belongs to a type
+     * Checks if a repository belongs to a type,
      *
      * @param typeClass
      * @return false by default because it belongs to all the Types

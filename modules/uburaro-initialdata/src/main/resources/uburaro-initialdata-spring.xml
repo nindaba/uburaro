@@ -1,5 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- Mappers-->
+    <bean id="abstractTypeMapper" class="bi.uburaro.initialdata.mappers.impl.AbstractTypeMapper" abstract="true">
+        <constructor-arg name="typeService" ref="typeService"/>
+    </bean>
+
+    <util:list id="typeMappers" value-type="bi.uburaro.initialdata.mappers.Mapper">
+        <bean class="bi.uburaro.initialdata.mappers.impl.CustomerTypeMapper"
+              parent="abstractTypeMapper"/>
+        <bean class="bi.uburaro.initialdata.mappers.impl.HotelTypeMapper"
+              parent="abstractTypeMapper"/>
+        <bean class="bi.uburaro.initialdata.mappers.impl.EmployeeTypeMapper"
+              parent="abstractTypeMapper"/>
+    </util:list>
+
+    <alias name="defaultImporterService" alias="dataImporterService"/>
+    <bean id="defaultImporterService" class="bi.uburaro.initialdata.services.impl.DefaultImporterService">
+        <constructor-arg name="typeService" ref="typeService"/>
+        <constructor-arg name="dataBatchProcessorStrategies" ref="dataBatchProcessorStrategy"/>
+        <constructor-arg name="environment" ref="environment"/>
+    </bean>
+
+
+    <!--Batch Processor Strategies-->
+    <alias name="defaultDataBatchProcessorStrategy" alias="dataBatchProcessorStrategy"/>
+    <bean id="defaultDataBatchProcessorStrategy"
+          class="bi.uburaro.initialdata.strategies.impl.DefaultDataBatchProcessorStrategy">
+        <constructor-arg name="mappers" ref="typeMappers"/>
+        <constructor-arg name="typeService" ref="typeService"/>
+    </bean>
 </beans>
