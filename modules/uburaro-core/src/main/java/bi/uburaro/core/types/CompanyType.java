@@ -1,7 +1,6 @@
 package bi.uburaro.core.types;
 
 import bi.uburaro.core.types.groups.DiscountGroupType;
-import bi.uburaro.core.types.groups.GroupType;
 import bi.uburaro.core.types.groups.RoomGroupType;
 import bi.uburaro.core.types.groups.TaxGroupType;
 import lombok.Data;
@@ -22,6 +21,7 @@ public class CompanyType extends ItemType{
     public static final String PREFERRED_ROOMS_GROUPS = "preferredRoomsGroups";
     public static final String DISCOUNT_GROUPS = "discountGroups";
     public static final String TAX_GROUPS = "taxGroups";
+    public static final String CUSTOMERS = "customers";
 
     private String companyName;
     @ManyToMany
@@ -30,4 +30,6 @@ public class CompanyType extends ItemType{
     private Set<DiscountGroupType> discountGroups;
     @ManyToMany
     private Set<TaxGroupType> taxGroups;
+    @ManyToMany
+    private Set<CustomerType> customers;
 }

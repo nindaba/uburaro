@@ -36,7 +36,7 @@ public class FullHotelPopulator implements Populator<HotelType,HotelData> {
         target.setRooms(Converters.convertAll(roomConverter, source.getRooms()));
         target.setBranchGroup(Converters.convert(branchGroupConverter, source.getBranchGroup()));
         target.setAddresses(Converters.convertAll(addressConverter, source.getAddresses()));
-        target.setTaxGroups(Converters.convertAll(taxGroupConverter, source.getTaxGroupTypes()));
+        target.setTaxGroups(Converters.convertAll(taxGroupConverter, source.getTaxGroups()));
         target.setDefaultTaxGroup(Converters.convert(taxGroupConverter, source.getDefaultTaxGroup()));
         target.setDefaultLanguage(Converters.convert(languageConverter, source.getDefaultLanguage()));
         target.setLanguages(Converters.convertAll(languageConverter, source.getLanguages()));

@@ -40,7 +40,7 @@ public class ItemType implements Serializable {
      */
     private Boolean active;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<ModificationLogType> modificationLogs;
 
     public ItemType(String code) {

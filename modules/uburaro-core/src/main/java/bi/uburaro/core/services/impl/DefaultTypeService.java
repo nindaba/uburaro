@@ -3,6 +3,7 @@ package bi.uburaro.core.services.impl;
 import bi.uburaro.core.UburaroCoreConstants;
 import bi.uburaro.core.exceptions.ItemCreationException;
 import bi.uburaro.core.exceptions.NotFoundException;
+import bi.uburaro.core.exceptions.ValidationException;
 import bi.uburaro.core.repositories.ItemRepository;
 import bi.uburaro.core.services.SessionService;
 import bi.uburaro.core.services.TypeService;
@@ -13,14 +14,11 @@ import bi.uburaro.core.types.ModificationLogType;
 import bi.uburaro.core.utils.MessageUtils;
 import bi.uburaro.core.validators.Validator;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.util.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.transaction.Transactional;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static bi.uburaro.core.utils.MessageUtils.format;
 
@@ -47,15 +45,16 @@ public class DefaultTypeService implements TypeService {
 
     @Override
     public <TYPE extends ItemType> TYPE create(final Class<TYPE> typeClass) {
-        TYPE instance;
         try {
             String type = (String) typeClass.getField(UburaroCoreConstants.ITEM_TYPE).get(null);
-            instance = typeClass.getConstructor().newInstance();
+            TYPE instance = typeClass.getConstructor().newInstance();
             instance.setPrimaryKey(primaryKeyGeneratorStrategy.generateKey(type));
 
             Date dateModified = new Date();
             instance.setDateModified(dateModified);
             ModificationLogType logType = new ModificationLogType();
+            String modificationKey = (String) ModificationLogType.class.getField(UburaroCoreConstants.ITEM_TYPE).get(null);
+            logType.setPrimaryKey(primaryKeyGeneratorStrategy.generateKey(modificationKey));
             logType.setModifiedItem(type);
             logType.setDateModified(dateModified);
 
@@ -73,32 +72,44 @@ public class DefaultTypeService implements TypeService {
     }
 
     @Override
-    public <TYPE extends ItemType> void save(TYPE item) {
+    public <TYPE extends ItemType> boolean save(TYPE item) {
         Map<String, String> errors = new HashMap<>();
         itemBeforeSaveValidators.stream()
                 .filter(validator -> validator.isSupported(item.getClass()))
                 .forEach(validator -> validator.validate(item, errors));
 
-        if (errors.isEmpty()) {
-            itemRepository.save(item);
-        } else errors.forEach((field, error) -> log.error(error, field));
-    }
-
-    @Transactional
-    @Override
-    public <TYPE extends ItemType> TYPE findItemByCode(String code, Class<TYPE> itemTypeClass) {
-        ItemType itemType = repositoryResolverStrategy.resolveRepository(itemTypeClass)
-                .findByCodeAndPrimaryKeyItemType(code, itemTypeClass.getName());
-
-        if (ObjectUtils.isEmpty(itemType)) {
-            log.debug(NOT_FOUND_RESPONSE, itemTypeClass::getSimpleName, () -> code);
-            throw new NotFoundException(
-                    MessageUtils.format(NOT_FOUND_RESPONSE, itemTypeClass::getSimpleName, () -> code));
+        if (!errors.isEmpty()) {
+            StringBuilder errorBuilder = new StringBuilder();
+            errors.forEach((field, error) -> {
+                errorBuilder.append(MessageUtils.format(error, field));
+                log.error(error, field);
+            });
+            throw new ValidationException(errorBuilder.toString());
         }
 
-        return itemTypeClass.cast(itemType);
+        return itemRepository.save(item) != null;
     }
 
+    //    @Transactional
+    @Override
+    public <TYPE extends ItemType> TYPE findItemByCode(String code, Class<TYPE> itemTypeClass) {
+        try {
+            return Optional.ofNullable(repositoryResolverStrategy.resolveRepository(itemTypeClass)
+                            .findByCodeAndPrimaryKeyItemType(
+                                    code,
+                                    (String) itemTypeClass.getField(UburaroCoreConstants.ITEM_TYPE).get(null)))
+                    .map(itemTypeClass::cast)
+                    .orElseThrow(() -> {
+                        log.debug(NOT_FOUND_RESPONSE, itemTypeClass::getSimpleName, () -> code);
+                        return new NotFoundException(MessageUtils.format(
+                                NOT_FOUND_RESPONSE, itemTypeClass::getSimpleName, () -> code));
+                    });
+        } catch (IllegalAccessException | NoSuchFieldException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    //    @Transactional
     @Override
     public <TYPE extends ItemType> List<TYPE> findAll(Class<TYPE> typeClass) {
         return repositoryResolverStrategy.resolveRepository(typeClass)

@@ -8,14 +8,15 @@
     <context:component-scan base-package="bi.uburaro.web.controllers"/>
 
 
-    <bean id="sessionInitFilter" class="bi.uburaro.web.filters.SessionInitFilter">
+    <bean id="hotelFilter" class="bi.uburaro.web.filters.HotelFilter">
         <constructor-arg name="environment" ref="environment"/>
         <constructor-arg name="hotelService" ref="hotelService"/>
     </bean>
 
     <alias name="defaultSessionService" alias="sessionService"/>
-    <bean id="defaultSessionService" class="bi.uburaro.web.webservices.DefaultSessionService">
-        <constructor-arg name="environment" ref="environment"/>
+<!--    <bean id="defaultSessionService" class="bi.uburaro.web.services.DefaultSessionService">-->
+    <bean id="defaultSessionService" class="bi.uburaro.core.services.impl.AbstractSessionService">
+<!--        <constructor-arg name="environment" ref="environment"/>-->
     </bean>
 
 </beans>

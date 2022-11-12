@@ -35,7 +35,8 @@ public class DefaultHotelFacade implements HotelFacade {
 
     @Override
     public HotelData getHotelByCode(final String code, final boolean allFields) {
-        return Converters.convert(allFields ? fullConverter : converter,
+        return Converters.convert(
+                allFields ? fullConverter : converter,
                 Optional.ofNullable(sessionService.getCurrentHotel())
                         .filter(hotelType -> ObjectUtils.nullSafeEquals(hotelType.getCode(), code))
                         .orElse(hotelService.getHotelByCode(code)));

@@ -1,7 +1,8 @@
-package bi.uburaro.web.webservices;
+package bi.uburaro.web.services;
 
 import bi.uburaro.core.services.SessionService;
 import bi.uburaro.core.types.HotelType;
+import bi.uburaro.core.types.ItemType;
 import bi.uburaro.core.types.PrincipalType;
 import lombok.extern.log4j.Log4j2;
 import org.apache.catalina.session.StandardSessionFacade;
@@ -22,7 +23,7 @@ public class DefaultSessionService implements SessionService {
 
     @Override
     public HotelType getCurrentHotel() {
-        Object currentHotel = getSessionAttribute(SESSION_HOTEL);
+        ItemType currentHotel = getSessionAttribute(SESSION_HOTEL);
         if(currentHotel instanceof HotelType){
             log.info("Found current hotel: {}",((HotelType) currentHotel)::getCode);
             return (HotelType) currentHotel;
@@ -33,7 +34,7 @@ public class DefaultSessionService implements SessionService {
 
     @Override
     public PrincipalType getCurrentUser() {
-        Object currentUser = getSessionAttribute(SESSION_USER);
+        ItemType currentUser = getSessionAttribute(SESSION_USER);
         if(currentUser instanceof PrincipalType){
             log.info("Found current hotel: {}",((PrincipalType) currentUser)::getCode);
             return (PrincipalType) currentUser;
@@ -42,9 +43,9 @@ public class DefaultSessionService implements SessionService {
         return null;
     }
     @Override
-    public Object getSessionAttribute(String key) {
+    public <T> T getSessionAttribute(String key) {
         RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
         StandardSessionFacade sessionFacade = (StandardSessionFacade) requestAttributes.getSessionMutex();
-        return sessionFacade.getAttribute(environment.getProperty(key));
+        return (T) sessionFacade.getAttribute(environment.getProperty(key));
     }
 }

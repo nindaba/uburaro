@@ -1,9 +1,10 @@
-package bi.uburaro.core.validators;
+package bi.uburaro.core.validators.impl;
 
 import bi.uburaro.core.services.TypeService;
 import bi.uburaro.core.types.HotelType;
 import bi.uburaro.core.types.ItemType;
 import bi.uburaro.core.types.PrimaryKeyType;
+import bi.uburaro.core.validators.Validator;
 
 import java.util.Map;
 

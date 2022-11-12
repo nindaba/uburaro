@@ -1,0 +1,5 @@
+﻿##customer;;;;;;;;;
+code;firstName;lastName;phone;identity;nationality;age;gender;visible;active
+;;;;;;;;;
+##customer;;;;;;;;;
+code;address;companies;branchGroups;;;;;;

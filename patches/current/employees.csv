@@ -1,0 +1,4 @@
+﻿##employee;;;;;
+code;username;firstName;lastName;employeeGroups;active
+admin;admin;admin;admin;;FALSE
+anonymous;anonymous;anonymous;anonymous;;TRUE

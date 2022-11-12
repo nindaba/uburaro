@@ -18,15 +18,16 @@ public interface TypeService{
      * Saves an Item
      *
      * @param item
+     * @return
      */
-     <TYPE extends ItemType> void save(final TYPE item);
+     <TYPE extends ItemType> boolean save(final TYPE item);
 
     /**
      * Searches for an item by its code and type
      *
      * @param code of the Item
      * @param itemTypeClass of the Item
-     * @return <TYPE>
+     * @return item of <TYPE>
      */
      <TYPE extends ItemType> TYPE findItemByCode(String code, Class<TYPE> itemTypeClass);
 

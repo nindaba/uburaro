@@ -1,0 +1,11 @@
+##hotel;;;;;
+code;name;alias;defaultLanguage;defaultTaxGroup;branchGroup
+cizanye;Cizanye Hotel;cizanye;fr;muyinga;mainCizanye
+green_hills;Grren Hills Hotel;green;fr;muyinga;mainCizanye
+cizanye_kizungu;Cizanye Kizungu Hotel Branch;cizanye kizungu;fr;muyinga;mainCizanye
+;;;;;
+##hotel;;;;;
+code;active;visible;;;
+cizanye;TRUE;TRUE;;;
+green_hills;TRUE;TRUE;;;
+cizanye_kizungu;TRUE;FALSE;;;

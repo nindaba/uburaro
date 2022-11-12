@@ -1,6 +1,5 @@
 package bi.uburaro.core.types;
 
-import bi.uburaro.core.UburaroCoreConstants;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -11,7 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import java.util.Date;
 
-import static bi.uburaro.core.UburaroCoreConstants.COLUMN_PREFIX;
+import static bi.uburaro.core.UburaroCoreConstants.DATABASE_KEYWORDS_PREFIX;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -39,6 +38,6 @@ public class ReservationType extends ItemType {
     private EmployeeType reservedByEmployee;
     @ManyToOne
     private CustomerType reservedByCustomer;
-    @Column(name = COLUMN_PREFIX + GROUPS)
+    @Column(name = DATABASE_KEYWORDS_PREFIX + GROUPS)
     private String groups;
 }

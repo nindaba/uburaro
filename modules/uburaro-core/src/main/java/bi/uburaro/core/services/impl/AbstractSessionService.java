@@ -20,7 +20,7 @@ public class AbstractSessionService implements SessionService {
     }
 
     @Override
-    public Object getSessionAttribute(String key) {
+    public <T> T getSessionAttribute(String key) {
         log.debug("No current {} to stored in the session",key);
         return null;
     }

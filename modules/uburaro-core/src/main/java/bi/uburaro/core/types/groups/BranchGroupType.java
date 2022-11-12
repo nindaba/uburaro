@@ -2,6 +2,7 @@ package bi.uburaro.core.types.groups;
 
 import bi.uburaro.core.types.HotelType;
 import bi.uburaro.core.types.ItemType;
+import bi.uburaro.core.types.PrincipalType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,11 @@ import java.util.Set;
 public class BranchGroupType extends GroupType {
     public static final String ITEM_TYPE = "branchGroup";
     public static final String MEMBERS = "members";
+    public static final String Employees = "employees";
 
     @OneToMany
     private Set<HotelType> members;
+
+    @ManyToMany
+    private Set<PrincipalType> principals;
 }
