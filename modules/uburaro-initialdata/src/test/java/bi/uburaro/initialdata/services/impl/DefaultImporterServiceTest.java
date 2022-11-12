@@ -28,11 +28,5 @@ class DefaultImporterServiceTest {
 
     @Test
     void importFromDir() {
-        Integer i =0;
-        adder(i);
-        assertEquals(1,i);
-    }
-    void adder(Integer i){
-        i++;
     }
 }
