@@ -14,9 +14,9 @@
     </bean>
 
     <alias name="defaultSessionService" alias="sessionService"/>
-<!--    <bean id="defaultSessionService" class="bi.uburaro.web.services.DefaultSessionService">-->
-    <bean id="defaultSessionService" class="bi.uburaro.core.services.impl.AbstractSessionService">
-<!--        <constructor-arg name="environment" ref="environment"/>-->
+    <!--    <bean id="defaultSessionService" class="bi.uburaro.core.services.impl.AbstractSessionService"/>-->
+    <bean id="defaultSessionService" class="bi.uburaro.web.services.DefaultSessionService">
+        <constructor-arg name="environment" ref="environment"/>
     </bean>
 
 </beans>
