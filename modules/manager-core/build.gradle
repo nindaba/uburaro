@@ -1,0 +1,43 @@
+plugins {
+    id "io.freefair.lombok"
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+    id 'java'
+}
+
+group 'bi.uburaro'
+version '3.0'
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.5'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation 'mysql:mysql-connector-java:8.0.30'
+    implementation project(":uburaro-core")
+
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:4.8.0'
+
+    testImplementation 'org.mockito:mockito-core:4.8.0'
+
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+}
+
+test {
+
+    useJUnitPlatform()
+}
+
+//processResources {
+//    doLast {
+//        projectDir.listFiles({file,name -> name.endsWith(".properties")} as FilenameFilter)
+//        .absoluteFile.forEach {it.renameTo()}
+//        def string = projectDir.listFiles(filenameFilter)
+//    }
+//}
