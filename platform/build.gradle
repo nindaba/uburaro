@@ -16,6 +16,20 @@ repositories {
     mavenCentral()
 }
 
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+    }
+}
+
+bootRun {
+    environment 'spring.output.ansi.console-available', true
+}
+
+bootRun.jvmArgs += '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000'
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'

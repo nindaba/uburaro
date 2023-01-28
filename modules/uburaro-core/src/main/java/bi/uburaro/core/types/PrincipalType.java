@@ -5,15 +5,16 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
+
 @Data
-@EqualsAndHashCode(callSuper=true)
+@EqualsAndHashCode(callSuper = true,exclude = {"branchGroups"})
 @NoArgsConstructor
 @Entity(name = PrincipalType.ITEM_TYPE)
-public class PrincipalType extends ItemType{
+public class PrincipalType extends ItemType {
     public static final String ITEM_TYPE = "principal";
     public static final String USERNAME = "username";
     public static final String PASSWORD = "password";
@@ -22,7 +23,21 @@ public class PrincipalType extends ItemType{
 
     private String username;
     private String password;
-    
+
     @ManyToMany
-    private Set<BranchGroupType> branchGroups;
+    @JoinTable(name = "principal2branch_groups",
+            joinColumns = {
+                    @JoinColumn(name = "principal_date_created"),
+                    @JoinColumn(name = "principal_item_type"),
+                    @JoinColumn(name = "principal_t_key")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "branch_groups_date_created"),
+                    @JoinColumn(name = "branch_groups_item_type"),
+                    @JoinColumn(name = "branch_groups_t_key")
+            })
+    private Set<BranchGroupType> branchGroups =  new HashSet<>();
+
+    @OneToMany
+    private Set<ModificationLogType> modified;
 }

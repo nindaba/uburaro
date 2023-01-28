@@ -1,4 +1,8 @@
-##employee;;;;;
-code;username;firstName;lastName;employeeGroups;active
-admin;admin;admin;admin;;FALSE
-anonymous;anonymous;anonymous;anonymous;;TRUE
+##employee;;;;;;;
+code;username;password;firstName;lastName;employeeGroups;active;visible
+admin;admin;nimda;admin;admin;adminGroup;TRUE;TRUE
+anonymous;anonymous;;anonymous;anonymous;;TRUE;TRUE
+;;;;;;;
+##employeeGroup;;;;;;;
+code;groupName;employees;active;visible;;;
+adminGroup;ADMIN_GROUP;;TRUE;TRUE;;;

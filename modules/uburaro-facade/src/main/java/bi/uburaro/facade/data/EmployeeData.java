@@ -1,14 +1,18 @@
 package bi.uburaro.facade.data;
 
-import java.util.Collection;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-public class EmployeeData extends PrincipalData{
+import java.util.Collection;
+import java.util.stream.Collectors;
+
+
+public class EmployeeData extends PrincipalData {
+    protected static final String ROLE_PREFIX = "ROLE_";
     private String firstName;
 
     private String lastName;
 
-    private String username;
-    private Collection<String> roles;
     public String getFirstName() {
         return firstName;
     }
@@ -17,27 +21,31 @@ public class EmployeeData extends PrincipalData{
         this.firstName = firstName;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public Collection<String> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Collection<String> roles) {
-        this.roles = roles;
-    }
-
     public String getLastName() {
         return lastName;
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return isActive();
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return isActive();
     }
 }

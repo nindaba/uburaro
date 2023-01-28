@@ -10,10 +10,15 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Data
-@EqualsAndHashCode(callSuper=true)
+@EqualsAndHashCode(callSuper = true, exclude = {
+        "rooms",
+        "languages",
+        "addresses",
+        "taxGroups"
+})
 @NoArgsConstructor
 @Entity(name = HotelType.ITEM_TYPE)
-public class HotelType extends ItemType{
+public class HotelType extends ItemType {
     public static final String ITEM_TYPE = "hotel";
     public static final String NAME = "name";
     public static final String ALIAS = "alias";
@@ -22,24 +27,24 @@ public class HotelType extends ItemType{
     public static final String DEFAULT_LANGUAGE = "defaultLanguage";
     public static final String ADDRESS = "addresses";
     public static final String TAX_GROUPS = "taxGroups";
-    public static final String DEFAULT_TAX_GROUP= "defaultTaxGroup";
-    public static final String BRANCH_GROUP= "branchGroup";
+    public static final String DEFAULT_TAX_GROUP = "defaultTaxGroup";
+    public static final String BRANCH_GROUP = "branchGroup";
 
 
     private String name;
     private String alias;
+    @OneToOne
+    private LanguageType defaultLanguage;
+    @OneToOne
+    private TaxGroupType defaultTaxGroup;
+    @ManyToOne
+    private BranchGroupType branchGroup;
     @OneToMany
     private Set<RoomType> rooms;
     @OneToMany
     private Set<LanguageType> languages;
-    @OneToOne
-    private LanguageType defaultLanguage;
     @OneToMany
     private Set<AddressType> addresses;
-    @OneToOne
-    private TaxGroupType defaultTaxGroup;
     @OneToMany
     private Set<TaxGroupType> taxGroups;
-    @ManyToOne
-    private BranchGroupType branchGroup;
 }

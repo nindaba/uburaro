@@ -3,7 +3,7 @@ package bi.uburaro.facade.pupulators;
 import bi.uburaro.core.types.ItemType;
 import bi.uburaro.facade.data.ItemData;
 
-public interface Populator<SOURCE extends ItemType, TARGET extends ItemData> {
+public interface Populator<SOURCE, TARGET> {
     /**
      * Populates the target attributes from the source
      *

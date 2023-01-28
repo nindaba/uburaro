@@ -16,7 +16,7 @@ public class ItemPopulator implements Populator<ItemType, ItemData> {
         }
 
         Boolean visible = source.getVisible();
-        if(!ObjectUtils.isEmpty(active)) {
+        if(!ObjectUtils.isEmpty(visible)) {
             target.setVisible(visible);
         }
     }

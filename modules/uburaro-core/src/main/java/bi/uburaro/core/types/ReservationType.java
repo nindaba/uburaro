@@ -1,14 +1,14 @@
 package bi.uburaro.core.types;
 
+import bi.uburaro.core.types.groups.GroupType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 import static bi.uburaro.core.UburaroCoreConstants.DATABASE_KEYWORDS_PREFIX;
 
@@ -39,5 +39,17 @@ public class ReservationType extends ItemType {
     @ManyToOne
     private CustomerType reservedByCustomer;
     @Column(name = DATABASE_KEYWORDS_PREFIX + GROUPS)
-    private String groups;
+    @ManyToMany
+    @JoinTable(name = "reservations2groups",
+            joinColumns = {
+                    @JoinColumn(name = "reservations_date_created"),
+                    @JoinColumn(name = "reservations_item_type"),
+                    @JoinColumn(name = "reservations_t_key")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "groups_date_created"),
+                    @JoinColumn(name = "groups_item_type"),
+                    @JoinColumn(name = "groups_t_key")
+            })
+    private Set<GroupType> groups;
 }

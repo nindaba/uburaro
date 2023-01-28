@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.Set;
 
@@ -22,6 +23,7 @@ public class AddressType extends ItemType {
     public static final String COUNTRY = "country";
     public static final String PROVINCE = "province";
     public static final String DISTRICT = "district";
+    public static final String CUSTOMER = "customer";
 
 
     private String country;
@@ -30,4 +32,6 @@ public class AddressType extends ItemType {
     private String street;
     private String postCode;
     private String houseNumber;
+    @ManyToOne
+    private CustomerType customer;
 }

@@ -42,6 +42,13 @@ public class DefaultSessionService implements SessionService {
         log.debug("No Hotel is stored in the session");
         return null;
     }
+
+    @Override
+    public PrincipalType getAnonymousUser() {
+        log.debug("No Hotel is stored in the session");
+        return null;
+    }
+
     @Override
     public <T> T getSessionAttribute(String key) {
         RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();

@@ -5,6 +5,7 @@ public interface UburaroWebConstants {
         String homepage = "index.html";
         String allFields = "allFields";
 
+
         interface Hotel {
             String endpoint = "hotels";
             String hotelCode = "hotelCode";
@@ -38,6 +39,12 @@ public interface UburaroWebConstants {
         interface EmployeeGroup {
             String groupCode = "groupCode";
             String groupCodes = "groupCodes";
+        }
+        interface Auth{
+            String endpoint = "auth";
+            String login = endpoint+"/login";
+            String password = "password";
+            String username = "username";
         }
     }
 }

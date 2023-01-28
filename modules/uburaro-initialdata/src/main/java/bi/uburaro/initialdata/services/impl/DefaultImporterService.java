@@ -96,9 +96,7 @@ public class DefaultImporterService extends SimpleFileVisitor<Path> implements D
             batches.stream()
                     .skip(batches.size() - 1)
                     .forEach(batchData -> Optional.ofNullable(batchData.getFields())
-                            .ifPresentOrElse(
-                                    fields -> batchData.getValues().add(line),
-                                    () -> batchData.setFields(line)));
+                            .ifPresentOrElse(fields -> batchData.getValues().add(line), () -> batchData.setFields(line)));
         }
 
     }

@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -31,8 +32,8 @@ public class ModificationLogType extends ItemType {
     /**
      * @return empty list of modifications because the logs are never modified
      */
-    public List<ModificationLogType> getModificationLogs() {
-        return Collections.emptyList();
+    public Set<ModificationLogType> getModificationLogs() {
+        return Collections.emptySet();
     }
 
     /**
@@ -40,7 +41,7 @@ public class ModificationLogType extends ItemType {
      *
      * @param modificationLogs
      */
-    public void setModificationLogs(List<ModificationLogType> modificationLogs) {
+    public void setModificationLogs(Set<ModificationLogType> modificationLogs) {
         throw new UnsupportedOperationException("the modification logs are not writable for the logs");
     }
 }
