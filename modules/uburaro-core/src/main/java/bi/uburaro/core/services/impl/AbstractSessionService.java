@@ -9,19 +9,25 @@ import lombok.extern.log4j.Log4j2;
 public class AbstractSessionService implements SessionService {
     @Override
     public HotelType getCurrentHotel() {
-        log.debug("No current hotel");
+        log.warn("No current hotel in the session");
         return null;
     }
 
     @Override
     public PrincipalType getCurrentUser() {
-        log.debug("No current user");
+        log.warn("No current user in the session");
+        return null;
+    }
+
+    @Override
+    public PrincipalType getAnonymousUser() {
+        log.warn("No anonymous user in the session");
         return null;
     }
 
     @Override
     public <T> T getSessionAttribute(String key) {
-        log.debug("No current {} to stored in the session",key);
+        log.warn("No current {} to stored in the session",key);
         return null;
     }
 }

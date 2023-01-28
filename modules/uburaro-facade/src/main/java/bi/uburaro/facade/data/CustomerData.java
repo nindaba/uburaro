@@ -1,6 +1,9 @@
 package bi.uburaro.facade.data;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import java.util.Collection;
+import java.util.Collections;
 
 public class CustomerData extends PrincipalData {
     private String firstName;
@@ -83,5 +86,25 @@ public class CustomerData extends PrincipalData {
 
     public void setAddress(Collection<AddressData> address) {
         this.address = address;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return isActive();
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return isActive();
     }
 }

@@ -4,6 +4,9 @@ import bi.uburaro.core.services.TypeService;
 import bi.uburaro.core.types.EmployeeType;
 import bi.uburaro.core.types.groups.BranchGroupType;
 import bi.uburaro.core.types.groups.EmployeeGroupType;
+import bi.uburaro.initialdata.event.PasswordChangedEvent;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationEventPublisher;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,9 +15,10 @@ import java.util.function.Consumer;
 import static bi.uburaro.core.types.EmployeeType.*;
 
 public class EmployeeTypeMapper extends AbstractTypeMapper<EmployeeType> {
-
-    public EmployeeTypeMapper(TypeService typeService) {
+    private final ApplicationEventPublisher applicationEventPublisher;
+    public EmployeeTypeMapper(TypeService typeService, ApplicationEventPublisher applicationEventPublisher) {
         super(typeService);
+        this.applicationEventPublisher = applicationEventPublisher;
     }
 
     @Override
@@ -39,7 +43,11 @@ public class EmployeeTypeMapper extends AbstractTypeMapper<EmployeeType> {
                         .forEach(target.getEmployeeGroups()::add),
                 BRANCH_GROUPS, branches -> getStringStream(branches)
                         .map(code -> typeService.findItemByCode(code, BranchGroupType.class))
-                        .forEach(target.getBranchGroups()::add)));
+                        .forEach(target.getBranchGroups()::add),
+                PASSWORD, value -> {
+                    target.setPassword(value);
+                    applicationEventPublisher.publishEvent(new PasswordChangedEvent(this, target));
+                }));
 
         return fieldsMapper;
     }

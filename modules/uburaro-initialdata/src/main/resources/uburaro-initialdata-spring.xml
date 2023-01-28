@@ -9,12 +9,10 @@
     </bean>
 
     <util:list id="typeMappers" value-type="bi.uburaro.initialdata.mappers.Mapper">
-        <bean class="bi.uburaro.initialdata.mappers.impl.CustomerTypeMapper"
-              parent="abstractTypeMapper"/>
-        <bean class="bi.uburaro.initialdata.mappers.impl.HotelTypeMapper"
-              parent="abstractTypeMapper"/>
-        <bean class="bi.uburaro.initialdata.mappers.impl.EmployeeTypeMapper"
-              parent="abstractTypeMapper"/>
+        <bean class="bi.uburaro.initialdata.mappers.impl.CustomerTypeMapper" parent="abstractTypeMapper"/>
+        <bean class="bi.uburaro.initialdata.mappers.impl.HotelTypeMapper" parent="abstractTypeMapper"/>
+        <bean class="bi.uburaro.initialdata.mappers.impl.EmployeeTypeMapper" parent="abstractTypeMapper"/>
+        <bean class="bi.uburaro.initialdata.mappers.impl.EmployeeGroupTypeMapper" parent="abstractTypeMapper"/>
     </util:list>
 
     <alias name="defaultImporterService" alias="dataImporterService"/>

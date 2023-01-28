@@ -14,9 +14,7 @@ import bi.uburaro.core.types.ModificationLogType;
 import bi.uburaro.core.utils.MessageUtils;
 import bi.uburaro.core.validators.Validator;
 import lombok.extern.log4j.Log4j2;
-import org.apache.commons.lang3.StringUtils;
 
-import javax.transaction.Transactional;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
@@ -61,7 +59,11 @@ public class DefaultTypeService implements TypeService {
             if (sessionService != null && sessionService.getCurrentUser() != null) {
                 logType.setUser(sessionService.getCurrentUser());
             }
-            instance.setModificationLogs(List.of(logType));
+
+//            if(logType.getUser() == null){
+//                logType.setUser(sessionService.getAnonymousUser());
+//            }
+            instance.setModificationLogs(Set.of(logType));
 
             return instance;
         } catch (InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchFieldException |

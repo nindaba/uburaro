@@ -8,6 +8,15 @@ public interface SessionService {
     HotelType getCurrentHotel();
     PrincipalType getCurrentUser();
 
+    /**
+     * Gets anonymous user
+     *
+     * @return user
+     */
+    PrincipalType getAnonymousUser();
+
 
     <T> T getSessionAttribute(String key);
+
+
 }

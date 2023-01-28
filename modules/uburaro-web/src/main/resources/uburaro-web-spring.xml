@@ -5,13 +5,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
     <import resource="uburaro-facade-spring.xml"/>
+    <import resource="uburaro-web-security.xml"/>
     <context:component-scan base-package="bi.uburaro.web.controllers"/>
 
-
-    <bean id="hotelFilter" class="bi.uburaro.web.filters.HotelFilter">
-        <constructor-arg name="environment" ref="environment"/>
-        <constructor-arg name="hotelService" ref="hotelService"/>
-    </bean>
 
     <alias name="defaultSessionService" alias="sessionService"/>
     <!--    <bean id="defaultSessionService" class="bi.uburaro.core.services.impl.AbstractSessionService"/>-->
@@ -19,4 +15,7 @@
         <constructor-arg name="environment" ref="environment"/>
     </bean>
 
+    <bean id="passwordChangedListener" class="bi.uburaro.web.eventListners.PasswordChangedListener">
+        <constructor-arg name="userDetailsService" ref="userDetailsService"/>
+    </bean>
 </beans>

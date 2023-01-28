@@ -1,12 +1,14 @@
 package bi.uburaro.core.types;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -15,6 +17,7 @@ import java.util.List;
         @Index(name = ItemType.CODE+"_index", columnList = ItemType.CODE),
         @Index(name = ItemType.DATE_CREATED+"_index", columnList = ItemType.DATE_CREATED)
 })
+@EqualsAndHashCode(exclude = {"modificationLogs"})
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ItemType implements Serializable {
 
@@ -40,8 +43,8 @@ public class ItemType implements Serializable {
      */
     private Boolean active;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<ModificationLogType> modificationLogs;
+    @OneToMany
+    private Set<ModificationLogType> modificationLogs = new HashSet<>();
 
     public ItemType(String code) {
         this.code = code;
