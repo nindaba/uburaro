@@ -11,12 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
-@EqualsAndHashCode(callSuper = true, exclude = {
-        "rooms",
-        "languages",
-        "addresses",
-        "taxGroups"
-})
+@EqualsAndHashCode(callSuper = true, exclude = {"inventoryOrders"})
 @NoArgsConstructor
 @Entity(name = MBInventoryType.ITEM_TYPE)
 public class MBInventoryType extends ItemType{

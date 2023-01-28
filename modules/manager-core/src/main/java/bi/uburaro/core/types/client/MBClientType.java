@@ -14,7 +14,8 @@ import java.util.Set;
 @Data
 @EqualsAndHashCode(callSuper = true, exclude = {
         "rentOrders",
-        "inventoryOrders"
+        "inventoryOrders",
+        "invoices"
 })
 @NoArgsConstructor
 @Entity(name = MBClientType.ITEM_TYPE)
