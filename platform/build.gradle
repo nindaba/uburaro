@@ -41,6 +41,7 @@ dependencies {
     implementation project(":uburaro-core")
     implementation project(":uburaro-initialdata")
     implementation project(":uburaro-facade")
+    implementation project(":manager-core")
 }
 
 tasks.named('test') {
