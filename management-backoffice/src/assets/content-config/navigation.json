@@ -1,0 +1,49 @@
+{
+  "side-nav": {
+    "main-nodes": {
+      "nodes": [
+        {
+          "icon": "home",
+          "name": "nodes.name.home",
+          "route": "dashboard"
+        },
+        {
+          "icon": "facilities",
+          "name": "nodes.name.facilities",
+          "route": "facilities",
+          "active": true
+        }
+      ]
+    },
+    "child-nodes": {
+      "title": "child-node.title",
+      "nodes": [
+        {
+          "icon": "clients",
+          "name": "nodes.name.clients",
+          "route": "clients"
+        },
+        {
+          "icon": "categories",
+          "name": "nodes.name.categories",
+          "route": "categories"
+        },
+        {
+          "icon": "store",
+          "name": "nodes.name.stock",
+          "route": "inventories"
+        },
+        {
+          "icon": "building",
+          "name": "nodes.name.rents",
+          "route": "rents"
+        },
+        {
+          "icon": "report",
+          "name": "nodes.name.reports",
+          "route": "reports"
+        }
+      ]
+    }
+  }
+}
