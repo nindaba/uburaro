@@ -1,0 +1,10 @@
+{
+  "nodes.name.home": "Dashboard",
+  "nodes.name.facilities": "Facilities",
+  "nodes.name.clients": "Clients",
+  "nodes.name.categories": "Categories",
+  "nodes.name.stock": "Inventories",
+  "nodes.name.rents": "Rents",
+  "nodes.name.reports": "Reports",
+  "child-node.title": "Facilities"
+}
