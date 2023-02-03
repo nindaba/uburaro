@@ -82,3 +82,5 @@ gradle
 gradlew
 gradlew.bat
 out
+
+node_modules
