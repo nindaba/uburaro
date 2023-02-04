@@ -1,3 +1,31 @@
-.top-nav{
+.top-nav {
+  display: flex;
+  flex-direction: column;
+  height: $top-nav-height;
+
+
+  .crumbs{
+    display: flex;
+    align-items: center;
+    height: 40px;
+    //background-color: cadetblue;
+    color: $primary;
+    font-weight: 500;
+  }
+
+  .nav {
+    &-right {
+      display: flex;
+      align-items: center;
+      justify-content: right;
+      gap: 10px;
+    }
+
+    &-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  }
 
 }
