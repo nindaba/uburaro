@@ -1,8 +1,10 @@
 export interface NavNode {
+    id?:string,
     icon?: string;
     name?: string;
-    route?: string;
+    routeId?: string;
     active?: boolean;
+    disabledOn?:string[];
 }
 
 export interface ChildNavNode {

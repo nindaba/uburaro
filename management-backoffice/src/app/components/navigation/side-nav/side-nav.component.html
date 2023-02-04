@@ -1,0 +1,10 @@
+<div class="side-nav">
+    <div class="main-nodes">
+        <mb-nav-node *ngFor="let node of mainNodes" [node]="node"></mb-nav-node>
+    </div>
+    <div class="child-nodes">
+        <p class="title" translate>{{childNodes.title}}</p>
+        <mb-nav-node *ngFor="let node of childNodes.nodes" [node]="node"></mb-nav-node>
+    </div>
+
+</div>

@@ -1,0 +1,51 @@
+<div class="top-nav">
+    <div class="crumbs">
+        Breadcrumbs <i class="mb-icon drop-down"></i> / Facilities {{isEnabled("plus") }}
+    </div>
+    <div class="row">
+        <div class="col nav-left">
+            <a class="btn" translate>
+                <div class="mb-icon left-arrow"></div>
+                {{getName('back')}}
+            </a>
+            <a class="btn btn-icon" translate *ngIf="isEnabled('add')">
+                <div class="mb-icon plus"></div>
+                {{getName('add')}}
+            </a>
+            <a class="btn btn-icon" translate *ngIf="isEnabled('delete')">
+                <div class="mb-icon delete"></div>
+                {{getName('delete')}}
+            </a>
+
+            <a class="btn btn-icon" translate *ngIf="isEnabled('print')">
+                <div class="mb-icon printer"></div>
+                {{getName('print')}}
+            </a>
+
+            <a class="btn btn-icon" translate *ngIf="isEnabled('use')">
+                <div class="mb-icon toggle active"></div>
+                {{getName('use')}}
+            </a>
+
+            <a class="btn warning" translate *ngIf="isEnabled('discard')">{{getName('discard')}}</a>
+            <a class="btn primary" translate *ngIf="isEnabled('save')">{{getName('save')}}</a>
+
+        </div>
+        <div class="col nav-right">
+            <div class="input-grp label-front">
+                <span class="input-label">{{getName('from') | translate}}</span>
+                <input type="date" class="input-date nav-search" min="2021-01-01">
+            </div>
+            <div class="input-grp label-front">
+                <span class="input-label">{{getName('to')|translate}}</span>
+                <input type="date" class="input-date nav-search" min="2021-01-01" placeholder="{{getName('save')}}">
+            </div>
+            <div class="input-grp label-front">
+                <input type="text" class="input-text nav-search mb-icon search"
+                       placeholder="{{getName('search') | translate}}">
+                <a class="btn primary" translate *ngIf="isEnabled('search') || true">{{getName('search')}}</a>
+            </div>
+
+        </div>
+    </div>
+</div>

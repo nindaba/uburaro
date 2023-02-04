@@ -1,28 +1,27 @@
 .backoffice-logo{
-  width: $side-nav-width;
+  width: 100%;
   height: $top-nav-height;
   color: $primary;
   font-weight: 600;
   font-size: 20px;
-  margin-left: $side-nav-left-margin;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: end;
 
   .logo-title{
     display: flex;
     flex-direction: row;
     justify-content: left;
     align-items: center;
+    margin-bottom: 20px;
     .title{
       margin-left: 16px;
     }
   }
   .line{
-    position: absolute;
     height: 2px;
-    width: calc(.7* $side-nav-width);
+    width: inherit;
     background-color: $border-color;
-    top: 80px;
   }
 
 }

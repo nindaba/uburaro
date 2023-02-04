@@ -1,5 +1,5 @@
 import NavigationConfig from "../../../../assets/content-config/navigation.json";
-import {ChildNavNode, NavNode} from "../../../modules/navigation.module";
+import {ChildNavNode, NavNode} from "../../../model/navigation.model";
 
 export class SideNavService{
     mainNodes: NavNode[] = NavigationConfig["side-nav"]["main-nodes"].nodes;

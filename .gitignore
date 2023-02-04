@@ -84,3 +84,4 @@ gradlew.bat
 out
 
 node_modules
+.angular
