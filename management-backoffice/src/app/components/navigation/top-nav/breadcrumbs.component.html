@@ -24,10 +24,10 @@
             </div>
         </div>
     </div>
-    <a class="part-1 btn" *ngIf="page">
+    <a class="part-1 btn" *ngIf="page" [routerLink]="[facilityId,pageId]">
         / {{page}}
     </a>
-    <a class="part-2 btn" *ngIf="details">
+    <a class="part-2 btn" *ngIf="details" [routerLink]="[facilityId,pageId,detailsId]">
         / {{details}}
     </a>
 </div>

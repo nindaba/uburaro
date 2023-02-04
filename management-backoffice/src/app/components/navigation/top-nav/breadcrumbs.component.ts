@@ -9,6 +9,9 @@ export class BreadcrumbsComponent {
     facility: string = "BreadCrumbs";
     page: string = "Facilities";
     details: string = "SNOD93ND9X3K3";
+    pageId: string = "facilities";
+    detailsId: string = "detailsId";
+    facilityId: string = "breadcrumbs";
 
     toggleFacilitySelector() {
         this.showFacilitySelectorClass = this.showFacilitySelectorClass ? "" : "active";

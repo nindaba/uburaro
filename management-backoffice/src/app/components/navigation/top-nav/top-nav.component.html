@@ -41,7 +41,7 @@
             <div class="input-grp label-front">
                 <input type="text" class="input-text nav-search mb-icon search"
                        placeholder="{{getName('search') | translate}}">
-                <a class="btn primary" translate *ngIf="isEnabled('search') || true">{{getName('search')}}</a>
+                <a class="btn primary" translate (click)="onSearch()">{{getName('search')}}</a>
             </div>
 
         </div>

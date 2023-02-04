@@ -3,17 +3,17 @@
 
   .row {
     height: 100%;
+    overflow-y: hidden;
 
-    > div{
+    > div {
       height: inherit;
     }
 
-    .router-outlet {
-      height: calc(100% - $top-nav-height);
-      background-color: white;
-      overflow-y: auto;
-      .something {
-        height: 1200px;
+    .col-10 {
+      .router-outlet{
+        height: inherit;
+        overflow-y: scroll;
+        background-color: white;
       }
     }
   }
