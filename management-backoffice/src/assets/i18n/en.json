@@ -16,5 +16,7 @@
   "nodes.name.from":"From",
   "nodes.name.to": "To",
   "child-node.title": "Facilities",
-  "nodes.name.search": "Search"
+  "nodes.name.search": "Search",
+  "btn.name.close": "Close",
+  "facility.selector.title": "Select Facility"
 }

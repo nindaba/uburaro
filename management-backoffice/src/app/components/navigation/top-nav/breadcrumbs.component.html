@@ -1,0 +1,33 @@
+<div class="crumbs">
+    <div class="selected-facility" *ngIf="facility">
+        <div class="btn" (click)="toggleFacilitySelector()">
+            <span>/ {{facility}}</span>
+            <i class="mb-icon drop-down"></i>
+        </div>
+        <div class="facility-selector" [ngClass]="showFacilitySelectorClass">
+            <div class="content-top">
+                <span class="title" translate>facility.selector.title</span>
+                <div class="input-grp">
+                    <input type="text" class="input-text nav-search mb-icon search" placeholder="{{'nodes.name.search' | translate}}">
+                </div>
+            </div>
+
+            <div class="facility">facilii</div>
+            <div class="facility">facilii</div>
+            <div class="facility">facilii</div>
+            <div class="facility">facilii</div>
+            <div class="facility">facilii</div>
+            <div class="content-bottom">
+                <button type="button" class="btn primary" translate (click)="toggleFacilitySelector()">
+                    btn.name.close
+                </button>
+            </div>
+        </div>
+    </div>
+    <a class="part-1 btn" *ngIf="page" [routerLink]="[facilityId,pageId]">
+        / {{page}}
+    </a>
+    <a class="part-2 btn" *ngIf="details" [routerLink]="[facilityId,pageId,detailsId]">
+        / {{details}}
+    </a>
+</div>

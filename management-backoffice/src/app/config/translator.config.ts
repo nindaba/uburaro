@@ -1,4 +1,3 @@
-import {Provider} from "@angular/core";
 import {TranslateLoader} from "@ngx-translate/core";
 import {HttpClient} from "@angular/common/http";
 import {TranslateModuleConfig} from "@ngx-translate/core/public_api";
