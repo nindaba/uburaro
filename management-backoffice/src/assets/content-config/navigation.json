@@ -85,19 +85,19 @@
         "id": "use",
         "name": "nodes.name.use",
         "routeId": "facilities",
-        "disabledOn": ["clients","categories","inventories","rents","reports","dashboard","listing-page"]
+        "disabledOn": ["clients","categories","inventories","rents","reports","dashboard"]
       },
       {
         "id": "from",
         "name": "nodes.name.from",
         "routeId": "report",
-        "disabledOn": ["clients","categories","inventories","rents","facilities","dashboard","listing-page"]
+        "disabledOn": ["clients","categories","inventories","rents","facilities","dashboard"]
       },
       {
         "id": "to",
         "name": "nodes.name.to",
         "routeId": "report",
-        "disabledOn": ["clients","categories","inventories","rents","facilities","dashboard","listing-page"]
+        "disabledOn": ["clients","categories","inventories","rents","facilities","dashboard"]
       }
     ]
   }

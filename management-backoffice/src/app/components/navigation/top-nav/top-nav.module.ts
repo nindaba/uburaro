@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { TopNavComponent } from './top-nav.component';
 import {AppCommonModule} from "../../../app-common.module";
-import {TopNavService} from "./top-nav.service";
 import { BreadcrumbsComponent } from './breadcrumbs.component';
-import {BreadcrumbsService} from "./breadcrumbs.service";
 
 
 
@@ -18,6 +16,5 @@ import {BreadcrumbsService} from "./breadcrumbs.service";
   imports: [
     AppCommonModule,
   ],
-  providers: [TopNavService,BreadcrumbsService]
 })
 export class TopNavModule { }
