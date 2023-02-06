@@ -11,11 +11,8 @@ import {ReportComponent} from "./components/report/report.component";
 const listingRoutes: string[] = ["facilities", "clients", "categories", "inventories", "rents"]
 const listingPageMatcher: UrlMatcher = url => {
     let consumed = {consumed: url};
-    if (url.length == 2) {
-        return listingRoutes.includes(url[1].path) ? consumed : null;
-    }
     if (url.length == 1) {
-        return url[0].path == "facilities" ? consumed : null;
+        return listingRoutes.includes(url[0].path) ? consumed : null;
     }
     return null;
 }
@@ -34,31 +31,31 @@ const routes: Routes = [
     {
         path: "",
         pathMatch: "full",
-        redirectTo: "fac/facilities/fac" //todo: to be changed to dashboard
+        redirectTo: "facilities/fac" //todo: to be changed to dashboard
     },
     {
         title: getTitle,
         matcher: listingPageMatcher,
-        component: ListingComponent
+        component: ListingComponent,
     },
     {
-        path: ":facility/facilities/:facilityId",
+        path: "facilities/:facilityId",
         component: FacilityDetailsComponent
     },
     {
-        path: "clients",
+        path: "clients/:clientId",
         component: ClientDetailsComponent
     },
     {
-        path: "categories",
+        path: "categories/:categoryId",
         component: CategoryDetailsComponent
     },
     {
-        path: "inventories",
+        path: "inventories/:inventoryId",
         component: InventoryDetailsComponent
     },
     {
-        path: ":facility/rents/:rentId",
+        path: "rents/:rentId",
         component: RentDetailsComponent
     },
     {

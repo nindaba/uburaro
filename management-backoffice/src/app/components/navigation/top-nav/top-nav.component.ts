@@ -1,13 +1,14 @@
 import {Component} from '@angular/core';
 import {TopNavService} from "./top-nav.service";
 import {Router} from "@angular/router";
+import {BreadcrumbsService} from "./breadcrumbs.service";
 
 @Component({
     selector: 'mb-top-nav',
     templateUrl: './top-nav.component.html'
 })
 export class TopNavComponent {
-    constructor(private service: TopNavService,private router: Router) {
+    constructor(private service: TopNavService,private router: Router,private breadcrumbsService: BreadcrumbsService) {
     }
 
     getName(nodeId: string) {
@@ -19,6 +20,6 @@ export class TopNavComponent {
     }
 
     onSearch() {
-        this.router.navigate(["reports"]);
+        this.router.navigate(["clients","tou"],{queryParams:{facility:this.breadcrumbsService.facility}});
     }
 }

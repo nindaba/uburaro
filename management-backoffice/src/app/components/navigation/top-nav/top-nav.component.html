@@ -2,7 +2,7 @@
     <mb-breadcrumbs></mb-breadcrumbs>
     <div class="row nodes">
         <div class="col nav-left">
-            <a class="btn" translate>
+            <a class="btn" translate onclick = "window.history.go(-1)">
                 <div class="mb-icon left-arrow"></div>
                 {{getName('back')}}
             </a>
@@ -30,11 +30,11 @@
 
         </div>
         <div class="col nav-right">
-            <div class="input-grp label-front">
+            <div class="input-grp label-front" *ngIf="isEnabled('from')">
                 <span class="input-label">{{getName('from') | translate}}</span>
                 <input type="date" class="input-date nav-search" min="2021-01-01">
             </div>
-            <div class="input-grp label-front">
+            <div class="input-grp label-front" *ngIf="isEnabled('to')">
                 <span class="input-label">{{getName('to')|translate}}</span>
                 <input type="date" class="input-date nav-search" min="2021-01-01" placeholder="{{getName('save')}}">
             </div>
