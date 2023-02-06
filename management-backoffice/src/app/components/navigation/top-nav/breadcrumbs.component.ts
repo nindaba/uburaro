@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, NavigationEnd, Router, RouterEvent} from "@angular/router";
+import {NavigationEnd, Router, RouterEvent} from "@angular/router";
 import {filter, map, Observable} from "rxjs";
 
 @Component({
@@ -14,7 +14,7 @@ export class BreadcrumbsComponent implements OnInit {
     detailsId: string = "detailsId";
     facilityId: string = "breadcrumbs";
 
-    constructor(private router: Router, private route: ActivatedRoute) {
+    constructor(private router: Router) {
     }
 
     toggleFacilitySelector() {
