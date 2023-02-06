@@ -22,8 +22,4 @@ export class TopNavComponent {
     onSearch() {
         this.router.navigate(["clients","tou"],{queryParams:{facility:this.breadcrumbsService.facility}});
     }
-
-    goBack() {
-        window.history.go(-1);
-    }
 }
