@@ -3,7 +3,8 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <import resource="uburaro-web-spring.xml"/>
+<!--    <import resource="uburaro-web-spring.xml"/>-->
+    <import resource="manager-web-spring.xml"/>
 
     <bean id="uburaroApplicationListener" class="bi.uburaro.platform.events.UburaroApplicationListener"/>
 </beans>

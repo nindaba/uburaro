@@ -10,12 +10,12 @@ public class ItemPopulator implements Populator<ItemType, ItemData> {
     public void populate(ItemType source, ItemData target) {
         target.setCode(source.getCode());
 
-        Boolean active = source.getActive();
+        Boolean active = source.isActive();
         if(!ObjectUtils.isEmpty(active)){
             target.setActive(active);
         }
 
-        Boolean visible = source.getVisible();
+        Boolean visible = source.isVisible();
         if(!ObjectUtils.isEmpty(visible)) {
             target.setVisible(visible);
         }

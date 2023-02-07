@@ -69,7 +69,8 @@ public class DefaultDataBatchProcessorStrategy implements DataBatchProcessorStra
     }
 
     private boolean isClassMatch(final Class<ItemType> targetClass,final String target) {
-        return StringUtils.equals(targetClass.getName(), MessageUtils.format(TYPE_CLASS, StringUtils.capitalize(target))) ||
+        return StringUtils.equals(targetClass.getName(), MessageUtils.format(TYPE_MANAGER_CLASS, StringUtils.capitalize(target))) ||
+                StringUtils.equals(targetClass.getName(), MessageUtils.format(TYPE_UBURARO_CLASS, StringUtils.capitalize(target))) ||
                 StringUtils.equals(targetClass.getName(), MessageUtils.format(TYPE_GROUPS_CLASS, StringUtils.capitalize(target)));
 
     }

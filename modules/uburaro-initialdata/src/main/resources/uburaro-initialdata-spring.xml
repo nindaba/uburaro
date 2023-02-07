@@ -13,6 +13,7 @@
         <bean class="bi.uburaro.initialdata.mappers.impl.HotelTypeMapper" parent="abstractTypeMapper"/>
         <bean class="bi.uburaro.initialdata.mappers.impl.EmployeeTypeMapper" parent="abstractTypeMapper"/>
         <bean class="bi.uburaro.initialdata.mappers.impl.EmployeeGroupTypeMapper" parent="abstractTypeMapper"/>
+        <bean class="bi.uburaro.initialdata.mappers.impl.manager.MBFacilityTypeMapper" parent="abstractTypeMapper"/>
     </util:list>
 
     <alias name="defaultImporterService" alias="dataImporterService"/>

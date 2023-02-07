@@ -6,6 +6,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 @Log4j2
 public class ValidatorListMerger implements Merger<List<Validator>,Validator> {
@@ -19,6 +20,11 @@ public class ValidatorListMerger implements Merger<List<Validator>,Validator> {
     @Override
     public void setAdd(Validator validator) {
         validators.add(validator);
+    }
+
+    @Override
+    public void setAdd(Collection<Validator> validators) {
+        validators.addAll(validators);
     }
 
     @Override

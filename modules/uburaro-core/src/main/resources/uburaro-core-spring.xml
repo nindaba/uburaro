@@ -21,17 +21,17 @@
     <!--    Repositories-->
     <jpa:repositories base-package="bi.uburaro.core.repositories"/>
 
+    <util:list id="uburaroRepositories" value-type="bi.uburaro.core.repositories.ItemRepository">
+        <ref bean="hotelRepository"/>
+        <ref bean="groupRepository"/>
+        <ref bean="principleRepository"/>
+    </util:list>
+
     <alias name="defaultRepositoryResolverStrategy" alias="repositoryResolverStrategy"/>
     <bean id="defaultRepositoryResolverStrategy"
           class="bi.uburaro.core.strategies.impl.DefaultRepositoryResolverStrategy">
         <constructor-arg name="itemRepository" ref="itemRepository"/>
-        <constructor-arg name="repositories">
-            <list>
-                <ref bean="hotelRepository"/>
-                <ref bean="groupRepository"/>
-                <ref bean="principleRepository"/>
-            </list>
-        </constructor-arg>
+        <constructor-arg name="repositories" ref="uburaroRepositories"/>
     </bean>
 
 
