@@ -14,8 +14,21 @@
     <context:property-placeholder location="classpath:manager-core.properties"/>
 
     <!--    Repositories-->
-    <jpa:repositories base-package="bi.uburaro.core.repositories"/>
+    <jpa:repositories base-package="bi.manager.core.repositories"/>
+    <import resource="uburaro-core-spring.xml"/>
 
+    <alias name="abstractSessionService" alias="sessionService"/>
+    <bean id="abstractSessionService" class="bi.uburaro.core.services.impl.AbstractSessionService"/>
 
+    <bean id="mBRepositoriesMerger" class="bi.uburaro.core.mergers.impl.RepositoriesListMerger">
+        <constructor-arg name="target" ref="uburaroRepositories"/>
+    </bean>
 
+    <util:list id="mBRepositories" value-type="bi.uburaro.core.repositories.ItemRepository">
+        <ref bean="MBFacilityRepository"/>
+    </util:list>
+
+    <bean parent="mBRepositoriesMerger">
+        <property name="add" ref="mBRepositories"/>
+    </bean>
 </beans>

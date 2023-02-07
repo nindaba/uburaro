@@ -37,11 +37,13 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'junit:junit:4.13.2'
 
-    implementation project(":uburaro-web")
+//    implementation project(":uburaro-web")
     implementation project(":uburaro-core")
     implementation project(":uburaro-initialdata")
     implementation project(":uburaro-facade")
     implementation project(":manager-core")
+    implementation project(":manager-facade")
+    implementation project(":manager-web")
 }
 
 tasks.named('test') {

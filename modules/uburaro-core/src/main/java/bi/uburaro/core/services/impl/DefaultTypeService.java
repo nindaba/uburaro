@@ -63,6 +63,7 @@ public class DefaultTypeService implements TypeService {
 //            if(logType.getUser() == null){
 //                logType.setUser(sessionService.getAnonymousUser());
 //            }
+            save(logType);
             instance.setModificationLogs(Set.of(logType));
 
             return instance;

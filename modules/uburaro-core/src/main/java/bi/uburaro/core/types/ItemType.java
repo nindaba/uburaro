@@ -36,12 +36,12 @@ public class ItemType implements Serializable {
     /*
     The Item may longer be wanted to be available but, it has been used in many places, this means that it should nolonger be visible in the future
      */
-    private Boolean visible;
+    private boolean visible;
     /*
 
     The Item many be suspended for a while
      */
-    private Boolean active;
+    private boolean active;
 
     @OneToMany
     private Set<ModificationLogType> modificationLogs = new HashSet<>();
