@@ -15,11 +15,9 @@ export class FacilityServiceImpl implements FacilityService {
     }
 
     deleteFacilities(facilities: Facility[]): Observable<any> {
-
-        return this.http.delete(this.urlBuilder.getUrl("facilities", [], [{
-                key: "facilityIds",
-                value: facilities.map(facility => facility.code)
-            }])
+        return this.http.delete(
+            this.urlBuilder.getUrl("facilities"),
+            {params: {"facilityIds": facilities.map(facility => facility.code).join(",")}}
         )
     }
 
