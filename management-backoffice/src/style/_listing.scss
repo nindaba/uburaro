@@ -1,0 +1,11 @@
+.listing-page{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+
+  > table{
+    width: 94%;
+  }
+}

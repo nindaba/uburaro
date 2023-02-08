@@ -57,6 +57,7 @@
     .btn {
       color: $primary;
       font-weight: 500;
+      text-transform: capitalize;
       padding: 0;
 
       &:hover {

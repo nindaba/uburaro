@@ -1,0 +1,9 @@
+{
+  "facilities": {
+    "heads": [
+      "facility.code",
+      "facility.alias",
+      "facility.capital"
+    ]
+  }
+}

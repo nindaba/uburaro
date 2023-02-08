@@ -13,6 +13,7 @@ import java.util.Set;
 import static bi.manager.web.ManagerWebConstants.Controller.Facility.endpoint;
 
 @RestController
+@CrossOrigin()
 public class FacilitiesController {
     @Resource(name = "facilityFacade")
     protected MBFacilityFacade facilityFacade;
