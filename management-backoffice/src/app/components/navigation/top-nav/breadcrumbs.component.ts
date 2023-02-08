@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NavigationEnd, Router, RouterEvent} from "@angular/router";
 import {filter, map, Observable} from "rxjs";
+import {BreadcrumbsService} from "./breadcrumbs.service";
 
 @Component({
     selector: 'mb-breadcrumbs',
@@ -10,11 +11,8 @@ export class BreadcrumbsComponent implements OnInit {
     showFacilitySelectorClass: string = "";
     facility: string = "BreadCrumbs";
     pageRoute: Observable<{ page?: string; details?: string; }> = new Observable<{page?: string; details?: string}>();
-    pageId: string = "facilities";
-    detailsId: string = "detailsId";
-    facilityId: string = "breadcrumbs";
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private breadService: BreadcrumbsService) {
     }
 
     toggleFacilitySelector() {
@@ -26,10 +24,9 @@ export class BreadcrumbsComponent implements OnInit {
             filter(ev => ev instanceof NavigationEnd),
             map(ev => {
                 let paths: string[] = (ev as RouterEvent).url.split("?")[0].split("/");
-                return {
-                    page: paths[1],
-                    details: paths[2]
-                }
+                this.breadService.pages.page =  paths[1];
+                this.breadService.pages.details =  paths[2];
+                return this.breadService.pages;
             })
         );
     }

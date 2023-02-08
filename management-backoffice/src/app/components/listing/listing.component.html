@@ -1,1 +1,15 @@
-<p>listing works!</p>
+<div class="listing-page">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">
+                <input class="primary" type="checkbox" (click)="selectAll()" [checked]="checkedAll">
+            </th>
+            <th scope="col" translate *ngFor="let head of heads">{{head}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-content></ng-content>
+        </tbody>
+    </table>
+</div>

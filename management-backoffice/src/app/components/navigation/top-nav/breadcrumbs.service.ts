@@ -5,4 +5,5 @@ import {Injectable} from "@angular/core";
 })
 export class BreadcrumbsService {
     facility:string = "default"
+    pages: { page?: string; details?: string; } ={};
 }

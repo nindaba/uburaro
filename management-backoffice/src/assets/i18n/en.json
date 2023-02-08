@@ -18,5 +18,8 @@
   "child-node.title": "Facilities",
   "nodes.name.search": "Search",
   "btn.name.close": "Close",
-  "facility.selector.title": "Select Facility"
+  "facility.selector.title": "Select Facility",
+  "facility.code": "Code",
+  "facility.alias": "Alias",
+  "facility.capital": "Capital"
 }

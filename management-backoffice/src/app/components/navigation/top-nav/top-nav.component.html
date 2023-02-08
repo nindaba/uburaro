@@ -10,7 +10,7 @@
                 <div class="mb-icon plus"></div>
                 {{getName('add')}}
             </a>
-            <a class="btn btn-icon" translate *ngIf="isEnabled('delete')">
+            <a class="btn btn-icon" translate *ngIf="isEnabled('delete')" (click)="delete()">
                 <div class="mb-icon delete"></div>
                 {{getName('delete')}}
             </a>

@@ -34,6 +34,7 @@ public class MBFacilityTypeMapper extends AbstractTypeMapper<MBFacilityType> {
                 VISIBLE, value -> target.setVisible(Boolean.valueOf(value)),
                 NAME, target::setName,
                 ALIAS, target::setAlias,
+                ADDRESS, target::setAddress,
                 CAPITAL, value -> target.setCapital(typeService.findItemByCode(value, MBCapitalType.class))
                 ));
 

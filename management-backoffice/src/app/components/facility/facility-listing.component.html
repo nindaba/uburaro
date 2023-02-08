@@ -1,0 +1,13 @@
+<mb-listing [heads] = "heads" *ngIf="$facilities | async as facilities"
+            (selectedAll)="selectAll(facilities)" [checkedAll] = "headerCheck">
+    <tr *ngFor="let facility of facilities">
+        <th scope="row">
+            <input class="primary" type="checkbox"
+                   [checked]="headerCheck || isSelected(facility)" (change)="selectionChanged(facility)">
+        </th>
+        <td [routerLink]="[facility.code]">{{facility.code}}</td>
+        <td [routerLink]="[facility.code]">{{facility.alias}}</td>
+        <td [routerLink]="[facility.code]">{{1000}}</td>
+<!--        <td>{{facility.capital}}</td>-->
+    </tr>
+</mb-listing>

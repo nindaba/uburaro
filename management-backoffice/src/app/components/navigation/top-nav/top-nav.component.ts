@@ -22,4 +22,8 @@ export class TopNavComponent {
     onSearch() {
         this.router.navigate(["clients","tou"],{queryParams:{facility:this.breadcrumbsService.facility}});
     }
+
+    delete() {
+        this.service.$delete.emit();
+    }
 }

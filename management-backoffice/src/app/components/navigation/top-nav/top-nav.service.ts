@@ -1,9 +1,10 @@
 import NavigationConfig from "../../../../assets/content-config/navigation.json";
 import {NavNode} from "../../../model/navigation.model";
-import {Injectable} from "@angular/core";
+import {EventEmitter, Injectable} from "@angular/core";
 import {ActivatedRoute, ActivatedRouteSnapshot, Router, RouterStateSnapshot} from "@angular/router";
 @Injectable({providedIn:"root"})
 export class TopNavService {
+    $delete : EventEmitter<void> = new EventEmitter<void>();
     nodes: NavNode[] = NavigationConfig["top-nav"].nodes;
 
     activeNode: NavNode = {};
