@@ -1,19 +1,20 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import ListingPageConfig from '../../../assets/content-config/listing-page.json'
 import {FacilityService} from "./facility.service";
 import {Facility} from "../../model/navigation.model";
-import {flatMap, mergeMap, Observable} from "rxjs";
+import {flatMap, mergeMap, Observable, Subscription} from "rxjs";
 import {TopNavService} from "../navigation/top-nav/top-nav.service";
 
 @Component({
     templateUrl: './facility-listing.component.html'
 })
-export class FacilityListingComponent implements OnInit {
+export class FacilityListingComponent implements OnInit, OnDestroy {
     heads: string[] = ListingPageConfig.facilities.heads;
     headerCheck: boolean = false;
     selectedFacilities: Facility[] = [];
     $facilities: Observable<Facility[]> = this.facilityService.getAllFacilities();
 
+    subscriptions: Subscription  = new Subscription();
     constructor(private facilityService: FacilityService, private topService: TopNavService) {
     }
 
@@ -36,10 +37,17 @@ export class FacilityListingComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.topService.$delete.pipe(
+        let subscription = this.topService.$delete.pipe(
             mergeMap(() => this.facilityService.deleteFacilities(this.selectedFacilities))
         ).subscribe({
             next: value => this.$facilities = this.facilityService.getAllFacilities()
-        })
+        });
+        this.subscriptions.add(subscription);
+    }
+
+    ngOnDestroy(): void {
+        this.selectedFacilities = [];
+        this.headerCheck = false;
+        this.subscriptions.unsubscribe()
     }
 }

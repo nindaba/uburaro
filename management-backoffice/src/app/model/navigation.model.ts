@@ -31,6 +31,6 @@ export interface Facility{
     alias?:string;
     dateCreated?:Date;
     capital?:Capital;
-    clients?:Client;
-    categories?:Category;
+    clients?:Client[];
+    categories?:Category[];
 }
