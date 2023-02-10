@@ -7,7 +7,7 @@ public interface ManagerWebConstants {
 
         interface Facility {
             String endpoint = "facilities";
-            String facility = endpoint+"{facilityId}";
+            String facility = endpoint+"/{code}";
         }
 
         interface DataImport{

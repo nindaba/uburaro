@@ -1,8 +1,8 @@
 <div class="crumbs">
-    <div class="selected-facility" *ngIf="facility">
+    <div class="selected-facility" *ngIf="$facility | async as facility">
         <div class="btn" (click)="toggleFacilitySelector()">
             <i class="mb-icon facilities mb-icon-green mb-icon-small"></i>
-            <span>{{facility}}</span>
+            <span >{{facility | translate}}</span>
             <i class="mb-icon drop-down"></i>
         </div>
         <div class="facility-selector" [ngClass]="showFacilitySelectorClass">

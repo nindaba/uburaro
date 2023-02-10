@@ -3,6 +3,7 @@ package bi.manager.core.services.impl;
 import bi.manager.core.repositories.MBFacilityRepository;
 import bi.manager.core.services.MBFacilityService;
 import bi.manager.core.types.MBFacilityType;
+import bi.uburaro.core.exceptions.NotFoundException;
 import bi.uburaro.core.services.TypeService;
 import org.springframework.stereotype.Service;
 
@@ -44,17 +45,17 @@ public class DefaultMBFacilityService implements MBFacilityService {
 
     @Override
     public MBFacilityType createFacility(final MBFacilityType facility) {
-        final MBFacilityType facilityByCode = this.getFacilityByCode(facility.getCode());
+        try {
 
-        if (facilityByCode != null) {
+            final MBFacilityType facilityByCode = this.getFacilityByCode(facility.getCode());
             facilityByCode.setActive(true);
             typeService.save(facilityByCode);
             return facilityByCode;
+        } catch (NotFoundException ex) {
+
+            typeService.save(facility);
+            return facility;
         }
-
-
-        typeService.save(facility);
-        return facility;
     }
 
     @Override

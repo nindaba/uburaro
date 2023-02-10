@@ -6,7 +6,7 @@
                 <div class="mb-icon left-arrow"></div>
                 {{getName('back')}}
             </a>
-            <a class="btn btn-icon" translate *ngIf="isEnabled('add')">
+            <a  class="btn btn-icon" translate *ngIf="isEnabled('add')" (click)="add()">
                 <div class="mb-icon plus"></div>
                 {{getName('add')}}
             </a>
@@ -21,12 +21,14 @@
             </a>
 
             <a class="btn btn-icon" translate *ngIf="isEnabled('use')">
-                <div class="mb-icon toggle active"></div>
+                <div class="mb-icon toggle {{facilitySelectedClass}}" (click)="facilitySelected()"></div>
                 {{getName('use')}}
             </a>
 
-            <a class="btn warning" translate *ngIf="isEnabled('discard')">{{getName('discard')}}</a>
-            <a class="btn primary" translate *ngIf="isEnabled('save')">{{getName('save')}}</a>
+            <ng-container *ngIf="$formChanged | async">
+                <a class="btn warning" (click)="discard()" translate >{{getName('discard')}}</a>
+                <a class="btn primary" (click)="save()" translate >{{getName('save')}}</a>
+            </ng-container>
 
         </div>
         <div class="col nav-right">
@@ -41,7 +43,6 @@
             <div class="input-grp label-front">
                 <input type="text" class="input-text nav-search mb-icon search"
                        placeholder="{{getName('search') | translate}}">
-                <a class="btn primary" translate (click)="onSearch()">{{getName('search')}}</a>
             </div>
 
         </div>

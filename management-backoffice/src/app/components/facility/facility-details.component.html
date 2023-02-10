@@ -1,1 +1,21 @@
-<p>facility-details works!</p>
+<div class="facility-details" *ngIf="($facility | async ) || true">
+    <span class="mb-title" translate>label.details</span>
+    <form class="attributes d-flex justify-content-between flex-wrap" [formGroup]="facilityForm">
+        <div class="input-grp">
+            <label for="code" class="" translate>label.code</label>
+            <input id="code" formControlName="code" type="text" class="input-text" placeholder="{{'label.code' | translate}}"/>
+        </div>
+        <div class="input-grp">
+            <label for="name" class="" translate>label.name</label>
+            <input id="name" formControlName="name" type="text" class="input-text" placeholder="{{'label.name' | translate}}"/>
+        </div>
+        <div class="input-grp">
+            <label for="alias" class="" translate>label.facility.alias</label>
+            <input id="alias" formControlName="alias" type="text" class="input-text" placeholder="{{'label.facility.alias' | translate}}"/>
+        </div>
+        <div class="input-grp">
+            <label for="address" class="" translate>label.facility.address</label>
+            <input id="address" formControlName="address" type="text" class="input-text" placeholder="{{'label.facility.address' | translate}}"/>
+        </div>
+    </form>
+</div>

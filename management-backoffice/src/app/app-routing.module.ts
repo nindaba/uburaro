@@ -44,6 +44,10 @@ const routes: Routes = [
         component: FacilityListingComponent
     },
     {
+        path: "facilities/new",
+        component: FacilityDetailsComponent
+    },
+    {
         path: "facilities/:facilityId",
         component: FacilityDetailsComponent
     },

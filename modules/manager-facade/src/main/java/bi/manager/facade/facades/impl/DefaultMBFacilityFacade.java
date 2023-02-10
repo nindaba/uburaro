@@ -73,6 +73,10 @@ public class DefaultMBFacilityFacade implements MBFacilityFacade {
     }
 
     private void populateType(MBFacilityData facilityData, MBFacilityType facilityType) {
+        facilityType.setActive(true);
+        if(StringUtils.isBlank(facilityType.getCode())){
+            facilityType.setCode(facilityData.getCode());
+        }
         if (StringUtils.isNotBlank(facilityData.getName())) {
             facilityType.setName(facilityData.getName());
         }

@@ -11,7 +11,6 @@ import {TopNavService} from "../navigation/top-nav/top-nav.service";
 export class FacilityListingComponent implements OnInit, OnDestroy {
     heads: string[] = ListingPageConfig.facilities.heads;
     headerCheck: boolean = false;
-    selectedFacilities: Facility[] = [];
     $facilities: Observable<Facility[]> = this.facilityService.getAllFacilities();
 
     subscriptions: Subscription  = new Subscription();
@@ -20,35 +19,29 @@ export class FacilityListingComponent implements OnInit, OnDestroy {
 
 
     selectionChanged(value: Facility) {
-        let indexOf = this.selectedFacilities.indexOf(value);
-        if (indexOf > -1) {
-            this.selectedFacilities.splice(indexOf, 1);
-        } else this.selectedFacilities.push(value);
+        this.topService.selectionChanged(value.code);
         this.headerCheck = false;
     }
 
     selectAll(facilities: Facility[]) {
         this.headerCheck = !this.headerCheck;
-        this.selectedFacilities = [...facilities];
+        this.topService.selectedCodes = facilities.map(value => value.code);
     }
 
     isSelected(facility: Facility): boolean {
-        return this.selectedFacilities.indexOf(facility) > -1;
+        return this.topService.selectedCodes.indexOf(facility.code) > -1;
     }
 
     ngOnInit(): void {
-        let subscription = this.topService.$delete.pipe(
-            mergeMap(() => this.facilityService.deleteFacilities(this.selectedFacilities)),
-            takeLast(0),
-        ).subscribe({
-            next: value => this.$facilities = this.facilityService.getAllFacilities()
+        let subscription = this.topService.$delete.subscribe({
+            next: () => this.$facilities = this.facilityService.getAllFacilities()
         });
         this.subscriptions.add(subscription);
     }
 
     ngOnDestroy(): void {
-        this.selectedFacilities = [];
         this.headerCheck = false;
+        this.topService.selectedCodes = [];
         this.subscriptions.unsubscribe()
     }
 }
