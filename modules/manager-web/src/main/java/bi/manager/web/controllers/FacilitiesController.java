@@ -28,20 +28,20 @@ public class FacilitiesController {
     @RequestMapping(path = ManagerWebConstants.Controller.Facility.facility, method = RequestMethod.GET)
     public MBFacilityData getFacilityForCode(
             @RequestParam(name = ManagerWebConstants.Controller.allFields, required = false) boolean allFields,
-            @PathVariable String facilityId) {
+            @PathVariable String code) {
 
-        return facilityFacade.getFacilityByCode(facilityId, allFields);
+        return facilityFacade.getFacilityByCode(code, allFields);
     }
 
     @RequestMapping(path = ManagerWebConstants.Controller.Facility.facility, method = RequestMethod.PATCH)
     @ResponseStatus(HttpStatus.OK)
-    public void updateFacility(@PathVariable String facilityId, @RequestBody MBFacilityData facilityData) {
-        facilityFacade.updateFacility(facilityId, facilityData);
+    public void updateFacility(@PathVariable String code, @RequestBody MBFacilityData facilityData) {
+        facilityFacade.updateFacility(code, facilityData);
     }
 
     @RequestMapping(path = endpoint, method = RequestMethod.DELETE)
-    public void deleteFacility(@RequestParam Set<String> facilityIds) {
-        facilityFacade.deleteFacilities(facilityIds);
+    public void deleteFacility(@RequestParam Set<String> codes) {
+        facilityFacade.deleteFacilities(codes);
     }
 
     @RequestMapping(path = endpoint , method = RequestMethod.POST)

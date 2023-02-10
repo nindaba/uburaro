@@ -1,0 +1,11 @@
+$spacing: 40px;
+.facility-details {
+  padding: $spacing;
+  .attributes{
+    margin-top: $spacing;
+    gap: $spacing 20px;
+    > div{
+      width: 240px;
+    }
+  }
+}

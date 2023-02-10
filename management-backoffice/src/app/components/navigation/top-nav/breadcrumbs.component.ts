@@ -9,7 +9,7 @@ import {BreadcrumbsService} from "./breadcrumbs.service";
 })
 export class BreadcrumbsComponent implements OnInit {
     showFacilitySelectorClass: string = "";
-    facility: string = "BreadCrumbs";
+    $facility: Observable<string> = this.breadService.$facility;
     pageRoute: Observable<{ page?: string; details?: string; }> = new Observable<{page?: string; details?: string}>();
 
     constructor(private router: Router, private breadService: BreadcrumbsService) {

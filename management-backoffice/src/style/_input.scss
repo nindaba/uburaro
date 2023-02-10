@@ -1,6 +1,12 @@
 .input-grp {
   display: flex;
   flex-direction: column;
+  label{
+    color: $gray-600;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
 
   &.label-front {
     flex-direction: row;
@@ -34,6 +40,8 @@
     }
 
     &.input-text {
+      height: 30px;
+      max-width: 280px;
       &.nav-search {
         min-width: 280px;
         height: 30px;

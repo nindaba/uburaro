@@ -39,5 +39,12 @@ export abstract class FacilityService{
      */
     abstract updateFacility(facility: Facility): void;
 
-
+    /**
+     * Fetch a facility by {@code code} with all fields populated
+     *
+     * @param code
+     * @param allFields
+     * @return facility, and if it is not found null will be returned
+     */
+    abstract getFullFacilityByCode(code: string): Observable<Facility>;
 }

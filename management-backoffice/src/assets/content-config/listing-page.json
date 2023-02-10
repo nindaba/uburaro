@@ -1,9 +1,9 @@
 {
   "facilities": {
     "heads": [
-      "facility.code",
-      "facility.alias",
-      "facility.capital"
+      "label.code",
+      "label.facility.alias",
+      "label.facility.capital"
     ]
   }
 }
