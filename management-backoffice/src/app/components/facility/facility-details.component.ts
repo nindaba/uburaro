@@ -52,18 +52,6 @@ export class FacilityDetailsComponent implements OnInit, OnDestroy {
         this.subscriptions.add(subscription);
     }
 
-    private initFacility() {
-        let code = this.breadService.pages.details;
-        if (code && code !== NEW_ITEM) {
-            this.$facility = this.facilityService.getFullFacilityByCode(code).pipe(
-                tap(facility => {
-                    let {code, name, alias, address} = facility;
-                    this.facilityForm = this.createFrom(code, name || "", alias || "", address || "")
-                })
-            );
-        }
-    }
-
     private createFrom(code: string, name: string, alias: string, address: string) {
         return this.formBuilder.group({
             code: [code],
