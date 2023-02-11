@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -16,6 +17,7 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true, exclude = {
         "MBClients",
         "MBCategories",
+        "capital"
 })
 @NoArgsConstructor
 @Entity(name = MBFacilityType.ITEM_TYPE)
@@ -32,10 +34,10 @@ public class MBFacilityType extends ItemType {
     private String alias;
     private String address;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private Set<MBCategoryType> categories = new HashSet<>();
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private Set<MBClientType> clients = new HashSet<>();
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private MBCapitalType capital;
 }

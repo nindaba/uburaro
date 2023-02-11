@@ -6,6 +6,7 @@ import {BehaviorSubject} from "rxjs";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {BreadcrumbsService} from "./breadcrumbs.service";
 import {NEW_ITEM} from "../navigation.constants";
+import {FormControl} from "@angular/forms";
 
 @Injectable({providedIn: "root"})
 export class TopNavService {
@@ -16,6 +17,7 @@ export class TopNavService {
     formValues: any;
     selectedCodes: string[] = [];
     $formChanged: BehaviorSubject<boolean> = new BehaviorSubject(false);
+    searchForm: FormControl = new FormControl('');
 
     constructor(
         private router: Router,

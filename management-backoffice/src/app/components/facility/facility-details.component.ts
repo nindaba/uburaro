@@ -1,11 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {TopNavService} from "../navigation/top-nav/top-nav.service";
-import {Observable, Subscription, tap} from "rxjs";
+import {BehaviorSubject, map, Observable, Subject, Subscription, tap} from "rxjs";
 import {FacilityService} from "./facility.service";
 import {BreadcrumbsService} from "../navigation/top-nav/breadcrumbs.service";
-import {Facility} from "../../model/navigation.model";
+import {Capital, CapitalType, Facility} from "../../model/navigation.model";
 import {NEW_ITEM} from "../navigation/navigation.constants";
+import {CapitalService} from "./capital.service";
 
 @Component({
     selector: 'mb-facility-details',
@@ -14,14 +15,18 @@ import {NEW_ITEM} from "../navigation/navigation.constants";
 export class FacilityDetailsComponent implements OnInit, OnDestroy {
     facilityForm: FormGroup = this.createFrom("", "", "", "");
     $facility: Observable<Facility> = new Observable<Facility>();
+    newCapital: FormControl = new FormControl<string>('')
     private subscriptions: Subscription = new Subscription();
+    capitalType: CapitalType = CapitalType.INTERNAL;
+    $capital: Observable<Capital > = new BehaviorSubject<Capital>({currentValue: 0});
 
 
     constructor(
         private topNavService: TopNavService,
         private facilityService: FacilityService,
         private breadService: BreadcrumbsService,
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
+        private capitalService: CapitalService
     ) {
     }
 
@@ -36,8 +41,9 @@ export class FacilityDetailsComponent implements OnInit, OnDestroy {
                     this.subscribeToForm();
                 })
             );
-        }
-        else{
+
+            this.$capital = this.$facility.pipe(map(facility => facility.capital || {currentValue: 0}))
+        } else {
             this.subscribeToForm();
         }
     }
@@ -66,4 +72,14 @@ export class FacilityDetailsComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
+    selectExternal() {
+        this.capitalType = this.capitalType == CapitalType.EXTERNAL ? CapitalType.INTERNAL : CapitalType.EXTERNAL;
+    }
+
+    addCapital() {
+        this.capitalService.addCapital(this.newCapital.value,this.capitalType)
+            .subscribe({
+                next: value => this.$capital = this.capitalService.getCapital()
+            })
+    }
 }

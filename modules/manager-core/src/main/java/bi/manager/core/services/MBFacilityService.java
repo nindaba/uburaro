@@ -30,6 +30,7 @@ public interface MBFacilityService {
     /**
      * Checks if there is already a facility with the facility code same to the {@code facility}
      * and activates it, and finally saves it
+     * Or if the facility does not exist it will create one with capital of 0 value
      *
      * @param facility
      * @return facility

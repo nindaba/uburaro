@@ -4,5 +4,7 @@ export const endpointsConfig: EndpointConfig= {
     baseUrl: "http://localhost:8080/manager-api/",
     allFields: {allFields: true},
     facilities: "facilities",
-    facility: "facilities/{id}"
+    facility: "facilities/{code}",
+    capital: "facilities/{code}/capital",
+    capitalEntries: "facilities/{code}/capital/entries"
 }

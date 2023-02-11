@@ -1,11 +1,11 @@
 import {Injectable} from "@angular/core";
-import {FacilityService} from "./facility.service";
-import {EndpointConfig, Facility} from "../../model/navigation.model";
-import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {UrlBuilderService} from "../../utils/UrlBuilder.service";
-import {TopNavService} from "../navigation/top-nav/top-nav.service";
-import {endpointsConfig} from "../../config/endpoints.config";
+import {FacilityService} from "../components/facility/facility.service";
+import {EndpointConfig, Facility} from "../model/navigation.model";
+import {Observable} from "rxjs";
+import {endpointsConfig} from "../config/endpoints.config";
+import {UrlBuilderService} from "../utils/UrlBuilder.service";
+import {TopNavService} from "../components/navigation/top-nav/top-nav.service";
 
 @Injectable()
 export class FacilityServiceImpl implements FacilityService {
@@ -32,7 +32,7 @@ export class FacilityServiceImpl implements FacilityService {
     }
 
     getFacilityByCode(code: string): Observable<Facility> {
-        let url: string = this.urlBuilder.getUrl("facility", [{key: "id", value: code}]);
+        let url: string = this.urlBuilder.getUrl("facility", [{key: "code", value: code}]);
         return this.http.get<Facility>(url);
     }
 
@@ -40,7 +40,7 @@ export class FacilityServiceImpl implements FacilityService {
     }
 
     getFullFacilityByCode(code: string): Observable<Facility> {
-        let url: string = this.urlBuilder.getUrl("facility", [{key: "id", value: code}]);
+        let url: string = this.urlBuilder.getUrl("facility", [{key: "code", value: code}]);
         return this.http.get<Facility>(url, {params: this.endpointConfig.allFields});
     }
 

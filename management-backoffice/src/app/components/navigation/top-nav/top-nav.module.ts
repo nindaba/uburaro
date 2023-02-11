@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { TopNavComponent } from './top-nav.component';
 import {AppCommonModule} from "../../../app-common.module";
 import { BreadcrumbsComponent } from './breadcrumbs.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -13,8 +14,9 @@ import { BreadcrumbsComponent } from './breadcrumbs.component';
   exports: [
     TopNavComponent
   ],
-  imports: [
-    AppCommonModule,
-  ],
+    imports: [
+        AppCommonModule,
+        ReactiveFormsModule,
+    ],
 })
 export class TopNavModule { }

@@ -2,6 +2,7 @@ package bi.manager.core.services.impl;
 
 import bi.manager.core.repositories.MBFacilityRepository;
 import bi.manager.core.services.MBFacilityService;
+import bi.manager.core.types.MBCapitalType;
 import bi.manager.core.types.MBFacilityType;
 import bi.uburaro.core.exceptions.NotFoundException;
 import bi.uburaro.core.services.TypeService;
@@ -15,11 +16,9 @@ import java.util.stream.Collectors;
 @Service(value = "facilityService")
 public class DefaultMBFacilityService implements MBFacilityService {
     private final TypeService typeService;
-    private final MBFacilityRepository facilityRepository;
 
-    public DefaultMBFacilityService(TypeService typeService, MBFacilityRepository facilityRepository) {
+    public DefaultMBFacilityService(TypeService typeService) {
         this.typeService = typeService;
-        this.facilityRepository = facilityRepository;
     }
 
     @Override
@@ -52,7 +51,9 @@ public class DefaultMBFacilityService implements MBFacilityService {
             typeService.save(facilityByCode);
             return facilityByCode;
         } catch (NotFoundException ex) {
-
+            MBCapitalType mbCapitalType = typeService.create(MBCapitalType.class);
+            mbCapitalType.setCurrentValue(0);
+            facility.setCapital(mbCapitalType);
             typeService.save(facility);
             return facility;
         }

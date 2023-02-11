@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
@@ -21,7 +22,7 @@ public class MBInventoryOrderType extends MBOrderType {
 
     private String orderNumber;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private MBInventoryType item;
 
     private MBInventoryEntryEnum orderEntry;

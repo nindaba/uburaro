@@ -1,9 +1,11 @@
 package bi.uburaro.initialdata.mappers.impl.manager;
 
+import bi.manager.core.types.MBCapitalEntryType;
 import bi.manager.core.types.MBCapitalType;
 import bi.manager.core.types.MBCategoryType;
 import bi.manager.core.types.MBFacilityType;
 import bi.manager.core.types.client.MBClientType;
+import bi.manager.core.types.enums.MBEntryEnum;
 import bi.uburaro.core.services.TypeService;
 import bi.uburaro.initialdata.mappers.impl.AbstractTypeMapper;
 
@@ -35,8 +37,8 @@ public class MBFacilityTypeMapper extends AbstractTypeMapper<MBFacilityType> {
                 NAME, target::setName,
                 ALIAS, target::setAlias,
                 ADDRESS, target::setAddress,
-                CAPITAL, value -> target.setCapital(typeService.findItemByCode(value, MBCapitalType.class))
-                ));
+                CAPITAL, value -> addCapital(target, value)
+        ));
 
         fieldsMapper.putAll(Map.of(
                 CLIENTS, clients -> getStringStream(clients)
@@ -47,7 +49,25 @@ public class MBFacilityTypeMapper extends AbstractTypeMapper<MBFacilityType> {
                         .map(code -> typeService.findItemByCode(code, MBCategoryType.class))
                         .forEach(target.getCategories()::add)
 
-                ));
+        ));
         return fieldsMapper;
+    }
+
+    private void addCapital(MBFacilityType target, String value) {
+        Long aLong = Long.valueOf(value);
+        MBCapitalType capital = target.getCapital();
+
+        if (capital == null) {
+            capital = typeService.create(MBCapitalType.class);
+            target.setCapital(capital);
+            typeService.save(target);
+        }
+
+        capital.setCurrentValue(capital.getCurrentValue() + aLong);
+        MBCapitalEntryType entry = typeService.create(MBCapitalEntryType.class);
+        entry.setEntryType(MBEntryEnum.EXTERNAL);
+        entry.setAmount(aLong);
+        entry.setCapital(capital);
+        typeService.save(entry);
     }
 }

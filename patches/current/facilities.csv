@@ -1,6 +1,6 @@
 ##mBFacility;;;;;;;;
 code;name;alias;address;capital;active;visible;clients;categories
-cizanye-bar;Cizanye Bar;C Bar;muyinga gikarani;;TRUE;TRUE;;
+cizanye-bar;Cizanye Bar;C Bar;muyinga gikarani;800;TRUE;TRUE;;
 kugatumba-bar;Kugatumba Bar;G Bar;Bujumbura Kamenge;;TRUE;TRUE;;
 Lorem;Phasellus;Integer;Lorem;;TRUE;TRUE;;
 ipsum;ut;diam;ipsum;;TRUE;TRUE;;
@@ -10,5 +10,5 @@ amet;Etiam;at;amet;;TRUE;TRUE;;
 consectetur;facilisis;vehicula;consectetur;;TRUE;TRUE;;
 adipiscing;non;a;adipiscing;;TRUE;TRUE;;
 elit.;lorem;finibus;elit.;;TRUE;TRUE;;
-Cras;id;nec;Phasellus;;TRUE;TRUE;;
+Cras;id;nec;Phasellus;1200;TRUE;TRUE;;
 congue.;semper.;lorem.;blandit.;;TRUE;TRUE;;

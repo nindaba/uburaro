@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
@@ -19,6 +20,6 @@ public class MBRentOrderType extends MBOrderType {
 
     private String orderNumber;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private MBRentPropertyType item;
 }

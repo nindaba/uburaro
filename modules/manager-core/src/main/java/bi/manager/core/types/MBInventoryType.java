@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -23,9 +24,9 @@ public class MBInventoryType extends ItemType {
     public static final String COST = "cost";
     public static final String INVENTORY_ORDERS = "inventoryOrders";
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private Set<MBInventoryOrderType> inventoryOrders =  new HashSet<>();
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private MBCategoryType category;
 
     private String name;

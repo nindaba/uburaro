@@ -1,7 +1,5 @@
-package bi.uburaro.core.services.impl;
+package bi.manager.core.services.impl;
 
-import bi.manager.core.repositories.MBFacilityRepository;
-import bi.manager.core.services.impl.DefaultMBFacilityService;
 import bi.uburaro.core.services.TypeService;
 import bi.manager.core.types.MBFacilityType;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,8 +30,6 @@ class DefaultMBFacilityServiceTest {
     DefaultMBFacilityService service;
     @Mock
     TypeService typeService;
-    @Mock
-    MBFacilityRepository repository;
 
     @BeforeEach
     void setUp() {
