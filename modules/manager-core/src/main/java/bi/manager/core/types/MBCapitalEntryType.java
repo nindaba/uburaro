@@ -19,7 +19,7 @@ public class MBCapitalEntryType extends ItemType {
     public static final String ITEM_TYPE = "mBCapitalEntry";
     public static final String AMOUNT = "amount";
     public static final String ENTRY_TYPE = "entryType";
-    public static final String CAPITAL = "entryType";
+    public static final String CAPITAL = "capital";
 
     private long amount;
     private MBEntryEnum entryType;
