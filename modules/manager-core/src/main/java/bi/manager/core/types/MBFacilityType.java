@@ -34,7 +34,7 @@ public class MBFacilityType extends ItemType {
     private String alias;
     private String address;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "facility")
     private Set<MBCategoryType> categories = new HashSet<>();
     @OneToMany(cascade = CascadeType.ALL)
     private Set<MBClientType> clients = new HashSet<>();
