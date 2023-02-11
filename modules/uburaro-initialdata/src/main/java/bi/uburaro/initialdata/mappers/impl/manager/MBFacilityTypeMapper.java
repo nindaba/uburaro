@@ -1,6 +1,6 @@
 package bi.uburaro.initialdata.mappers.impl.manager;
 
-import bi.manager.core.types.MBCapitalEntryType;
+import bi.manager.core.services.MBCapitalService;
 import bi.manager.core.types.MBCapitalType;
 import bi.manager.core.types.MBCategoryType;
 import bi.manager.core.types.MBFacilityType;
@@ -17,8 +17,10 @@ import static bi.manager.core.types.MBFacilityType.*;
 
 public class MBFacilityTypeMapper extends AbstractTypeMapper<MBFacilityType> {
 
-    public MBFacilityTypeMapper(TypeService typeService) {
+    protected final MBCapitalService mbCapitalService;
+    public MBFacilityTypeMapper(TypeService typeService, MBCapitalService mbCapitalService) {
         super(typeService);
+        this.mbCapitalService = mbCapitalService;
     }
 
     @Override
@@ -55,19 +57,6 @@ public class MBFacilityTypeMapper extends AbstractTypeMapper<MBFacilityType> {
 
     private void addCapital(MBFacilityType target, String value) {
         Long aLong = Long.valueOf(value);
-        MBCapitalType capital = target.getCapital();
-
-        if (capital == null) {
-            capital = typeService.create(MBCapitalType.class);
-            target.setCapital(capital);
-            typeService.save(target);
-        }
-
-        capital.setCurrentValue(capital.getCurrentValue() + aLong);
-        MBCapitalEntryType entry = typeService.create(MBCapitalEntryType.class);
-        entry.setEntryType(MBEntryEnum.EXTERNAL);
-        entry.setAmount(aLong);
-        entry.setCapital(capital);
-        typeService.save(entry);
+        mbCapitalService.addCapital(aLong, MBEntryEnum.EXTERNAL,target);
     }
 }
