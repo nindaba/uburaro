@@ -35,25 +35,22 @@ export class FacilityListingComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        let subscription = this.topService.$delete.subscribe({
-            next: () => this.$facilities = this.facilityService.getAllFacilities()
-        });
-        this.subscriptions.add(subscription);
-
-        this.topService.searchForm.valueChanges.subscribe({
-            next: value => this.$searchResult = this.$facilities
-                .pipe(map(facilities => facilities.filter(facility => this.search(facility, value))))
-        })
+        this.subscriptions.add(
+            this.topService.$delete.subscribe({
+                next: () => this.$facilities = this.facilityService.getAllFacilities()
+            })
+        );
+        this.subscriptions.add(
+            this.topService.searchForm.valueChanges.subscribe({
+                next: value => this.$searchResult = this.$facilities
+                    .pipe(map(facilities => facilities.filter(facility => this.topService.search(facility, value))))
+            })
+        );
     }
 
     ngOnDestroy(): void {
         this.headerCheck = false;
         this.topService.selectedCodes = [];
         this.subscriptions.unsubscribe()
-    }
-
-
-    private search(facility: Facility, value: string): boolean {
-        return new RegExp(value).test(JSON.stringify(facility))
     }
 }
