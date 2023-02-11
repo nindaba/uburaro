@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +15,7 @@ import java.util.Set;
 @Data
 @EqualsAndHashCode(callSuper = true, exclude = {
         "inventories",
+        "facility"
 })
 @NoArgsConstructor
 @Entity(name = MBCategoryType.ITEM_TYPE)
@@ -21,11 +23,14 @@ public class MBCategoryType extends ItemType {
     public static final String ITEM_TYPE = "mBCategory";
     public static final String NAME = "name";
     public static final String INVENTORIES = "inventories";
+    public static final String FACILITY = "facility";
 
 
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL)
     private Set<MBInventoryType> inventories = new HashSet<>();
+    @ManyToOne
+    private MBFacilityType facility;
 
 }
