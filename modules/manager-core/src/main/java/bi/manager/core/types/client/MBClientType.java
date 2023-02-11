@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.HashSet;
@@ -28,10 +29,10 @@ public class MBClientType extends ItemType {
 
     private String name;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private Set<MBRentOrderType> rentOrders =  new HashSet<>();
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private Set<MBInventoryOrderType> inventoryOrders =  new HashSet<>();
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private Set<MBInvoiceType> invoices = new HashSet<>();
 }

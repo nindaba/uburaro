@@ -1,11 +1,12 @@
 import NavigationConfig from "../../../../assets/content-config/navigation.json";
-import {EndpointConfig, NavNode} from "../../../model/navigation.model";
+import {EndpointConfig, Facility, NavNode} from "../../../model/navigation.model";
 import {EventEmitter, Injectable} from "@angular/core";
 import {Router} from "@angular/router";
 import {BehaviorSubject} from "rxjs";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {BreadcrumbsService} from "./breadcrumbs.service";
 import {NEW_ITEM} from "../navigation.constants";
+import {FormControl} from "@angular/forms";
 
 @Injectable({providedIn: "root"})
 export class TopNavService {
@@ -16,6 +17,7 @@ export class TopNavService {
     formValues: any;
     selectedCodes: string[] = [];
     $formChanged: BehaviorSubject<boolean> = new BehaviorSubject(false);
+    searchForm: FormControl = new FormControl('');
 
     constructor(
         private router: Router,
@@ -73,5 +75,9 @@ export class TopNavService {
     private updateItem() {
         let url = `${this.endpoints.baseUrl}${this.breadService.pages.page}/${this.breadService.pages.details}`;
         this.http.patch(url,this.formValues).subscribe({next:value => {}})
+    }
+
+    public search(item: any, value: string): boolean {
+        return new RegExp(value).test(JSON.stringify(item))
     }
 }

@@ -43,7 +43,7 @@ public class ItemType implements Serializable {
      */
     private boolean active;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private Set<ModificationLogType> modificationLogs = new HashSet<>();
 
     public ItemType(String code) {

@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import ListingPageConfig from '../../../assets/content-config/listing-page.json'
 import {FacilityService} from "./facility.service";
 import {Facility} from "../../model/navigation.model";
-import {flatMap, mergeMap, Observable, Subscription, takeLast, tap} from "rxjs";
+import {filter, flatMap, map, mergeMap, Observable, Subscription, takeLast, tap} from "rxjs";
 import {TopNavService} from "../navigation/top-nav/top-nav.service";
 
 @Component({
@@ -13,7 +13,9 @@ export class FacilityListingComponent implements OnInit, OnDestroy {
     headerCheck: boolean = false;
     $facilities: Observable<Facility[]> = this.facilityService.getAllFacilities();
 
-    subscriptions: Subscription  = new Subscription();
+    subscriptions: Subscription = new Subscription();
+    $searchResult: Observable<Facility[]> = new Observable<Facility[]>();
+
     constructor(private facilityService: FacilityService, private topService: TopNavService) {
     }
 
@@ -33,10 +35,17 @@ export class FacilityListingComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        let subscription = this.topService.$delete.subscribe({
-            next: () => this.$facilities = this.facilityService.getAllFacilities()
-        });
-        this.subscriptions.add(subscription);
+        this.subscriptions.add(
+            this.topService.$delete.subscribe({
+                next: () => this.$facilities = this.facilityService.getAllFacilities()
+            })
+        );
+        this.subscriptions.add(
+            this.topService.searchForm.valueChanges.subscribe({
+                next: value => this.$searchResult = this.$facilities
+                    .pipe(map(facilities => facilities.filter(facility => this.topService.search(facility, value))))
+            })
+        );
     }
 
     ngOnDestroy(): void {

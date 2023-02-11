@@ -6,20 +6,23 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true ,exclude = {
+        "capital"
+})
 @NoArgsConstructor
 @Entity(name = MBCapitalEntryType.ITEM_TYPE)
 public class MBCapitalEntryType extends ItemType {
     public static final String ITEM_TYPE = "mBCapitalEntry";
-    public static final String ENTRY_DATE = "entryDate";
     public static final String AMOUNT = "amount";
     public static final String ENTRY_TYPE = "entryType";
+    public static final String CAPITAL = "capital";
 
-    private LocalDate entryDate;
-    private Long amount;
+    private long amount;
     private MBEntryEnum entryType;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private MBCapitalType capital;
 }

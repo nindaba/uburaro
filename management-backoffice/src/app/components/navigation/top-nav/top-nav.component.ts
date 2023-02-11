@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {BreadcrumbsService} from "./breadcrumbs.service";
 import {Observable, Subject} from "rxjs";
 import {NEW_ITEM} from "../navigation.constants";
+import {FormControl} from "@angular/forms";
 
 @Component({
     selector: 'mb-top-nav',
@@ -12,6 +13,7 @@ import {NEW_ITEM} from "../navigation.constants";
 export class TopNavComponent implements OnInit {
     facilitySelectedClass: string = "";
     $formChanged: Subject<boolean> = this.service.$formChanged;
+    searchFrom: FormControl = this.service.searchForm;
 
     constructor(private service: TopNavService, private router: Router, private breadcrumbsService: BreadcrumbsService) {
     }

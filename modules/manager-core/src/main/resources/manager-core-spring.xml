@@ -26,6 +26,7 @@
 
     <util:list id="mBRepositories" value-type="bi.uburaro.core.repositories.ItemRepository">
         <ref bean="MBFacilityRepository"/>
+        <ref bean="MBCapitalRepository"/>
     </util:list>
 
     <bean parent="mBRepositoriesMerger">

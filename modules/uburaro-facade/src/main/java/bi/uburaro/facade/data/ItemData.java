@@ -49,4 +49,5 @@ public class ItemData {
     public void setModificationLogs(List<ModificationLogData> modificationLogData) {
         this.modificationLogs = modificationLogData;
     }
+
 }

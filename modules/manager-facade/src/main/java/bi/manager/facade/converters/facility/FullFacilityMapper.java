@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 
 import java.util.Collection;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {FullCapitalMapper.class})
 public interface FullFacilityMapper {
     Collection<MBFacilityData> facilitiesToData(Collection<MBFacilityType> facilities);
 

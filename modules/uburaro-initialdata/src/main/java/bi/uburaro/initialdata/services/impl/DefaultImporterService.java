@@ -90,7 +90,7 @@ public class DefaultImporterService extends SimpleFileVisitor<Path> implements D
             BatchData batchData = new BatchData();
 
             batchData.setTarget(StringUtils.strip(line.getValue(), TYPE_PREFIX));
-            batchData.setTarget(StringUtils.strip(batchData.getTarget(), DELIMITER));
+            batchData.setTarget(StringUtils.split(batchData.getTarget(), DELIMITER)[0]);
             batches.add(batchData);
         } else {
             batches.stream()

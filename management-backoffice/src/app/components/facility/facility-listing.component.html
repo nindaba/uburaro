@@ -1,4 +1,4 @@
-<mb-listing [heads] = "heads" *ngIf="$facilities | async as facilities"
+<mb-listing [heads] = "heads" *ngIf="($searchResult | async) || ($facilities | async) as facilities"
             (selectedAll)="selectAll(facilities)" [checkedAll] = "headerCheck">
     <tr *ngFor="let facility of facilities">
         <th scope="row">
@@ -7,7 +7,6 @@
         </th>
         <td [routerLink]="[facility.code]">{{facility.code}}</td>
         <td [routerLink]="[facility.code]">{{facility.alias}}</td>
-        <td [routerLink]="[facility.code]">{{1000}}</td>
-<!--        <td>{{facility.capital}}</td>-->
+        <td [routerLink]="[facility.code]">{{facility?.capital?.currentValue || 0 | currency : '':'':'1.0-0'}} FBU</td>
     </tr>
 </mb-listing>

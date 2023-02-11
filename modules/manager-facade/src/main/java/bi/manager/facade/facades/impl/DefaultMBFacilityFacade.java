@@ -1,5 +1,6 @@
 package bi.manager.facade.facades.impl;
 
+import bi.manager.core.types.MBCapitalType;
 import bi.manager.facade.facades.MBFacilityFacade;
 import bi.manager.core.services.MBFacilityService;
 import bi.manager.core.types.MBFacilityType;
@@ -53,7 +54,6 @@ public class DefaultMBFacilityFacade implements MBFacilityFacade {
 
         if (facilityByCode != null) {
             populateType(facility, facilityByCode);
-            //todo: capital change
         }
 
         facilityService.updateFacility(facilityByCode);
@@ -64,8 +64,9 @@ public class DefaultMBFacilityFacade implements MBFacilityFacade {
         Assert.notNull(facilityData, "Facility must not be null");
         MBFacilityType facilityType = typeService.create(MBFacilityType.class);
 
-        if(facilityData.getCapital() != null){
-            //todo: capital change
+        if(facilityData.getCapital() == null){
+            MBCapitalType capital = typeService.create(MBCapitalType.class);
+            facilityType.setCapital(capital);
         }
         populateType(facilityData, facilityType);
 

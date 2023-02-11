@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -27,9 +28,9 @@ public class MBRentPropertyType extends ItemType {
     public static final String CURRENT_CLIENT = "currentClient";
     public static final String UNIT = "unit";
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private Set<MBRentOrderType> rentOrders =  new HashSet<>();
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private MBClientType currentClient;
 
     private String name;
