@@ -1,38 +1,23 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import ListingPageConfig from '../../../assets/content-config/listing-page.json'
 import {FacilityService} from "./facility.service";
-import {Facility} from "../../model/navigation.model";
-import {filter, flatMap, map, mergeMap, Observable, Subscription, takeLast, tap} from "rxjs";
+import {Category, Facility} from "../../model/navigation.model";
+import {Observable, Subscription} from "rxjs";
 import {TopNavService} from "../navigation/top-nav/top-nav.service";
+import {AbstractListingComponent} from "../listing/abstract-listing.component";
 
 @Component({
     templateUrl: './facility-listing.component.html'
 })
-export class FacilityListingComponent implements OnInit, OnDestroy {
+export class FacilityListingComponent extends AbstractListingComponent implements OnInit {
     heads: string[] = ListingPageConfig.facilities.heads;
-    headerCheck: boolean = false;
     $facilities: Observable<Facility[]> = this.facilityService.getAllFacilities();
-
-    subscriptions: Subscription = new Subscription();
-    $searchResult: Observable<Facility[]> = new Observable<Facility[]>();
-
-    constructor(private facilityService: FacilityService, private topService: TopNavService) {
+    constructor(
+        private facilityService: FacilityService,
+        protected override topService: TopNavService) {
+        super(topService);
     }
 
-
-    selectionChanged(value: Facility) {
-        this.topService.selectionChanged(value.code);
-        this.headerCheck = false;
-    }
-
-    selectAll(facilities: Facility[]) {
-        this.headerCheck = !this.headerCheck;
-        this.topService.selectedCodes = facilities.map(value => value.code);
-    }
-
-    isSelected(facility: Facility): boolean {
-        return this.topService.selectedCodes.indexOf(facility.code) > -1;
-    }
 
     ngOnInit(): void {
         this.subscriptions.add(
@@ -40,17 +25,9 @@ export class FacilityListingComponent implements OnInit, OnDestroy {
                 next: () => this.$facilities = this.facilityService.getAllFacilities()
             })
         );
-        this.subscriptions.add(
-            this.topService.searchForm.valueChanges.subscribe({
-                next: value => this.$searchResult = this.$facilities
-                    .pipe(map(facilities => facilities.filter(facility => this.topService.search(facility, value))))
-            })
-        );
+        this.subscribeToSearch();
     }
-
-    ngOnDestroy(): void {
-        this.headerCheck = false;
-        this.topService.selectedCodes = [];
-        this.subscriptions.unsubscribe()
+    getItems(): Observable<any> {
+        return this.$facilities;
     }
 }

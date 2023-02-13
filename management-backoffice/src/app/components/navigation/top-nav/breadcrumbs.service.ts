@@ -6,7 +6,7 @@ import {BehaviorSubject} from "rxjs";
     providedIn: "root"
 })
 export class BreadcrumbsService {
-    private readonly CHOSE_FACILITY = "facility.selector.title";
+    public readonly CHOSE_FACILITY = "facility.selector.title";
     facility: string = this.CHOSE_FACILITY
     pages: { page?: string; details?: string; } = {};
     $facility: BehaviorSubject<string> = new BehaviorSubject<string>(this.facility);
@@ -23,5 +23,9 @@ export class BreadcrumbsService {
             this.facility = (this.pages.details != this.facility ? this.pages.details : this.CHOSE_FACILITY) || this.CHOSE_FACILITY;
         }
         this.$facility.next(this.facility);
+    }
+
+    isFacilitySelected(): boolean{
+        return this.CHOSE_FACILITY != this.facility;
     }
 }

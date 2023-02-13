@@ -1,12 +1,13 @@
 import NavigationConfig from "../../../../assets/content-config/navigation.json";
-import {EndpointConfig, Facility, NavNode} from "../../../model/navigation.model";
 import {EventEmitter, Injectable} from "@angular/core";
-import {Router} from "@angular/router";
 import {BehaviorSubject} from "rxjs";
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {FormControl} from "@angular/forms";
+import {EndpointConfig, NavNode} from "../../../model/navigation.model";
+import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
 import {BreadcrumbsService} from "./breadcrumbs.service";
 import {NEW_ITEM} from "../navigation.constants";
-import {FormControl} from "@angular/forms";
+import {UrlBuilderService} from "../../../utils/UrlBuilder.service";
 
 @Injectable({providedIn: "root"})
 export class TopNavService {
@@ -23,7 +24,9 @@ export class TopNavService {
         private router: Router,
         private endpoints: EndpointConfig,
         private http: HttpClient,
-        private breadService: BreadcrumbsService) {
+        private breadService: BreadcrumbsService,
+        private urlBuilder: UrlBuilderService
+    ) {
     }
 
     getNode(nodeId: string): NavNode {
@@ -47,9 +50,9 @@ export class TopNavService {
     }
 
     delete() {
-        if(this.selectedCodes.length > 0){
+        if (this.selectedCodes.length > 0) {
             this.http.delete(
-                this.endpoints["baseUrl"] + this.breadService.pages.page,
+                this.urlBuilder.getFullUrl(),
                 {params: {"codes": this.selectedCodes.join(",")}}
             ).subscribe({
                 next: value => this.$delete.emit()
@@ -57,27 +60,25 @@ export class TopNavService {
         }
     }
 
+
     saveForm() {
-        if(this.breadService.pages.details == NEW_ITEM){
+        if (this.breadService.pages.details == NEW_ITEM) {
             this.createItem();
-        }
-        else {
+        } else {
             this.updateItem();
         }
     }
 
     private createItem() {
-        let url = `${this.endpoints.baseUrl}${this.breadService.pages.page}`;
-        this.http.post(url,this.formValues).subscribe({next: value => {}})
+        this.http.post(this.urlBuilder.getFullUrl(), this.formValues).subscribe({next: value => {}})
 
     }
 
     private updateItem() {
-        let url = `${this.endpoints.baseUrl}${this.breadService.pages.page}/${this.breadService.pages.details}`;
-        this.http.patch(url,this.formValues).subscribe({next:value => {}})
+        this.http.patch(this.urlBuilder.getFullUrl(), this.formValues).subscribe({
+            next: value => {
+            }
+        })
     }
 
-    public search(item: any, value: string): boolean {
-        return new RegExp(value).test(JSON.stringify(item))
-    }
 }

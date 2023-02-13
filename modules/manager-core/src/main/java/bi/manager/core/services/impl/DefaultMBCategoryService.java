@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -55,6 +56,10 @@ public class DefaultMBCategoryService implements MBCategoryService {
 
     @Override
     public void deleteCategories(Set<String> codes) {
-        codes.forEach(code -> typeService.delete(code, MBCategoryType.class));
+        codes.stream()
+                .map(this::getCategoryByCode)
+                .filter(Objects::nonNull)
+                .peek(facility -> facility.setActive(false))
+                .forEach(typeService::save);
     }
 }

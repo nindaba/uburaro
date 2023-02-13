@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TopNavService} from "./top-nav.service";
 import {Router} from "@angular/router";
 import {BreadcrumbsService} from "./breadcrumbs.service";
-import {Observable, Subject} from "rxjs";
+import {Subject} from "rxjs";
 import {NEW_ITEM} from "../navigation.constants";
 import {FormControl} from "@angular/forms";
 

@@ -5,5 +5,11 @@
       "label.facility.alias",
       "label.facility.capital"
     ]
+  },
+  "category": {
+    "heads": [
+      "label.code",
+      "label.name"
+    ]
   }
 }

@@ -3,7 +3,6 @@ import {HttpClient} from "@angular/common/http";
 import {FacilityService} from "../components/facility/facility.service";
 import {EndpointConfig, Facility} from "../model/navigation.model";
 import {Observable} from "rxjs";
-import {endpointsConfig} from "../config/endpoints.config";
 import {UrlBuilderService} from "../utils/UrlBuilder.service";
 import {TopNavService} from "../components/navigation/top-nav/top-nav.service";
 
@@ -21,13 +20,13 @@ export class FacilityServiceImpl implements FacilityService {
 
     deleteFacilities(facilities: Facility[]): Observable<any> {
         return this.http.delete(
-            this.urlBuilder.getUrl(endpointsConfig.facilities),
+            this.urlBuilder.getUrl(this.endpointConfig.facilities),
             {params: {"facilityIds": facilities.map(facility => facility.code).join(",")}}
         )
     }
 
     getAllFacilities(): Observable<Facility[]> {
-        let url: string = this.urlBuilder.getUrl(endpointsConfig.facilities);
+        let url: string = this.urlBuilder.getUrl(this.endpointConfig.facilities);
         return this.http.get<Facility[]>(url);
     }
 
