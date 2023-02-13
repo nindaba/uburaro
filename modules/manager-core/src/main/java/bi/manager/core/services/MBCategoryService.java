@@ -31,7 +31,7 @@ public interface MBCategoryService {
     void updateCategory(MBCategoryType category);
 
     /**
-     * Deletes all the categories that have {@code  codes}
+     * Sets active to false all the categories that have {@code  codes}
      *
      * @param codes
      */

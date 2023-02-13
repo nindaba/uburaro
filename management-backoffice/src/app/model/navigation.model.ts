@@ -14,6 +14,10 @@ export class EndpointConfig {
     allFields: any;
     capitalEntries: string = "";
     capital: string = "";
+    categories: string = "";
+    category: string = "";
+    relation: { [key: string]: string } = {};
+
 
     [key: string]: any;
 
@@ -24,6 +28,11 @@ export class EndpointConfig {
 export interface ChildNavNode {
     title: string,
     nodes: NavNode[]
+}
+
+export interface Item {
+    code: string;
+    dateCreated?: Date;
 }
 
 export enum CapitalType {
@@ -41,19 +50,24 @@ export interface Capital {
     entries?: CapitalEntry[]
 }
 
-export interface Client {
-}
-
-export interface Category {
+export interface Client extends Item {
 
 }
 
-export interface Facility {
-    code: string;
+interface Inventory extends Item {
+}
+
+export interface Category extends Item {
+    name?: string;
+    facility?: Facility;
+    inventories?: Inventory[];
+}
+
+export interface Facility extends Item {
+
     name?: string;
     alias?: string;
     address?: string;
-    dateCreated?: Date;
     capital?: Capital;
     clients?: Client[];
     categories?: Category[];
