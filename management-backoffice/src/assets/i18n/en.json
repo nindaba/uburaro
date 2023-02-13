@@ -19,6 +19,7 @@
   "nodes.name.search": "Search",
   "btn.name.close": "Close",
   "facility.selector.title": "Select Facility",
+  "facility.empty": "No Facility Registered",
   "label.code": "Code",
   "label.facility.alias": "Alias",
   "label.name": "Name",

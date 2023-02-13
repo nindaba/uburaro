@@ -32,4 +32,8 @@ export class CategoryListingComponent extends AbstractListingComponent implement
     setCategories() {
         this.$categories = this.categoryService.getCategoriesByFacilityCode();
     }
+
+    nothing() {
+
+    }
 }
