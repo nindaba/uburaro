@@ -18,9 +18,12 @@ export class BreadcrumbsService {
         return this.facility == this.pages.details && this.pages.page == this.endpoint.facilities;
     }
 
-    setFacility() {
+    setFacility(facility: string = "") {
         if (this.pages.page == this.endpoint.facilities) {
             this.facility = (this.pages.details != this.facility ? this.pages.details : this.CHOSE_FACILITY) || this.CHOSE_FACILITY;
+        }
+        if(facility){
+            this.facility = facility;
         }
         this.$facility.next(this.facility);
     }

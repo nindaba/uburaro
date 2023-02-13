@@ -23,7 +23,6 @@ export class UrlBuilderService {
 
     getFullUrl(): string {
         let pages = this.bread.pages;
-        console.log(pages)
         return this.getUrl(pages.details ? this.config.relation[pages.page || 'def'] : pages.page || 'def', [
             {
                 key: "code",

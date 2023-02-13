@@ -14,7 +14,7 @@
       left: calc(50% - 150px);
       border: solid 1px $border-color;
       opacity: .99;
-      box-shadow: 0 2px 2px 1px #F8F9FA;
+      box-shadow: 0 0 10px 0 #a2a2a2;
       width: 300px;
       max-height: 500px;
       background-color: $bg-color;
@@ -26,6 +26,7 @@
 
 
       .content {
+        height: inherit;
         &-top {
           margin-bottom: 16px;
           .nav-search {
@@ -37,7 +38,10 @@
             color: $primary;
           }
         }
-
+        &-table{
+          height: 100%;
+          overflow-y: scroll;
+        }
         &-bottom {
           margin-top: 8px;
           direction: rtl;
@@ -49,7 +53,8 @@
       }
 
       &.active {
-        display: block;
+        display: flex;
+        flex-direction: column;
       }
     }
 

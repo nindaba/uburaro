@@ -1,12 +1,13 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {TopNavService} from "../navigation/top-nav/top-nav.service";
-import {BehaviorSubject, map, Observable, Subject, Subscription, tap} from "rxjs";
+import {BehaviorSubject, catchError, EMPTY, map, Observable, Subject, Subscription, tap} from "rxjs";
 import {FacilityService} from "./facility.service";
 import {BreadcrumbsService} from "../navigation/top-nav/breadcrumbs.service";
 import {Capital, CapitalType, Facility} from "../../model/navigation.model";
 import {NEW_ITEM} from "../navigation/navigation.constants";
 import {CapitalService} from "./capital.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'mb-facility-details',
@@ -26,7 +27,8 @@ export class FacilityDetailsComponent implements OnInit, OnDestroy {
         private facilityService: FacilityService,
         private breadService: BreadcrumbsService,
         private formBuilder: FormBuilder,
-        private capitalService: CapitalService
+        private capitalService: CapitalService,
+        private router: Router
     ) {
     }
 
@@ -39,7 +41,7 @@ export class FacilityDetailsComponent implements OnInit, OnDestroy {
                     let {code, name, alias, address} = facility;
                     this.facilityForm = this.createFrom(code, name || "", alias || "", address || "");
                     this.subscribeToForm();
-                })
+                }),
             );
 
             this.$capital = this.$facility.pipe(map(facility => facility.capital || {currentValue: 0}))
