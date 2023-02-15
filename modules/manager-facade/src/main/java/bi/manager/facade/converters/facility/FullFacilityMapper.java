@@ -1,6 +1,8 @@
 package bi.manager.facade.converters.facility;
 
+import bi.manager.core.types.MBCategoryType;
 import bi.manager.core.types.MBFacilityType;
+import bi.manager.facade.converters.category.CategoryMapper;
 import bi.manager.facade.data.MBFacilityData;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
@@ -8,7 +10,7 @@ import org.mapstruct.Mapping;
 
 import java.util.Collection;
 
-@Mapper(componentModel = "spring", uses = {FullCapitalMapper.class})
+@Mapper(componentModel = "spring", uses = {FullCapitalMapper.class, CategoryMapper.class})
 public interface FullFacilityMapper {
     Collection<MBFacilityData> facilitiesToData(Collection<MBFacilityType> facilities);
 

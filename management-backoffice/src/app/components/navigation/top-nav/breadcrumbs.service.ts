@@ -7,7 +7,8 @@ import {BehaviorSubject} from "rxjs";
 })
 export class BreadcrumbsService {
     public readonly CHOSE_FACILITY = "facility.selector.title";
-    facility: string = this.CHOSE_FACILITY
+    // facility: string = this.CHOSE_FACILITY
+    facility: string = "kugatumba-bar"
     pages: { page?: string; details?: string; } = {};
     $facility: BehaviorSubject<string> = new BehaviorSubject<string>(this.facility);
 

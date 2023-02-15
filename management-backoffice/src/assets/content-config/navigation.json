@@ -10,8 +10,7 @@
         {
           "icon": "facilities",
           "name": "nodes.name.facilities",
-          "routeId": "facilities",
-          "active": true
+          "routeId": "facilities"
         }
       ]
     },
@@ -26,7 +25,8 @@
         {
           "icon": "categories",
           "name": "nodes.name.categories",
-          "routeId": "categories"
+          "routeId": "categories",
+          "active": true
         },
         {
           "icon": "store",

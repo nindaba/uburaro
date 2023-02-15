@@ -1,6 +1,7 @@
 package bi.manager.facade.converters.category;
 
 import bi.manager.core.types.MBCategoryType;
+import bi.manager.facade.converters.inventory.InventoryMapper;
 import bi.manager.facade.data.MBCategoryData;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
@@ -13,7 +14,7 @@ public interface CategoryMapper {
 
     @Mapping(target = "modificationLogs", ignore = true)
     @Mapping(target = "dateCreated", ignore = true)
-    @Mapping(target = "inventories", ignore = true)
+    @Mapping(target = MBCategoryType.INVENTORIES, ignore = true)
     MBCategoryData categoryToData(MBCategoryType category);
 
 

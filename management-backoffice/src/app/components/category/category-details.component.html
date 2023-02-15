@@ -1,1 +1,32 @@
-<p>category-details works!</p>
+<div class="category-details" *ngIf="($category | async) || true">
+    <div class="attributes">
+        <span class="mb-title" translate>label.details</span>
+        <form class="attributes d-flex flex-wrap" [formGroup]="itemForm">
+            <div class="input-grp">
+                <label for="code" class="" translate>label.code</label>
+                <input id="code" formControlName="code" type="text" class="input-text"
+                       placeholder="{{'label.code' | translate}}"/>
+            </div>
+            <div class="input-grp">
+                <label for="name" class="" translate>label.name</label>
+                <input id="name" formControlName="name" type="text" class="input-text"
+                       placeholder="{{'label.name' | translate}}"/>
+            </div>
+        </form>
+    </div>
+    <div class="inventory" *ngIf="$category | async as category">
+        <mb-relation title="inventories" [heads]="inventoryHeads" [allLink]="['inventories']" [createLink]="['inventories','new']">
+            <ng-container *ngIf="category?.inventories?.length || 0 > 0; else empty">
+                <tr *ngFor="let inventory of category.inventories">
+                    <td>
+                        {{inventory.name}}
+                    </td>
+                    <td>{{inventory.quantity}}</td>
+                </tr>
+            </ng-container>
+            <ng-template #empty>
+                <mb-empty target="inventory"/>
+            </ng-template>
+        </mb-relation>
+    </div>
+</div>

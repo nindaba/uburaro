@@ -1,0 +1,17 @@
+$spacing: 20px;
+.category-details {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing;
+
+  .attributes {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    gap: $spacing;
+
+    > div {
+      width: 240px;
+    }
+  }
+}

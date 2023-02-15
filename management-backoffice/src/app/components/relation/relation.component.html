@@ -1,0 +1,24 @@
+<div class="mb-relation">
+    <span class="title d-flex justify-content-between">
+        <span class="mb-title" translate>nodes.name.{{title}}  </span>
+        <a class="btn primary" translate (click)="createNew()">btn.name.create</a>
+    </span>
+    <table class="table">
+        <thead>
+        <th scope="col" *ngFor="let head of heads" translate>
+            {{head}}
+        </th>
+        </thead>
+        <tbody>
+        <ng-content>
+        </ng-content>
+        </tbody>
+    </table>
+    <div class="content-bottom">
+        <a class="btn primary-text" translate (click)="showAll()">
+            <div class="mb-icon left-right mb-icon-green"></div>
+            btn.name.all
+        </a>
+    </div>
+
+</div>

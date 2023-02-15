@@ -7,8 +7,6 @@ import {CategoryModule} from "./category/category.module";
 
 
 @NgModule({
-    declarations: [
-  ],
     imports: [
         NavigationModule,
         ListingModule,

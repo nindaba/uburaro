@@ -8,6 +8,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {FacilityServiceImpl} from "../../services/facility.service.impl";
 import {CapitalService} from "./capital.service";
 import {CapitalServiceImpl} from "../../services/capital.service.impl";
+import {EmptyComponent} from "../empty/empty.component";
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import {CapitalServiceImpl} from "../../services/capital.service.impl";
         AppCommonModule,
         ListingModule,
         ReactiveFormsModule,
+        EmptyComponent,
     ],
     providers:[
         {provide: FacilityService, useClass:FacilityServiceImpl },

@@ -1,9 +1,51 @@
-import { Component } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Observable, tap} from "rxjs";
+import {Category} from "../../model/navigation.model";
+import {FormBuilder} from "@angular/forms";
+import {CategoryService} from "./category.service";
+import {NEW_ITEM} from "../navigation/navigation.constants";
+import {BreadcrumbsService} from "../navigation/top-nav/breadcrumbs.service";
+import {TopNavService} from "../navigation/top-nav/top-nav.service";
+import {AbstractDetailsComponent} from "../abstract-details.component";
+import DetailsConfig from "../../../assets/content-config/details-page.json"
 
 @Component({
-  selector: 'mb-category-details',
-  templateUrl: './category-details.component.html'
+    selector: 'mb-category-details',
+    templateUrl: './category-details.component.html'
 })
-export class CategoryDetailsComponent {
+export class CategoryDetailsComponent extends AbstractDetailsComponent implements OnInit{
+    $category: Observable<Category> = new Observable();
+    inventoryHeads: string[] =  DetailsConfig.category.inventory.heads;
 
+    constructor(private formBuilder: FormBuilder,
+                private categoryService: CategoryService,
+                private breadService: BreadcrumbsService,
+                protected override topNavService: TopNavService
+    ) {
+        super(topNavService);
+    }
+
+    private createFrom(code: string = "", name: string = "") {
+        return this.formBuilder.group({
+            code: [code],
+            name: [name]
+        });
+    }
+
+    ngOnInit(): void {
+        this.itemForm = this.createFrom();
+        let code = this.breadService.pages.details;
+
+        if (code && code !== NEW_ITEM) {
+            this.$category = this.categoryService.getCategoryByCode(code).pipe(
+                tap(facility => {
+                    let {code, name} = facility;
+                    this.itemForm = this.createFrom(code, name);
+                    this.subscribeToForm();
+                }),
+            );
+        } else {
+            this.subscribeToForm();
+        }
+    }
 }

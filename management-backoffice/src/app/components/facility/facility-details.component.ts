@@ -8,38 +8,47 @@ import {Capital, CapitalType, Facility} from "../../model/navigation.model";
 import {NEW_ITEM} from "../navigation/navigation.constants";
 import {CapitalService} from "./capital.service";
 import {Router} from "@angular/router";
+import {AbstractDetailsComponent} from "../abstract-details.component";
+import DetailsConfig from "../../../assets/content-config/details-page.json"
 
 @Component({
     selector: 'mb-facility-details',
     templateUrl: './facility-details.component.html'
 })
-export class FacilityDetailsComponent implements OnInit, OnDestroy {
-    facilityForm: FormGroup = this.createFrom("", "", "", "");
+export class FacilityDetailsComponent extends AbstractDetailsComponent implements OnInit {
     $facility: Observable<Facility> = new Observable<Facility>();
     newCapital: FormControl = new FormControl<string>('')
-    private subscriptions: Subscription = new Subscription();
     capitalType: CapitalType = CapitalType.INTERNAL;
     $capital: Observable<Capital > = new BehaviorSubject<Capital>({currentValue: 0});
 
+    categoryHeads: string[] = DetailsConfig.facilities.category.heads;
+    clientHeads: string[] = DetailsConfig.facilities.clients.heads;
+
+    clientPage: string = "clients";
+    categoryPage: string = "categories"
+
 
     constructor(
-        private topNavService: TopNavService,
+        protected override topNavService: TopNavService,
         private facilityService: FacilityService,
         private breadService: BreadcrumbsService,
         private formBuilder: FormBuilder,
         private capitalService: CapitalService,
         private router: Router
     ) {
+        super(topNavService)
     }
 
     ngOnInit(): void {
+        this.itemForm = this.createFrom("", "", "", "");
+
         let code = this.breadService.pages.details;
 
         if (code && code !== NEW_ITEM) {
             this.$facility = this.facilityService.getFullFacilityByCode(code).pipe(
                 tap(facility => {
                     let {code, name, alias, address} = facility;
-                    this.facilityForm = this.createFrom(code, name || "", alias || "", address || "");
+                    this.itemForm = this.createFrom(code, name || "", alias || "", address || "");
                     this.subscribeToForm();
                 }),
             );
@@ -48,16 +57,6 @@ export class FacilityDetailsComponent implements OnInit, OnDestroy {
         } else {
             this.subscribeToForm();
         }
-    }
-
-    private subscribeToForm() {
-        let subscription = this.facilityForm.valueChanges.subscribe({
-            next: value => {
-                this.topNavService.formValues = value;
-                this.topNavService.$formChanged.next(true);
-            }
-        });
-        this.subscriptions.add(subscription);
     }
 
     private createFrom(code: string, name: string, alias: string, address: string) {
@@ -69,10 +68,7 @@ export class FacilityDetailsComponent implements OnInit, OnDestroy {
         });
     }
 
-    ngOnDestroy(): void {
-        this.topNavService.formValues = {};
-        this.subscriptions.unsubscribe();
-    }
+
 
     selectExternal() {
         this.capitalType = this.capitalType == CapitalType.EXTERNAL ? CapitalType.INTERNAL : CapitalType.EXTERNAL;
