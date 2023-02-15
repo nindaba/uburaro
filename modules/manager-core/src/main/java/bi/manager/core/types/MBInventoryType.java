@@ -24,7 +24,7 @@ public class MBInventoryType extends ItemType {
     public static final String COST = "cost";
     public static final String INVENTORY_ORDERS = "inventoryOrders";
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = MBInventoryOrderType.INVENTORY)
     private Set<MBInventoryOrderType> inventoryOrders =  new HashSet<>();
     @OneToOne(cascade = CascadeType.ALL)
     private MBCategoryType category;

@@ -17,13 +17,13 @@ import javax.persistence.ManyToOne;
 public class MBInventoryOrderType extends MBOrderType {
     public static final String ITEM_TYPE = "mBInventoryOrder";
     public static final String ORDER_NUMBER = "orderNumber";
-    public static final String ITEM = "item";
     public static final String ORDER_ENTRY = "orderEntry";
+    public static final String INVENTORY = "inventory";
 
     private String orderNumber;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    private MBInventoryType item;
+    private MBInventoryType inventory;
 
     private MBInventoryEntryEnum orderEntry;
 }

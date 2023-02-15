@@ -1,7 +1,7 @@
 <div class="facility-details" *ngIf="($facility | async ) || true">
     <div class="attributes">
         <span class="mb-title" translate>label.details</span>
-        <form class="attributes d-flex justify-content-between flex-wrap" [formGroup]="facilityForm">
+        <form class="attributes d-flex justify-content-between flex-wrap" [formGroup]="itemForm">
             <div class="input-grp">
                 <label for="code" class="" translate>label.code</label>
                 <input id="code" formControlName="code" type="text" class="input-text" placeholder="{{'label.code' | translate}}"/>
@@ -41,5 +41,34 @@
                 <h3 class="value-currency">FBU</h3>
             </div>
         </div>
+    </div>
+    <div class="relations" *ngIf="$facility | async as facility">
+        <mb-relation [title]="categoryPage" [heads]="categoryHeads" [allLink]="[categoryPage]" [createLink]="[categoryPage,'new']">
+            <ng-container *ngIf="facility?.categories?.length || 0 > 0; else empty">
+                <tr *ngFor="let category of facility.categories">
+                    <td>
+                        {{category.name}}
+                    </td>
+                    <td>{{category.inventories?.length || 0}}</td>
+                </tr>
+            </ng-container>
+            <ng-template #empty>
+                <mb-empty target="category"/>
+            </ng-template>
+        </mb-relation>
+
+        <mb-relation [title]="clientPage" [heads]="clientHeads" [allLink]="[clientPage]" [createLink]="[clientPage,'new']">
+            <ng-container *ngIf="facility?.clients?.length || 0 > 0; else empty">
+                <tr *ngFor="let client of facility.clients">
+                    <td>
+                        {{client.name}}
+                    </td>
+                    <td>{{client.totalDebt || 0}}</td>
+                </tr>
+            </ng-container>
+            <ng-template #empty>
+                <mb-empty target="client"/>
+            </ng-template>
+        </mb-relation>
     </div>
 </div>

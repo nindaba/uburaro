@@ -1,0 +1,24 @@
+{
+  "facilities": {
+    "category": {
+      "heads": [
+        "label.name",
+        "label.total"
+      ]
+    },
+    "clients": {
+      "heads": [
+        "label.name",
+        "label.client.debt"
+      ]
+    }
+  },
+  "category": {
+    "inventory": {
+      "heads": [
+        "label.name",
+        "label.cost"
+      ]
+    }
+  }
+}

@@ -1,11 +1,10 @@
-$spacing: 40px;
+$spacing: 20px;
+
 .facility-details {
   display: flex;
   flex-direction: column;
   gap: $spacing;
-  padding: $spacing;
   .attributes{
-    margin-top: $spacing;
     gap: 20px;
     > div{
       width: 240px;

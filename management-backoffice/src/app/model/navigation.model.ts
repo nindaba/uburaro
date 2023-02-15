@@ -50,11 +50,27 @@ export interface Capital {
     entries?: CapitalEntry[]
 }
 
-export interface Client extends Item {
+export interface RentOrder extends Item {
+}
 
+export interface InventoryOrder extends Item {
+}
+
+export interface Invoice extends Item {
+}
+
+export interface Client extends Item {
+    totalDebt: number;
+    name?: string;
+    rentOrders?: RentOrder[];
+    inventoryOrders?: InventoryOrder[];
+    invoices?: Invoice[];
 }
 
 interface Inventory extends Item {
+    name: string;
+    quantity: number;
+    cost: number;
 }
 
 export interface Category extends Item {

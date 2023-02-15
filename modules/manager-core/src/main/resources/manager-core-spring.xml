@@ -28,6 +28,7 @@
         <ref bean="MBFacilityRepository"/>
         <ref bean="MBCapitalRepository"/>
         <ref bean="MBCategoryRepository"/>
+        <ref bean="MBInventoryRepository"/>
     </util:list>
 
     <bean parent="mBRepositoriesMerger">

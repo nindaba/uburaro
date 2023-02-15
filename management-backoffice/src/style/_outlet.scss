@@ -1,0 +1,17 @@
+.attributes, .capital{
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+.relations{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: calc($spacing*2);
+}
+
+.category-details{
+  .inventory{
+    width: 280px;
+  }
+}

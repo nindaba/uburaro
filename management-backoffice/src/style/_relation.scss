@@ -1,0 +1,33 @@
+.mb-relation{
+  min-width: 280px;
+  max-height: 400px;
+  overflow-y: scroll;
+  background-color: white;
+  border-radius: 8px;
+  padding: 30px 20px;
+
+  .table{
+    margin-top: 20px;
+    width: 100%;
+    thead{
+      th{
+        padding-left: 6px;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  .content-bottom{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    .btn{
+      width: fit-content;
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+
+}

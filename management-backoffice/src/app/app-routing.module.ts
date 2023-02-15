@@ -33,7 +33,7 @@ const routes: Routes = [
     {
         path: "",
         pathMatch: "full",
-        redirectTo: "facilities/fac" //todo: to be changed to dashboard
+        redirectTo: "categories" //todo: to be changed to dashboard
     },
     {
         title: getTitle,

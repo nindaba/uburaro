@@ -31,7 +31,7 @@ export class CategoryServiceImpl implements CategoryService {
             return new Observable<Category>();
         }
 
-        return this.http.get<Category>(this.urlBuilder.getFullUrl() + "/" + code);
+        return this.http.get<Category>(this.urlBuilder.getFullUrl());
     }
 
 }

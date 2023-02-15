@@ -26,8 +26,10 @@ public class MBClientType extends ItemType {
     public static final String INVOICES = "invoices";
     public static final String RENT_ORDERS = "rentOrders";
     public static final String INVENTORY_ORDERS = "inventoryOrders";
+    public static final String TOTAL_DEBT = "totalDebt";
 
     private String name;
+    private long totalDebt;
 
     @OneToMany(cascade = CascadeType.ALL)
     private Set<MBRentOrderType> rentOrders =  new HashSet<>();
