@@ -13,6 +13,10 @@ public interface ManagerWebConstants {
         interface Category {
             String endpoint = Facility.facility+"/categories";
         }
+        interface Client {
+            String endpoint = Facility.facility+"/clients";
+            String client = "/{clientCode}";
+        }
         interface Inventory {
             String endpoint = Facility.facility+"/inventories";
             String categoryInventories =  Category.endpoint+"/{categoryCode}/inventories";

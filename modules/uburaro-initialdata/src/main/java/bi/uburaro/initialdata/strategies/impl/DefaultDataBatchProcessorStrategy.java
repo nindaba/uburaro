@@ -21,12 +21,12 @@ import static bi.uburaro.initialdata.InitialdataConstants.*;
 
 public class DefaultDataBatchProcessorStrategy implements DataBatchProcessorStrategy {
 
-    protected final List<Mapper<ItemType>> mapperes;
+    protected final List<Mapper<ItemType>> mappers;
     protected final TypeService typeService;
     private static final Logger log = LogManager.getLogger();
 
     public DefaultDataBatchProcessorStrategy(List<Mapper<ItemType>> mappers, TypeService typeService) {
-        this.mapperes = mappers;
+        this.mappers = mappers;
         this.typeService = typeService;
     }
 
@@ -63,13 +63,14 @@ public class DefaultDataBatchProcessorStrategy implements DataBatchProcessorStra
     }
 
     protected Optional<Mapper<ItemType>> findSupportedMapper(final String target) {
-        return mapperes.stream()
+        return mappers.stream()
                 .filter(mapper -> isClassMatch(mapper.getTargetClass(),target))
                 .findFirst();
     }
 
     private boolean isClassMatch(final Class<ItemType> targetClass,final String target) {
         return StringUtils.equals(targetClass.getName(), MessageUtils.format(TYPE_MANAGER_CLASS, StringUtils.capitalize(target))) ||
+                StringUtils.equals(targetClass.getName(), MessageUtils.format(TYPE_MANAGER_CLIENT_CLASS, StringUtils.capitalize(target))) ||
                 StringUtils.equals(targetClass.getName(), MessageUtils.format(TYPE_UBURARO_CLASS, StringUtils.capitalize(target))) ||
                 StringUtils.equals(targetClass.getName(), MessageUtils.format(TYPE_GROUPS_CLASS, StringUtils.capitalize(target)));
 
