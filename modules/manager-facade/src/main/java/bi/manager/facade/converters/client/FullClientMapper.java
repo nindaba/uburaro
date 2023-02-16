@@ -13,7 +13,6 @@ import java.util.Collection;
 @Mapper(componentModel = "spring", uses = {FacilityMapper.class})
 public interface FullClientMapper {
     @Mapping(target = ItemType.MODIFICATION_LOGS, ignore = true)
-    @Mapping(target = ItemType.DATE_CREATED, ignore = true)
     @Mapping(target = MBClientType.INVOICES, ignore = true)
     @Mapping(target = MBClientType.RENT_ORDERS, ignore = true)
     @Mapping(target = MBClientType.INVENTORY_ORDERS, ignore = true)
