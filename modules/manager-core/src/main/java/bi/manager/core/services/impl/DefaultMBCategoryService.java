@@ -49,8 +49,8 @@ public class DefaultMBCategoryService implements MBCategoryService {
         catch (NotFoundException e){
             categoryByCode = typeService.create(MBCategoryType.class);
             categoryByCode.setCode(category.getCode());
-            categoryByCode.setActive(true);
         }
+        categoryByCode.setActive(true);
         populateCategory(categoryByCode, category);
         typeService.save(categoryByCode);
     }

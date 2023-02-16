@@ -42,7 +42,7 @@ public class MBFacilityType extends ItemType {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = MBCategoryType.FACILITY)
     private Set<MBCategoryType> categories = new HashSet<>();
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = MBClientType.FACILITY)
     private Set<MBClientType> clients = new HashSet<>();
     @OneToOne(cascade = CascadeType.ALL)
     private MBCapitalType capital;

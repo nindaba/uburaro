@@ -11,7 +11,9 @@ import java.util.Set;
 
 public class MBClientData extends ItemData {
     private String name;
+    private String address;
     private long totalDebt;
+    private MBFacilityData facility;
     private Set<MBRentOrderData> rentOrders =  new HashSet<>();
     private Set<MBInventoryOrderData> inventoryOrders =  new HashSet<>();
     private Set<MBInvoiceData> invoices = new HashSet<>();
@@ -54,6 +56,22 @@ public class MBClientData extends ItemData {
 
     public void setInvoices(Set<MBInvoiceData> invoices) {
         this.invoices = invoices;
+    }
+
+    public MBFacilityData getFacility() {
+        return facility;
+    }
+
+    public void setFacility(MBFacilityData facility) {
+        this.facility = facility;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @Override

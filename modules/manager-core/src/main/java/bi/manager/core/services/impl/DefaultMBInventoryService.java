@@ -43,8 +43,8 @@ public class DefaultMBInventoryService implements MBInventoryService {
             } catch (NotFoundException e) {
                 itemByCode = typeService.create(MBInventoryType.class);
                 itemByCode.setCode(inventory.getCode());
-                itemByCode.setActive(true);
             }
+            itemByCode.setActive(true);
             populateInventory(inventory, itemByCode);
             populateCategory(inventory, itemByCode);
             typeService.save(itemByCode);

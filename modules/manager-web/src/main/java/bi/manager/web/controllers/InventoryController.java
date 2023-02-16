@@ -12,7 +12,7 @@ import java.util.Set;
 @RestController
 @CrossOrigin()
 public class InventoryController {
-    @Resource(name = "mbInventoryFacade")
+    @Resource(name = "mBInventoryFacade")
     protected MBInventoryFacade facade;
 
     @GetMapping(value = ManagerWebConstants.Controller.Inventory.endpoint)

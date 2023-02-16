@@ -1,0 +1,14 @@
+##mBClient;;;;appends;;
+code;facility;name;address;totalDebt;active;visible
+cizanye;cizanye-bar;Cizanye Bar;muyinga gikarani;800;TRUE;TRUE
+kugatumba;kugatumba-bar;Kugatumba Bar;Bujumbura Kamenge;;TRUE;TRUE
+Lorem;Lorem;Phasellus;Lorem;;TRUE;TRUE
+ipsum;ipsum;ut;ipsum;;TRUE;TRUE
+dolor;dolor;ornare;dolor;;TRUE;TRUE
+sit;sit;libero.;sit;;TRUE;TRUE
+amet;amet;Etiam;amet;;TRUE;TRUE
+consectetur;consectetur;facilisis;consectetur;;TRUE;TRUE
+adipiscing;adipiscing;non;adipiscing;200;TRUE;TRUE
+elit;elit.;lorem;elit.;;TRUE;TRUE
+Cras;Cras;id;Phasellus;1200;TRUE;TRUE
+congue;congue.;semper.;blandit.;;TRUE;TRUE
