@@ -42,8 +42,14 @@ public class DefaultImporterService extends SimpleFileVisitor<Path> implements D
 
     @Override
     public void importCurrent() {
+        Integer repeat = environment.getProperty(DATA_REPEAT_NUMBER, Integer.class, 1);
         String currentPath = environment.getProperty(INITIAL_PATCHES_CURRENT);
+        IntStream.range(0, repeat).forEach(pass -> startWalkingFiles(currentPath, pass));
+    }
+
+    protected void startWalkingFiles(String currentPath, int pass) {
         try {
+            log.info("Running imports for the {} time", pass);
             Files.walkFileTree(Path.of(currentPath), this);
         } catch (IOException e) {
             log.error("Cant read some files in {}", currentPath);
@@ -59,25 +65,21 @@ public class DefaultImporterService extends SimpleFileVisitor<Path> implements D
 
     protected FileVisitResult processFile(Path filePath) {
         String dataPath = environment.getProperty(INITIAL_DATA_PATH);
-        Integer repeat = environment.getProperty(DATA_REPEAT_NUMBER, Integer.class, 1);
         String fileName = StringUtils.remove(filePath.toString(), dataPath);
         try {
             final List<BatchData> batches = new ArrayList<>();
             final BatchLineDataFactory lineFactory = new DefaultFileLineFactory();
             Files.newBufferedReader(filePath).lines()
                     .map(lineFactory::create)
-                    .filter(line -> StringUtils.isNoneEmpty(StringUtils.remove(line.getValue(),DELIMITER)))
+                    .filter(line -> StringUtils.isNoneEmpty(StringUtils.remove(line.getValue(), DELIMITER)))
                     .forEach(line -> addLine(line, batches));
 
-            IntStream.range(0, repeat).forEach(pass -> {
-                log.info("Importing {} for the {} time",fileName,pass);
-                batches.stream()
-                        .filter(batchData -> CollectionUtils.isNotEmpty(batchData.getValues()))
-                        .peek(batchData -> batchData.setDataFile(fileName))
-                        .peek(batchData -> batchData.getValues().forEach(batchLineData -> batchLineData.setFailed(false)))
-                        .forEach(dataBatchProcessorStrategy::processBatch);
-            });
-
+            log.info("Importing Data from {}", fileName);
+            batches.stream()
+                    .filter(batchData -> CollectionUtils.isNotEmpty(batchData.getValues()))
+                    .peek(batchData -> batchData.setDataFile(fileName))
+                    .peek(batchData -> batchData.getValues().forEach(batchLineData -> batchLineData.setFailed(false)))
+                    .forEach(dataBatchProcessorStrategy::processBatch);
 
         } catch (IOException e) {
             log.error("Error happened while importing file {}", fileName);
@@ -88,7 +90,6 @@ public class DefaultImporterService extends SimpleFileVisitor<Path> implements D
     private void addLine(BatchLineData line, List<BatchData> batches) {
         if (StringUtils.startsWith(line.getValue(), TYPE_PREFIX)) {
             BatchData batchData = new BatchData();
-
             batchData.setTarget(StringUtils.strip(line.getValue(), TYPE_PREFIX));
             batchData.setTarget(StringUtils.split(batchData.getTarget(), DELIMITER)[0]);
             batches.add(batchData);

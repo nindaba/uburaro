@@ -2,6 +2,7 @@ package bi.manager.core.services.impl;
 
 import bi.manager.core.types.MBCategoryType;
 import bi.manager.core.types.MBFacilityType;
+import bi.uburaro.core.exceptions.NotFoundException;
 import bi.uburaro.core.services.TypeService;
 import bi.uburaro.core.types.ItemType;
 import org.junit.jupiter.api.BeforeEach;
@@ -67,6 +68,7 @@ class DefaultMBCategoryServiceTest {
     @Test
     void updateCategory() {
         when(typeService.findItemByCode(CATEGORY_3.getCode(), MBCategoryType.class)).thenReturn(CATEGORY_3);
+        doThrow(NotFoundException.class).when(typeService).findItemByCode(CATEGORY_1.getCode(), MBCategoryType.class);
         when(typeService.create(MBCategoryType.class)).thenReturn(CATEGORY_1);
         CATEGORY_2.setCode(CATEGORY_3.getCode());
         CATEGORY_2.setName("CATE");
@@ -74,15 +76,19 @@ class DefaultMBCategoryServiceTest {
         CATEGORY_3.setName("CATE");
         verify(typeService).save(CATEGORY_3);
 
-
         service.updateCategory(CATEGORY_1);
         verify(typeService).save(CATEGORY_1);
     }
 
     @Test
     void deleteCategories() {
-        doNothing().when(typeService).delete(anyString(), eq(MBCategoryType.class));
-        service.deleteCategories(Set.of("a1","a2"));
-        verify(typeService, atMost(2)).delete(anyString(), eq(MBCategoryType.class));
+        when(typeService.findItemByCode(CATEGORY_1.getCode(), MBCategoryType.class)).thenReturn(CATEGORY_1);
+        when(typeService.findItemByCode(CATEGORY_2.getCode(), MBCategoryType.class)).thenReturn(CATEGORY_2);
+        doThrow(NotFoundException.class).when(typeService).findItemByCode(CATEGORY_3.getCode(), MBCategoryType.class);
+
+        service.deleteCategories(Set.of(CATEGORY_1.getCode(),CATEGORY_2.getCode(),CATEGORY_3.getCode()));
+        verify(typeService).save(CATEGORY_1);
+        verify(typeService).save(CATEGORY_2);
+        verify(typeService,times(0)).save(CATEGORY_3);
     }
 }

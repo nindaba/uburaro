@@ -1,4 +1,4 @@
-package bi.uburaro.facade.converters;
+package bi.manager.facade.converters;
 
 import bi.manager.core.types.MBFacilityType;
 import bi.manager.facade.converters.facility.FacilityMapper;

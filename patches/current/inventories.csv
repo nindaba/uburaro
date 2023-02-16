@@ -1,0 +1,14 @@
+##mBInventory;;;;;;;;
+code;name;category;quantity;cost;active;visible;
+cizanye-bar;Cizanye Bar;C Bar;1;800;TRUE;TRUE;;
+kugatumba-bar;Kugatumba Bar;G Bar;1;;TRUE;TRUE;;
+Lorem;Phasellus;G Bar;1;;TRUE;TRUE;;
+ipsum;ut;G Bar;1;;TRUE;TRUE;;
+dolor;ornare;G Bar;1;;TRUE;TRUE;;
+sit;libero.;G Bar;1;1000;FALSE;TRUE;;
+amet;Etiam;at;1;;TRUE;TRUE;;
+consectetur;facilisis;vehicula;1;;TRUE;TRUE;;
+adipiscing;non;a;1;200;TRUE;TRUE;;
+elit.;lorem;finibus;1;;TRUE;TRUE;;
+Cras;id;nec;1;1200;TRUE;TRUE;;
+congue.;semper.;lorem.;1;;TRUE;TRUE;;

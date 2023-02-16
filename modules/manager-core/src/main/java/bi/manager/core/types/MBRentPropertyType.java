@@ -6,6 +6,7 @@ import bi.manager.core.types.client.MBRentOrderType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,6 +17,9 @@ import java.util.Set;
 
 @Data
 @EqualsAndHashCode(callSuper = true, exclude = {
+        "rentOrders"
+})
+@ToString(callSuper = true,exclude = {
         "rentOrders"
 })
 @NoArgsConstructor
@@ -36,6 +40,4 @@ public class MBRentPropertyType extends ItemType {
     private String name;
     private Integer unit;
     private Long cost;
-
-
 }

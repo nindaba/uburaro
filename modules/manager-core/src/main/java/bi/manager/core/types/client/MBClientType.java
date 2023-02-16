@@ -5,6 +5,7 @@ import bi.manager.core.types.MBInventoryOrderType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -14,6 +15,11 @@ import java.util.Set;
 
 @Data
 @EqualsAndHashCode(callSuper = true, exclude = {
+        "rentOrders",
+        "inventoryOrders",
+        "invoices"
+})
+@ToString(callSuper = true, exclude = {
         "rentOrders",
         "inventoryOrders",
         "invoices"
@@ -32,9 +38,9 @@ public class MBClientType extends ItemType {
     private long totalDebt;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<MBRentOrderType> rentOrders =  new HashSet<>();
+    private Set<MBRentOrderType> rentOrders = new HashSet<>();
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<MBInventoryOrderType> inventoryOrders =  new HashSet<>();
+    private Set<MBInventoryOrderType> inventoryOrders = new HashSet<>();
     @OneToMany(cascade = CascadeType.ALL)
     private Set<MBInvoiceType> invoices = new HashSet<>();
 }

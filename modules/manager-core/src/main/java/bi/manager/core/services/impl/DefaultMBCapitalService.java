@@ -22,11 +22,9 @@ public class DefaultMBCapitalService implements MBCapitalService {
     }
 
     @Override
-    public void addCapital(final String facilityCode,final long value, final MBEntryEnum type) {
+    public void addCapital(final String facilityCode, final long value, final MBEntryEnum type) {
         MBFacilityType facility = typeService.findItemByCode(facilityCode, MBFacilityType.class);
-        if(facility != null){
-            addCapital(value, type, facility);
-        }
+        addCapital(value, type, facility);
 
     }
 

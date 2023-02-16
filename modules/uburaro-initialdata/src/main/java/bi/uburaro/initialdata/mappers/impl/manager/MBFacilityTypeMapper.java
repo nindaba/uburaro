@@ -56,7 +56,8 @@ public class MBFacilityTypeMapper extends AbstractTypeMapper<MBFacilityType> {
     }
 
     private void addCapital(MBFacilityType target, String value) {
-        Long aLong = Long.valueOf(value);
-        mbCapitalService.addCapital(aLong, MBEntryEnum.EXTERNAL,target);
+        if (target.getCapital() == null) {
+            mbCapitalService.addCapital(Long.parseLong(value), MBEntryEnum.EXTERNAL,target);
+        }
     }
 }

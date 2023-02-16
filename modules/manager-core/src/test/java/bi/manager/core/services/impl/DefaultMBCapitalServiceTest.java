@@ -14,7 +14,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.verification.VerificationMode;
 
 import java.util.Calendar;
 import java.util.Collection;
@@ -68,9 +67,8 @@ class DefaultMBCapitalServiceTest {
         when(typeService.create(MBCapitalEntryType.class)).thenReturn(CAPITAL_ENTRY_TYPE1);
         when(typeService.save(any())).thenReturn(true);
         service.addCapital(FACILITY_CODE,1200l, MBEntryEnum.EXTERNAL);
-        verify(typeService,atMostOnce()).create(MBCapitalEntryType.class);
-        verify(typeService, atMostOnce()).save(FACILITY_TYPE);
-        verify(typeService, atMostOnce()).save(CAPITAL_ENTRY_TYPE1);
+        verify(typeService).create(MBCapitalEntryType.class);
+        verify(typeService).save(CAPITAL_ENTRY_TYPE1);
 
     }
 

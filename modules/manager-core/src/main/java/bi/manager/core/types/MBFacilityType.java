@@ -5,6 +5,7 @@ import bi.uburaro.core.types.ItemType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -15,8 +16,13 @@ import java.util.Set;
 
 @Data
 @EqualsAndHashCode(callSuper = true, exclude = {
-        "MBClients",
-        "MBCategories",
+        "categories",
+        "categories",
+        "capital"
+})
+@ToString(callSuper = true, exclude = {
+        "categories",
+        "categories",
         "capital"
 })
 @NoArgsConstructor
@@ -34,7 +40,7 @@ public class MBFacilityType extends ItemType {
     private String alias;
     private String address;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "facility")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = MBCategoryType.FACILITY)
     private Set<MBCategoryType> categories = new HashSet<>();
     @OneToMany(cascade = CascadeType.ALL)
     private Set<MBClientType> clients = new HashSet<>();

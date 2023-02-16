@@ -4,6 +4,7 @@ import bi.uburaro.core.types.ItemType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -14,6 +15,10 @@ import java.util.Set;
 
 @Data
 @EqualsAndHashCode(callSuper = true, exclude = {
+        "inventories",
+        "facility"
+})
+@ToString(callSuper = true, exclude = {
         "inventories",
         "facility"
 })

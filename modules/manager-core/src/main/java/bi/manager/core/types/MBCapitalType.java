@@ -4,6 +4,7 @@ import bi.uburaro.core.types.ItemType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -17,6 +18,10 @@ import java.util.Set;
         "entries",
         "facility"
 })
+@ToString(callSuper = true,exclude = {
+        "entries",
+        "facility"
+})
 @NoArgsConstructor
 @Entity(name = MBCapitalType.ITEM_TYPE)
 public class MBCapitalType extends ItemType {
@@ -26,6 +31,7 @@ public class MBCapitalType extends ItemType {
     public static final String FACILITY = "facility";
 
     private long currentValue;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "capital")
     private Set<MBCapitalEntryType> entries = new HashSet<>();
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "capital")
