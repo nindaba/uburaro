@@ -12,7 +12,7 @@ import {NEW_ITEM} from "../navigation.constants";
     templateUrl: './breadcrumbs.component.html'
 })
 export class BreadcrumbsComponent implements OnInit {
-    showFacilitySelectorClass: string = "";
+    $showFacilitySelectorClass: Observable<string> = this.breadService.$facilitySelectorActive.pipe(map(value => value ? "active": ""));
     $facility: BehaviorSubject<string> = this.breadService.$facility;
     pageRoute: Observable<{ page?: string; details?: string; }> = new Observable<{ page?: string; details?: string }>();
     $facilities: Observable<Facility[]> = this.facilityService.getAllFacilities();
@@ -23,7 +23,7 @@ export class BreadcrumbsComponent implements OnInit {
     }
 
     toggleFacilitySelector() {
-        this.showFacilitySelectorClass = this.showFacilitySelectorClass ? "" : "active";
+        this.breadService.toggleFacilitySelector();
     }
 
     ngOnInit(): void {
