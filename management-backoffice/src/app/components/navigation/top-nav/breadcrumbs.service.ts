@@ -7,10 +7,12 @@ import {BehaviorSubject} from "rxjs";
 })
 export class BreadcrumbsService {
     public readonly CHOSE_FACILITY = "facility.selector.title";
-    // facility: string = this.CHOSE_FACILITY
-    facility: string = "kugatumba-bar"
+    facility: string = this.CHOSE_FACILITY
+    // facility: string = "kugatumba-bar"
     pages: { page?: string; details?: string; } = {};
     $facility: BehaviorSubject<string> = new BehaviorSubject<string>(this.facility);
+    facilitySelectorActive: boolean = false;
+    $facilitySelectorActive: BehaviorSubject<boolean> = new BehaviorSubject(this.facilitySelectorActive);
 
     constructor(private endpoint: EndpointConfig) {
     }
@@ -23,13 +25,23 @@ export class BreadcrumbsService {
         if (this.pages.page == this.endpoint.facilities) {
             this.facility = (this.pages.details != this.facility ? this.pages.details : this.CHOSE_FACILITY) || this.CHOSE_FACILITY;
         }
-        if(facility){
+        if (facility) {
             this.facility = facility;
         }
         this.$facility.next(this.facility);
     }
 
-    isFacilitySelected(): boolean{
+    isFacilitySelected(): boolean {
         return this.CHOSE_FACILITY != this.facility;
+    }
+
+    toggleFacilitySelector() {
+        if (this.isFacilitySelected() && this.facilitySelectorActive) {
+            this.facilitySelectorActive = !this.facilitySelectorActive;
+        }
+        else {
+            this.facilitySelectorActive = true;
+        }
+        this.$facilitySelectorActive.next(this.facilitySelectorActive);
     }
 }
