@@ -51,7 +51,7 @@ public class DefaultMBInventoryService implements MBInventoryService {
         }
     }
 
-    private void populateCategory(MBInventoryType source, MBInventoryType target) {
+    private void populateCategory(final MBInventoryType source,final MBInventoryType target) {
         final MBCategoryType category = source.getCategory();
 
         if (category != null && StringUtils.isNotEmpty(category.getCode())) {
@@ -61,7 +61,7 @@ public class DefaultMBInventoryService implements MBInventoryService {
         }
     }
 
-    private void populateInventory(MBInventoryType source, MBInventoryType target) {
+    private void populateInventory(final MBInventoryType source,final MBInventoryType target) {
         if (StringUtils.isNotEmpty(source.getName())) {
             target.setName(source.getName());
         }
