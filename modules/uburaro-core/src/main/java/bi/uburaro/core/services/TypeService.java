@@ -47,4 +47,12 @@ public interface TypeService{
      * @implNote  Not tested
      */
     <TYPE extends ItemType> void delete(String code,Class<TYPE> typeClass);
+
+    /**
+     * Deletes an Item
+     *
+     * @param item
+     * @implNote  Not tested
+     */
+    <TYPE extends ItemType> void delete(TYPE item);
 }

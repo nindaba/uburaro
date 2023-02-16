@@ -6,6 +6,7 @@ import bi.manager.core.types.MBCapitalType;
 import bi.manager.core.types.MBFacilityType;
 import bi.uburaro.core.exceptions.NotFoundException;
 import bi.uburaro.core.services.TypeService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -62,9 +63,20 @@ public class DefaultMBFacilityService implements MBFacilityService {
     @Override
     public void updateFacility(final MBFacilityType facility) {
         final MBFacilityType facilityByCode = this.getFacilityByCode(facility.getCode());
+        populateFacility(facility, facilityByCode);
+        typeService.save(facilityByCode);
+    }
 
-        if (facilityByCode != null) {
-            typeService.save(facility);
+    private void populateFacility(MBFacilityType source, MBFacilityType target) {
+        if (StringUtils.isNotEmpty(source.getName())) {
+            target.setName(source.getName());
+        }
+
+        if (StringUtils.isNotEmpty(source.getAlias())) {
+            target.setAlias(source.getAlias());
+        }
+        if (StringUtils.isNotEmpty(source.getAddress())) {
+            target.setAddress(source.getAddress());
         }
     }
 }

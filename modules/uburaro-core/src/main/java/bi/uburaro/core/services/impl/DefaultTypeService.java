@@ -15,6 +15,7 @@ import bi.uburaro.core.utils.MessageUtils;
 import bi.uburaro.core.validators.Validator;
 import lombok.extern.log4j.Log4j2;
 
+import javax.transaction.Transactional;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
@@ -123,6 +124,11 @@ public class DefaultTypeService implements TypeService {
     public <TYPE extends ItemType> void delete(String code, Class<TYPE> typeClass) {
         repositoryResolverStrategy.resolveRepository(typeClass)
                 .deleteByCodeAndPrimaryKeyItemType(code, typeClass.getName());
+    }
+
+    @Override
+    public <TYPE extends ItemType> void delete(TYPE item) {
+        repositoryResolverStrategy.resolveRepository(item.getClass()).delete(item);
     }
 
     /**

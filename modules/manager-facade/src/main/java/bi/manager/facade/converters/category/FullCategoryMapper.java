@@ -12,6 +12,5 @@ import java.util.Collection;
 @Mapper(componentModel = "spring",uses = InventoryMapper.class)
 public interface FullCategoryMapper {
     @Mapping(target = "modificationLogs", ignore = true)
-    @Mapping(target = "dateCreated", ignore = true)
     MBCategoryData categoryToData(MBCategoryType category);
 }

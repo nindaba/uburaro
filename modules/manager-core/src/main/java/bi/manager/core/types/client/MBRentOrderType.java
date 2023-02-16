@@ -4,13 +4,15 @@ import bi.manager.core.types.MBRentPropertyType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = {"item"})
+@ToString(callSuper = true, exclude = {"item"})
 @NoArgsConstructor
 @Entity(name = MBRentOrderType.ITEM_TYPE)
 public class MBRentOrderType extends MBOrderType {

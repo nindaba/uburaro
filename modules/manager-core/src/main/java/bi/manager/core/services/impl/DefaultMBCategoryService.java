@@ -3,8 +3,10 @@ package bi.manager.core.services.impl;
 import bi.manager.core.services.MBCategoryService;
 import bi.manager.core.types.MBCategoryType;
 import bi.manager.core.types.MBFacilityType;
+import bi.uburaro.core.exceptions.NotFoundException;
 import bi.uburaro.core.services.TypeService;
 import bi.uburaro.core.types.ItemType;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -39,27 +41,40 @@ public class DefaultMBCategoryService implements MBCategoryService {
     }
 
     @Override
-    public void updateCategory(MBCategoryType category) {
-        MBCategoryType oldCategory = typeService.findItemByCode(category.getCode(), MBCategoryType.class);
-
-        if (oldCategory == null) {
-            oldCategory = typeService.create(MBCategoryType.class);
-            oldCategory.setCode(category.getCode());
+    public void updateCategory(final MBCategoryType category) {
+        MBCategoryType categoryByCode;
+        try{
+            categoryByCode = typeService.findItemByCode(category.getCode(), MBCategoryType.class);
         }
-        populateCategory(oldCategory, category);
-        typeService.save(oldCategory);
+        catch (NotFoundException e){
+            categoryByCode = typeService.create(MBCategoryType.class);
+            categoryByCode.setCode(category.getCode());
+            categoryByCode.setActive(true);
+        }
+        populateCategory(categoryByCode, category);
+        typeService.save(categoryByCode);
     }
 
     private void populateCategory(MBCategoryType target, MBCategoryType source) {
-        target.setName(source.getName());
+        if (StringUtils.isNotEmpty(source.getName())) {
+            target.setName(source.getName());
+        }
     }
 
     @Override
     public void deleteCategories(Set<String> codes) {
         codes.stream()
-                .map(this::getCategoryByCode)
+                .map(this::getCategoryByCodeWithCatch)
                 .filter(Objects::nonNull)
                 .peek(facility -> facility.setActive(false))
                 .forEach(typeService::save);
+    }
+
+    protected ItemType getCategoryByCodeWithCatch(String s) {
+        try {
+            return getCategoryByCode(s);
+        } catch (NotFoundException e) {
+            return null;
+        }
     }
 }

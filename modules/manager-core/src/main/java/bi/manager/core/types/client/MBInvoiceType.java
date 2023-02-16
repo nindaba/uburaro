@@ -6,6 +6,7 @@ import bi.manager.core.types.enums.MBServiceEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -13,7 +14,8 @@ import javax.persistence.OneToOne;
 import java.time.LocalDate;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = {"client", "order"})
+@ToString(callSuper = true, exclude = {"client", "order"})
 @NoArgsConstructor
 @Entity(name = MBInvoiceType.ITEM_TYPE)
 public class MBInvoiceType extends ItemType {

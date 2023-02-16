@@ -1,4 +1,4 @@
-package bi.uburaro.facade.facades.impl;
+package bi.manager.facade.facades.impl;
 
 import bi.manager.facade.facades.impl.DefaultMBFacilityFacade;
 import bi.manager.core.services.MBFacilityService;
@@ -76,10 +76,9 @@ class DefaultMBFacilityFacadeTest {
 
     @Test
     void deleteFacilities() {
-        when(facilityService.getFacilityByCode("a")).thenReturn(TYPE);
         doNothing().when(facilityService).deleteFacilities(Set.of("a"));
         facilityFacade.deleteFacilities(Set.of("a"));
-        verify(facilityService, atLeastOnce()).deleteFacilities(Set.of("a"));
+        verify(facilityService, times(1)).deleteFacilities(Set.of("a"));
     }
 
     @Test

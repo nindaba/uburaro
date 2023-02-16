@@ -5,12 +5,16 @@ import bi.manager.core.types.enums.MBEntryEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
 @EqualsAndHashCode(callSuper = true ,exclude = {
+        "capital"
+})
+@ToString(callSuper = true, exclude = {
         "capital"
 })
 @NoArgsConstructor

@@ -5,13 +5,15 @@ import bi.manager.core.types.enums.MBInventoryEntryEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = {"inventory", "orderEntry"})
+@ToString(callSuper = true,exclude = {"inventory", "orderEntry"})
 @NoArgsConstructor
 @Entity(name = MBInventoryOrderType.ITEM_TYPE)
 public class MBInventoryOrderType extends MBOrderType {

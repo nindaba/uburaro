@@ -1,14 +1,14 @@
 ##mBCategory;;;;
-facility;name;code;active;visible
-cizanye-bar;Cizanye Bar;C Bar;TRUE;TRUE
-kugatumba-bar;Kugatumba Bar;G Bar;TRUE;TRUE
-Lorem;Phasellus;Integer;TRUE;TRUE
-ipsum;ut;diam;TRUE;TRUE
-dolor;ornare;est;TRUE;TRUE
-sit;libero.;efficitur;TRUE;TRUE
-amet;Etiam;at;TRUE;TRUE
-consectetur;facilisis;vehicula;TRUE;TRUE
-adipiscing;non;a;TRUE;TRUE
-elit.;lorem;finibus;TRUE;TRUE
-Cras;id;nec;TRUE;TRUE
-congue.;semper.;lorem.;TRUE;TRUE
+code;facility;name;active;visible
+C Bar;cizanye-bar;Cizanye Bar;TRUE;TRUE
+G Bar;kugatumba-bar;Kugatumba Bar;TRUE;TRUE
+Integer;Lorem;Phasellus;TRUE;TRUE
+diam;ipsum;ut;TRUE;TRUE
+est;dolor;ornare;TRUE;TRUE
+efficitur;sit;libero.;TRUE;TRUE
+at;amet;Etiam;TRUE;TRUE
+vehicula;consectetur;facilisis;TRUE;TRUE
+a;adipiscing;non;TRUE;TRUE
+finibus;elit.;lorem;TRUE;TRUE
+nec;Cras;id;TRUE;TRUE
+lorem.;congue.;semper.;TRUE;TRUE

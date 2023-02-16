@@ -76,9 +76,12 @@ class DefaultMBFacilityServiceTest {
 
     @Test
     void updateFacility() {
+        MBFacilityType spy = spy(TYPE);
         when(typeService.save(TYPE)).thenReturn(true);
-        when(typeService.findItemByCode("a",MBFacilityType.class)).thenReturn(TYPE_NON_ACTIVE);
+        when(typeService.findItemByCode("a",MBFacilityType.class)).thenReturn(spy);
+        TYPE.setAlias("alias");
         service.updateFacility(TYPE);
+        verify(spy).setAlias(TYPE.getAlias());
         verify(typeService,atLeastOnce()).save(any(MBFacilityType.class));
     }
 }
