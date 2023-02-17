@@ -9,7 +9,7 @@ import {AbstractListingComponent} from "../listing/abstract-listing.component";
 @Component({
     templateUrl: './category-listing.component.html'
 })
-export class CategoryListingComponent extends AbstractListingComponent implements OnInit, OnDestroy {
+export class CategoryListingComponent extends AbstractListingComponent<Category> implements OnInit, OnDestroy {
     heads: string[] = ListingPageConfig.category.heads;
     $categories: Observable<Category[]> = new Observable<Category[]>();
 
@@ -25,7 +25,7 @@ export class CategoryListingComponent extends AbstractListingComponent implement
         this.subscribeToSearch();
     }
 
-    getItems(): Observable<any> {
+    getItems(): Observable<Category[]> {
         return this.$categories;
     }
 

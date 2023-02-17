@@ -2,12 +2,12 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Observable, tap} from "rxjs";
 import {Category} from "../../model/navigation.model";
 import {FormBuilder} from "@angular/forms";
-import {CategoryService} from "./category.service";
 import {NEW_ITEM} from "../navigation/navigation.constants";
 import {BreadcrumbsService} from "../navigation/top-nav/breadcrumbs.service";
 import {TopNavService} from "../navigation/top-nav/top-nav.service";
 import {AbstractDetailsComponent} from "../abstract-details.component";
 import DetailsConfig from "../../../assets/content-config/details-page.json"
+import {MBItemService} from "../../services/MBItem.service";
 
 @Component({
     selector: 'mb-category-details',
@@ -18,7 +18,7 @@ export class CategoryDetailsComponent extends AbstractDetailsComponent implement
     inventoryHeads: string[] =  DetailsConfig.category.inventory.heads;
 
     constructor(private formBuilder: FormBuilder,
-                private categoryService: CategoryService,
+                private itemService: MBItemService,
                 private breadService: BreadcrumbsService,
                 protected override topNavService: TopNavService
     ) {
@@ -37,7 +37,7 @@ export class CategoryDetailsComponent extends AbstractDetailsComponent implement
         let code = this.breadService.pages.details;
 
         if (code && code !== NEW_ITEM) {
-            this.$category = this.categoryService.getCategoryByCode(code).pipe(
+            this.$category = this.itemService.getItemByCode<Category>(code,true).pipe(
                 tap(facility => {
                     let {code, name} = facility;
                     this.itemForm = this.createFrom(code, name);

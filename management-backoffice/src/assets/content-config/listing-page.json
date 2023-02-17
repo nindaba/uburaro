@@ -11,5 +11,12 @@
       "label.code",
       "label.name"
     ]
+  },
+  "inventory": {
+    "heads": [
+      "label.code",
+      "label.name",
+      "label.quantity"
+    ]
   }
 }

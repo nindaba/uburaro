@@ -1,16 +1,20 @@
 import { NgModule } from '@angular/core';
 import {AppCommonModule} from "../../app-common.module";
 import {InventoryDetailsComponent} from "./inventory-details.component";
+import {InventoryListingComponent} from "./inventory-listing.component";
+import {ListingModule} from "../listing/listing.module";
 
 
 
 @NgModule({
-  declarations: [InventoryDetailsComponent],
+  declarations: [InventoryDetailsComponent, InventoryListingComponent],
   imports: [
-    AppCommonModule
+    AppCommonModule,
+    ListingModule
   ],
   exports:[
-      InventoryDetailsComponent
-  ]
+      InventoryDetailsComponent,
+      InventoryListingComponent
+  ],
 })
 export class InventoryModule { }

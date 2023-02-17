@@ -9,8 +9,12 @@ export const endpointsConfig: EndpointConfig = {
     capitalEntries: "facilities/{code}/capital/entries",
     categories: "facilities/{code}/categories",
     category: "facilities/{code}/categories/{category-code}",
+    inventories: "facilities/{code}/inventories",
+    inventory: "facilities/{code}/inventories/{inventory-code}",
+
     relation: {
         facilities: "facility",
-        categories: "category"
+        categories: "category",
+        inventories: "inventory"
     }
 }
