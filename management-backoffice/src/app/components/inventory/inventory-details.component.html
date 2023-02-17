@@ -18,8 +18,8 @@
                        placeholder="{{'label.category.name' | translate}}"
                        (focus)="onFocus()" (focusout)="onUnFocus()"/>
                 <div class="down" *ngIf="$showCategoryDrop | async" >
-                    <ng-container *ngIf="($categorySearchResults |async)||($categories |async) as categories">
-                        <table class="table" *ngIf="false else empty">
+                    <ng-container *ngIf="($categorySearchResults |async)||($categories |async) as categories else empty">
+                        <table class="table" *ngIf="categories.length > 0 else empty">
                             <tbody>
                             <tr *ngFor="let category of categories" (click)="changeCategory(category)">
                                 <td>{{category.name}}</td>

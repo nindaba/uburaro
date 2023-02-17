@@ -24,7 +24,7 @@ export class InventoryDetailsComponent extends AbstractDetailsComponent implemen
     $showCategoryDrop: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
     $categories: Observable<Category[]> = this.facilityService.getFacilityByCode(this.breadService.facility).pipe(
-        map(value => value.categories || [])
+        map(value => [])
     );
     $categorySearchResults: Observable<Category[]> = new Observable<Category[]>();
 
