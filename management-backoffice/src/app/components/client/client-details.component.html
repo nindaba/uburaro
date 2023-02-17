@@ -1,1 +1,22 @@
-<p>client-details works!</p>
+<div class="details-page category" *ngIf="($client | async) || true">
+    <div class="attributes">
+        <span class="mb-title" translate>label.details</span>
+        <form class="attributes d-flex flex-wrap" [formGroup]="itemForm">
+            <div class="input-grp">
+                <label for="code" class="" translate>label.code</label>
+                <input id="code" formControlName="code" type="text" class="input-text"
+                       placeholder="{{'label.code' | translate}}"/>
+            </div>
+            <div class="input-grp">
+                <label for="name" class="" translate>label.name</label>
+                <input id="name" formControlName="name" type="text" class="input-text"
+                       placeholder="{{'label.name' | translate}}"/>
+            </div>
+            <div class="input-grp">
+                <label for="address" class="" translate>label.name</label>
+                <input id="address" formControlName="address" type="text" class="input-text"
+                       placeholder="{{'label.client.address' | translate}}"/>
+            </div>
+        </form>
+    </div>
+</div>
