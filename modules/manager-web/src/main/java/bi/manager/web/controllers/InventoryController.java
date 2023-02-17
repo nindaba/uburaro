@@ -36,7 +36,7 @@ public class InventoryController {
     public void deleteCategories(@RequestParam Set<String> codes) {
         facade.deleteInventory(codes);
     }
-    @PatchMapping(value = ManagerWebConstants.Controller.Inventory.endpoint)
+    @PatchMapping(value = inventory)
     public void updateCategory(@RequestBody MBInventoryData category){
         facade.updateInventory(category);
     }

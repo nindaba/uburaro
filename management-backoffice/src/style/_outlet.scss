@@ -23,7 +23,7 @@
     gap: calc(2 * $spacing);
 
     > div {
-      width: 240px;
+      width: $input-width;
     }
   }
 
