@@ -1,4 +1,4 @@
-<div class="details-page" *ngIf="($inventory | async) || {} as inventory">
+<div class="details-page inventory" *ngIf="($inventory | async) || {} as inventory">
     <div class="attributes">
         <span class="mb-title" translate>label.details</span>
         <form class="attributes d-flex flex-wrap" [formGroup]="itemForm">
