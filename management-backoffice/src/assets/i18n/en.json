@@ -28,6 +28,7 @@
   "label.total": "Total",
   "label.quantity": "Quantity",
   "label.client.debt": "Debt",
+  "label.client.address": "Address",
   "label.client.name": "Client / Company",
   "label.facility.alias": "Alias",
   "label.facility.empty":"No Facility",

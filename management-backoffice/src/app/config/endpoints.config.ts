@@ -12,7 +12,7 @@ export const endpointsConfig: EndpointConfig = {
     inventories: "facilities/{code}/inventories",
     inventory: "facilities/{code}/inventories/{inventory-code}",
     clients: "facilities/{code}/clients",
-    client: "facilities/{code}/categories/{client-code}",
+    client: "facilities/{code}/clients/{client-code}",
 
     relation: {
         facilities: "facility",
