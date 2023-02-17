@@ -24,6 +24,7 @@
   "facility.empty": "No Facility Registered",
   "label.code": "Code",
   "label.cost": "Cost",
+  "label.cost.latest": "Cost",
   "label.total": "Total",
   "label.quantity": "Quantity",
   "label.client.debt": "Debt",
@@ -38,5 +39,6 @@
   "btn.name.all": "All",
   "label.inventory.empty": "No Inventory",
   "label.client.empty": "No Client",
-  "label.category.empty": "No Category"
+  "label.category.empty": "No Category",
+  "label.category.name": "Category"
 }

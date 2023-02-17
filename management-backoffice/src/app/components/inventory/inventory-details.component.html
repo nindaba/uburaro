@@ -1,1 +1,32 @@
-<p>inventory-details works!</p>
+<div class="category-details" *ngIf="($inventory | async) || {} as inventory">
+    <div class="attributes">
+        <span class="mb-title" translate>label.details</span>
+        <form class="attributes d-flex flex-wrap" [formGroup]="itemForm">
+            <div class="input-grp">
+                <label for="code" class="" translate>label.code</label>
+                <input id="code" formControlName="code" type="text" class="input-text"
+                       placeholder="{{'label.code' | translate}}"/>
+            </div>
+            <div class="input-grp">
+                <label for="name" class="" translate>label.name</label>
+                <input id="name" formControlName="name" type="text" class="input-text"
+                       placeholder="{{'label.name' | translate}}"/>
+            </div>
+            <div class="input-grp">
+                <label for="category" class="" translate>label.category.name</label>
+                <input id="category" formControlName="category" type="text" class="input-text"
+                       placeholder="{{'label.category.name' | translate}}"/>
+            </div>
+            <div class="input-grp">
+                <label for="quantity" class="" translate>label.quantity</label>
+                <input id="quantity" formControlName="quantity" type="number" class="input-text"
+                       placeholder="{{'label.quantity' | translate}}"/>
+            </div>
+            <div class="input-grp">
+                <label for="cost" class="" translate>label.cost</label>
+                <input id="cost" formControlName="cost" type="number" class="input-text"
+                       placeholder="{{'label.cost.latest' | translate}}"/>
+            </div>
+        </form>
+    </div>
+</div>
