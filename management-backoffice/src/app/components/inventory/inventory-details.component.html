@@ -18,17 +18,19 @@
                        placeholder="{{'label.category.name' | translate}}"
                        (focus)="onFocus()" (focusout)="onUnFocus()"/>
                 <div class="down" *ngIf="$showCategoryDrop | async" >
-                    <table class="table">
-                        <tbody>
-                        <tr *ngFor="let category of ($categorySearchResults |async)||($categories |async)" (click)="changeCategory(category)">
-                            <td>{{category.name}}</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <ng-container *ngIf="($categorySearchResults |async)||($categories |async) as categories">
+                        <table class="table" *ngIf="false else empty">
+                            <tbody>
+                            <tr *ngFor="let category of categories" (click)="changeCategory(category)">
+                                <td>{{category.name}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </ng-container>
                     <ng-template translate #empty>
-                        <div class="d-flex flex-row justify-content-around align-items-center">
-                            <span translate>facility.empty</span>
-                            <a class="btn" [routerLink]="['facilities','new']">Add Facility</a>
+                        <div class="d-flex flex-row justify-content-between align-items-center primary-text">
+                            <span translate>label.category.empty</span>
+                            <a class="btn primary btn-sm" [routerLink]="['categories','new']">Add Facility</a>
                         </div>
                     </ng-template>
                 </div>
