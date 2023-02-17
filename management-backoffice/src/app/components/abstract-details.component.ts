@@ -3,13 +3,16 @@ import {TopNavService} from "./navigation/top-nav/top-nav.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {Capital, Facility} from "../model/navigation.model";
+import {Router} from "@angular/router";
 
 @Injectable()
-export class AbstractDetailsComponent implements OnDestroy{
+export class AbstractDetailsComponent implements OnDestroy {
     private subscriptions: Subscription = new Subscription();
     itemForm: FormGroup = new FormGroup<any>([]);
-    constructor(protected topNavService: TopNavService) {
+
+    constructor(protected topNavService: TopNavService, protected router: Router) {
     }
+
     protected subscribeToForm() {
         let subscription = this.itemForm.valueChanges.subscribe({
             next: value => {
@@ -19,8 +22,16 @@ export class AbstractDetailsComponent implements OnDestroy{
         });
         this.subscriptions.add(subscription);
     }
+
     ngOnDestroy(): void {
         this.topNavService.formValues = {};
         this.subscriptions.unsubscribe();
     }
+
+    subscribeToDelete(redirect: string = "/") {
+        this.subscriptions.add(this.topNavService
+            .$delete.subscribe({next: () => this.router.navigate([redirect])}));
+
+    }
+
 }

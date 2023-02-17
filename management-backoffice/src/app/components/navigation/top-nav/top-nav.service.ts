@@ -50,26 +50,35 @@ export class TopNavService {
     }
 
     delete() {
-        if (this.selectedCodes.length > 0) {
-            this.http.delete(
-                this.urlBuilder.getFullUrl(),
-                {params: {"codes": this.selectedCodes.join(",")}}
+        if (this.selectedCodes.length > 0 || this.breadService.pages.details) {
+            this.selectedCodes.push(this.breadService.pages.details || "");
+
+            this.http.delete(this.urlBuilder.getBaseUrlForPage(), {params: {"codes": this.selectedCodes.join(",")}}
             ).subscribe({
-                next: value => this.$delete.emit()
+                next: value => {
+                    this.$delete.emit();
+                    if (this.selectedCodes.includes(this.breadService.facility)) {
+                        this.breadService.setFacility(this.breadService.CHOSE_FACILITY);
+                    }
+                    this.selectedCodes = [];
+                }
             })
         }
     }
 
 
     saveForm() {
-        this.http.patch(this.urlBuilder.getFullUrl(), this.formValues).subscribe({
+        this.http.patch(this.urlBuilder.getBaseUrlForPage(), this.formValues).subscribe({
             next: value => {
             }
         })
     }
 
     private createItem() {
-        this.http.post(this.urlBuilder.getFullUrl(), this.formValues).subscribe({next: value => {}})
+        this.http.post(this.urlBuilder.getFullUrl(), this.formValues).subscribe({
+            next: value => {
+            }
+        })
 
     }
 

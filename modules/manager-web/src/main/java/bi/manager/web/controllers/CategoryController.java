@@ -3,6 +3,7 @@ package bi.manager.web.controllers;
 import bi.manager.facade.data.MBCapitalData;
 import bi.manager.facade.data.MBCapitalEntryData;
 import bi.manager.facade.data.MBCategoryData;
+import bi.manager.facade.data.MBFacilityData;
 import bi.manager.facade.facades.MBCapitalFacade;
 import bi.manager.facade.facades.MBCategoryFacade;
 import bi.manager.web.ManagerWebConstants;
@@ -35,7 +36,10 @@ public class CategoryController {
         facade.deleteCategories(codes);
     }
     @PatchMapping
-    public void updateCategory(@RequestBody MBCategoryData category){
+    public void updateCategory(@RequestBody MBCategoryData category,@PathVariable String code){
+        MBFacilityData facility = new MBFacilityData();
+        facility.setCode(code);
+        category.setFacility(facility);
         facade.updateCategory(category);
     }
 }

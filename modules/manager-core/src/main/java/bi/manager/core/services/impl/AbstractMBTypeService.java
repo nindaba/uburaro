@@ -1,8 +1,12 @@
 package bi.manager.core.services.impl;
 
 import bi.manager.core.services.MBTypeService;
+import bi.manager.core.types.MBFacilityType;
+import bi.manager.core.types.client.MBClientType;
+import bi.uburaro.core.exceptions.NotFoundException;
 import bi.uburaro.core.services.TypeService;
 import bi.uburaro.core.types.ItemType;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Objects;
 import java.util.Set;
@@ -20,5 +24,13 @@ public abstract class AbstractMBTypeService<ITEM extends ItemType> implements MB
                 .filter(Objects::nonNull)
                 .peek(itemType -> itemType.setActive(false))
                 .forEach(typeService::save);
+    }
+    protected MBFacilityType validateAndGetFacility(MBFacilityType facility) {
+        if (facility == null || StringUtils.isEmpty(facility.getCode())) {
+            throw new NotFoundException("No Facility found on the provided category");
+        }
+
+        MBFacilityType itemByCode = typeService.findItemByCode(facility.getCode(), MBFacilityType.class);
+        return itemByCode;
     }
 }

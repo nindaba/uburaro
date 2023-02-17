@@ -42,8 +42,10 @@ class DefaultMBCategoryServiceTest {
 
         CATEGORY_1.setCode("c1");
         CATEGORY_1.setActive(true);
+        CATEGORY_1.setFacility(FACILITY_TYPE);
         CATEGORY_2.setCode("c2");
         CATEGORY_2.setActive(false);
+        CATEGORY_2.setFacility(FACILITY_TYPE);
         CATEGORY_3.setCode("c3");
         CATEGORY_3.setActive(true);
 
@@ -68,6 +70,7 @@ class DefaultMBCategoryServiceTest {
     @Test
     void updateCategory() {
         when(typeService.findItemByCode(CATEGORY_3.getCode(), MBCategoryType.class)).thenReturn(CATEGORY_3);
+        when(typeService.findItemByCode(FACILITY_TYPE.getCode(), MBFacilityType.class)).thenReturn(FACILITY_TYPE);
         doThrow(NotFoundException.class).when(typeService).findItemByCode(CATEGORY_1.getCode(), MBCategoryType.class);
         when(typeService.create(MBCategoryType.class)).thenReturn(CATEGORY_1);
         CATEGORY_2.setCode(CATEGORY_3.getCode());

@@ -8,6 +8,8 @@ import java.util.Set;
 
 public class MBCategoryData extends ItemData {
     private String name;
+    private MBFacilityData facility;
+
     private Set<MBInventoryData> inventories = new HashSet<>();
 
     public String getName() {
@@ -24,5 +26,13 @@ public class MBCategoryData extends ItemData {
 
     public void setInventories(Set<MBInventoryData> inventories) {
         this.inventories = inventories;
+    }
+
+    public MBFacilityData getFacility() {
+        return facility;
+    }
+
+    public void setFacility(MBFacilityData facility) {
+        this.facility = facility;
     }
 }

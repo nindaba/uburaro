@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.Set;
 
+import static bi.manager.web.ManagerWebConstants.Controller.Inventory.endpoint;
 import static bi.manager.web.ManagerWebConstants.Controller.Inventory.inventory;
 
 @RestController
@@ -36,7 +37,7 @@ public class InventoryController {
     public void deleteCategories(@RequestParam Set<String> codes) {
         facade.deleteInventory(codes);
     }
-    @PatchMapping(value = inventory)
+    @PatchMapping(value = endpoint)
     public void updateCategory(@RequestBody MBInventoryData category){
         facade.updateInventory(category);
     }

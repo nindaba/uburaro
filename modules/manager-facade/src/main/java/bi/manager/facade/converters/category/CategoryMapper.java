@@ -15,6 +15,7 @@ public interface CategoryMapper {
     @Mapping(target = "modificationLogs", ignore = true)
     @Mapping(target = "dateCreated", ignore = true)
     @Mapping(target = MBCategoryType.INVENTORIES, ignore = true)
+    @Mapping(target = MBCategoryType.FACILITY, ignore = true)
     MBCategoryData categoryToData(MBCategoryType category);
 
 

@@ -11,7 +11,7 @@ import {AbstractListingComponent} from "../listing/abstract-listing.component";
 })
 export class FacilityListingComponent extends AbstractListingComponent<Facility> implements OnInit {
     heads: string[] = ListingPageConfig.facilities.heads;
-    $facilities: Observable<Facility[]> = this.facilityService.getAllFacilities();
+    $facilities: Observable<Facility[]> = new Observable<Facility[]>();
     constructor(
         private facilityService: FacilityService,
         protected override topService: TopNavService) {
@@ -20,14 +20,16 @@ export class FacilityListingComponent extends AbstractListingComponent<Facility>
 
 
     ngOnInit(): void {
-        this.subscriptions.add(
-            this.topService.$delete.subscribe({
-                next: () => this.$facilities = this.facilityService.getAllFacilities()
-            })
-        );
+        this.setItems();
+        this.subscribeToDelete();
         this.subscribeToSearch();
     }
     getItems(): Observable<Facility[]> {
         return this.$facilities;
     }
+
+    setItems(): void {
+        this.$facilities = this.facilityService.getAllFacilities();
+    }
+
 }

@@ -18,10 +18,8 @@ export class CategoryListingComponent extends AbstractListingComponent<Category>
     }
 
     ngOnInit(): void {
-        this.setCategories();
-        this.subscriptions.add(
-            this.topService.$delete.subscribe({next: () => this.setCategories()})
-        );
+        this.setItems();
+        this.subscribeToDelete();
         this.subscribeToSearch();
     }
 
@@ -29,7 +27,7 @@ export class CategoryListingComponent extends AbstractListingComponent<Category>
         return this.$categories;
     }
 
-    setCategories() {
+    setItems() {
         this.$categories = this.categoryService.getCategoriesByFacilityCode();
     }
 }

@@ -9,6 +9,7 @@ import {BreadcrumbsService} from "../navigation/top-nav/breadcrumbs.service";
 import {TopNavService} from "../navigation/top-nav/top-nav.service";
 import {NEW_ITEM} from "../navigation/navigation.constants";
 import {FacilityService} from "../facility/facility.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'mb-inventory-details',
@@ -32,9 +33,10 @@ export class InventoryDetailsComponent extends AbstractDetailsComponent implemen
                 private itemService: MBItemService,
                 private breadService: BreadcrumbsService,
                 protected override topNavService: TopNavService,
-                private facilityService: FacilityService
+                private facilityService: FacilityService,
+                protected override router: Router
     ) {
-        super(topNavService);
+        super(topNavService, router);
     }
 
     private createFrom(code: string = "", name: string = "", category: Category = {code: ""}, quantity: number = 0, cost: number = 0) {
@@ -64,13 +66,14 @@ export class InventoryDetailsComponent extends AbstractDetailsComponent implemen
                     this.subscribeToForm();
                 }),
             );
+
+            this.subscribeToDelete(this.breadService.pages.page);
         } else {
             this.subscribeToForm();
         }
         this.$categorySearchResults = this.categoryNameControl.valueChanges.pipe(
             mergeMap(value => this.$categories),
-            map(value => value.filter(category => this.search(category, this.categoryNameControl.value)))
-        )
+            map(value => value.filter(category => this.search(category, this.categoryNameControl.value))))
     }
 
     onFocus() {
@@ -78,14 +81,14 @@ export class InventoryDetailsComponent extends AbstractDetailsComponent implemen
     }
 
     onUnFocus() {
-        setTimeout(() => this.$showCategoryDrop.next(false),100)
+        setTimeout(() => this.$showCategoryDrop.next(false), 100)
     }
 
     search(item: Category, value: string): boolean {
-        return new RegExp(value,"i").test(JSON.stringify(item))
+        return new RegExp(value, "i").test(JSON.stringify(item))
     }
 
-    changeCategory(category: Category){
+    changeCategory(category: Category) {
         this.categoryNameControl.setValue(category.name);
         this.categoryCodeControl.setValue(category.code);
     }

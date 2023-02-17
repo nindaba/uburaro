@@ -1,6 +1,7 @@
 package bi.manager.web.controllers;
 
 import bi.manager.facade.data.MBClientData;
+import bi.manager.facade.data.MBFacilityData;
 import bi.manager.facade.facades.MBClientFacade;
 import bi.manager.web.ManagerWebConstants;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +34,10 @@ public class ClientController {
         facade.deleteClients(codes);
     }
     @PatchMapping
-    public void updateClient(@RequestBody MBClientData client){
+    public void updateClient(@RequestBody MBClientData client, @PathVariable String code){
+        MBFacilityData facility = new MBFacilityData();
+        facility.setCode(code);
+        client.setFacility(facility);
         facade.updateClient(client);
     }
 }

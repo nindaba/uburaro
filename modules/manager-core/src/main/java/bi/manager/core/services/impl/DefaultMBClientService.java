@@ -49,6 +49,11 @@ public class DefaultMBClientService extends AbstractMBTypeService<MBClientType> 
     }
 
     private void populateClient(MBClientType source, MBClientType target) {
+
+        MBFacilityType itemByCode = validateAndGetFacility(source.getFacility());
+        target.setFacility(itemByCode);
+
+
         if (StringUtils.isNotEmpty(source.getName())) {
             target.setName(source.getName());
         }
