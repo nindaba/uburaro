@@ -18,10 +18,8 @@ export class InventoryListingComponent extends AbstractListingComponent<Inventor
     }
 
     ngOnInit(): void {
-        this.setInventories();
-        this.subscriptions.add(
-            this.topService.$delete.subscribe({next: () => this.setInventories()})
-        );
+        this.setItems();
+        this.subscribeToSearch();
         this.subscribeToSearch();
     }
 
@@ -29,7 +27,7 @@ export class InventoryListingComponent extends AbstractListingComponent<Inventor
         return this.$inventories;
     }
 
-    setInventories() {
+    setItems(): void {
         this.$inventories = this.itemService.getItemByFacilityCode<Inventory[]>();
     }
 }

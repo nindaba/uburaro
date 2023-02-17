@@ -19,7 +19,7 @@ export class FacilityDetailsComponent extends AbstractDetailsComponent implement
     $facility: Observable<Facility> = new Observable<Facility>();
     newCapital: FormControl = new FormControl<string>('')
     capitalType: CapitalType = CapitalType.INTERNAL;
-    $capital: Observable<Capital > = new BehaviorSubject<Capital>({currentValue: 0});
+    $capital: Observable<Capital> = new BehaviorSubject<Capital>({currentValue: 0});
 
     categoryHeads: string[] = DetailsConfig.facilities.category.heads;
     clientHeads: string[] = DetailsConfig.facilities.clients.heads;
@@ -34,9 +34,9 @@ export class FacilityDetailsComponent extends AbstractDetailsComponent implement
         private breadService: BreadcrumbsService,
         private formBuilder: FormBuilder,
         private capitalService: CapitalService,
-        private router: Router
+        protected override router: Router
     ) {
-        super(topNavService)
+        super(topNavService, router)
     }
 
     ngOnInit(): void {
@@ -54,6 +54,8 @@ export class FacilityDetailsComponent extends AbstractDetailsComponent implement
             );
 
             this.$capital = this.$facility.pipe(map(facility => facility.capital || {currentValue: 0}))
+            this.subscribeToDelete(this.breadService.pages.page);
+
         } else {
             this.subscribeToForm();
         }
@@ -69,13 +71,12 @@ export class FacilityDetailsComponent extends AbstractDetailsComponent implement
     }
 
 
-
     selectExternal() {
         this.capitalType = this.capitalType == CapitalType.EXTERNAL ? CapitalType.INTERNAL : CapitalType.EXTERNAL;
     }
 
     addCapital() {
-        this.capitalService.addCapital(this.newCapital.value,this.capitalType)
+        this.capitalService.addCapital(this.newCapital.value, this.capitalType)
             .subscribe({
                 next: value => this.$capital = this.capitalService.getCapital()
             })

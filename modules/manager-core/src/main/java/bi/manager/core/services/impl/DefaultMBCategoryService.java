@@ -16,12 +16,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service(value = "mBCategoryService")
-public class DefaultMBCategoryService implements MBCategoryService {
-
-    protected final TypeService typeService;
+public class DefaultMBCategoryService extends AbstractMBTypeService implements MBCategoryService {
 
     public DefaultMBCategoryService(TypeService typeService) {
-        this.typeService = typeService;
+        super(typeService);
     }
 
     @Override
@@ -43,10 +41,9 @@ public class DefaultMBCategoryService implements MBCategoryService {
     @Override
     public void updateCategory(final MBCategoryType category) {
         MBCategoryType categoryByCode;
-        try{
+        try {
             categoryByCode = typeService.findItemByCode(category.getCode(), MBCategoryType.class);
-        }
-        catch (NotFoundException e){
+        } catch (NotFoundException e) {
             categoryByCode = typeService.create(MBCategoryType.class);
             categoryByCode.setCode(category.getCode());
         }
@@ -56,6 +53,9 @@ public class DefaultMBCategoryService implements MBCategoryService {
     }
 
     private void populateCategory(MBCategoryType target, MBCategoryType source) {
+        MBFacilityType itemByCode = validateAndGetFacility(source.getFacility());
+        target.setFacility(itemByCode);target.setFacility(itemByCode);
+
         if (StringUtils.isNotEmpty(source.getName())) {
             target.setName(source.getName());
         }
@@ -76,5 +76,10 @@ public class DefaultMBCategoryService implements MBCategoryService {
         } catch (NotFoundException e) {
             return null;
         }
+    }
+
+    @Override
+    public ItemType getItemByCodeWithTry(String code) {
+        return getCategoryByCode(code);
     }
 }

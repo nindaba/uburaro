@@ -18,10 +18,8 @@ export class ClientListingComponent extends AbstractListingComponent<Client> imp
     }
 
     ngOnInit(): void {
-        this.setInventories();
-        this.subscriptions.add(
-            this.topService.$delete.subscribe({next: () => this.setInventories()})
-        );
+        this.setItems();
+        this.subscribeToDelete()
         this.subscribeToSearch();
     }
 
@@ -29,7 +27,7 @@ export class ClientListingComponent extends AbstractListingComponent<Client> imp
         return this.$clients;
     }
 
-    setInventories() {
+    setItems(): void {
         this.$clients = this.itemService.getItemByFacilityCode<Client[]>();
     }
 }

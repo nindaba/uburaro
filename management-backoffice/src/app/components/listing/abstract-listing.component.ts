@@ -40,7 +40,14 @@ export abstract class AbstractListingComponent<ITEM extends Item> implements OnD
         return new RegExp(value,"i").test(JSON.stringify(item))
     }
 
+    subscribeToDelete(){
+        this.subscriptions.add(
+            this.topService.$delete.subscribe({next: () => this.setItems()})
+        );
+    }
+
     abstract getItems() : Observable<ITEM[]>;
+    abstract setItems() : void;
 
     ngOnDestroy() {
         this.headerCheck = false;

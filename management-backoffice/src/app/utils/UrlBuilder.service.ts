@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {KeyValue} from "@angular/common";
 import {BreadcrumbsService} from "../components/navigation/top-nav/breadcrumbs.service";
 import {EndpointConfig} from "../model/navigation.model";
+import {NEW_ITEM} from "../components/navigation/navigation.constants";
 
 @Injectable({
     providedIn: "root"
@@ -23,7 +24,7 @@ export class UrlBuilderService {
 
     getFullUrl(allFields: boolean = false): string {
         let pages = this.bread.pages;
-        return this.getUrl(pages.details ? this.config.relation[pages.page || 'def'] : pages.page || 'def',
+        return this.getUrl(pages.details && pages.details != NEW_ITEM ? this.config.relation[pages.page || 'def'] : pages.page || 'def',
             [
                 {
                     key: "code",
@@ -40,5 +41,8 @@ export class UrlBuilderService {
                     value: allFields
                 }
             ]);
+    }
+    getBaseUrlForPage(){
+        return this.getUrl(this.bread.pages.page || "").replace("{code}",this.bread.facility);
     }
 }

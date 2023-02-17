@@ -8,6 +8,7 @@ import {MBItemService} from "../../services/MBItem.service";
 import {BreadcrumbsService} from "../navigation/top-nav/breadcrumbs.service";
 import {TopNavService} from "../navigation/top-nav/top-nav.service";
 import {NEW_ITEM} from "../navigation/navigation.constants";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'mb-client-details',
@@ -20,9 +21,10 @@ export class ClientDetailsComponent extends AbstractDetailsComponent implements 
     constructor(private formBuilder: FormBuilder,
                 private itemService: MBItemService,
                 private breadService: BreadcrumbsService,
-                protected override topNavService: TopNavService
+                protected override topNavService: TopNavService,
+                protected override router: Router
     ) {
-        super(topNavService);
+        super(topNavService,router);
     }
 
     private createFrom(code: string = "", name: string = "", address: string = "") {
@@ -45,6 +47,8 @@ export class ClientDetailsComponent extends AbstractDetailsComponent implements 
                     this.subscribeToForm();
                 }),
             );
+
+            this.subscribeToDelete(this.breadService.pages.page);
         } else {
             this.subscribeToForm();
         }
