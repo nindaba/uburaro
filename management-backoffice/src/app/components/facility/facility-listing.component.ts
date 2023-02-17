@@ -9,7 +9,7 @@ import {AbstractListingComponent} from "../listing/abstract-listing.component";
 @Component({
     templateUrl: './facility-listing.component.html'
 })
-export class FacilityListingComponent extends AbstractListingComponent implements OnInit {
+export class FacilityListingComponent extends AbstractListingComponent<Facility> implements OnInit {
     heads: string[] = ListingPageConfig.facilities.heads;
     $facilities: Observable<Facility[]> = this.facilityService.getAllFacilities();
     constructor(
@@ -27,7 +27,7 @@ export class FacilityListingComponent extends AbstractListingComponent implement
         );
         this.subscribeToSearch();
     }
-    getItems(): Observable<any> {
+    getItems(): Observable<Facility[]> {
         return this.$facilities;
     }
 }

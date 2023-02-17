@@ -21,17 +21,24 @@ export class UrlBuilderService {
         return url;
     }
 
-    getFullUrl(): string {
+    getFullUrl(allFields: boolean = false): string {
         let pages = this.bread.pages;
-        return this.getUrl(pages.details ? this.config.relation[pages.page || 'def'] : pages.page || 'def', [
-            {
-                key: "code",
-                value: this.bread.facility == this.bread.CHOSE_FACILITY ? this.bread.pages.details : this.bread.facility
-            },
-            {
-                key: `${this.config.relation[pages.page || 'def']}-code`,
-                value: pages.details
-            }
-        ])
+        return this.getUrl(pages.details ? this.config.relation[pages.page || 'def'] : pages.page || 'def',
+            [
+                {
+                    key: "code",
+                    value: this.bread.facility == this.bread.CHOSE_FACILITY ? this.bread.pages.details : this.bread.facility
+                },
+                {
+                    key: `${this.config.relation[pages.page || 'def']}-code`,
+                    value: pages.details
+                }
+            ],
+            [
+                {
+                    key: "allFields",
+                    value: allFields
+                }
+            ]);
     }
 }

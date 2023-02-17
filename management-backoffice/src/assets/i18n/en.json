@@ -26,7 +26,6 @@
   "label.cost": "Cost",
   "label.total": "Total",
   "label.quantity": "Quantity",
-  "label.quantity": "Debt",
   "label.client.debt": "Debt",
   "label.facility.alias": "Alias",
   "label.facility.empty":"No Facility",

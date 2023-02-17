@@ -13,4 +13,6 @@ import java.util.Collection;
 public interface FullCategoryMapper {
     @Mapping(target = "modificationLogs", ignore = true)
     MBCategoryData categoryToData(MBCategoryType category);
+
+    Collection<MBCategoryData> categoriesToData(Collection<MBCategoryType> categories);
 }

@@ -1,0 +1,13 @@
+<mb-listing [heads]="heads" *ngIf="($searchResult | async) || ($inventories | async) as inventories"
+            (selectedAll)="selectAll(inventories)" [checkedAll]="headerCheck">
+
+    <tr *ngFor="let inventory of inventories ">
+        <th scope="row">
+            <input class="primary" type="checkbox"
+                   [checked]="headerCheck || isSelected(inventory)" (change)="selectionChanged(inventory)">
+        </th>
+        <td [routerLink]="[inventory.code]">{{inventory.code}}</td>
+        <td [routerLink]="[inventory.code]">{{inventory.name}}</td>
+        <td [routerLink]="[inventory.code]">{{inventory.quantity}}</td>
+    </tr>
+</mb-listing>

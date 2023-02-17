@@ -1,33 +1,33 @@
 import {Injectable, OnDestroy} from "@angular/core";
 import {map, Observable, Subscription} from "rxjs";
-import {Facility, Item} from "../../model/navigation.model";
+import {Item} from "../../model/navigation.model";
 import {TopNavService} from "../navigation/top-nav/top-nav.service";
 
 @Injectable()
-export abstract class AbstractListingComponent implements OnDestroy{
+export abstract class AbstractListingComponent<ITEM extends Item> implements OnDestroy{
     headerCheck: boolean = false;
     subscriptions: Subscription = new Subscription();
-    $searchResult: Observable<Facility[]> = new Observable<Facility[]>();
+    $searchResult: Observable<ITEM[]> = new Observable();
 
     constructor(protected topService: TopNavService) {
     }
 
 
-    selectionChanged(value: Item) {
+    selectionChanged(value: ITEM) {
         this.topService.selectionChanged(value.code);
         this.headerCheck = false;
     }
 
-    selectAll(items: Item[]) {
+    selectAll(items: ITEM[]) {
         this.headerCheck = !this.headerCheck;
         this.topService.selectedCodes = items.map(value => value.code);
     }
 
-    isSelected(item: Item): boolean {
+    isSelected(item: ITEM): boolean {
         return this.topService.selectedCodes.indexOf(item.code) > -1;
     }
 
-    subscribeToSearch<TYPE extends Item>() {
+    subscribeToSearch<TYPE extends ITEM>() {
         this.subscriptions.add(this.topService.searchForm.valueChanges.subscribe({
                 next: (value: string) => this.$searchResult = this.getItems()
                     .pipe(map(items => items.filter(item => this.search(item, value))))
@@ -36,11 +36,11 @@ export abstract class AbstractListingComponent implements OnDestroy{
     }
 
 
-    search(item: any, value: string): boolean {
+    search(item: ITEM, value: string): boolean {
         return new RegExp(value).test(JSON.stringify(item))
     }
 
-    abstract getItems<ITEM extends Item>() : Observable<ITEM[]>;
+    abstract getItems() : Observable<ITEM[]>;
 
     ngOnDestroy() {
         this.headerCheck = false;

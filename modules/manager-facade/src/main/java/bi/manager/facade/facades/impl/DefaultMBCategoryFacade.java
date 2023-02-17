@@ -27,13 +27,13 @@ public class DefaultMBCategoryFacade implements MBCategoryFacade {
     @Override
     public Collection<MBCategoryData> getCategoriesByFacilityCode(String facilityCode, boolean allFields) {
         Collection<MBCategoryType> categories = service.getCategoriesByFacilityCode(facilityCode);
-        return mapper.categoriesToData(categories);
+        return allFields ? fullMapper.categoriesToData(categories) : mapper.categoriesToData(categories);
     }
 
     @Override
     public MBCategoryData getCategoryByCode(String code, boolean allFields) {
         MBCategoryType category = service.getCategoryByCode(code);
-        if (category != null){
+        if (category != null) {
             return allFields ? fullMapper.categoryToData(category) : mapper.categoryToData(category);
         }
         return null;

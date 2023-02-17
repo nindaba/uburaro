@@ -9,8 +9,9 @@ import {RentDetailsComponent} from "./components/rent/rent-details.component";
 import {ReportComponent} from "./components/report/report.component";
 import {FacilityListingComponent} from "./components/facility/facility-listing.component";
 import {CategoryListingComponent} from "./components/category/category-listing.component";
+import {InventoryListingComponent} from "./components/inventory/inventory-listing.component";
 
-const listingRoutes: string[] = [ "clients", "inventories", "rents"]
+const listingRoutes: string[] = [ "clients", "rents"]
 const listingPageMatcher: UrlMatcher = url => {
     let consumed = {consumed: url};
     if (url.length == 1) {
@@ -67,6 +68,14 @@ const routes: Routes = [
     {
         path: "categories/new",
         component: CategoryDetailsComponent
+    },
+    {
+        path: "inventories",
+        component: InventoryListingComponent
+    },
+    {
+        path: "inventories/new",
+        component: InventoryDetailsComponent
     },
     {
         path: "inventories/:inventoryId",

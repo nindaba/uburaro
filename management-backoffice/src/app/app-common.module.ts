@@ -7,6 +7,8 @@ import {RouterModule} from "@angular/router";
 import {EndpointConfig} from "./model/navigation.model";
 import {endpointsConfig} from "./config/endpoints.config";
 import {RelationComponent} from "./components/relation/relation.component";
+import {MBItemService} from "./services/MBItem.service";
+import {MBItemServiceImpl} from "./services/MBItem.service.impl";
 
 @NgModule({
     imports: [
@@ -14,14 +16,17 @@ import {RelationComponent} from "./components/relation/relation.component";
         RouterModule,
         RelationComponent
     ],
-    exports:[
+    exports: [
         TranslateModule,
         HttpClientModule,
         CommonModule,
         RouterModule,
         RelationComponent
     ],
-    providers: [{provide: EndpointConfig, useValue: endpointsConfig}]
+    providers: [
+        {provide: EndpointConfig, useValue: endpointsConfig},
+        {provide: MBItemService, useClass: MBItemServiceImpl}
+    ]
 })
 export class AppCommonModule {
 

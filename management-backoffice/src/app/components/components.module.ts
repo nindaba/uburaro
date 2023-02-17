@@ -3,6 +3,7 @@ import {NavigationModule} from "./navigation/navigation.module";
 import {ListingModule} from "./listing/listing.module";
 import {FacilityModule} from "./facility/facility.module";
 import {CategoryModule} from "./category/category.module";
+import {InventoryModule} from "./inventory/inventory.module";
 
 
 
@@ -11,7 +12,8 @@ import {CategoryModule} from "./category/category.module";
         NavigationModule,
         ListingModule,
         FacilityModule,
-        CategoryModule
+        CategoryModule,
+        InventoryModule
     ],
     exports: [
         NavigationModule,

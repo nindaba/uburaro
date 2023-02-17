@@ -16,6 +16,8 @@ export class EndpointConfig {
     capital: string = "";
     categories: string = "";
     category: string = "";
+    inventories: string = "";
+    inventory: string = "";
     relation: { [key: string]: string } = {};
 
 
@@ -67,7 +69,7 @@ export interface Client extends Item {
     invoices?: Invoice[];
 }
 
-interface Inventory extends Item {
+export interface Inventory extends Item {
     name: string;
     quantity: number;
     cost: number;
