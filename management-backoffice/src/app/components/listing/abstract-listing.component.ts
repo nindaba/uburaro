@@ -37,7 +37,7 @@ export abstract class AbstractListingComponent<ITEM extends Item> implements OnD
 
 
     search(item: ITEM, value: string): boolean {
-        return new RegExp(value).test(JSON.stringify(item))
+        return new RegExp(value,"i").test(JSON.stringify(item))
     }
 
     abstract getItems() : Observable<ITEM[]>;

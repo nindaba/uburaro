@@ -18,5 +18,12 @@
       "label.name",
       "label.quantity"
     ]
+  },
+  "client": {
+    "heads": [
+      "label.code",
+      "label.client.name",
+      "label.client.debt"
+    ]
   }
 }
