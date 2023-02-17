@@ -1,17 +1,35 @@
-.attributes, .capital{
+.attributes, .capital {
   background-color: white;
   padding: 20px;
   border-radius: 8px;
 }
-.relations{
+
+.relations {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: calc($spacing*2);
+  gap: calc($spacing * 2);
 }
 
-.category-details{
-  .inventory{
-    width: 280px;
+.details-page {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing;
+
+  .attributes {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    gap: calc(2 * $spacing);
+
+    > div {
+      width: $input-width;
+    }
+  }
+
+  &.category {
+    .inventory {
+      width: 280px;
+    }
   }
 }

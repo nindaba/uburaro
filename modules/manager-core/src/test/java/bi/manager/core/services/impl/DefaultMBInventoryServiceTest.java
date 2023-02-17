@@ -51,12 +51,13 @@ class DefaultMBInventoryServiceTest {
         INVENTORY_2.setCode("2");
         INVENTORY_2.setName("two");
         INVENTORY_2.setQuantity(10);
-        INVENTORY_2.setActive(false);
+        INVENTORY_2.setActive(true);
+        INVENTORY_2.setCategory(CATEGORY);
 
         INVENTORY_3.setCode("3");
         INVENTORY_3.setName("three");
         INVENTORY_3.setQuantity(7);
-        INVENTORY_3.setActive(true);
+        INVENTORY_3.setActive(false);
 
         CATEGORY.setInventories(Set.of(INVENTORY_1, INVENTORY_2, INVENTORY_3));
     }
@@ -84,6 +85,7 @@ class DefaultMBInventoryServiceTest {
         when(typeService.save(INVENTORY_1)).thenReturn(true);
         when(typeService.save(INVENTORY_2)).thenReturn(true);
         when(typeService.create(MBInventoryType.class)).thenReturn(new MBInventoryType());
+        when(typeService.findItemByCode(CATEGORY.getCode(), MBCategoryType.class)).thenReturn(CATEGORY);
 
         service.updateInventory(INVENTORY_1);
         verify(typeService).save(INVENTORY_1);
@@ -94,6 +96,7 @@ class DefaultMBInventoryServiceTest {
         service.updateInventory(INVENTORY_2);
         verify(typeService).save(INVENTORY_2);
         verify(INVENTORY_2_SPY,times(0)).setCode(INVENTORY_2.getCode());
+        verify(INVENTORY_2_SPY,times(1)).setActive(true);
         verify(INVENTORY_2_SPY,times(1)).setName(INVENTORY_2.getName());
 
     }

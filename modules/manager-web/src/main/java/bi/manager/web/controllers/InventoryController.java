@@ -9,6 +9,8 @@ import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.Set;
 
+import static bi.manager.web.ManagerWebConstants.Controller.Inventory.inventory;
+
 @RestController
 @CrossOrigin()
 public class InventoryController {
@@ -25,11 +27,16 @@ public class InventoryController {
         return facade.getInventoriesByCategory(categoryCode, allFields);
     }
 
+    @GetMapping(value = inventory )
+    public MBInventoryData getInventory(@RequestParam(required = false) boolean allFields, @PathVariable String code, @PathVariable String inventoryCode){
+        return facade.getInventoryByCode(inventoryCode,allFields);
+    }
+
     @DeleteMapping(value = ManagerWebConstants.Controller.Inventory.endpoint)
     public void deleteCategories(@RequestParam Set<String> codes) {
         facade.deleteInventory(codes);
     }
-    @PatchMapping(value = ManagerWebConstants.Controller.Inventory.endpoint)
+    @PatchMapping(value = inventory)
     public void updateCategory(@RequestBody MBInventoryData category){
         facade.updateInventory(category);
     }

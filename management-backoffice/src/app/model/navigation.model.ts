@@ -75,6 +75,7 @@ export interface Inventory extends Item {
     name: string;
     quantity: number;
     cost: number;
+    category:Category;
 }
 
 export interface Category extends Item {

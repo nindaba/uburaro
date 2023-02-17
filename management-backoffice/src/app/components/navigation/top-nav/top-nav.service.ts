@@ -62,11 +62,10 @@ export class TopNavService {
 
 
     saveForm() {
-        if (this.breadService.pages.details == NEW_ITEM) {
-            this.createItem();
-        } else {
-            this.updateItem();
-        }
+        this.http.patch(this.urlBuilder.getFullUrl(), this.formValues).subscribe({
+            next: value => {
+            }
+        })
     }
 
     private createItem() {

@@ -51,19 +51,25 @@ public class DefaultMBInventoryService implements MBInventoryService {
         }
     }
 
-    private void populateCategory(final MBInventoryType source,final MBInventoryType target) {
+    private void populateCategory(final MBInventoryType source, final MBInventoryType target) {
         final MBCategoryType category = source.getCategory();
-
         if (category != null && StringUtils.isNotEmpty(category.getCode())) {
             final MBCategoryType categoryByCode = typeService.findItemByCode(category.getCode(), MBCategoryType.class);
             target.setCategory(categoryByCode);
-            target.setActive(true);
+        } else {
+            throw new NotFoundException("Category Not found");
         }
     }
 
-    private void populateInventory(final MBInventoryType source,final MBInventoryType target) {
+    private void populateInventory(final MBInventoryType source, final MBInventoryType target) {
         if (StringUtils.isNotEmpty(source.getName())) {
             target.setName(source.getName());
+        }
+        if (target.getQuantity() == 0) {
+            target.setQuantity(source.getQuantity());
+        }
+        if (target.getCost() == 0) {
+            target.setCost(source.getCost());
         }
     }
 

@@ -31,7 +31,10 @@ export class FacilityServiceImpl implements FacilityService {
     }
 
     getFacilityByCode(code: string): Observable<Facility> {
-        let url: string = this.urlBuilder.getUrl("facility", [{key: "code", value: code}]);
+        let url: string = this.urlBuilder.getUrl("facility",
+            [{key: "code", value: code}],
+            [{key: "allFields", value: true}]
+        );
         return this.http.get<Facility>(url);
     }
 

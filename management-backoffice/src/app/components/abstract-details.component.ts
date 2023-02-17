@@ -13,7 +13,7 @@ export class AbstractDetailsComponent implements OnDestroy{
     protected subscribeToForm() {
         let subscription = this.itemForm.valueChanges.subscribe({
             next: value => {
-                this.topNavService.formValues = value;
+                this.topNavService.formValues = this.itemForm.getRawValue();
                 this.topNavService.$formChanged.next(true);
             }
         });
