@@ -4,6 +4,7 @@ import {ListingModule} from "./listing/listing.module";
 import {FacilityModule} from "./facility/facility.module";
 import {CategoryModule} from "./category/category.module";
 import {InventoryModule} from "./inventory/inventory.module";
+import {ClientModule} from "./client/client.module";
 
 
 
@@ -13,7 +14,8 @@ import {InventoryModule} from "./inventory/inventory.module";
         ListingModule,
         FacilityModule,
         CategoryModule,
-        InventoryModule
+        InventoryModule,
+        ClientModule
     ],
     exports: [
         NavigationModule,

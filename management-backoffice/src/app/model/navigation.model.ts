@@ -18,6 +18,8 @@ export class EndpointConfig {
     category: string = "";
     inventories: string = "";
     inventory: string = "";
+    clients: string = "";
+    client: string = "";
     relation: { [key: string]: string } = {};
 
 
