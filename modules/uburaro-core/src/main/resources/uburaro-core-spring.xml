@@ -71,7 +71,9 @@
 
     <alias name="defaultPrimaryKeyGeneratorStrategy" alias="primaryKeyGeneratorStrategy"/>
     <bean id="defaultPrimaryKeyGeneratorStrategy"
-          class="bi.uburaro.core.strategies.impl.DefaultPrimaryKeyGeneratorStrategy"/>
+          class="bi.uburaro.core.strategies.impl.DefaultPrimaryKeyGeneratorStrategy">
+        <constructor-arg name="generatedKeyRepository" ref="generatedKeyRepository"/>
+    </bean>
 
 
     <bean parent="beforeSaveValidatorListMerger">

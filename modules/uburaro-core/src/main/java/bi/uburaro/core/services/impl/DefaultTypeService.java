@@ -15,7 +15,6 @@ import bi.uburaro.core.utils.MessageUtils;
 import bi.uburaro.core.validators.Validator;
 import lombok.extern.log4j.Log4j2;
 
-import javax.transaction.Transactional;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
@@ -47,13 +46,13 @@ public class DefaultTypeService implements TypeService {
         try {
             String type = (String) typeClass.getField(UburaroCoreConstants.ITEM_TYPE).get(null);
             TYPE instance = typeClass.getConstructor().newInstance();
-            instance.setPrimaryKey(primaryKeyGeneratorStrategy.generateKey(type));
+            instance.setPrimaryKey(primaryKeyGeneratorStrategy.generatePrimaryKey(type));
 
             Date dateModified = new Date();
             instance.setDateModified(dateModified);
             ModificationLogType logType = new ModificationLogType();
             String modificationKey = (String) ModificationLogType.class.getField(UburaroCoreConstants.ITEM_TYPE).get(null);
-            logType.setPrimaryKey(primaryKeyGeneratorStrategy.generateKey(modificationKey));
+            logType.setPrimaryKey(primaryKeyGeneratorStrategy.generatePrimaryKey(modificationKey));
             logType.setModifiedItem(type);
             logType.setDateModified(dateModified);
 
@@ -140,7 +139,7 @@ public class DefaultTypeService implements TypeService {
     public ModificationLogType createModificationLog(String type) {
 
         ModificationLogType logType = new ModificationLogType();
-        logType.setPrimaryKey(primaryKeyGeneratorStrategy.generateKey(ModificationLogType.ITEM_TYPE));
+        logType.setPrimaryKey(primaryKeyGeneratorStrategy.generatePrimaryKey(ModificationLogType.ITEM_TYPE));
 
         logType.setModifiedItem(type);
         logType.setDateModified(new Date());

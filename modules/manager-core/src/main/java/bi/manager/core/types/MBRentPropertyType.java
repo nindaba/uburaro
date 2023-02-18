@@ -32,7 +32,7 @@ public class MBRentPropertyType extends ItemType {
     public static final String CURRENT_CLIENT = "currentClient";
     public static final String UNIT = "unit";
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL , mappedBy = MBRentOrderType.RENT_PROPERTY)
     private Set<MBRentOrderType> rentOrders =  new HashSet<>();
     @ManyToOne(cascade = CascadeType.ALL)
     private MBClientType currentClient;

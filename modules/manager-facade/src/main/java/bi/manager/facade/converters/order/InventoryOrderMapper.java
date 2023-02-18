@@ -1,4 +1,4 @@
-package bi.manager.facade.converters.inventory;
+package bi.manager.facade.converters.order;
 
 import bi.manager.core.types.MBInventoryOrderType;
 import bi.manager.facade.data.MBInventoryOrderData;
@@ -11,12 +11,14 @@ import java.util.Collection;
 
 @Mapper(componentModel = "spring")
 public interface InventoryOrderMapper {
-    @Mapping(target = MBInventoryOrderType.INVENTORY,ignore = true)
     @Mapping(target = ItemType.MODIFICATION_LOGS, ignore = true)
+    @Mapping(target = "clientName", source = "client.name")
+    @Mapping(target = "clientCode", source = "client.code")
+    @Mapping(target = "itemName", source = "inventory.name")
+    @Mapping(target = "itemCode", source = "inventory.code")
     MBInventoryOrderData inventoryOrderToData(MBInventoryOrderType inventoryOrder);
 
-
-    @InheritInverseConfiguration(name = "inventoryOrderToData")
+    @InheritInverseConfiguration
     MBInventoryOrderType inventoryOrderToType(MBInventoryOrderData inventoryOrder);
 
     Collection<MBInventoryOrderData> inventoriesToData(Collection<MBInventoryOrderType> inventories);

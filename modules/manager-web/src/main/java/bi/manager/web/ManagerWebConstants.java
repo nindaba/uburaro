@@ -7,23 +7,45 @@ public interface ManagerWebConstants {
 
         interface Facility {
             String endpoint = "facilities";
-            String facility = endpoint+"/{code}";
-            String capital = facility+"/capital";
-        }
-        interface Category {
-            String endpoint = Facility.facility+"/categories";
-        }
-        interface Client {
-            String endpoint = Facility.facility+"/clients";
-            String client = "/{clientCode}";
-        }
-        interface Inventory {
-            String endpoint = Facility.facility+"/inventories";
-            String categoryInventories =  Category.endpoint+"/{categoryCode}/inventories";
-            String inventory = endpoint+"/{inventoryCode}";
+            String facility = endpoint + "/{code}";
+            String capital = facility + "/capital";
         }
 
-        interface DataImport{
+        interface Category {
+            String endpoint = Facility.facility + "/categories";
+        }
+
+        interface Client {
+            String endpoint = Facility.facility + "/clients";
+            String client = "/{clientCode}";
+        }
+
+        interface Inventory {
+            String endpoint = Facility.facility + "/inventories";
+            String categoryInventories = Category.endpoint + "/{categoryCode}/inventories";
+            String inventory = endpoint + "/{inventoryCode}";
+        }
+
+        interface Orders {
+            String endpoint = "orders";
+
+            interface Inventory {
+                String endpoint = Orders.endpoint + "/inventory";
+                String inventoryOrders = "/{code}";
+                String facilityOrders = "/facility/{code}";
+                String clientOrders = "/client/{code}";
+            }
+
+            interface Rent {
+                String endpoint = Orders.endpoint + "/rent";
+                String inventoryOrders = "/{code}";
+                String facilityOrders = "/facility/{code}";
+                String clientOrders = "/client/{code}";
+            }
+
+        }
+
+        interface DataImport {
             String endpoint = "data-import";
         }
 
