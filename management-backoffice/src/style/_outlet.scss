@@ -11,7 +11,7 @@
   gap: calc($spacing * 2);
 }
 
-.details-page {
+.details-page, .details-cart{
   display: flex;
   flex-direction: column;
   gap: $spacing;
@@ -22,7 +22,7 @@
     border-radius: 8px;
     gap: calc(2 * $spacing);
 
-    > div {
+    > div , > mb-input-drop-down{
       width: $input-width;
     }
   }
