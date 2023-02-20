@@ -11,25 +11,59 @@
   gap: calc($spacing * 2);
 }
 
-.details-page, .details-cart{
-  display: flex;
-  flex-direction: column;
-  gap: $spacing;
+.details {
+  &-page {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing;
 
-  .attributes {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    gap: calc(2 * $spacing);
+    .attributes {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      gap: calc(2 * $spacing);
 
-    > div , > mb-input-drop-down{
-      width: $input-width;
+      > div, > mb-input-drop-down {
+        width: $input-width;
+      }
+    }
+
+    &.category {
+      .inventory {
+        width: 280px;
+      }
     }
   }
 
-  &.category {
-    .inventory {
-      width: 280px;
+  &-cart {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    border: solid 2px $border-color;
+
+    .title-cartbtn{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .content {
+      &-top, &-middle, &-bottom {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 20px;
+        gap: calc(2 * $spacing);
+
+        > div, > mb-input-drop-down {
+          width: $input-width;
+        }
+      }
+      &-bottom {
+        justify-content: flex-end;
+      }
     }
   }
 }

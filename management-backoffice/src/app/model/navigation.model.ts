@@ -1,3 +1,5 @@
+import {BehaviorSubject} from "rxjs";
+
 export interface NavNode {
     id?: string,
     icon?: string;
@@ -20,6 +22,11 @@ export class EndpointConfig {
     inventory: string = "";
     clients: string = "";
     client: string = "";
+    inventoryOrders: string = "";
+    inventoryOrder: string = "";
+    inventoryFacilityOrders: string = "";
+    inventoryClientOrders: string = "";
+
     relation: { [key: string]: string } = {};
 
 
@@ -56,10 +63,10 @@ export enum InventoryOrderType {
 
 export interface Order {
     orderNumber?: string;
-    quantity?: number;
+    quantity: number;
     unit?: string;
     orderDate?: Date;
-    cost?: number;
+    cost: number;
     itemName?: string;
     itemCode?: string;
     clientName?: string;

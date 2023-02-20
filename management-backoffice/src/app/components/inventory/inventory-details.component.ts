@@ -1,15 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractDetailsComponent} from "../abstract-details.component";
-import {BehaviorSubject, delay, filter, map, mergeMap, Observable, tap} from "rxjs";
-import {Category, CodeName, Facility, Inventory} from "../../model/navigation.model";
+import {map, mergeMap, Observable, tap} from "rxjs";
+import {Category, CodeName, Inventory, InventoryOrder} from "../../model/navigation.model";
 import DetailsConfig from "../../../assets/content-config/details-page.json";
-import {FormBuilder, FormControl, FormControlState, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {MBItemService} from "../../services/MBItem.service";
 import {BreadcrumbsService} from "../navigation/top-nav/breadcrumbs.service";
 import {TopNavService} from "../navigation/top-nav/top-nav.service";
 import {NEW_ITEM} from "../navigation/navigation.constants";
 import {FacilityService} from "../facility/facility.service";
 import {Router} from "@angular/router";
+import {OrderService} from "./order.service";
 
 @Component({
     selector: 'mb-inventory-details',
@@ -17,7 +18,9 @@ import {Router} from "@angular/router";
 })
 export class InventoryDetailsComponent extends AbstractDetailsComponent implements OnInit {
     $inventory: Observable<Inventory> = new Observable();
-    orders: string[] = DetailsConfig.category.inventory.heads;
+    $inventoryOrders: Observable<InventoryOrder[]> = new Observable();
+
+    orderHeads: string[] = DetailsConfig.category.inventory.heads;
 
     categoryForm: FormGroup = new FormGroup({
         name: new FormControl(""),
@@ -33,7 +36,8 @@ export class InventoryDetailsComponent extends AbstractDetailsComponent implemen
                 private breadService: BreadcrumbsService,
                 protected override topNavService: TopNavService,
                 private facilityService: FacilityService,
-                protected override router: Router
+                protected override router: Router,
+                protected orderService: OrderService
     ) {
         super(topNavService, router);
     }
@@ -72,6 +76,7 @@ export class InventoryDetailsComponent extends AbstractDetailsComponent implemen
                         quantity, cost);
                     this.subscribeToForm();
                 }),
+                tap(value => this.$inventoryOrders = this.orderService.getOrdersByInventoryCode<InventoryOrder[]>(value.code))
             );
 
             this.subscribeToDelete(this.breadService.pages.page);

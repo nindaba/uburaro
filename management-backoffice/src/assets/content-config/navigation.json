@@ -25,13 +25,13 @@
         {
           "icon": "categories",
           "name": "nodes.name.categories",
-          "routeId": "categories",
-          "active": true
+          "routeId": "categories"
         },
         {
           "icon": "store",
           "name": "nodes.name.stock",
-          "routeId": "inventories"
+          "routeId": "inventories",
+          "active": true
         },
         {
           "icon": "building",

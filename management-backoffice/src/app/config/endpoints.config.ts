@@ -14,6 +14,15 @@ export const endpointsConfig: EndpointConfig = {
     clients: "facilities/{code}/clients",
     client: "facilities/{code}/clients/{client-code}",
 
+
+    /**
+     * note there is no endpoint for getting a specific order
+     */
+    inventoryOrder: "orders/inventory",
+    inventoryOrders: "orders/inventory/{code}",
+    inventoryClientOrders: "orders/inventory/client/{code}",
+    inventoryFacilityOrders: "orders/facility/{code}",
+
     relation: {
         facilities: "facility",
         categories: "category",

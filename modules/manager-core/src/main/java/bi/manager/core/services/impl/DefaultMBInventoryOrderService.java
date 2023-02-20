@@ -18,12 +18,14 @@ import bi.uburaro.core.types.ItemType;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Service(value = "mBInventoryOrderService")
 public class DefaultMBInventoryOrderService extends AbstractOrderService implements MBInventoryOrderService {
 
     public static final String INVENTORY_ORDER_PREFIX = "inventory.order.prefix";
@@ -117,6 +119,8 @@ public class DefaultMBInventoryOrderService extends AbstractOrderService impleme
         if (target.getCost() <= 0) {
             target.setCost(inventory.getCost());
         }
+
+        inventory.setCost(source.getCost());
         target.setInventory(inventory);
     }
 
@@ -135,6 +139,7 @@ public class DefaultMBInventoryOrderService extends AbstractOrderService impleme
 
         String prefix = environment.getProperty(INVENTORY_ORDER_PREFIX, String.class, "IN-");
         target.setOrderNumber(prefix + orderNumber);
+        target.setOrderEntry(source.getOrderEntry());
     }
 
     @Override
