@@ -3,7 +3,7 @@ import {BehaviorSubject, map, mergeMap, Observable, Subscription} from "rxjs";
 import {Category, CodeName, Item} from "../../model/navigation.model";
 import {FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
-import {TranslateModule, TranslateService} from "@ngx-translate/core";
+import {TranslateModule} from "@ngx-translate/core";
 import {RouterModule} from "@angular/router";
 
 @Component({
@@ -27,8 +27,6 @@ export class InputDropDownComponent implements OnInit, OnDestroy {
     relatedItem: { name: string, parentPage: string } = {
         name: '',
         parentPage: ''
-    }
-    constructor(private translator: TranslateService) {
     }
 
     ngOnInit(): void {
