@@ -1,0 +1,56 @@
+<div class="details-cart">
+    <div class="title-cartbtn">
+        <span class="mb-title" translate>inventory.order.title</span>
+        <div>
+            <a class="btn btn-icon" [ngClass]="creating ? 'd-none': ''" (click)="creating = true" translate>
+                <div class="mb-icon mb-icon-green expand"></div>
+            </a>
+            <a class="btn btn-icon" [ngClass]="creating ? '': 'd-none'" (click)="creating = false" translate>
+                <div class="mb-icon mb-icon-green shrink"></div>
+            </a>
+        </div>
+    </div>
+    <form (ngSubmit)="orderPlaced()" [formGroup]="inventoryOrderForm" [ngClass]="creating ? '': 'd-none'">
+        <div class="content-top">
+            <div class="input-grp">
+                <label for="date" class="" translate>label.order.date</label>
+                <input id="date" type="date" formControlName="orderDate" class="input-date" min="2021-01-01">
+            </div>
+            <mb-input-drop-down
+                    [relatedItem]="{name: 'orderType', parentPage: 'orderType'}"
+                    [$items]="$orderTypes"
+                    [formDetails]="orderTypeForm"
+            ></mb-input-drop-down>
+            <mb-input-drop-down *ngIf="orderTypeCodeControl.getRawValue() == soldType"
+                                [relatedItem]="{name: 'client', parentPage: 'clients'}"
+                                [$items]="$clients"
+                                [formDetails]="clientForm"
+            ></mb-input-drop-down>
+        </div>
+
+        <div class="content-middle">
+
+            <div class="input-grp">
+                <label for="name" class="" translate>label.name</label>
+                <input id="name" formControlName="itemName" type="text" class="input-text"
+                       placeholder="{{'label.name' | translate}}"/>
+            </div>
+
+            <div class="input-grp">
+                <label for="quantity" class="" translate>label.quantity</label>
+                <input id="quantity" formControlName="quantity" type="number" class="input-text"
+                       placeholder="{{'label.quantity' | translate}}"/>
+            </div>
+
+            <div class="input-grp">
+                <label for="cost" class="" translate>label.cost</label>
+                <input id="cost" formControlName="cost" type="number" class="input-text"
+                       placeholder="{{'label.cost' | translate}}"/>
+            </div>
+
+        </div>
+        <div class="content-bottom">
+            <button class="btn primary" type="submit" translate>label.order.place</button>
+        </div>
+    </form>
+</div>

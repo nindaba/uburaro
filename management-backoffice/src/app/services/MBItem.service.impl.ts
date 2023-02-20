@@ -16,12 +16,14 @@ export class MBItemServiceImpl implements MBItemService {
     ) {
     }
 
-    getItemByFacilityCode<ITEM extends Item[]>(): Observable<ITEM> {
+    getItemByFacilityCode<ITEM extends Item[]>(endpoint?:string): Observable<ITEM> {
         if (!this.bread.isFacilitySelected()) {
             return new Observable<ITEM>();
         }
-        return this.http.get<ITEM>(this.urlBuilder.getFullUrl());
+        let url = endpoint ? this.urlBuilder.getBaseUrlForEndPoint(endpoint) : this.urlBuilder.getFullUrl();
+        return this.http.get<ITEM>(url);
     }
+
 
     getItemByCode<ITEM extends Item>(code: string, allFields: boolean): Observable<ITEM> {
         if (!this.bread.isFacilitySelected()) {

@@ -1,7 +1,5 @@
 import {Observable} from "rxjs";
 import {Item} from "../model/navigation.model";
-import {Injectable} from "@angular/core";
-import {MBItemServiceImpl} from "./MBItem.service.impl";
 
 
 export abstract class MBItemService{
@@ -10,7 +8,7 @@ export abstract class MBItemService{
      *
      * @return observable of Item
      */
-    abstract  getItemByFacilityCode<ITEM extends Item[]>() : Observable<ITEM>;
+    abstract  getItemByFacilityCode<ITEM extends Item[]>(endpoint?:string) : Observable<ITEM>;
 
     /**
      * Gets an Item with {@code code} from the server

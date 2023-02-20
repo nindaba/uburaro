@@ -43,6 +43,10 @@ export class UrlBuilderService {
             ]);
     }
     getBaseUrlForPage(){
-        return this.getUrl(this.bread.pages.page || "").replace("{code}",this.bread.facility);
+        return this.getBaseUrlForEndPoint(this.bread.pages.page || "");
+    }
+
+    getBaseUrlForEndPoint(endpoint:string){
+        return this.getUrl(endpoint).replace("{code}",this.bread.facility);
     }
 }

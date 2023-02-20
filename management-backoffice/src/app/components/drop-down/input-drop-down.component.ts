@@ -3,7 +3,7 @@ import {BehaviorSubject, map, mergeMap, Observable, Subscription} from "rxjs";
 import {Category, CodeName, Item} from "../../model/navigation.model";
 import {FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
-import {TranslateModule} from "@ngx-translate/core";
+import {TranslateModule, TranslateService} from "@ngx-translate/core";
 import {RouterModule} from "@angular/router";
 
 @Component({
@@ -15,10 +15,10 @@ import {RouterModule} from "@angular/router";
 export class InputDropDownComponent implements OnInit, OnDestroy {
     $showDrop: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     subscription: Subscription = new Subscription();
-    $itemSearchResults: Observable<Item[]> = new Observable();
+    $itemSearchResults: Observable<any[]> = new Observable();
 
     @Input()
-    $items: Observable<Item[]> = new Observable();
+    $items: Observable<any[]> = new Observable();
 
     @Input()
     formDetails: FormGroup = new FormGroup({});
@@ -28,11 +28,13 @@ export class InputDropDownComponent implements OnInit, OnDestroy {
         name: '',
         parentPage: ''
     }
+    constructor(private translator: TranslateService) {
+    }
 
     ngOnInit(): void {
         this.$itemSearchResults = this.formDetails.valueChanges.pipe(
             mergeMap(value => this.$items),
-            map(value => value.filter(category => this.search(category, this.formDetails.get('name')?.value))))
+            map(value => value.filter(item => this.search(item, this.formDetails.get('name')?.value))))
     }
 
     onFocus() {
@@ -49,7 +51,7 @@ export class InputDropDownComponent implements OnInit, OnDestroy {
                     map(this.getCodeName))
                     .subscribe({next: value => this.formDetails.setValue(value)})
             );
-        }, 100);
+        }, 150);
     }
 
     getCodeName(item: any): CodeName {
@@ -63,7 +65,7 @@ export class InputDropDownComponent implements OnInit, OnDestroy {
         return new RegExp(value, "i").test(JSON.stringify(item))
     }
 
-    changeInput(item: Item) {
+    changeInput(item: any) {
         this.formDetails.setValue(this.getCodeName(item));
     }
 

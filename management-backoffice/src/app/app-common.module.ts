@@ -9,6 +9,8 @@ import {endpointsConfig} from "./config/endpoints.config";
 import {RelationComponent} from "./components/relation/relation.component";
 import {MBItemService} from "./services/MBItem.service";
 import {MBItemServiceImpl} from "./services/MBItem.service.impl";
+import {OrderService} from "./components/inventory/order.service";
+import {OrderServiceImpl} from "./services/order.service.impl";
 
 @NgModule({
     imports: [
@@ -25,7 +27,8 @@ import {MBItemServiceImpl} from "./services/MBItem.service.impl";
     ],
     providers: [
         {provide: EndpointConfig, useValue: endpointsConfig},
-        {provide: MBItemService, useClass: MBItemServiceImpl}
+        {provide: MBItemService, useClass: MBItemServiceImpl},
+        {provide: OrderService, useClass: OrderServiceImpl}
     ]
 })
 export class AppCommonModule {
