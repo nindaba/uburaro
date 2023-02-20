@@ -20,13 +20,15 @@ import java.util.Set;
         "rentOrders",
         "inventoryOrders",
         "invoices",
-        "facility"
+        "facility",
+        "inventoryOrders"
 })
 @ToString(callSuper = true, exclude = {
         "rentOrders",
         "inventoryOrders",
         "invoices",
-        "facility"
+        "facility",
+        "inventoryOrders"
 })
 @NoArgsConstructor
 @Entity(name = MBClientType.ITEM_TYPE)
@@ -45,9 +47,9 @@ public class MBClientType extends ItemType {
     private String address;
     private long totalDebt;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = MBRentOrderType.CLIENT)
     private Set<MBRentOrderType> rentOrders = new HashSet<>();
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = MBInventoryOrderType.CLIENT)
     private Set<MBInventoryOrderType> inventoryOrders = new HashSet<>();
     @OneToMany(cascade = CascadeType.ALL)
     private Set<MBInvoiceType> invoices = new HashSet<>();

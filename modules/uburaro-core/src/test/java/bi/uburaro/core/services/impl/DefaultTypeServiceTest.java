@@ -6,9 +6,7 @@ import bi.uburaro.core.types.HotelType;
 import bi.uburaro.core.types.ItemType;
 import bi.uburaro.core.types.PrimaryKeyType;
 import bi.uburaro.core.validators.Validator;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
@@ -17,7 +15,6 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -48,12 +45,12 @@ class DefaultTypeServiceTest {
 
 //    @Test
     void create(){
-        when(primaryKeyGeneratorStrategy.generateKey(HotelType.ITEM_TYPE)).thenReturn(new PrimaryKeyType());
+        when(primaryKeyGeneratorStrategy.generatePrimaryKey(HotelType.ITEM_TYPE)).thenReturn(new PrimaryKeyType());
         when(itemBeforeSaveValidators.stream()).thenReturn(Stream.empty());
         when(itemRepository.save(any())).thenReturn(any());
         HotelType actual = typeService.create(HotelType.class);
 
         assertNotNull(actual);
-        verify(primaryKeyGeneratorStrategy,times(1)).generateKey(HotelType.class.getName());
+        verify(primaryKeyGeneratorStrategy,times(1)).generatePrimaryKey(HotelType.class.getName());
     }
 }

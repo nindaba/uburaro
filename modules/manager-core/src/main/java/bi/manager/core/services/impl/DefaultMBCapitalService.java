@@ -25,7 +25,6 @@ public class DefaultMBCapitalService implements MBCapitalService {
     public void addCapital(final String facilityCode, final long value, final MBEntryEnum type) {
         MBFacilityType facility = typeService.findItemByCode(facilityCode, MBFacilityType.class);
         addCapital(value, type, facility);
-
     }
 
     public void addCapital(long value, MBEntryEnum type, MBFacilityType facility) {
@@ -37,7 +36,10 @@ public class DefaultMBCapitalService implements MBCapitalService {
             typeService.save(facility);
         }
 
-        capital.setCurrentValue(capital.getCurrentValue() + value);
+        long currentValue = capital.getCurrentValue();
+        currentValue += type == MBEntryEnum.EXPENSE ? -value : value;
+
+        capital.setCurrentValue(currentValue);
         MBCapitalEntryType entry = typeService.create(MBCapitalEntryType.class);
         entry.setEntryType(type);
         entry.setAmount(value);

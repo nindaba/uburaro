@@ -10,6 +10,7 @@ import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import java.time.LocalDate;
 
@@ -32,7 +33,7 @@ public class MBInvoiceType extends ItemType {
     public static final String COST = "cost";
     public static final String ORDER = "order";
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     private MBClientType client;
     @OneToOne(cascade = CascadeType.ALL)
     private MBOrderType order;

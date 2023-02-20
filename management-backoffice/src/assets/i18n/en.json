@@ -41,5 +41,6 @@
   "label.inventory.empty": "No Inventory",
   "label.client.empty": "No Client",
   "label.category.empty": "No Category",
-  "label.category.name": "Category"
+  "label.category.name": "Category",
+  "inventory.quantity.error": "No enough Inventories"
 }

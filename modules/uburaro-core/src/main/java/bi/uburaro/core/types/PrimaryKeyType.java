@@ -19,13 +19,13 @@ public class PrimaryKeyType implements Serializable {
     public static final String PRIMARY_KEY = "primaryKey";
     public static final String KEY = "key";
     public static final String ITEM_TYPE = "itemType";
-    public static final String ITEM = "item";
+    public static final String DATE_CREATED = "dateCreated";
 
-    @Column(name = DATABASE_KEYWORDS_PREFIX + KEY, columnDefinition = "bigint DEFAULT 0")
-    private long key;
+    @OneToOne
+    @JoinColumn(name = DATABASE_KEYWORDS_PREFIX + KEY)
+    private GeneratedKey key;
     @Column(columnDefinition = "varchar(255) DEFAULT 'item'")
     private String itemType;
     @Column(columnDefinition = "bigint DEFAULT 0")
     private long dateCreated;
-
 }

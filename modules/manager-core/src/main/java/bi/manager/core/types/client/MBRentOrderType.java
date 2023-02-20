@@ -8,20 +8,17 @@ import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Data
-@EqualsAndHashCode(callSuper = true, exclude = {"item"})
-@ToString(callSuper = true, exclude = {"item"})
+@EqualsAndHashCode(callSuper = true, exclude = {"rentProperty"})
+@ToString(callSuper = true, exclude = {"rentProperty"})
 @NoArgsConstructor
 @Entity(name = MBRentOrderType.ITEM_TYPE)
 public class MBRentOrderType extends MBOrderType {
     public static final String ITEM_TYPE = "mBRentOrder";
-    public static final String ORDER_NUMBER = "orderNumber";
-    public static final String ITEM = "item";
+    public static final String RENT_PROPERTY = "rentProperty";
 
-    private String orderNumber;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private MBRentPropertyType item;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private MBRentPropertyType rentProperty;
 }

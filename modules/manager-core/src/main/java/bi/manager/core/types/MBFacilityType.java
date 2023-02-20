@@ -1,6 +1,7 @@
 package bi.manager.core.types;
 
 import bi.manager.core.types.client.MBClientType;
+import bi.manager.core.types.client.MBOrderType;
 import bi.uburaro.core.types.ItemType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

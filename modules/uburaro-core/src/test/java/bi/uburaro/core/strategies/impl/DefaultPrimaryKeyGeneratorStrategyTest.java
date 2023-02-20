@@ -9,8 +9,8 @@ class DefaultPrimaryKeyGeneratorStrategyTest {
 
     @Test
     void generateKey() {
-        DefaultPrimaryKeyGeneratorStrategy strategy = new DefaultPrimaryKeyGeneratorStrategy();
-        PrimaryKeyType actual = strategy.generateKey(PrimaryKeyType.PRIMARY_KEY);
+        DefaultPrimaryKeyGeneratorStrategy strategy = new DefaultPrimaryKeyGeneratorStrategy(generatedKeyRepository);
+        PrimaryKeyType actual = strategy.generatePrimaryKey(PrimaryKeyType.PRIMARY_KEY);
         assertNotNull(actual);
         assertEquals(PrimaryKeyType.PRIMARY_KEY,actual.getItemType());
         assertTrue(actual.getDateCreated() > 0 && actual.getDateCreated() < System.currentTimeMillis());

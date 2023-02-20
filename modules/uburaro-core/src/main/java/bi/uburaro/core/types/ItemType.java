@@ -14,8 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity(name = ItemType.ITEM_TYPE)
 @Table( indexes = {
-        @Index(name = ItemType.CODE+"_index", columnList = ItemType.CODE),
-        @Index(name = ItemType.DATE_CREATED+"_index", columnList = ItemType.DATE_CREATED)
+        @Index(name = ItemType.CODE+"_index", columnList = ItemType.CODE)
 })
 @EqualsAndHashCode(exclude = {"modificationLogs"})
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -24,12 +23,11 @@ public class ItemType implements Serializable {
     public static final String ITEM_TYPE = "item";
     public static final String CODE = "code";
     public static final String PRIMARY_KEY = "primaryKey";
-    public static final String DATE_CREATED = "dateCreated";
     public static final String DATE_MODIFIED= "dateModified";
     public static final String MODIFICATION_LOGS= "modificationLogs";
     public static final String VISIBLE = "visible";
     public static final String ACTIVE = "active";
-    @Id
+    @EmbeddedId
     private PrimaryKeyType primaryKey;
     private String code;
     private Date dateModified;
