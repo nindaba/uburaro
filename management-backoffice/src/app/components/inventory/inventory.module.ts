@@ -4,15 +4,18 @@ import {InventoryDetailsComponent} from "./inventory-details.component";
 import {InventoryListingComponent} from "./inventory-listing.component";
 import {ListingModule} from "../listing/listing.module";
 import {ReactiveFormsModule} from "@angular/forms";
+import { InventoryCartComponent } from './inventory-cart.component';
+import {InputDropDownComponent} from "../drop-down/input-drop-down.component";
 
 
 
 @NgModule({
-  declarations: [InventoryDetailsComponent, InventoryListingComponent],
+  declarations: [InventoryDetailsComponent, InventoryListingComponent, InventoryCartComponent],
     imports: [
         AppCommonModule,
         ListingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        InputDropDownComponent
     ],
   exports:[
       InventoryDetailsComponent,

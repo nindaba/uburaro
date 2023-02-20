@@ -39,8 +39,35 @@ export interface Item {
     dateCreated?: Date;
 }
 
+export interface CodeName {
+    code: string,
+    name: string
+}
+
 export enum CapitalType {
     INTERNAL = "INTERNAL", EXTERNAL = "EXTERNAL", EXPENSE = "EXPENSE"
+}
+
+export enum InventoryOrderType {
+    REFILL = "REFILL",
+    SOLD = "SOLD",
+    OUT = "OUT"
+}
+
+export interface Order {
+    orderNumber?: string;
+    quantity?: number;
+    unit?: string;
+    orderDate?: Date;
+    cost?: number;
+    itemName?: string;
+    itemCode?: string;
+    clientName?: string;
+    clientCode?: string;
+}
+
+export interface InventoryOrder extends Order {
+    orderEntry: InventoryOrderType;
 }
 
 export interface CapitalEntry {
@@ -66,7 +93,7 @@ export interface Invoice extends Item {
 export interface Client extends Item {
     totalDebt: number;
     name?: string;
-    address?:string;
+    address?: string;
     rentOrders?: RentOrder[];
     inventoryOrders?: InventoryOrder[];
     invoices?: Invoice[];
@@ -76,7 +103,7 @@ export interface Inventory extends Item {
     name: string;
     quantity: number;
     cost: number;
-    category:Category;
+    category: Category;
 }
 
 export interface Category extends Item {

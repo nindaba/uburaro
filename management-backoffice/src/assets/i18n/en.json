@@ -32,6 +32,7 @@
   "label.client.name": "Client / Company",
   "label.facility.alias": "Alias",
   "label.facility.empty":"No Facility",
+  "label.facility.add":"Add Facility",
   "label.name": "Name",
   "label.facility.address": "Address",
   "label.facility.capital": "Capital",
@@ -42,5 +43,6 @@
   "label.client.empty": "No Client",
   "label.category.empty": "No Category",
   "label.category.name": "Category",
+  "label.category.add": "Add Category",
   "inventory.quantity.error": "No enough Inventories"
 }
