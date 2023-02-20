@@ -18,7 +18,6 @@ import javax.persistence.ManyToOne;
 public class MBRentOrderType extends MBOrderType {
     public static final String ITEM_TYPE = "mBRentOrder";
     public static final String RENT_PROPERTY = "rentProperty";
-    public static final String CLIENT = "client";
 
     @ManyToOne(cascade = CascadeType.ALL)
     private MBRentPropertyType rentProperty;
