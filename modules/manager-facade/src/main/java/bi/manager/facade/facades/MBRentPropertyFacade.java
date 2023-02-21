@@ -42,5 +42,5 @@ public interface MBRentPropertyFacade {
      *
      * @param rental
      */
-    void updateClient(MBRentPropertyData rental);
+    void updateRental(MBRentPropertyData rental);
 }

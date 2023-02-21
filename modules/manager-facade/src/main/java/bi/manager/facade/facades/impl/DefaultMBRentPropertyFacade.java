@@ -46,7 +46,7 @@ public class DefaultMBRentPropertyFacade implements MBRentPropertyFacade {
     }
 
     @Override
-    public void updateClient(MBRentPropertyData rental) {
+    public void updateRental(MBRentPropertyData rental) {
         rentService.updateRent(
                 fullMapper.rentPropertyToType(rental));
     }

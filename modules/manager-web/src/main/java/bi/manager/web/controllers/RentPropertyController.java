@@ -38,6 +38,6 @@ public class RentPropertyController {
         MBFacilityData facility = new MBFacilityData();
         facility.setCode(code);
         rental.setFacility(facility);
-        facade.updateClient(rental);
+        facade.updateRental(rental);
     }
 }
