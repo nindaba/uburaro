@@ -31,12 +31,14 @@
   "label.client.debt": "Debt",
   "label.client.address": "Address",
   "label.client.name": "Client / Company",
+  "label.current.client.name": "Current Client / Company",
   "label.facility.alias": "Alias",
   "label.facility.empty":"No Facility",
   "label.facility.add":"Add Facility",
   "label.order.place": "Place Order",
   "label.order.create": "Create Order",
   "label.name": "Name",
+  "label.unit": "Unit",
   "label.facility.address": "Address",
   "label.facility.capital": "Capital",
   "label.details": "Details",
@@ -53,11 +55,12 @@
   "inventory.orderType.OUT": "Out",
   "inventory.orderType.REFILL": "Refill",
   "inventory.orderType.SOLD": "Sold",
+  "inventory.quantity.error": "No enough Inventories",
   "label.order.date": "Order Date",
   "label.order.type": "Type",
   "label.order.number": "Order Number",
   "label.order.item": "Item / Rent",
   "label.rent.property": "Rental Property",
   "label.rents.empty": "No Rental Property",
-  "inventory.quantity.error": "No enough Inventories"
+  "label.rent.address": "Rental Address"
 }

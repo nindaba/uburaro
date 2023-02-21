@@ -1,1 +1,36 @@
-<p>rent-details works!</p>
+<div class="details-page rent" *ngIf="($rent | async) || true">
+    <div class="attributes">
+        <span class="mb-title" translate>label.details</span>
+        <form class="attributes d-flex flex-wrap" [formGroup]="itemForm">
+            <div class="input-grp">
+                <label for="code" class="" translate>label.code</label>
+                <input id="code" formControlName="code" type="text" class="input-text"
+                       placeholder="{{'label.code' | translate}}"/>
+            </div>
+            <div class="input-grp">
+                <label for="name" class="" translate>label.name</label>
+                <input id="name" formControlName="name" type="text" class="input-text"
+                       placeholder="{{'label.name' | translate}}"/>
+            </div>
+            <mb-input-drop-down [relatedItem]="{name: 'current.client', parentPage: 'clients'}"
+                                [$items]="$clients"
+                                [formDetails]="clientForm"
+            ></mb-input-drop-down>
+            <div class="input-grp">
+                <label for="address" class="" translate>label.rent.address</label>
+                <input id="address" formControlName="address" type="text" class="input-text"
+                       placeholder="{{'label.rent.address' | translate}}"/>
+            </div>
+            <div class="input-grp">
+                <label for="cost" class="" translate>label.cost</label>
+                <input id="cost" formControlName="cost" type="text" class="input-text"
+                       placeholder="{{'label.cost' | translate}}"/>
+            </div>
+            <div class="input-grp">
+                <label for="unit" class="" translate>label.unit</label>
+                <input id="unit" formControlName="unit" type="text" class="input-text"
+                       placeholder="{{'label.unit' | translate}}"/>
+            </div>
+        </form>
+    </div>
+</div>

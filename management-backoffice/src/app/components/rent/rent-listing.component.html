@@ -7,7 +7,7 @@
         </th>
         <td [routerLink]="[rent.code]">{{rent.code}}</td>
         <td [routerLink]="[rent.code]">{{rent.name}}</td>
-        <td [routerLink]="[rent.code]">{{rent.currentClient}}</td>
+        <td [routerLink]="[rent.code]">{{rent.currentClient?.name}}</td>
         <td [routerLink]="[rent.code]">{{rent?.cost | currency : '':'':'1.0-0'}} FBU</td>
     </tr>
 </mb-listing>
