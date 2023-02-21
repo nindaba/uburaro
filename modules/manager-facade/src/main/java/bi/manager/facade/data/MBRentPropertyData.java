@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class MBRentPropertyData extends ItemData {
     private Set<MBRentOrderData> rentOrders = new HashSet<>();
-    private String currentClient;
+    private MBClientData currentClient;
     private MBFacilityData facility;
 
     private String name;
@@ -49,11 +49,11 @@ public class MBRentPropertyData extends ItemData {
         return result;
     }
 
-    public String getCurrentClient() {
+    public MBClientData getCurrentClient() {
         return currentClient;
     }
 
-    public void setCurrentClient(String currentClient) {
+    public void setCurrentClient(MBClientData currentClient) {
         this.currentClient = currentClient;
     }
 

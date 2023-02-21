@@ -11,12 +11,11 @@ import org.mapstruct.Mapping;
 
 import java.util.Collection;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring",uses = {ClientMapper.class})
 public interface FullRentPropertyMapper {
 
     @Mapping(target = ItemType.MODIFICATION_LOGS, ignore = true)
     @Mapping(target = PrimaryKeyType.DATE_CREATED, ignore = true)
-    @Mapping(target = MBRentPropertyType.CURRENT_CLIENT, source = "currentClient.name")
     @Mapping(target = MBRentPropertyType.RENT_ORDERS, ignore = true)
     @Mapping(target = MBRentPropertyType.FACILITY, ignore = true)
     MBRentPropertyData rentPropertyToData(MBRentPropertyType rent);
