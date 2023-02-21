@@ -17,10 +17,12 @@ import java.util.Set;
 
 @Data
 @EqualsAndHashCode(callSuper = true, exclude = {
-        "rentOrders"
+        "rentOrders",
+        "facility"
 })
-@ToString(callSuper = true,exclude = {
-        "rentOrders"
+@ToString(callSuper = true, exclude = {
+        "rentOrders",
+        "facility"
 })
 @NoArgsConstructor
 @Entity(name = MBRentPropertyType.ITEM_TYPE)
@@ -31,13 +33,18 @@ public class MBRentPropertyType extends ItemType {
     public static final String RENT_ORDERS = "rentOrders";
     public static final String CURRENT_CLIENT = "currentClient";
     public static final String UNIT = "unit";
+    public static final String FACILITY = "facility";
+    public static final String ADDRESS = "address";
 
-    @OneToMany(cascade = CascadeType.ALL , mappedBy = MBRentOrderType.RENT_PROPERTY)
-    private Set<MBRentOrderType> rentOrders =  new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = MBRentOrderType.RENT_PROPERTY)
+    private Set<MBRentOrderType> rentOrders = new HashSet<>();
     @ManyToOne(cascade = CascadeType.ALL)
     private MBClientType currentClient;
+    @ManyToOne
+    private MBFacilityType facility;
 
     private String name;
-    private Integer unit;
-    private Long cost;
+    private String unit;
+    private long cost;
+    private String address;
 }

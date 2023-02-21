@@ -20,6 +20,11 @@ public interface ManagerWebConstants {
             String client = "/{clientCode}";
         }
 
+        interface Rent {
+            String endpoint = Facility.facility + "/rents";
+            String rent = "/{rentCode}";
+        }
+
         interface Inventory {
             String endpoint = Facility.facility + "/inventories";
             String categoryInventories = Category.endpoint + "/{categoryCode}/inventories";

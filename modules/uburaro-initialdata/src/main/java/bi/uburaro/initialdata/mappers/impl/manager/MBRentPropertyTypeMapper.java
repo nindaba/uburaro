@@ -2,8 +2,8 @@ package bi.uburaro.initialdata.mappers.impl.manager;
 
 import bi.manager.core.repositories.MBOrderRepository;
 import bi.manager.core.types.MBFacilityType;
+import bi.manager.core.types.MBRentPropertyType;
 import bi.manager.core.types.client.MBClientType;
-import bi.manager.core.types.client.MBInvoiceType;
 import bi.manager.core.types.client.MBRentOrderType;
 import bi.uburaro.core.services.TypeService;
 import bi.uburaro.initialdata.mappers.impl.AbstractTypeMapper;
@@ -12,24 +12,24 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
-import static bi.manager.core.types.client.MBClientType.*;
+import static bi.manager.core.types.MBRentPropertyType.*;
 
-public class MBClientTypeMapper extends AbstractTypeMapper<MBClientType> {
+public class MBRentPropertyTypeMapper extends AbstractTypeMapper<MBRentPropertyType> {
 
     protected final MBOrderRepository orderRepository;
 
-    protected MBClientTypeMapper(TypeService typeService, MBOrderRepository orderRepository) {
+    protected MBRentPropertyTypeMapper(TypeService typeService, MBOrderRepository orderRepository) {
         super(typeService);
         this.orderRepository = orderRepository;
     }
 
     @Override
-    public Class<MBClientType> getTargetClass() {
-        return MBClientType.class;
+    public Class<MBRentPropertyType> getTargetClass() {
+        return MBRentPropertyType.class;
     }
 
     @Override
-    public Map<String, Consumer<String>> createFieldsMapper(final MBClientType target) {
+    public Map<String, Consumer<String>> createFieldsMapper(final MBRentPropertyType target) {
         final Map<String, Consumer<String>> fieldsMapper = new HashMap<>();
 
         fieldsMapper.putAll(Map.of(
@@ -38,16 +38,16 @@ public class MBClientTypeMapper extends AbstractTypeMapper<MBClientType> {
                 VISIBLE, value -> target.setVisible(Boolean.valueOf(value)),
                 NAME, target::setName,
                 ADDRESS, target::setAddress,
-                TOTAL_DEBT, value -> target.setTotalDebt(Long.parseLong(value))
+                UNIT, target::setUnit,
+                COST, value -> target.setCost(Long.parseLong(value))
         ));
 
         fieldsMapper.putAll(Map.of(
-                INVOICES, inventories -> getStringStream(inventories)
-                        .map(code -> typeService.findItemByCode(code, MBInvoiceType.class))
-                        .forEach(target.getInvoices()::add),
-                ORDERS, orderNumbers -> getStringStream(orderNumbers)
+                CURRENT_CLIENT, clientCode -> target.setCurrentClient(typeService.findItemByCode(clientCode, MBClientType.class)),
+                RENT_ORDERS, orderNumbers -> getStringStream(orderNumbers)
                         .map(orderRepository::findByOrderNumber)
-                        .forEach(target.getOrders()::add),
+                        .map(order -> (MBRentOrderType) order)
+                        .forEach(target.getRentOrders()::add),
                 FACILITY, facility -> target.setFacility(typeService.findItemByCode(facility, MBFacilityType.class))
 
         ));
