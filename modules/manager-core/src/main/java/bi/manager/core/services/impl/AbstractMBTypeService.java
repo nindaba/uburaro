@@ -7,6 +7,8 @@ import bi.uburaro.core.exceptions.NotFoundException;
 import bi.uburaro.core.services.TypeService;
 import bi.uburaro.core.types.ItemType;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Objects;
 import java.util.Set;
@@ -27,7 +29,7 @@ public abstract class AbstractMBTypeService<ITEM extends ItemType> implements MB
     }
     protected MBFacilityType validateAndGetFacility(MBFacilityType facility) {
         if (facility == null || StringUtils.isEmpty(facility.getCode())) {
-            throw new NotFoundException("No Facility found on the provided category");
+            throw new NotFoundException("No Facility found on the provided");
         }
 
         MBFacilityType itemByCode = typeService.findItemByCode(facility.getCode(), MBFacilityType.class);

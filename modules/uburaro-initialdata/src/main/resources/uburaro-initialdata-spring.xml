@@ -19,6 +19,10 @@
             <constructor-arg name="orderRepository" ref="MBOrderRepository"/>
             <constructor-arg name="typeService" ref="typeService"/>
         </bean>
+        <bean class="bi.uburaro.initialdata.mappers.impl.manager.MBRentPropertyTypeMapper" parent="abstractTypeMapper">
+            <constructor-arg name="orderRepository" ref="MBOrderRepository"/>
+            <constructor-arg name="typeService" ref="typeService"/>
+        </bean>
         <bean class="bi.uburaro.initialdata.mappers.impl.manager.MBFacilityTypeMapper" parent="abstractTypeMapper">
             <constructor-arg name="mbCapitalService" ref="mbCapitalService"/>
         </bean>
