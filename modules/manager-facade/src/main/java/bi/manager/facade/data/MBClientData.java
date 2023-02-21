@@ -14,9 +14,8 @@ public class MBClientData extends ItemData {
     private String address;
     private long totalDebt;
     private MBFacilityData facility;
-    private Set<MBRentOrderData> rentOrders =  new HashSet<>();
-    private Set<MBInventoryOrderData> inventoryOrders =  new HashSet<>();
-    private Set<MBInvoiceData> invoices = new HashSet<>();
+    private Set<MBOrderData> orders =  new HashSet<>();
+    private Set<MBInvoiceData> invoices =  new HashSet<>();
 
     public long getTotalDebt() {
         return totalDebt;
@@ -34,20 +33,8 @@ public class MBClientData extends ItemData {
         this.name = name;
     }
 
-    public Set<MBRentOrderData> getRentOrders() {
-        return rentOrders;
-    }
-
-    public void setRentOrders(Set<MBRentOrderData> rentOrders) {
-        this.rentOrders = rentOrders;
-    }
-
-    public Set<MBInventoryOrderData> getInventoryOrders() {
-        return inventoryOrders;
-    }
-
-    public void setInventoryOrders(Set<MBInventoryOrderData> inventoryOrders) {
-        this.inventoryOrders = inventoryOrders;
+    public Set<MBOrderData> getOrders() {
+        return orders;
     }
 
     public Set<MBInvoiceData> getInvoices() {
@@ -56,6 +43,10 @@ public class MBClientData extends ItemData {
 
     public void setInvoices(Set<MBInvoiceData> invoices) {
         this.invoices = invoices;
+    }
+
+    public void setOrders(Set<MBOrderData> orders) {
+        this.orders = orders;
     }
 
     public MBFacilityData getFacility() {

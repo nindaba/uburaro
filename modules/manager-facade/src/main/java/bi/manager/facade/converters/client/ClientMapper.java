@@ -16,8 +16,7 @@ public interface ClientMapper {
     @Mapping(target = ItemType.MODIFICATION_LOGS, ignore = true)
     @Mapping(target = PrimaryKeyType.DATE_CREATED, ignore = true)
     @Mapping(target = MBClientType.INVOICES, ignore = true)
-    @Mapping(target = MBClientType.RENT_ORDERS, ignore = true)
-    @Mapping(target = MBClientType.INVENTORY_ORDERS, ignore = true)
+    @Mapping(target = MBClientType.ORDERS, ignore = true)
     @Mapping(target = MBClientType.FACILITY, ignore = true)
     MBClientData clientToData(MBClientType client);
 

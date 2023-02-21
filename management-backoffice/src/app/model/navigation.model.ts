@@ -101,8 +101,7 @@ export interface Client extends Item {
     totalDebt: number;
     name?: string;
     address?: string;
-    rentOrders?: RentOrder[];
-    inventoryOrders?: InventoryOrder[];
+    orders?: Order[];
     invoices?: Invoice[];
 }
 

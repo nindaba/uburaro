@@ -16,4 +16,11 @@ export abstract class OrderService {
      * @return observable array of orders
      */
     abstract getOrdersByInventoryCode<ITEM extends Order[]>(code:string): Observable<ITEM>;
+
+    /**
+     * Gets all the orders that belong to the client {@link code}
+     *
+     * @param code
+     */
+    abstract getOrdersByClientCode<ITEM extends Order[]>(code:string): Observable<ITEM>;
 }

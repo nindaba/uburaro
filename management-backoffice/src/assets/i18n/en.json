@@ -54,5 +54,7 @@
   "inventory.orderType.SOLD": "Sold",
   "label.order.date": "Order Date",
   "label.order.type": "Type",
+  "label.order.number": "Order Number",
+  "label.order.item": "Item / Rent",
   "inventory.quantity.error": "No enough Inventories"
 }

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractDetailsComponent} from "../abstract-details.component";
 import {Observable, tap} from "rxjs";
-import {Category, Client} from "../../model/navigation.model";
+import {Category, Client, InventoryOrder} from "../../model/navigation.model";
 import DetailsConfig from "../../../assets/content-config/details-page.json";
 import {FormBuilder, FormControl} from "@angular/forms";
 import {MBItemService} from "../../services/MBItem.service";
@@ -9,6 +9,7 @@ import {BreadcrumbsService} from "../navigation/top-nav/breadcrumbs.service";
 import {TopNavService} from "../navigation/top-nav/top-nav.service";
 import {NEW_ITEM} from "../navigation/navigation.constants";
 import {Router} from "@angular/router";
+import {OrderService} from "../inventory/order.service";
 
 @Component({
     selector: 'mb-client-details',
@@ -16,11 +17,13 @@ import {Router} from "@angular/router";
 })
 export class ClientDetailsComponent extends AbstractDetailsComponent implements OnInit {
     $client: Observable<Client> = new Observable();
-    inventoryHeads: string[] = DetailsConfig.category.inventory.heads;
+    inventoryHeads: string[] = DetailsConfig.client.inventory.heads;
+    $inventoryOrders: Observable<InventoryOrder[]> = new Observable();
 
     constructor(private formBuilder: FormBuilder,
                 private itemService: MBItemService,
                 private breadService: BreadcrumbsService,
+                private orderService: OrderService,
                 protected override topNavService: TopNavService,
                 protected override router: Router
     ) {
@@ -46,6 +49,7 @@ export class ClientDetailsComponent extends AbstractDetailsComponent implements 
                     this.itemForm = this.createFrom(code, name,address);
                     this.subscribeToForm();
                 }),
+                tap(value => this.$inventoryOrders = this.orderService.getOrdersByClientCode<InventoryOrder[]>(value.code))
             );
 
             this.subscribeToDelete(this.breadService.pages.page);

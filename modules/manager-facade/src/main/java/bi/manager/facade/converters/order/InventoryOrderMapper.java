@@ -18,6 +18,8 @@ public interface InventoryOrderMapper {
     @Mapping(target = "itemCode", source = "inventory.code")
     MBInventoryOrderData inventoryOrderToData(MBInventoryOrderType inventoryOrder);
 
+
+
     @InheritInverseConfiguration
     MBInventoryOrderType inventoryOrderToType(MBInventoryOrderData inventoryOrder);
 

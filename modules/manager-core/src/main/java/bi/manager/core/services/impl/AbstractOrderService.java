@@ -37,11 +37,11 @@ public class AbstractOrderService {
         client.setTotalDebt(debt);
     }
 
-    protected void populateClient(final MBOrderType order, final MBOrderType orderType) {
-        MBClientType client = order.getClient();
+    protected void populateClient(final MBOrderType source, final MBOrderType target) {
+        MBClientType client = source.getClient();
         if (client != null && StringUtils.isNotEmpty(client.getCode())) {
             MBClientType clientByCode = clientService.getClientByCode(client.getCode());
-            orderType.setClient(clientByCode);
+            target.setClient(clientByCode);
         }
     }
 
