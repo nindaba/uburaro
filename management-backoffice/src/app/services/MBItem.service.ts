@@ -8,7 +8,7 @@ export abstract class MBItemService{
      *
      * @return observable of Item
      */
-    abstract  getItemByFacilityCode<ITEM extends Item[]>(endpoint?:string) : Observable<ITEM>;
+    abstract  getItemByFacilityCode<ITEM extends Item[]>(endpoint?:string,facility?:string) : Observable<ITEM>;
 
     /**
      * Gets an Item with {@code code} from the server

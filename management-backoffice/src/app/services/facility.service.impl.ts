@@ -1,10 +1,11 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {FacilityService} from "../components/facility/facility.service";
-import {EndpointConfig, Facility} from "../model/navigation.model";
+import {EndpointConfig, Facility, Rent} from "../model/navigation.model";
 import {Observable} from "rxjs";
 import {UrlBuilderService} from "../utils/UrlBuilder.service";
 import {TopNavService} from "../components/navigation/top-nav/top-nav.service";
+import {BreadcrumbsService} from "../components/navigation/top-nav/breadcrumbs.service";
 
 @Injectable()
 export class FacilityServiceImpl implements FacilityService {
@@ -12,7 +13,8 @@ export class FacilityServiceImpl implements FacilityService {
         private http: HttpClient,
         private urlBuilder: UrlBuilderService,
         private topService: TopNavService,
-        private endpointConfig: EndpointConfig) {
+        private endpointConfig: EndpointConfig,
+        private bread: BreadcrumbsService) {
     }
 
     createFacility(facility: Facility): void {

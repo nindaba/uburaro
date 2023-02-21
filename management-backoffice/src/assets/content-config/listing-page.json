@@ -25,5 +25,13 @@
       "label.client.name",
       "label.client.debt"
     ]
+  },
+  "rent": {
+    "heads": [
+      "label.code",
+      "label.rent.property",
+      "label.client.name",
+      "label.cost"
+    ]
   }
 }

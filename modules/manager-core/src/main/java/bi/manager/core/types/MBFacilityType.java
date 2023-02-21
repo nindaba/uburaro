@@ -36,6 +36,7 @@ public class MBFacilityType extends ItemType {
     public static final String CATEGORIES = "categories";
     public static final String CLIENTS = "clients";
     public static final String CAPITAL = "capital";
+    public static final String RENTS = "rents";
 
     private String name;
     private String alias;

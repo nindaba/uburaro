@@ -22,6 +22,8 @@ export class EndpointConfig {
     inventory: string = "";
     clients: string = "";
     client: string = "";
+    rents: string = "";
+    rent: string = "";
     inventoryOrders: string = "";
     inventoryOrder: string = "";
     inventoryFacilityOrders: string = "";
@@ -119,11 +121,20 @@ export interface Category extends Item {
 }
 
 export interface Facility extends Item {
-
     name?: string;
     alias?: string;
     address?: string;
     capital?: Capital;
     clients?: Client[];
     categories?: Category[];
+}
+
+export interface Rent extends Item {
+    rentOrders?: Order[];
+    currentClient?: Client;
+    facility?: Facility;
+    name?: string;
+    unit?: string;
+    cost?: number;
+    address?: string;
 }
