@@ -4,12 +4,13 @@ import {TopNavService} from "../navigation/top-nav/top-nav.service";
 import {BehaviorSubject, catchError, EMPTY, map, Observable, Subject, Subscription, tap} from "rxjs";
 import {FacilityService} from "./facility.service";
 import {BreadcrumbsService} from "../navigation/top-nav/breadcrumbs.service";
-import {Capital, CapitalType, Facility} from "../../model/navigation.model";
+import {Capital, CapitalType, Facility, Rent} from "../../model/navigation.model";
 import {NEW_ITEM} from "../navigation/navigation.constants";
 import {CapitalService} from "./capital.service";
 import {Router} from "@angular/router";
 import {AbstractDetailsComponent} from "../abstract-details.component";
 import DetailsConfig from "../../../assets/content-config/details-page.json"
+import {MBItemService} from "../../services/MBItem.service";
 
 @Component({
     selector: 'mb-facility-details',
@@ -17,15 +18,18 @@ import DetailsConfig from "../../../assets/content-config/details-page.json"
 })
 export class FacilityDetailsComponent extends AbstractDetailsComponent implements OnInit {
     $facility: Observable<Facility> = new Observable<Facility>();
+    $rents: Observable<Rent[]> = new Observable();
     newCapital: FormControl = new FormControl<string>('')
     capitalType: CapitalType = CapitalType.INTERNAL;
     $capital: Observable<Capital> = new BehaviorSubject<Capital>({currentValue: 0});
 
     categoryHeads: string[] = DetailsConfig.facilities.category.heads;
     clientHeads: string[] = DetailsConfig.facilities.clients.heads;
+    rentHeads: string[] = DetailsConfig.facilities.rents.heads;
 
     clientPage: string = "clients";
     categoryPage: string = "categories"
+    rentPage: string = "rents";
 
 
     constructor(
@@ -34,6 +38,7 @@ export class FacilityDetailsComponent extends AbstractDetailsComponent implement
         private breadService: BreadcrumbsService,
         private formBuilder: FormBuilder,
         private capitalService: CapitalService,
+        private itemService: MBItemService,
         protected override router: Router
     ) {
         super(topNavService, router)
@@ -51,6 +56,7 @@ export class FacilityDetailsComponent extends AbstractDetailsComponent implement
                     this.itemForm = this.createFrom(code, name || "", alias || "", address || "");
                     this.subscribeToForm();
                 }),
+                tap(facility => this.$rents = this.itemService.getItemByFacilityCode<Rent[]>("rents",facility.code))
             );
 
             this.$capital = this.$facility.pipe(map(facility => facility.capital || {currentValue: 0}))

@@ -46,7 +46,8 @@ export class UrlBuilderService {
         return this.getBaseUrlForEndPoint(this.bread.pages.page || "");
     }
 
-    getBaseUrlForEndPoint(endpoint:string){
-        return this.getUrl(endpoint).replace("{code}",this.bread.facility);
+    getBaseUrlForEndPoint(endpoint:string,code?:string){
+        let replaceValue = code || this.bread.facility;
+        return this.getUrl(endpoint).replace("{code}",replaceValue);
     }
 }

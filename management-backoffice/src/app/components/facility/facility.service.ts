@@ -1,4 +1,4 @@
-import {Facility} from "../../model/navigation.model";
+import {Facility, Rent} from "../../model/navigation.model";
 import {Observable} from "rxjs";
 
 export abstract class FacilityService{

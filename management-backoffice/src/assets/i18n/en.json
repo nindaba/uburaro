@@ -57,5 +57,7 @@
   "label.order.type": "Type",
   "label.order.number": "Order Number",
   "label.order.item": "Item / Rent",
+  "label.rent.property": "Rental Property",
+  "label.rents.empty": "No Rental Property",
   "inventory.quantity.error": "No enough Inventories"
 }

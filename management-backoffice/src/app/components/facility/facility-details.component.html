@@ -70,5 +70,19 @@
                 <mb-empty [target]="clientPage"/>
             </ng-template>
         </mb-relation>
+
+        <mb-relation [title]="rentPage" [heads]="rentHeads" [allLink]="[rentPage]" [createLink]="[rentPage,'new']">
+            <ng-container *ngIf=" $rents | async ; else emptyRents">
+                <tr *ngFor="let rent of $rents | async">
+                    <td>
+                        {{rent.name}}
+                    </td>
+                    <td>{{rent.cost || 0}}</td>
+                </tr>
+            </ng-container>
+            <ng-template #emptyRents>
+                <mb-empty [target]="rentPage"/>
+            </ng-template>
+        </mb-relation>
     </div>
 </div>
