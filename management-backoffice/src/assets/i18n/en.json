@@ -45,6 +45,7 @@
   "btn.name.all": "All",
   "label.inventory.empty": "No Inventory",
   "label.client.empty": "No Client",
+  "label.clients.empty": "No Clients",
   "label.category.empty": "No Category",
   "label.category.name": "Category",
   "label.category.add": "Add Category",
