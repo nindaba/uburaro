@@ -29,24 +29,24 @@ public class DefaultMBRentPropertyFacade implements MBRentPropertyFacade {
     }
 
     @Override
-    public Collection<MBRentPropertyData> getRentsByFacilityCode(String facilityCode, boolean allFields) {
+    public Collection<MBRentPropertyData> getRentsByFacilityCode(final String facilityCode, final boolean allFields) {
         Collection<MBRentPropertyType> rents = rentService.getRentsByFacilityCode(facilityCode);
         return allFields ? fullMapper.rentPropertiesToData(rents) : mapper.rentPropertiesToData(rents);
     }
 
     @Override
-    public MBRentPropertyData getRentalPropertyByCode(String code, boolean allFields) {
+    public MBRentPropertyData getRentalPropertyByCode(final String code, final boolean allFields) {
         MBRentPropertyType itemByCode = typeService.findItemByCode(code, MBRentPropertyType.class);
         return allFields ? fullMapper.rentPropertyToData(itemByCode) : mapper.rentPropertyToData(itemByCode);
     }
 
     @Override
-    public void deleteRentals(Set<String> codes) {
+    public void deleteRentals(final Set<String> codes) {
         rentService.deleteMBItem(codes);
     }
 
     @Override
-    public void updateRental(MBRentPropertyData rental) {
+    public void updateRental(final MBRentPropertyData rental) {
         rentService.updateRent(
                 fullMapper.rentPropertyToType(rental));
     }

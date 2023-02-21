@@ -25,7 +25,7 @@ public class DefaultMBRentService extends AbstractMBTypeService<MBRentPropertyTy
     }
 
     @Override
-    public Collection<MBRentPropertyType> getRentsByFacilityCode(String facilityCode) {
+    public Collection<MBRentPropertyType> getRentsByFacilityCode(final String facilityCode) {
         return typeService.findItemByCode(facilityCode, MBFacilityType.class)
                 .getRents().stream()
                 .filter(ItemType::isActive)
@@ -33,7 +33,7 @@ public class DefaultMBRentService extends AbstractMBTypeService<MBRentPropertyTy
     }
 
     @Override
-    public void updateRent(MBRentPropertyType rent) {
+    public void updateRent(final MBRentPropertyType rent) {
         final MBFacilityType facility = validateAndGetFacility(rent.getFacility());
         final MBRentPropertyType newRent = getOrCreateRent(rent);
 
@@ -46,7 +46,7 @@ public class DefaultMBRentService extends AbstractMBTypeService<MBRentPropertyTy
         typeService.save(newRent);
     }
 
-    private void populateRent(MBRentPropertyType source, MBRentPropertyType target) {
+    private void populateRent(final MBRentPropertyType source, final MBRentPropertyType target) {
         target.setCode(source.getCode());
 
         if (StringUtils.isNotEmpty(source.getName())) {
@@ -66,16 +66,16 @@ public class DefaultMBRentService extends AbstractMBTypeService<MBRentPropertyTy
         }
     }
 
-    private void populateClient(MBRentPropertyType source, MBRentPropertyType target) {
-        MBClientType currentClient = source.getCurrentClient();
+    private void populateClient(final MBRentPropertyType source,final MBRentPropertyType target) {
+        final MBClientType currentClient = source.getCurrentClient();
 
         if (currentClient != null && StringUtils.isNotEmpty(currentClient.getCode())) {
-            MBClientType client = typeService.findItemByCode(currentClient.getCode(), MBClientType.class);
+            final MBClientType client = typeService.findItemByCode(currentClient.getCode(), MBClientType.class);
             target.setCurrentClient(client);
         }
     }
 
-    private MBRentPropertyType getOrCreateRent(MBRentPropertyType rent) {
+    private MBRentPropertyType getOrCreateRent(final MBRentPropertyType rent) {
         Assert.notNull(rent, "Rent must not be null");
         Assert.notNull(rent.getCost(), "Rent code must not be null");
 
