@@ -73,6 +73,9 @@ public class DefaultMBRentService extends AbstractMBTypeService<MBRentPropertyTy
             final MBClientType client = typeService.findItemByCode(currentClient.getCode(), MBClientType.class);
             target.setCurrentClient(client);
         }
+        if (currentClient != null){
+            target.setCurrentClient(null);
+        }
     }
 
     private MBRentPropertyType getOrCreateRent(final MBRentPropertyType rent) {

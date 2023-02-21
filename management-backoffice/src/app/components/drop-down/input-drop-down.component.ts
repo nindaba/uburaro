@@ -42,13 +42,16 @@ export class InputDropDownComponent implements OnInit, OnDestroy {
     onUnFocus() {
         setTimeout(() => {
             this.$showDrop.next(false);
-
-            this.subscription.add(
-                this.$items.pipe(
-                    map(value => value.find(item => item.code == this.formDetails.get("code")?.value)),
-                    map(this.getCodeName))
-                    .subscribe({next: value => this.formDetails.setValue(value)})
-            );
+            if (this.formDetails.get("name")?.value) {
+                this.subscription.add(
+                    this.$items.pipe(
+                        map(value => value.find(item => item.code == this.formDetails.get("code")?.value)),
+                        map(this.getCodeName))
+                        .subscribe({next: value => this.formDetails.setValue(value)})
+                );
+            } else {
+                this.formDetails.setValue({name:"",code: ""});
+            }
         }, 150);
     }
 
