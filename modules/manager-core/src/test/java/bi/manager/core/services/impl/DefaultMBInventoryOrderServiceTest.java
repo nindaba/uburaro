@@ -105,7 +105,7 @@ class DefaultMBInventoryOrderServiceTest {
         CATEGORY.setInventories(Set.of(INVENTORY));
         FACILITY.setClients(Set.of(CLIENT));
         FACILITY.setCategories(Set.of(CATEGORY));
-        CLIENT.setInventoryOrders(Set.of(ORDER_1));
+        CLIENT.setOrders(Set.of(ORDER_1));
     }
 
     @Test

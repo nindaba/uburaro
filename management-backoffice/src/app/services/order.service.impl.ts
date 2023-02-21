@@ -19,4 +19,9 @@ export class OrderServiceImpl implements OrderService{
     getOrdersByInventoryCode<ITEM extends Order[]>(code: string): Observable<ITEM> {
         return this.http.get<ITEM>(this.urlBuilder.getUrl("inventoryOrders",[{key: "code", value: code}]));
     }
+
+    getOrdersByClientCode<ITEM extends Order[]>(code: string): Observable<ITEM> {
+        return this.http.get<ITEM>(this.urlBuilder.getUrl("inventoryClientOrders",[{key: "code", value: code}]));
+    }
+
 }

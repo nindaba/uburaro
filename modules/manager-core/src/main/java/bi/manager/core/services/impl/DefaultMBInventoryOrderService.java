@@ -59,7 +59,9 @@ public class DefaultMBInventoryOrderService extends AbstractOrderService impleme
 
     @Override
     public Collection<MBInventoryOrderType> getOrderByClientCode(final String code) {
-        return clientService.getClientByCode(code).getInventoryOrders();
+        return clientService.getClientByCode(code).getOrders().stream()
+                .map(order -> (MBInventoryOrderType) order)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -134,11 +136,11 @@ public class DefaultMBInventoryOrderService extends AbstractOrderService impleme
         if (source.getOrderDate() == null) {
             target.setOrderDate(LocalDate.now());
         }
-        GeneratedKey orderNumber = new GeneratedKey();
-        generatedKeyRepository.save(orderNumber);
+        GeneratedKey generated = new GeneratedKey();
+        generatedKeyRepository.save(generated);
 
         String prefix = environment.getProperty(INVENTORY_ORDER_PREFIX, String.class, "IN-");
-        target.setOrderNumber(prefix + orderNumber);
+        target.setOrderNumber(prefix + generated.getGeneratedValue());
         target.setOrderEntry(source.getOrderEntry());
     }
 

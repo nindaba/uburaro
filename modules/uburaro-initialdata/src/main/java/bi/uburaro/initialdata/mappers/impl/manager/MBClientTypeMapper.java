@@ -1,7 +1,7 @@
 package bi.uburaro.initialdata.mappers.impl.manager;
 
+import bi.manager.core.repositories.MBOrderRepository;
 import bi.manager.core.types.MBFacilityType;
-import bi.manager.core.types.MBInventoryOrderType;
 import bi.manager.core.types.client.MBClientType;
 import bi.manager.core.types.client.MBInvoiceType;
 import bi.manager.core.types.client.MBRentOrderType;
@@ -16,9 +16,11 @@ import static bi.manager.core.types.client.MBClientType.*;
 
 public class MBClientTypeMapper extends AbstractTypeMapper<MBClientType> {
 
+    protected final MBOrderRepository orderRepository;
 
-    protected MBClientTypeMapper(TypeService typeService) {
+    protected MBClientTypeMapper(TypeService typeService, MBOrderRepository orderRepository) {
         super(typeService);
+        this.orderRepository = orderRepository;
     }
 
     @Override
@@ -43,12 +45,9 @@ public class MBClientTypeMapper extends AbstractTypeMapper<MBClientType> {
                 INVOICES, inventories -> getStringStream(inventories)
                         .map(code -> typeService.findItemByCode(code, MBInvoiceType.class))
                         .forEach(target.getInvoices()::add),
-                RENT_ORDERS, rents -> getStringStream(rents)
-                        .map(code -> typeService.findItemByCode(code, MBRentOrderType.class))
-                        .forEach(target.getRentOrders()::add),
-                INVENTORY_ORDERS, inventories -> getStringStream(inventories)
-                        .map(code -> typeService.findItemByCode(code, MBInventoryOrderType.class))
-                        .forEach(target.getInventoryOrders()::add),
+                ORDERS, orderNumbers -> getStringStream(orderNumbers)
+                        .map(orderRepository::findByOrderNumber)
+                        .forEach(target.getOrders()::add),
                 FACILITY, facility -> target.setFacility(typeService.findItemByCode(facility, MBFacilityType.class))
 
         ));

@@ -42,6 +42,7 @@ class DefaultMBClientServiceTest {
         CLIENT_1.setCode("cl1");
         CLIENT_1.setName("name1");
         CLIENT_1.setActive(true);
+        CLIENT_1.setFacility(FACILITY_TYPE);
 
         CLIENT_2.setCode("cl2");
         CLIENT_2.setName("name2");
@@ -50,6 +51,7 @@ class DefaultMBClientServiceTest {
         CLIENT_3.setCode("cl3");
         CLIENT_3.setName("name3");
         CLIENT_3.setActive(true);
+        CLIENT_3.setFacility(FACILITY_TYPE);
 
         FACILITY_TYPE.setCode("facility");
         FACILITY_TYPE.setClients(Set.of(CLIENT_1,CLIENT_2,CLIENT_3));
@@ -72,6 +74,7 @@ class DefaultMBClientServiceTest {
     @Test
     void updateClient() {
         MBClientType CLIENT_SPY = spy(CLIENT_3);
+        when(typeService.findItemByCode(FACILITY_TYPE.getCode(), MBFacilityType.class)).thenReturn(FACILITY_TYPE);
         when(typeService.findItemByCode(CLIENT_1.getCode(), MBClientType.class)).thenThrow(NotFoundException.class);
         when(typeService.findItemByCode(CLIENT_3.getCode(), MBClientType.class)).thenReturn(CLIENT_SPY);
         when(typeService.create(MBClientType.class)).thenReturn(CLIENT_1);

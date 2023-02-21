@@ -54,7 +54,7 @@ public class DefaultMBCategoryService extends AbstractMBTypeService implements M
 
     private void populateCategory(MBCategoryType target, MBCategoryType source) {
         MBFacilityType itemByCode = validateAndGetFacility(source.getFacility());
-        target.setFacility(itemByCode);target.setFacility(itemByCode);
+        target.setFacility(itemByCode);
 
         if (StringUtils.isNotEmpty(source.getName())) {
             target.setName(source.getName());
