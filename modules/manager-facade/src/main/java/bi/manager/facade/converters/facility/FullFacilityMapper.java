@@ -18,7 +18,6 @@ public interface FullFacilityMapper {
 
     @Mapping(target = "dateCreated", expression = "java(new java.util.Date())")
     @Mapping(target = "modificationLogs",ignore = true)
-    @Mapping(target = MBFacilityType.CLIENTS,ignore = true)
     MBFacilityData facilityToData(MBFacilityType facility);
 
     @InheritInverseConfiguration
