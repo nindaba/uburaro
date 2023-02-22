@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NavigationEnd, Router, RouterEvent} from "@angular/router";
-import {BehaviorSubject, filter, map, mergeMap, Observable, OperatorFunction} from "rxjs";
+import {BehaviorSubject, filter, map, mergeMap, Observable, OperatorFunction, tap} from "rxjs";
 import {BreadcrumbsService} from "./breadcrumbs.service";
 import {FacilityService} from "../../facility/facility.service";
 import {Facility} from "../../../model/navigation.model";
@@ -12,7 +12,7 @@ import {NEW_ITEM} from "../navigation.constants";
     templateUrl: './breadcrumbs.component.html'
 })
 export class BreadcrumbsComponent implements OnInit {
-    $showFacilitySelectorClass: Observable<string> = this.breadService.$facilitySelectorActive.pipe(map(value => value ? "active": ""));
+    $showFacilitySelectorClass: Observable<string> = this.breadService.$facilitySelectorActive.pipe(map(value => value ? "active" : ""));
     $facility: BehaviorSubject<string> = this.breadService.$facility;
     pageRoute: Observable<{ page?: string; details?: string; }> = new Observable<{ page?: string; details?: string }>();
     $facilities: Observable<Facility[]> = this.facilityService.getAllFacilities();

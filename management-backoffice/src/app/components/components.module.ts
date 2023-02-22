@@ -6,6 +6,7 @@ import {CategoryModule} from "./category/category.module";
 import {InventoryModule} from "./inventory/inventory.module";
 import {ClientModule} from "./client/client.module";
 import {RentModule} from "./rent/rent.module";
+import {ReportModule} from "./report/report.module";
 
 
 
@@ -17,7 +18,8 @@ import {RentModule} from "./rent/rent.module";
         CategoryModule,
         InventoryModule,
         ClientModule,
-        RentModule
+        RentModule,
+        ReportModule
     ],
     exports: [
         NavigationModule,

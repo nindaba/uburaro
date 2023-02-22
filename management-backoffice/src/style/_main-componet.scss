@@ -1,8 +1,9 @@
 .main-component {
   .row {
+    height: 100vh;
+    overflow-y: hidden;
     > div {
     }
-
     .col-10 {
       .router-outlet{
       }

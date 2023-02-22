@@ -7,4 +7,13 @@
   font-weight: 500;
   padding-bottom: 8px;
   text-transform: uppercase;
+
+  &-tab {
+    padding-bottom: 8px;
+    &.active{
+      border-bottom: solid 3px $primary;
+      border-radius: 0;
+    }
+  }
 }
+

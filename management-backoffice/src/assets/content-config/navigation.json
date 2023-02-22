@@ -47,7 +47,7 @@
     }
   },
   "top-nav": {
-    "description" : "This nodes configurations are not iterated through like the above. this are used for configs only ",
+    "description": "This nodes configurations are not iterated through like the above. this are used for configs only ",
     "nodes": [
       {
         "id": "back",
@@ -56,17 +56,21 @@
       {
         "id": "search",
         "name": "nodes.name.search"
-      }
-      ,
+      },
       {
         "id": "add",
         "name": "nodes.name.add",
-        "disabledOn": ["reports"]
+        "disabledOn": [
+          "reports"
+        ]
       },
       {
         "id": "delete",
         "name": "nodes.name.delete",
-        "disabledOn": ["reports","dashboard"]
+        "disabledOn": [
+          "reports",
+          "dashboard"
+        ]
       },
       {
         "id": "save",
@@ -79,25 +83,69 @@
       {
         "id": "print",
         "name": "nodes.name.print",
-        "disabledOn": ["dashboard"]
+        "disabledOn": [
+          "dashboard"
+        ]
       },
       {
         "id": "use",
         "name": "nodes.name.use",
         "routeId": "facilities",
-        "disabledOn": ["clients","categories","inventories","rents","reports","dashboard"]
+        "disabledOn": [
+          "clients",
+          "categories",
+          "inventories",
+          "rents",
+          "reports",
+          "dashboard"
+        ]
       },
       {
         "id": "from",
         "name": "nodes.name.from",
         "routeId": "report",
-        "disabledOn": ["clients","categories","inventories","rents","facilities","dashboard"]
+        "disabledOn": [
+          "clients",
+          "categories",
+          "inventories",
+          "rents",
+          "facilities",
+          "dashboard"
+        ]
       },
       {
         "id": "to",
         "name": "nodes.name.to",
         "routeId": "report",
-        "disabledOn": ["clients","categories","inventories","rents","facilities","dashboard"]
+        "disabledOn": [
+          "clients",
+          "categories",
+          "inventories",
+          "rents",
+          "facilities",
+          "dashboard"
+        ]
+      }
+    ]
+  },
+  "report-tabs": {
+    "nodes": [
+      {
+        "name": "nodes.name.clients",
+        "routeId": "reports/clients"
+      },
+      {
+        "name": "nodes.name.inventories",
+        "routeId": "reports/inventories"
+      },
+      {
+        "name": "nodes.name.rents",
+        "routeId": "reports/rents"
+      },
+      {
+        "name": "nodes.name.capital",
+        "routeId": "reports/capital",
+        "active": true
       }
     ]
   }

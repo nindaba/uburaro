@@ -12,6 +12,10 @@ import {CategoryListingComponent} from "./components/category/category-listing.c
 import {InventoryListingComponent} from "./components/inventory/inventory-listing.component";
 import {ClientListingComponent} from "./components/client/client-listing.component";
 import {RentListingComponent} from "./components/rent/rent-listing.component";
+import {CapitalReportComponent} from "./components/report/capital-report.component";
+import {InventoriesReportComponent} from "./components/report/inventories-report.component";
+import {RentsReportComponent} from "./components/report/rents-report.component";
+import {ClientsReportComponent} from "./components/report/clients-report.component";
 
 const listingRoutes: string[] = []
 const listingPageMatcher: UrlMatcher = url => {
@@ -105,7 +109,30 @@ const routes: Routes = [
     },
     {
         path: "reports",
-        component: ReportComponent
+        component: ReportComponent,
+        children: [
+            {
+                path: "capital",
+                component: CapitalReportComponent
+            },
+            {
+                path: "inventories",
+                component: InventoriesReportComponent,
+            },
+            {
+                path: "clients",
+                component: ClientsReportComponent
+            },
+            {
+                path: "rents",
+                component: RentsReportComponent
+            },
+            {
+                path: "**",
+                pathMatch: "full",
+                redirectTo: "capital"
+            }
+        ]
     }
 
 ];
