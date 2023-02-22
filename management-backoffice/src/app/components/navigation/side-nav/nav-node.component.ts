@@ -27,6 +27,6 @@ export class NavNodeComponent{
             this.breadService.toggleFacilitySelector();
         }
         this.service.setActiveNode(this.node);
-        this.router.navigate(["../", this.node.routeId])
+        this.router.navigate([this.node.routeId])
     }
 }

@@ -17,6 +17,7 @@
   "nodes.name.save": "Save",
   "nodes.name.from": "From",
   "nodes.name.to": "To",
+  "nodes.name.capital": "Capital",
   "child-node.title": "Facilities",
   "nodes.name.search": "Search",
   "btn.name.close": "Close",
