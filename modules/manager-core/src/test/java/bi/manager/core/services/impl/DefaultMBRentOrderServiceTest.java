@@ -118,7 +118,7 @@ class DefaultMBRentOrderServiceTest {
     void deleteOrder() {
         ORDER_SPY.setClient(CLIENT_SPY);
         ORDER_SPY.setRentProperty(RENT_SPY);
-        
+
         when(orderRepository.findByOrderNumber(ORDER.getOrderNumber())).thenReturn(ORDER_SPY);
         doNothing().when(typeService).delete(ORDER_SPY);
         when(typeService.save(CLIENT_SPY)).thenReturn(true);
