@@ -5,6 +5,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 
 public class UburaroApplicationListener implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -14,5 +17,6 @@ public class UburaroApplicationListener implements ApplicationListener<ContextRe
         context.getBeansOfType(Merger.class)
                 .values().forEach(Merger::merge);
 
+        System.setProperty("logging.file.name", LocalDate.now().toString());
     }
 }
