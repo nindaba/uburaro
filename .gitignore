@@ -85,3 +85,10 @@ out
 
 node_modules
 .angular
+release
+dist
+package-lock.json
+manager-app
+scripts/*-app
+platform/log
+
