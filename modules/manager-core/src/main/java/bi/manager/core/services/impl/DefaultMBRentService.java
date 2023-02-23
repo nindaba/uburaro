@@ -57,7 +57,7 @@ public class DefaultMBRentService extends AbstractMBTypeService<MBRentPropertyTy
             target.setAddress(source.getAddress());
         }
 
-        if (StringUtils.isNotEmpty(source.getUnit())) {
+        if (source.getUnit() > 0) {
             target.setUnit(source.getUnit());
         }
 

@@ -8,10 +8,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,9 +29,11 @@ public class MBRentPropertyType extends ItemType {
     public static final String COST = "cost";
     public static final String RENT_ORDERS = "rentOrders";
     public static final String CURRENT_CLIENT = "currentClient";
+    public static final String CURRENT_ORDER = "currentOrder";
     public static final String UNIT = "unit";
     public static final String FACILITY = "facility";
     public static final String ADDRESS = "address";
+    public static final String TOTAL_INCOME = "totalIncome";
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = MBRentOrderType.RENT_PROPERTY)
     private Set<MBRentOrderType> rentOrders = new HashSet<>();
@@ -44,7 +43,8 @@ public class MBRentPropertyType extends ItemType {
     private MBFacilityType facility;
 
     private String name;
-    private String unit;
+    private int unit;
     private long cost;
     private String address;
+    private long totalIncome;
 }

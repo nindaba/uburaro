@@ -51,7 +51,7 @@ class DefaultMBRentServiceTest {
         RENT.setActive(true);
         RENT.setFacility(FACILITY_TYPE);
         RENT.setAddress("muyinga");
-        RENT.setUnit("unit");
+        RENT.setUnit(30);
 
         when(typeService.findItemByCode(FACILITY_TYPE.getCode(), MBFacilityType.class)).thenReturn(FACILITY_TYPE);
     }
@@ -79,7 +79,7 @@ class DefaultMBRentServiceTest {
         verify(RENT_SPY).setActive(true);
         verify(RENT_SPY).setFacility(FACILITY_TYPE);
         verify(RENT_SPY).setAddress("muyinga");
-        verify(RENT_SPY).setUnit("unit");
+        verify(RENT_SPY).setUnit(30);
     }
 
     @Test

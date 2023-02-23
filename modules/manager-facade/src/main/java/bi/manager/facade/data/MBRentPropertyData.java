@@ -12,7 +12,7 @@ public class MBRentPropertyData extends ItemData {
     private MBFacilityData facility;
 
     private String name;
-    private String unit;
+    private int unit;
     private long cost;
     private String address;
 
@@ -31,19 +31,16 @@ public class MBRentPropertyData extends ItemData {
 
         MBRentPropertyData that = (MBRentPropertyData) o;
 
+        if (unit != that.unit) return false;
         if (cost != that.cost) return false;
-        if (!Objects.equals(currentClient, that.currentClient))
-            return false;
         if (!Objects.equals(name, that.name)) return false;
-        if (!Objects.equals(unit, that.unit)) return false;
         return Objects.equals(address, that.address);
     }
 
     @Override
     public int hashCode() {
-        int result = currentClient != null ? currentClient.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (unit != null ? unit.hashCode() : 0);
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + unit;
         result = 31 * result + (int) (cost ^ (cost >>> 32));
         result = 31 * result + (address != null ? address.hashCode() : 0);
         return result;
@@ -73,11 +70,11 @@ public class MBRentPropertyData extends ItemData {
         this.name = name;
     }
 
-    public String getUnit() {
+    public int getUnit() {
         return unit;
     }
 
-    public void setUnit(String unit) {
+    public void setUnit(int unit) {
         this.unit = unit;
     }
 

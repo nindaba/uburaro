@@ -9,7 +9,7 @@ public class MBOrderData extends ItemData {
 
     private String orderNumber;
     private int quantity;
-    private String unit;
+    private int unit;
     private LocalDate orderDate;
     private long cost;
     private String itemName;
@@ -33,11 +33,11 @@ public class MBOrderData extends ItemData {
         this.quantity = quantity;
     }
 
-    public String getUnit() {
+    public int getUnit() {
         return unit;
     }
 
-    public void setUnit(String unit) {
+    public void setUnit(int unit) {
         this.unit = unit;
     }
 
@@ -97,9 +97,9 @@ public class MBOrderData extends ItemData {
         MBOrderData that = (MBOrderData) o;
 
         if (quantity != that.quantity) return false;
+        if (unit != that.unit) return false;
         if (cost != that.cost) return false;
         if (!Objects.equals(orderNumber, that.orderNumber)) return false;
-        if (!Objects.equals(unit, that.unit)) return false;
         if (!Objects.equals(orderDate, that.orderDate)) return false;
         if (!Objects.equals(itemName, that.itemName)) return false;
         if (!Objects.equals(itemCode, that.itemCode)) return false;
@@ -111,7 +111,7 @@ public class MBOrderData extends ItemData {
     public int hashCode() {
         int result = orderNumber != null ? orderNumber.hashCode() : 0;
         result = 31 * result + quantity;
-        result = 31 * result + (unit != null ? unit.hashCode() : 0);
+        result = 31 * result + unit;
         result = 31 * result + (orderDate != null ? orderDate.hashCode() : 0);
         result = 31 * result + (int) (cost ^ (cost >>> 32));
         result = 31 * result + (itemName != null ? itemName.hashCode() : 0);
