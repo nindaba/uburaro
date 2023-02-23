@@ -70,6 +70,7 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
         populateClient(order, rentOrder);
         chargeClient(rentOrder);
         addIncome(rentOrder);
+        typeService.save(rentOrder);
     }
 
     private void addIncome(MBRentOrderType rentOrder) {
@@ -105,7 +106,7 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
         MBRentPropertyType rentProperty = source.getRentProperty();
         if (rentProperty != null && StringUtils.isNotEmpty(rentProperty.getCode())) {
             MBRentPropertyType rent = typeService.findItemByCode(rentProperty.getCode(), MBRentPropertyType.class);
-            rent.getRentOrders().add(target);
+            target.setRentProperty(rent);
         } else {
             throw new NotFoundException("No property code found on the rent property");
         }

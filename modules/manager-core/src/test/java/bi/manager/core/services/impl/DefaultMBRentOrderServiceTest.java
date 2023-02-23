@@ -6,6 +6,7 @@ import bi.manager.core.services.MBFacilityService;
 import bi.manager.core.types.MBFacilityType;
 import bi.manager.core.types.MBRentPropertyType;
 import bi.manager.core.types.client.MBClientType;
+import bi.manager.core.types.client.MBOrderType;
 import bi.manager.core.types.client.MBRentOrderType;
 import bi.uburaro.core.repositories.GeneratedKeyRepository;
 import bi.uburaro.core.services.TypeService;
@@ -17,6 +18,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.core.env.Environment;
@@ -49,8 +51,6 @@ class DefaultMBRentOrderServiceTest {
     DefaultMBRentOrderService service;
 
     @Mock
-    MBFacilityService facilityService;
-    @Mock
     MBClientService clientService;
     @Mock
     TypeService typeService;
@@ -68,7 +68,6 @@ class DefaultMBRentOrderServiceTest {
 
         CLIENT.setCode("cl1");
         CLIENT.setFacility(FACILITY_TYPE);
-        CLIENT.setOrders(new HashSet<>());
 
         RENT.setCode("1000");
         RENT.setCost(1000l);
@@ -77,7 +76,6 @@ class DefaultMBRentOrderServiceTest {
         RENT.setFacility(FACILITY_TYPE);
         RENT.setAddress("muyinga");
         RENT.setUnit(30);
-        RENT.setRentOrders(new HashSet<>());
 
         ORDER.setFrom(LocalDate.now().minusMonths(2));
         ORDER.setTo(LocalDate.now());
@@ -90,8 +88,6 @@ class DefaultMBRentOrderServiceTest {
         ORDER_SPY = spy(ORDER);
         CLIENT_SPY = spy(CLIENT);
         RENT_SPY = spy(RENT);
-        ORDER_SPY.setClient(CLIENT_SPY);
-        ORDER_SPY.setRentProperty(RENT_SPY);
 
         COST = ORDER.getCost() * RENT.getUnit();
     }
@@ -101,7 +97,7 @@ class DefaultMBRentOrderServiceTest {
         GeneratedKey key = new GeneratedKey();
         key.setGeneratedValue(23l);
         when(clientService.getClientByCode(CLIENT.getCode())).thenReturn(CLIENT_SPY);
-        when(typeService.findItemByCode(RENT_SPY.getCode(), MBRentPropertyType.class)).thenReturn(RENT_SPY);
+        when(typeService.findItemByCode(RENT.getCode(), MBRentPropertyType.class)).thenReturn(RENT_SPY);
         when(environment.getProperty(RENT_ORDER_PREFIX, String.class, "RO-")).thenReturn("RO-");
         when(generatedKeyRepository.save(new GeneratedKey())).thenReturn(key);
         when(typeService.create(MBRentOrderType.class)).thenReturn(ORDER_SPY);
@@ -109,18 +105,20 @@ class DefaultMBRentOrderServiceTest {
         service.placeOrder(ORDER);
 
         verify(CLIENT_SPY).setTotalDebt(CLIENT.getTotalDebt() - COST);
-        verify(CLIENT_SPY).getOrders();
-
         verify(RENT_SPY).setTotalIncome(RENT.getTotalIncome() + COST);
-        verify(RENT_SPY).getRentOrders();
-
         verify(ORDER_SPY).setQuantity((int) (ChronoUnit.DAYS.between(ORDER.getFrom(), ORDER.getTo()) / RENT.getUnit()));
         verify(ORDER_SPY).setUnitCharged(ORDER.getUnitCharged());
+        verify(ORDER_SPY).setRentProperty(RENT_SPY);
+        verify(ORDER_SPY).setClient(CLIENT_SPY);
         verify(ORDER_SPY).setTotalUnitCharged(ORDER_SPY.getTotalUnitCharged()+ORDER.getUnitCharged());
+        verify(typeService).save(ORDER_SPY);
     }
 
     @Test
     void deleteOrder() {
+        ORDER_SPY.setClient(CLIENT_SPY);
+        ORDER_SPY.setRentProperty(RENT_SPY);
+        
         when(orderRepository.findByOrderNumber(ORDER.getOrderNumber())).thenReturn(ORDER_SPY);
         doNothing().when(typeService).delete(ORDER_SPY);
         when(typeService.save(CLIENT_SPY)).thenReturn(true);
