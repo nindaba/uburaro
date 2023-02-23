@@ -1,14 +1,14 @@
 ##mBRentProperty;;;;;;;;
 code;facility;name;address;cost;active;visible;currentClient;unit
-cizanye;cizanye-bar;Cizanye Bar;muyinga gikarani;800;TRUE;TRUE;cizanye;month
-kugatumba;kugatumba-bar;Kugatumba Bar;Bujumbura Kamenge;;TRUE;TRUE;kugatumba;month
-Lorem;Lorem;Phasellus;Lorem;;TRUE;TRUE;Lorem;month
-ipsum;ipsum;ut;ipsum;;TRUE;TRUE;ipsum;month
-dolor;dolor;ornare;dolor;;TRUE;TRUE;dolor;month
-sit;sit;libero.;sit;;TRUE;TRUE;sit;month
-amet;amet;Etiam;amet;;TRUE;TRUE;amet;month
-consectetur;consectetur;facilisis;consectetur;;TRUE;TRUE;consectetur;month
-adipiscing;adipiscing;non;adipiscing;200;TRUE;TRUE;adipiscing;month
-elit;elit.;lorem;elit.;;TRUE;TRUE;elit;month
-Cras;Cras;id;Phasellus;1200;TRUE;TRUE;Cras;month
-congue;congue.;semper.;blandit.;;TRUE;TRUE;congue;month
+cizanye;cizanye-bar;Cizanye Bar;muyinga gikarani;800;TRUE;TRUE;cizanye;30
+kugatumba;kugatumba-bar;Kugatumba Bar;Bujumbura Kamenge;;TRUE;TRUE;kugatumba;30
+Lorem;Lorem;Phasellus;Lorem;;TRUE;TRUE;Lorem;30
+ipsum;ipsum;ut;ipsum;;TRUE;TRUE;ipsum;30
+dolor;dolor;ornare;dolor;;TRUE;TRUE;dolor;30
+sit;sit;libero.;sit;;TRUE;TRUE;sit;30
+amet;amet;Etiam;amet;;TRUE;TRUE;amet;30
+consectetur;consectetur;facilisis;consectetur;;TRUE;TRUE;consectetur;30
+adipiscing;adipiscing;non;adipiscing;200;TRUE;TRUE;adipiscing;30
+elit;elit.;lorem;elit.;;TRUE;TRUE;elit;30
+Cras;Cras;id;Phasellus;1200;TRUE;TRUE;Cras;30
+congue;congue.;semper.;blandit.;;TRUE;TRUE;congue;15

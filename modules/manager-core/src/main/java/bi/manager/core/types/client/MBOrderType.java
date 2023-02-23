@@ -30,7 +30,7 @@ public class MBOrderType extends ItemType {
 
     private String orderNumber;
     private int quantity;
-    private String unit;
+    private int unit;
     private LocalDate orderDate;
     private long cost;
 }

@@ -6,13 +6,14 @@ import bi.manager.core.services.MBFacilityService;
 import bi.manager.core.types.MBInventoryOrderType;
 import bi.manager.core.types.client.MBClientType;
 import bi.manager.core.types.client.MBOrderType;
+import bi.manager.core.types.client.MBRentOrderType;
 import bi.manager.core.types.enums.MBInventoryEntryEnum;
+import bi.uburaro.core.exceptions.NotFoundException;
 import bi.uburaro.core.repositories.GeneratedKeyRepository;
 import bi.uburaro.core.services.TypeService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.env.Environment;
 
-import java.util.Set;
 
 public class AbstractOrderService {
     protected final MBFacilityService facilityService;
@@ -33,7 +34,8 @@ public class AbstractOrderService {
 
     protected void chargeClient(final MBOrderType orderType) {
         MBClientType client = orderType.getClient();
-        long debt = client.getTotalDebt() + orderType.getQuantity() * orderType.getCost();
+        long debt = client.getTotalDebt() - orderType.getQuantity() * orderType.getCost();
+        client.getOrders().add(orderType);
         client.setTotalDebt(debt);
     }
 
@@ -43,6 +45,9 @@ public class AbstractOrderService {
             MBClientType clientByCode = clientService.getClientByCode(client.getCode());
             target.setClient(clientByCode);
         }
+        if(target instanceof MBRentOrderType && target.getClient() == null){
+            throw new NotFoundException("No client was not found on the order");
+        }
     }
 
     public void revertClient(MBOrderType order) {
@@ -50,7 +55,7 @@ public class AbstractOrderService {
                 && ((MBInventoryOrderType) order).getOrderEntry() == MBInventoryEntryEnum.SOLD) {
 
             MBClientType client = order.getClient();
-            long debt = client.getTotalDebt() - order.getQuantity() * order.getCost();
+            long debt = client.getTotalDebt() + order.getQuantity() * order.getCost();
             client.setTotalDebt(debt);
             typeService.save(client);
         }

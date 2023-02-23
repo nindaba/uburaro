@@ -38,7 +38,7 @@ public class MBRentPropertyTypeMapper extends AbstractTypeMapper<MBRentPropertyT
                 VISIBLE, value -> target.setVisible(Boolean.valueOf(value)),
                 NAME, target::setName,
                 ADDRESS, target::setAddress,
-                UNIT, target::setUnit,
+                UNIT, value -> target.setCost(Integer.parseInt(value)),
                 COST, value -> target.setCost(Long.parseLong(value))
         ));
 

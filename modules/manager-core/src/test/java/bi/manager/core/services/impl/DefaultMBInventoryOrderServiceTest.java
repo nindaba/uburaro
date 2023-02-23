@@ -195,7 +195,7 @@ class DefaultMBInventoryOrderServiceTest {
         service.revertClient(ORDER_SPY);
 
         verify(typeService).save(CLIENT_SPY);
-        verify(CLIENT_SPY).setTotalDebt(CLIENT_SPY.getTotalDebt() - ORDER_1.getQuantity() * INVENTORY.getCost());
+        verify(CLIENT_SPY).setTotalDebt(CLIENT_SPY.getTotalDebt() + ORDER_1.getQuantity() * INVENTORY.getCost());
 
     }
 

@@ -1,6 +1,5 @@
 package bi.manager.core.types;
 
-import bi.manager.core.types.client.MBClientType;
 import bi.manager.core.types.client.MBOrderType;
 import bi.manager.core.types.enums.MBInventoryEntryEnum;
 import lombok.Data;
