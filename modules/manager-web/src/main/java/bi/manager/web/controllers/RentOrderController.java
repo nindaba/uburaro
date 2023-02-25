@@ -1,6 +1,7 @@
 package bi.manager.web.controllers;
 
 import bi.manager.facade.data.MBRentOrderData;
+import bi.manager.facade.facades.MBRentContractFacade;
 import bi.manager.facade.facades.MBRentOrderFacade;
 import org.springframework.web.bind.annotation.*;
 

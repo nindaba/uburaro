@@ -4,6 +4,7 @@ import bi.manager.core.repositories.MBOrderRepository;
 import bi.manager.core.types.MBFacilityType;
 import bi.manager.core.types.MBRentPropertyType;
 import bi.manager.core.types.client.MBClientType;
+import bi.manager.core.types.client.MBRentContractType;
 import bi.manager.core.types.client.MBRentOrderType;
 import bi.uburaro.core.services.TypeService;
 import bi.uburaro.initialdata.mappers.impl.AbstractTypeMapper;
@@ -43,7 +44,10 @@ public class MBRentPropertyTypeMapper extends AbstractTypeMapper<MBRentPropertyT
         ));
 
         fieldsMapper.putAll(Map.of(
-                CURRENT_CLIENT, clientCode -> target.setCurrentClient(typeService.findItemByCode(clientCode, MBClientType.class)),
+                CURRENT_CONTRACT, code -> target.setCurrentContract(typeService.findItemByCode(code, MBRentContractType.class)),
+                CONTRACTS, contractCodes -> getStringStream(contractCodes)
+                        .map(contract -> typeService.findItemByCode(contract, MBRentContractType.class))
+                        .forEach(target.getContracts()::add),
                 RENT_ORDERS, orderNumbers -> getStringStream(orderNumbers)
                         .map(orderRepository::findByOrderNumber)
                         .map(order -> (MBRentOrderType) order)
