@@ -44,6 +44,7 @@ public class MBRentPropertyTypeMapper extends AbstractTypeMapper<MBRentPropertyT
         ));
 
         fieldsMapper.putAll(Map.of(
+                CURRENT_CONTRACT, code -> target.setCurrentContract(typeService.findItemByCode(code, MBRentContractType.class)),
                 CONTRACTS, contractCodes -> getStringStream(contractCodes)
                         .map(contract -> typeService.findItemByCode(contract, MBRentContractType.class))
                         .forEach(target.getContracts()::add),

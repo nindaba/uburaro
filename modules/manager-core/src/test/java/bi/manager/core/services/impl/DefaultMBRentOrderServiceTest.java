@@ -114,6 +114,7 @@ class DefaultMBRentOrderServiceTest {
         verify(CLIENT_SPY).setTotalDebt(CLIENT.getTotalDebt() - COST);
         verify(RENT_SPY).setTotalIncome(RENT.getTotalIncome() + COST);
         verify(ORDER_SPY).setUnit(CONTRACT.getUnit());
+        verify(ORDER_SPY).setContract(CONTRACT);
         verify(ORDER_SPY).setQuantity((int) (ChronoUnit.MONTHS.between(ORDER.getFrom(), ORDER.getTo())));
         verify(ORDER_SPY).setRentProperty(RENT_SPY);
         verify(ORDER_SPY).setClient(CLIENT_SPY);

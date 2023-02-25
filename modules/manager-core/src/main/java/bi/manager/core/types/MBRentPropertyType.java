@@ -29,7 +29,7 @@ public class MBRentPropertyType extends ItemType {
     public static final String NAME = "name";
     public static final String COST = "cost";
     public static final String RENT_ORDERS = "rentOrders";
-    public static final String CURRENT_ORDER = "currentOrder";
+    public static final String CURRENT_CONTRACT = "currentContract";
     public static final String UNIT = "unit";
     public static final String FACILITY = "facility";
     public static final String ADDRESS = "address";
