@@ -10,7 +10,7 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
-import static bi.uburaro.core.UburaroCoreConstants.DATABASE_KEYWORDS_PREFIX;
+import static bi.uburaro.core.UburaroCoreConstants.TABLE_PREFIX;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -38,7 +38,7 @@ public class ReservationType extends ItemType {
     private EmployeeType reservedByEmployee;
     @ManyToOne
     private CustomerType reservedByCustomer;
-    @Column(name = DATABASE_KEYWORDS_PREFIX + GROUPS)
+    @Column(name = TABLE_PREFIX + GROUPS)
     @ManyToMany
     @JoinTable(name = "reservations2groups",
             joinColumns = {

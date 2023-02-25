@@ -2,14 +2,12 @@ package bi.uburaro.core.types;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 
-import static bi.uburaro.core.UburaroCoreConstants.DATABASE_KEYWORDS_PREFIX;
+import static bi.uburaro.core.UburaroCoreConstants.TABLE_PREFIX;
 
 @Data
 @NoArgsConstructor
@@ -22,7 +20,7 @@ public class PrimaryKeyType implements Serializable {
     public static final String DATE_CREATED = "dateCreated";
 
     @OneToOne
-    @JoinColumn(name = DATABASE_KEYWORDS_PREFIX + KEY)
+    @JoinColumn(name = TABLE_PREFIX + KEY)
     private GeneratedKey key;
     @Column(columnDefinition = "varchar(255) DEFAULT 'item'")
     private String itemType;

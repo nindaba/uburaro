@@ -7,9 +7,12 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import java.time.LocalDate;
+
+import static bi.uburaro.core.UburaroCoreConstants.TABLE_PREFIX;
 
 @Data
 @EqualsAndHashCode(callSuper = true, exclude = {"rentProperty","contract"})
@@ -31,7 +34,9 @@ public class MBRentOrderType extends MBOrderType {
     @ManyToOne(cascade = CascadeType.ALL)
     private MBRentContractType contract;
 
+    @Column(name = TABLE_PREFIX+FROM)
     private LocalDate from;
+    @Column(name = TABLE_PREFIX+TO)
     private LocalDate to;
     private int unitCharged;
     private int totalUnitCharged;

@@ -8,13 +8,12 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
+
+import static bi.uburaro.core.UburaroCoreConstants.TABLE_PREFIX;
 
 @Data
 @EqualsAndHashCode(callSuper = true, exclude = {"rentProperty","client"})
@@ -32,7 +31,9 @@ public class MBRentContractType extends ItemType {
     public static final String UNIT = "unit";
 
 
+    @Column(name = TABLE_PREFIX+FROM)
     private LocalDate from;
+    @Column(name = TABLE_PREFIX+TO)
     private LocalDate to;
     private long costPerUnit;
     private int unit;
