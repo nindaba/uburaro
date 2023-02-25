@@ -45,17 +45,22 @@ public class DefaultMBRentContractService extends AbstractMBTypeService<MBRentCo
         return facilityService.getFacilityByCode(code).getRents().stream()
                 .filter(ItemType::isActive)
                 .flatMap(rent -> rent.getContracts().stream())
+                .filter(ItemType::isActive)
                 .collect(Collectors.toSet());
     }
 
     @Override
     public Collection<MBRentContractType> getContractsByRentCode(String code) {
-        return typeService.findItemByCode(code, MBRentPropertyType.class).getContracts();
+        return typeService.findItemByCode(code, MBRentPropertyType.class).getContracts().stream()
+                .filter(ItemType::isActive)
+                .collect(Collectors.toSet());
     }
 
     @Override
     public Collection<MBRentContractType> getContractsByClientCode(String code) {
-        return clientService.getClientByCode(code).getContracts();
+        return clientService.getClientByCode(code).getContracts().stream()
+                .filter(ItemType::isActive)
+                .collect(Collectors.toSet());
     }
 
     @Override
