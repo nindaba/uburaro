@@ -54,7 +54,7 @@ public class DefaultMBRentContractService extends AbstractMBTypeService<MBRentCo
     }
 
     @Override
-    public Collection<MBRentContractType> getContractByClientCode(String code) {
+    public Collection<MBRentContractType> getContractsByClientCode(String code) {
         return clientService.getClientByCode(code).getContracts();
     }
 

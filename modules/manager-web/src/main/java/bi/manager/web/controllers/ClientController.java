@@ -36,7 +36,7 @@ public class ClientController {
 
     @GetMapping(value = rentContract)
     public Collection<MBRentContractData> getRentContracts(@PathVariable String clientCode, @PathVariable String code){
-        return rentContractFacade.getContractByClientCode(clientCode);
+        return rentContractFacade.getContractsByClientCode(clientCode);
     }
 
     @DeleteMapping

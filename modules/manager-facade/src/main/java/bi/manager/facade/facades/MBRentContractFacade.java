@@ -21,7 +21,7 @@ public interface MBRentContractFacade {
      * @param code
      * @return collection of rent contract
      */
-    Collection<MBRentContractData> getContractByRentCode(String code);
+    Collection<MBRentContractData> getContractsByRentCode(String code);
 
     /**
      * Get all the active rental contract by client
@@ -29,7 +29,7 @@ public interface MBRentContractFacade {
      * @param code
      * @return collection of rent contract
      */
-    Collection<MBRentContractData> getContractByClientCode(String code);
+    Collection<MBRentContractData> MBRentContractDataByClientCode(String code);
 
     /**
      * Adds a rental contract or updates it if it exists

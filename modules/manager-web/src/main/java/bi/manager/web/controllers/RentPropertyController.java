@@ -36,7 +36,7 @@ public class RentPropertyController {
 
     @GetMapping(value = rentContract)
     public Collection<MBRentContractData> getRentContracts(@PathVariable String code, @PathVariable String rentCode){
-        return rentContractFacade.getContractByRentCode(rentCode);
+        return rentContractFacade.getContractsDataByRentCode(rentCode);
     }
     @PatchMapping(value = rentContract)
     public void updateContract(@PathVariable String code, @PathVariable String rentCode, @RequestBody MBRentContractData contract){
