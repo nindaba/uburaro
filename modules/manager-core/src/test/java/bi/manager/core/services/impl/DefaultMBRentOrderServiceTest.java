@@ -83,7 +83,9 @@ class DefaultMBRentOrderServiceTest {
         ORDER.setClient(CLIENT);
         ORDER.setOrderNumber("number");
         ORDER.setRentProperty(RENT);
+        ORDER.setContract(CONTRACT);
 
+        CONTRACT.setCode("code");
         CONTRACT.setCostPerUnit(100);
         CONTRACT.setUnit(30);
 
@@ -105,12 +107,13 @@ class DefaultMBRentOrderServiceTest {
         when(environment.getProperty(RENT_ORDER_PREFIX, String.class, "RO-")).thenReturn("RO-");
         when(generatedKeyRepository.save(new GeneratedKey())).thenReturn(key);
         when(typeService.create(MBRentOrderType.class)).thenReturn(ORDER_SPY);
+        when(typeService.findItemByCode(CONTRACT.getCode(), MBRentContractType.class)).thenReturn(CONTRACT);
 
         service.placeOrder(ORDER);
 
         verify(CLIENT_SPY).setTotalDebt(CLIENT.getTotalDebt() - COST);
         verify(RENT_SPY).setTotalIncome(RENT.getTotalIncome() + COST);
-        verify(ORDER_SPY).setUnit(RENT_SPY.getUnit());
+        verify(ORDER_SPY).setUnit(CONTRACT.getUnit());
         verify(ORDER_SPY).setQuantity((int) (ChronoUnit.MONTHS.between(ORDER.getFrom(), ORDER.getTo())));
         verify(ORDER_SPY).setRentProperty(RENT_SPY);
         verify(ORDER_SPY).setClient(CLIENT_SPY);

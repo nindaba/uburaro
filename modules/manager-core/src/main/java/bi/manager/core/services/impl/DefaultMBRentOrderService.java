@@ -69,9 +69,9 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
 
         populateRent(order, rentOrder);
         populateOrder(order, rentOrder);
+        populateContract(order, rentOrder);
         populateQuantity(rentOrder);
         populateClient(order, rentOrder);
-        populateContract(order, rentOrder);
         chargeClient(rentOrder);
         addIncome(rentOrder);
         typeService.save(rentOrder);
@@ -85,14 +85,23 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
     }
 
     private void populateContract(MBRentOrderType source, MBRentOrderType target) {
-        MBRentContractType currentContract = target.getRentProperty().getCurrentContract();
-        currentContract.getOrders().add(target);
-
-        if (source.getUnit() == 0 && currentContract.getUnit() > 0) {
-            target.setUnit(currentContract.getUnit());
+        MBRentContractType sourceContract = source.getContract();
+        if(sourceContract == null || StringUtils.isEmpty(sourceContract.getCode())){
+            throw new NotFoundException("No Contract was fount on the order");
         }
+        MBRentContractType contract = typeService.findItemByCode(sourceContract.getCode(), MBRentContractType.class);
+
+        target.setContract(contract);
+
+        if (source.getUnit() == 0) {
+            target.setUnit(contract.getUnit());
+        }
+        else{
+            target.setUnit(source.getUnit());
+        }
+
         if (source.getCost() == 0) {
-            target.setCost(currentContract.getCostPerUnit());
+            target.setCost(contract.getCostPerUnit());
         } else {
             target.setCost(source.getCost());
         }
@@ -105,11 +114,6 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
     }
 
     private void populateOrder(MBRentOrderType source, MBRentOrderType target) {
-        if (source.getUnit() == 0) {
-            target.setUnit(target.getRentProperty().getUnit());
-        } else {
-            target.setUnit(source.getUnit());
-        }
         target.setFrom(source.getFrom());
         target.setTo(source.getTo());
         target.setOrderDate(source.getFrom());
