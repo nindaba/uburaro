@@ -15,7 +15,10 @@
         <bean class="bi.uburaro.initialdata.mappers.impl.EmployeeGroupTypeMapper" parent="abstractTypeMapper"/>
         <bean class="bi.uburaro.initialdata.mappers.impl.manager.MBCategoryTypeMapper" parent="abstractTypeMapper"/>
         <bean class="bi.uburaro.initialdata.mappers.impl.manager.MBInventoryTypeMapper" parent="abstractTypeMapper"/>
-        <bean class="bi.uburaro.initialdata.mappers.impl.manager.MBRentContractTypeMapper" parent="abstractTypeMapper"/>
+        <bean class="bi.uburaro.initialdata.mappers.impl.manager.MBRentContractTypeMapper" parent="abstractTypeMapper">
+            <constructor-arg name="orderRepository" ref="MBOrderRepository"/>
+            <constructor-arg name="typeService" ref="typeService"/>
+        </bean>
         <bean class="bi.uburaro.initialdata.mappers.impl.manager.MBClientTypeMapper" parent="abstractTypeMapper">
             <constructor-arg name="orderRepository" ref="MBOrderRepository"/>
             <constructor-arg name="typeService" ref="typeService"/>
