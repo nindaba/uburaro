@@ -31,7 +31,7 @@ public interface MBRentContractService extends MBTypeService<MBRentContractType>
      * @param code
      * @return collection of rent contract
      */
-    Collection<MBRentContractType> MBRentContractDataByClientCode(String code);
+    Collection<MBRentContractType> getContractsByClientCode(String code);
 
     /**
      * Adds a rental contract or updates it, it will also be added to the client

@@ -26,13 +26,13 @@ public class MBDefaultRentContractFacade implements MBRentContractFacade {
     }
 
     @Override
-    public Collection<MBRentContractData> MBRentContractDataByRentCode(String code) {
+    public Collection<MBRentContractData> getContractsByRentCode(String code) {
         return mapper.contractsToData(service.getContractsByRentCode(code));
     }
 
     @Override
-    public Collection<MBRentContractData> MBRentContractDataByClientCode(String code) {
-        return mapper.contractsToData(service.MBRentContractDataByClientCode(code));
+    public Collection<MBRentContractData> getContractsByClientCode(String code) {
+        return mapper.contractsToData(service.getContractsByClientCode(code));
     }
 
     @Override
