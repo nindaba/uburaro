@@ -6,6 +6,7 @@ import bi.manager.core.services.MBFacilityService;
 import bi.manager.core.services.MBRentOrderService;
 import bi.manager.core.types.MBRentPropertyType;
 import bi.manager.core.types.client.MBClientType;
+import bi.manager.core.types.client.MBRentContractType;
 import bi.manager.core.types.client.MBRentOrderType;
 import bi.uburaro.core.exceptions.NotFoundException;
 import bi.uburaro.core.repositories.GeneratedKeyRepository;
@@ -68,9 +69,25 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
         populateRent(order, rentOrder);
         populateOrder(order, rentOrder);
         populateClient(order, rentOrder);
+        populateContract(order,rentOrder);
         chargeClient(rentOrder);
         addIncome(rentOrder);
         typeService.save(rentOrder);
+    }
+
+    private void populateContract(MBRentOrderType source, MBRentOrderType target) {
+        MBRentContractType currentContract = target.getRentProperty().getCurrentContract();
+        currentContract.getOrders().add(target);
+
+        if(source.getUnit()  == 0 && currentContract.getUnit() > 0){
+            target.setUnit(currentContract.getUnit());
+        }
+        if(source.getCost() == 0){
+            target.setCost(currentContract.getCostPerUnit());
+        }
+        else {
+            target.setCost(source.getCost());
+        }
     }
 
     private void addIncome(MBRentOrderType rentOrder) {
@@ -127,7 +144,6 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
         MBRentPropertyType rentProperty = order.getRentProperty();
         long income = rentProperty.getTotalIncome() - order.getTotalUnitCharged() * order.getCost();
         rentProperty.setTotalIncome(income);
-        rentProperty.setCurrentClient(null);
         typeService.save(rentProperty);
     }
 

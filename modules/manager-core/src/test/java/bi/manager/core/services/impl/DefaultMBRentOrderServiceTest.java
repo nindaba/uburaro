@@ -2,11 +2,10 @@ package bi.manager.core.services.impl;
 
 import bi.manager.core.repositories.MBOrderRepository;
 import bi.manager.core.services.MBClientService;
-import bi.manager.core.services.MBFacilityService;
 import bi.manager.core.types.MBFacilityType;
 import bi.manager.core.types.MBRentPropertyType;
 import bi.manager.core.types.client.MBClientType;
-import bi.manager.core.types.client.MBOrderType;
+import bi.manager.core.types.client.MBRentContractType;
 import bi.manager.core.types.client.MBRentOrderType;
 import bi.uburaro.core.repositories.GeneratedKeyRepository;
 import bi.uburaro.core.services.TypeService;
@@ -18,18 +17,15 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.core.env.Environment;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.HashSet;
 import java.util.Set;
 
 import static bi.manager.core.services.impl.DefaultMBRentOrderService.RENT_ORDER_PREFIX;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -42,6 +38,7 @@ class DefaultMBRentOrderServiceTest {
     static final MBRentPropertyType RENT = new MBRentPropertyType();
     static final MBClientType CLIENT = new MBClientType();
     static final MBRentOrderType ORDER = new MBRentOrderType();
+    static final MBRentContractType CONTRACT = new MBRentContractType();
     static MBRentOrderType ORDER_SPY;
     static MBClientType CLIENT_SPY;
     static MBRentPropertyType RENT_SPY;
@@ -76,6 +73,8 @@ class DefaultMBRentOrderServiceTest {
         RENT.setFacility(FACILITY_TYPE);
         RENT.setAddress("muyinga");
         RENT.setUnit(30);
+        RENT.setContracts(Set.of(CONTRACT));
+        RENT.setCurrentContract(CONTRACT);
 
         ORDER.setFrom(LocalDate.now().minusMonths(2));
         ORDER.setTo(LocalDate.now());
@@ -83,6 +82,9 @@ class DefaultMBRentOrderServiceTest {
         ORDER.setClient(CLIENT);
         ORDER.setOrderNumber("number");
         ORDER.setRentProperty(RENT);
+
+        CONTRACT.setCostPerUnit(100);
+        CONTRACT.setUnit(30);
 
 
         ORDER_SPY = spy(ORDER);
@@ -110,7 +112,7 @@ class DefaultMBRentOrderServiceTest {
         verify(ORDER_SPY).setUnitCharged(ORDER.getUnitCharged());
         verify(ORDER_SPY).setRentProperty(RENT_SPY);
         verify(ORDER_SPY).setClient(CLIENT_SPY);
-        verify(ORDER_SPY).setTotalUnitCharged(ORDER_SPY.getTotalUnitCharged()+ORDER.getUnitCharged());
+        verify(ORDER_SPY).setTotalUnitCharged(ORDER_SPY.getTotalUnitCharged() + ORDER.getUnitCharged());
         verify(typeService).save(ORDER_SPY);
     }
 

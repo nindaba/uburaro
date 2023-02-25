@@ -4,7 +4,7 @@ import * as fs from 'fs';
 
 let win: BrowserWindow |null;
 const args = process.argv.slice(1),
-    serve = args.some(val => val === '--serve');
+    serve = args.some(val => val === '--serve') || true;
 
 function createWindow(): BrowserWindow {
 
@@ -24,10 +24,10 @@ function createWindow(): BrowserWindow {
     });
 
     if (serve) {
-        const debug = require('electron-debug');
-        debug();
-
-        require('electron-reloader')(module);
+        // const debug = require('electron-debug');
+        // debug();
+        //
+        // require('electron-reloader')(module);
         win.loadURL('http://localhost:4200');
     } else {
         // Path when running electron executable

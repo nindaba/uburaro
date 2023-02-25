@@ -38,6 +38,7 @@ public class MBClientType extends ItemType {
     public static final String ORDERS = "orders";
     public static final String TOTAL_DEBT = "totalDebt";
     public static final String FACILITY = "facility";
+    public static final String CONTRACTS = "contracts";
 
 
     private String name;
@@ -50,4 +51,6 @@ public class MBClientType extends ItemType {
     private Set<MBInvoiceType> invoices = new HashSet<>();
     @ManyToOne(cascade = CascadeType.ALL)
     private MBFacilityType facility;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = MBRentContractType.CLIENT)
+    private Set<MBRentContractType> contracts = new HashSet<>();
 }

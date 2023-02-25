@@ -12,8 +12,8 @@ import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
 @Data
-@EqualsAndHashCode(callSuper = true, exclude = {"rentProperty"})
-@ToString(callSuper = true, exclude = {"rentProperty"})
+@EqualsAndHashCode(callSuper = true, exclude = {"rentProperty","contract"})
+@ToString(callSuper = true, exclude = {"rentProperty","contract"})
 @NoArgsConstructor
 @Entity(name = MBRentOrderType.ITEM_TYPE)
 public class MBRentOrderType extends MBOrderType {
@@ -23,9 +23,13 @@ public class MBRentOrderType extends MBOrderType {
     public static final String TOTAL_UNIT_CHARGED = "totalUnitCharged";
     public static final String FROM = "from";
     public static final String TO = "to";
+    public static final String CONTRACT = "contract";
 
     @ManyToOne(cascade = CascadeType.ALL)
     private MBRentPropertyType rentProperty;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private MBRentContractType contract;
 
     private LocalDate from;
     private LocalDate to;

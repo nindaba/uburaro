@@ -47,7 +47,6 @@ class DefaultMBRentServiceTest {
         RENT.setCode("1000");
         RENT.setCost(1000l);
         RENT.setName("rent");
-        RENT.setCurrentClient(CLIENT);
         RENT.setActive(true);
         RENT.setFacility(FACILITY_TYPE);
         RENT.setAddress("muyinga");
@@ -67,7 +66,6 @@ class DefaultMBRentServiceTest {
         MBRentPropertyType RENT_SPY = spy(new MBRentPropertyType());
         when(typeService.save(RENT_SPY)).thenReturn(true);
         when(typeService.findItemByCode(RENT.getCode(),MBRentPropertyType.class)).thenReturn(RENT_SPY);
-        when(typeService.findItemByCode(CLIENT.getCode(), MBClientType.class)).thenReturn(CLIENT);
 
         service.updateRent(RENT);
         verify(typeService).save(RENT_SPY);
@@ -75,7 +73,6 @@ class DefaultMBRentServiceTest {
         verify(RENT_SPY).setCode("1000");
         verify(RENT_SPY).setCost(1000l);
         verify(RENT_SPY).setName("rent");
-        verify(RENT_SPY).setCurrentClient(CLIENT);
         verify(RENT_SPY).setActive(true);
         verify(RENT_SPY).setFacility(FACILITY_TYPE);
         verify(RENT_SPY).setAddress("muyinga");
