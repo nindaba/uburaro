@@ -22,8 +22,6 @@ import static bi.uburaro.core.UburaroCoreConstants.TABLE_PREFIX;
 public class MBRentOrderType extends MBOrderType {
     public static final String ITEM_TYPE = "mBRentOrder";
     public static final String RENT_PROPERTY = "rentProperty";
-    public static final String UNIT_CHARGED = "unitCharged";
-    public static final String TOTAL_UNIT_CHARGED = "totalUnitCharged";
     public static final String FROM = "from";
     public static final String TO = "to";
     public static final String CONTRACT = "contract";
@@ -38,7 +36,4 @@ public class MBRentOrderType extends MBOrderType {
     private LocalDate from;
     @Column(name = TABLE_PREFIX+TO)
     private LocalDate to;
-    private int unitCharged;
-    private int totalUnitCharged;
-    private int units;
 }

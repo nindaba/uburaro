@@ -26,6 +26,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Set;
 
 import static bi.manager.core.services.impl.DefaultMBRentOrderService.RENT_ORDER_PREFIX;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -67,7 +68,7 @@ class DefaultMBRentOrderServiceTest {
         CLIENT.setFacility(FACILITY_TYPE);
 
         RENT.setCode("1000");
-        RENT.setCost(1000l);
+        RENT.setCost(100l);
         RENT.setName("rent");
         RENT.setActive(true);
         RENT.setFacility(FACILITY_TYPE);
@@ -91,7 +92,8 @@ class DefaultMBRentOrderServiceTest {
         CLIENT_SPY = spy(CLIENT);
         RENT_SPY = spy(RENT);
 
-        COST = ORDER.getCost() * RENT.getUnit();
+        //the unit is 30, so I expect that it will calculate months
+        COST = RENT.getCost() * (int) ChronoUnit.MONTHS.between(ORDER.getFrom(), ORDER.getTo());
     }
 
     @Test
@@ -108,11 +110,10 @@ class DefaultMBRentOrderServiceTest {
 
         verify(CLIENT_SPY).setTotalDebt(CLIENT.getTotalDebt() - COST);
         verify(RENT_SPY).setTotalIncome(RENT.getTotalIncome() + COST);
-        verify(ORDER_SPY).setQuantity((int) (ChronoUnit.DAYS.between(ORDER.getFrom(), ORDER.getTo()) / RENT.getUnit()));
-        verify(ORDER_SPY).setUnitCharged(ORDER.getUnitCharged());
+        verify(ORDER_SPY).setUnit(RENT_SPY.getUnit());
+        verify(ORDER_SPY).setQuantity((int) (ChronoUnit.MONTHS.between(ORDER.getFrom(), ORDER.getTo())));
         verify(ORDER_SPY).setRentProperty(RENT_SPY);
         verify(ORDER_SPY).setClient(CLIENT_SPY);
-        verify(ORDER_SPY).setTotalUnitCharged(ORDER_SPY.getTotalUnitCharged() + ORDER.getUnitCharged());
         verify(typeService).save(ORDER_SPY);
     }
 
@@ -129,5 +130,11 @@ class DefaultMBRentOrderServiceTest {
         service.deleteOrder(Set.of(ORDER.getOrderNumber()));
         verify(CLIENT_SPY).setTotalDebt(CLIENT.getTotalDebt() + COST);
         verify(RENT_SPY).setTotalIncome(RENT.getTotalIncome() - COST);
+    }
+
+    @Test
+    void quantityCalculation(){
+        long actual = ChronoUnit.MONTHS.between(LocalDate.parse("2023-02-03"), LocalDate.parse("2023-03-03"));
+        assertEquals(1,actual);
     }
 }

@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.temporal.ChronoUnit;
 import java.util.Collection;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -68,52 +69,47 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
 
         populateRent(order, rentOrder);
         populateOrder(order, rentOrder);
+        populateQuantity(rentOrder);
         populateClient(order, rentOrder);
-        populateContract(order,rentOrder);
+        populateContract(order, rentOrder);
         chargeClient(rentOrder);
         addIncome(rentOrder);
         typeService.save(rentOrder);
+    }
+
+    private void populateQuantity(MBRentOrderType target) {
+        Map<Integer, ChronoUnit> units = Map.of(1, ChronoUnit.DAYS,7, ChronoUnit.DAYS, 30, ChronoUnit.MONTHS, 365, ChronoUnit.YEARS);
+
+        long quantity = units.getOrDefault(target.getUnit(), ChronoUnit.MONTHS).between(target.getFrom(), target.getTo());
+        target.setQuantity((int) quantity);
     }
 
     private void populateContract(MBRentOrderType source, MBRentOrderType target) {
         MBRentContractType currentContract = target.getRentProperty().getCurrentContract();
         currentContract.getOrders().add(target);
 
-        if(source.getUnit()  == 0 && currentContract.getUnit() > 0){
+        if (source.getUnit() == 0 && currentContract.getUnit() > 0) {
             target.setUnit(currentContract.getUnit());
         }
-        if(source.getCost() == 0){
+        if (source.getCost() == 0) {
             target.setCost(currentContract.getCostPerUnit());
-        }
-        else {
+        } else {
             target.setCost(source.getCost());
         }
     }
 
     private void addIncome(MBRentOrderType rentOrder) {
         MBRentPropertyType rentProperty = rentOrder.getRentProperty();
-        long income = rentProperty.getTotalIncome() + rentOrder.getUnit() * rentOrder.getCost();
+        long income = rentProperty.getTotalIncome() + rentOrder.getQuantity() * rentOrder.getCost();
         rentProperty.setTotalIncome(income);
     }
 
-    protected void chargeClient(final MBRentOrderType orderType) {
-        MBClientType client = orderType.getClient();
-        long debt = client.getTotalDebt() - orderType.getUnitCharged() * orderType.getCost();
-        orderType.setTotalUnitCharged(orderType.getTotalUnitCharged() + orderType.getUnitCharged());
-        client.setTotalDebt(debt);
-    }
-
     private void populateOrder(MBRentOrderType source, MBRentOrderType target) {
-        int unit = target.getRentProperty().getUnit();
-
-        if(source.getUnit()  == 0){
-            target.setUnit(unit);
-        }
-        else {
+        if (source.getUnit() == 0) {
+            target.setUnit(target.getRentProperty().getUnit());
+        } else {
             target.setUnit(source.getUnit());
         }
-        target.setUnitCharged(source.getUnitCharged());
-        target.setQuantity((int) (ChronoUnit.DAYS.between(target.getFrom(), target.getTo()) / unit));
         target.setFrom(source.getFrom());
         target.setTo(source.getTo());
         target.setOrderDate(source.getFrom());
@@ -142,14 +138,14 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
 
     private void revertRentProperty(MBRentOrderType order) {
         MBRentPropertyType rentProperty = order.getRentProperty();
-        long income = rentProperty.getTotalIncome() - order.getTotalUnitCharged() * order.getCost();
+        long income = rentProperty.getTotalIncome() - order.getQuantity() * order.getCost();
         rentProperty.setTotalIncome(income);
         typeService.save(rentProperty);
     }
 
     public void revertClient(MBRentOrderType order) {
         MBClientType client = order.getClient();
-        long debt = client.getTotalDebt() + order.getTotalUnitCharged() * order.getCost();
+        long debt = client.getTotalDebt() + order.getQuantity() * order.getCost();
         client.setTotalDebt(debt);
         typeService.save(client);
     }

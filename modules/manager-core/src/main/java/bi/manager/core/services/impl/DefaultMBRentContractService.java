@@ -49,7 +49,7 @@ public class DefaultMBRentContractService extends AbstractMBTypeService<MBRentCo
     }
 
     @Override
-    public Collection<MBRentContractType> getContractByRentCode(String code) {
+    public Collection<MBRentContractType> getContractsByRentCode(String code) {
         return typeService.findItemByCode(code, MBRentPropertyType.class).getContracts();
     }
 

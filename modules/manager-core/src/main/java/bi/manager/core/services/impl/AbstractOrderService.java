@@ -35,7 +35,6 @@ public class AbstractOrderService {
     protected void chargeClient(final MBOrderType orderType) {
         MBClientType client = orderType.getClient();
         long debt = client.getTotalDebt() - orderType.getQuantity() * orderType.getCost();
-        client.getOrders().add(orderType);
         client.setTotalDebt(debt);
     }
 

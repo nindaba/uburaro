@@ -143,7 +143,7 @@ class DefaultMBInventoryOrderServiceTest {
 
         verify(typeService).save(ORDER_SPY);
         verify(INVENTORY_SPY).setQuantity(INVENTORY.getQuantity() - ORDER_1.getQuantity());
-        verify(CLIENT_SPY).setTotalDebt(CLIENT.getTotalDebt() + ORDER_1.getQuantity() * INVENTORY.getCost());
+        verify(CLIENT_SPY).setTotalDebt(CLIENT.getTotalDebt() - ORDER_1.getQuantity() * INVENTORY.getCost());
         verify(ORDER_SPY).setClient(CLIENT_SPY);
         verify(capitalService, times(0)).addCapital(INVENTORY.getCost() * ORDER_2.getQuantity(), MBEntryEnum.EXPENSE, FACILITY);
 
