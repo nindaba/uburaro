@@ -1,6 +1,6 @@
 <div class="details-cart">
     <mb-expand-shrink title="inventory.order.title" [creating]="creating"></mb-expand-shrink>
-    <form (ngSubmit)="orderPlaced()" [formGroup]="inventoryOrderForm" [ngClass]="creating ? '': 'd-none'">
+    <form (ngSubmit)="orderPlaced()" [formGroup]="inventoryOrderForm" [ngClass]="(creating | async) ? '': 'd-none'">
         <div class="content-top">
             <div class="input-grp">
                 <label for="date" class="" translate>label.order.date</label>

@@ -14,7 +14,7 @@ import {ContractService} from "./contract.service";
 })
 export class CreateContractComponent implements OnInit, OnDestroy {
     subscription: Subscription = new Subscription();
-    creating: Subject<boolean> = new BehaviorSubject(true);
+    creating: Subject<boolean> = new BehaviorSubject(false);
 
     $clients: Observable<Client[]> = this.itemService.getItemByFacilityCode<Client[]>("clients");
 

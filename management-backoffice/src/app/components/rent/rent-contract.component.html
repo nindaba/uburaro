@@ -1,3 +1,61 @@
-<div class="details-contract">
-    contract
+<div class="contract">
+    <div class="details">
+        <span>
+            <label translate>contract.code</label>
+            <span>{{contract?.code}}</span>
+        </span>
+        <span>
+            <label translate>label.client.name</label>
+            <span>{{contract?.client?.name}}</span>
+        </span>
+        <div class="date-status">
+            <div class="contract-date">
+                <span>
+                    <label translate>label.from</label>
+                    <span>{{contract?.from | date: 'dd/MM/yyyy'}}</span>
+                </span>
+                <span>
+                    <label translate>label.to</label>
+                    <span>{{contract?.to  | date: 'dd/MM/yyyy'}}</span>
+                </span>
+            </div>
+            <div class="status">
+                <span class="progress"></span>
+            </div>
+        </div>
+
+        <div class="d-flex flex-row">
+            <a class="btn" translate>
+                <div class="mb-icon download"></div>
+                label.download
+            </a>
+            <a class="btn btn-icon" [ngClass]="(creating | async ) ? 'd-none': ''" (click)="expand()" translate>
+                <div class="mb-icon mb-icon-green expand"></div>
+            </a>
+            <a class="btn btn-icon" [ngClass]="(creating | async ) ? '': 'd-none'" (click)="shrink()" translate>
+                <div class="mb-icon mb-icon-green shrink"></div>
+            </a>
+        </div>
+    </div>
+    <div class="orders" [ngClass]="(creating | async) ? '': 'd-none'" *ngIf="contract?.orders as orders">
+            <mb-relation title="orders" [heads]="orderHeads">
+                {{orders?.length}}
+                <tr *ngFor="let order of orders">
+                    <td>{{order.orderDate | date: 'dd/MM/yyyy'}}</td>
+                    <td>{{order.orderNumber}}</td>
+                    <td>{{order.itemName}}</td>
+                    <td>{{order.cost}}</td>
+                    <td>{{order.quantity}}</td>
+                    <td>{{order.quantity * order.cost | currency : '':'':'1.0-0'}} FBU</td>
+                </tr>
+                <tr class="total">
+                    <td>{{'total' | uppercase}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{orders | calcTotal : 'quantity'}}</td>
+                    <td>{{orders | calcTotalCost | currency : '':'':'1.0-0'}} FBU</td>
+                </tr>
+            </mb-relation>
+    </div>
 </div>

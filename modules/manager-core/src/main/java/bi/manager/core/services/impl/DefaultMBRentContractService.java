@@ -96,8 +96,8 @@ public class DefaultMBRentContractService extends AbstractMBTypeService<MBRentCo
     private static void populateCurrentContract(MBRentContractType target) {
         LocalDate today = LocalDate.now();
         MBRentPropertyType property = target.getRentProperty();
-        if ((target.getFrom().isAfter(today) || target.getFrom().equals(today))
-                && (target.getTo().isBefore(today) || target.getTo().equals(today))) {
+        if ((target.getFrom().isBefore(today) || target.getFrom().equals(today))
+                && (target.getTo().isAfter(today) || target.getTo().equals(today))) {
 
             property.setCurrentContract(target);
         } else {

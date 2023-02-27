@@ -1,5 +1,5 @@
 <div class="details-page rent" *ngIf="($rent | async) || true">
-    <div class="attributes d-none">
+    <div class="attributes">
         <span class="mb-title" translate>label.details</span>
         <form class="attributes d-flex flex-wrap" [formGroup]="itemForm">
             <div class="input-grp">
@@ -12,10 +12,11 @@
                 <input id="name" formControlName="name" type="text" class="input-text"
                        placeholder="{{'label.name' | translate}}"/>
             </div>
-            <mb-input-drop-down [relatedItem]="{name: 'current.client', parentPage: 'clients'}"
-                                [$items]="$clients"
-                                [formDetails]="clientForm"
-            ></mb-input-drop-down>
+            <div class="input-grp">
+                <label for="client" class="" translate>label.current.client.name</label>
+                <input id="client" formControlName="currentClient" type="text" class="input-text"
+                       placeholder="{{'label.current.client.name' | translate}}"/>
+            </div>
             <div class="input-grp">
                 <label for="address" class="" translate>label.rent.address</label>
                 <input id="address" formControlName="address" type="text" class="input-text"
@@ -33,6 +34,11 @@
             ></mb-input-drop-down>
         </form>
     </div>
-    <mb-create-contract class="d-none" [property]="$rent"></mb-create-contract>
-    <mb-list-contract></mb-list-contract>
+    <mb-create-contract [property]="$rent"></mb-create-contract>
+    <div class="details-contract list">
+        <span class="mb-title" translate>label.list.contract</span>
+        <ng-container *ngFor="let contract of ($rent | async)?.contracts">
+            <mb-rent-contract [contract]="contract"/>
+        </ng-container>
+    </div>
 </div>

@@ -22,11 +22,6 @@
   "category": {
     "inventory": {
       "heads": [
-        "label.order.date",
-        "label.order.number",
-        "label.order.type",
-        "label.client.name",
-        "label.cost",
         "label.quantity",
         "label.total"
       ]
@@ -34,6 +29,18 @@
   },
   "client": {
     "inventory": {
+      "heads": [
+        "label.order.date",
+        "label.order.number",
+        "label.order.item",
+        "label.cost",
+        "label.quantity",
+        "label.total"
+      ]
+    }
+  },
+  "contract": {
+    "order": {
       "heads": [
         "label.order.date",
         "label.order.number",
