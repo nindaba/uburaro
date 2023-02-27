@@ -7,20 +7,23 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {InputDropDownComponent} from "../drop-down/input-drop-down.component";
 import {RentContractComponent} from "./rent-contract.component";
 import {CreateContractComponent} from "./create-contract.component";
-import {ListContractsComponent} from "./list-contracts.component";
 import {ExpandShrinkComponent} from "../expand-shrink/expand-shrink.component";
+import {TotalPipe} from "../../pipes/total.pipe";
+import {TotalCostPipe} from "../../pipes/total-cost.pipe";
 
 
 
 @NgModule({
-  declarations: [RentDetailsComponent,RentListingComponent,RentContractComponent,CreateContractComponent,ListContractsComponent],
+  declarations: [RentDetailsComponent,RentListingComponent,RentContractComponent,CreateContractComponent],
     imports: [
         AppCommonModule,
         ListingModule,
         ReactiveFormsModule,
         InputDropDownComponent,
-        ExpandShrinkComponent
+        ExpandShrinkComponent,
+        TotalPipe,
+        TotalCostPipe
     ],
-  exports: [RentDetailsComponent,RentListingComponent,ListContractsComponent]
+  exports: [RentDetailsComponent,RentListingComponent]
 })
 export class RentModule { }

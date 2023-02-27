@@ -6,6 +6,7 @@
   "nodes.name.stock": "Inventories",
   "nodes.name.inventories": "Inventories",
   "nodes.name.inventory.orders": "Inventories Orders",
+  "nodes.name.orders": "Orders",
   "nodes.name.rents": "Rents",
   "nodes.name.reports": "Reports",
   "nodes.name.back": "Back",
@@ -35,6 +36,7 @@
   "label.client.address": "Address",
   "label.client.name": "Client / Company",
   "label.current.client.name": "Current Client / Company",
+  "label.lastOrder.date": "Last Order Date",
   "label.facility.alias": "Alias",
   "label.facility.empty": "No Facility",
   "label.facility.add": "Add Facility",
@@ -77,5 +79,8 @@
   "label.unit.1": "Days",
   "label.unit.30": "Months",
   "label.unit.365": "Years",
-  "label.upload.contract": "Upload Contract"
+  "label.upload.contract": "Upload Contract",
+  "label.list.contract": "Contracts",
+  "contract.code": "Number",
+  "label.download": "Download"
 }

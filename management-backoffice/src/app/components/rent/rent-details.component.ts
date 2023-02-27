@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractDetailsComponent} from "../abstract-details.component";
 import {Observable, of, tap} from "rxjs";
-import {Client, CodeName, InventoryOrder, Order, Rent, UnitType} from "../../model/navigation.model";
+import {Client, CodeName, InventoryOrder, Order, Rent, RentContract, UnitType} from "../../model/navigation.model";
 import DetailsConfig from "../../../assets/content-config/details-page.json";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {MBItemService} from "../../services/MBItem.service";
@@ -20,13 +20,6 @@ export class RentDetailsComponent extends AbstractDetailsComponent implements On
     orderHeaders: string[] = DetailsConfig.client.inventory.heads;
     $orders: Observable<Order[]> = new Observable();
     $clients: Observable<Client[]> = this.itemService.getItemByFacilityCode<Client[]>("clients");
-
-    clientCodeControl: FormControl = new FormControl('');
-
-    clientForm: FormGroup = new FormGroup({
-        name: new FormControl(),
-        code: this.clientCodeControl,
-    });
 
     $unitTypes: Observable<CodeName[]> = of([UnitType.DAYS, UnitType.MONTHS, UnitType.YEARS].map(unit =>
         ({
@@ -52,12 +45,7 @@ export class RentDetailsComponent extends AbstractDetailsComponent implements On
         super(topNavService, router);
     }
 
-    private createFrom(code: string = "", name: string = "", address: string = "",cost:number = 0,unit: UnitType = UnitType.MONTHS,
-                       currentClient: CodeName = {
-                           code: "",
-                           name: ""
-                       }) {
-        this.clientForm.setValue(currentClient);
+    private createFrom(code: string = "", name: string = "", address: string = "",cost:number = 0,unit: UnitType = UnitType.MONTHS,currentClient:string ="") {
         this.unitFormControl.setValue(unit);
         return this.formBuilder.group({
             code: new FormControl({value: code, disabled: !!code}),
@@ -65,7 +53,7 @@ export class RentDetailsComponent extends AbstractDetailsComponent implements On
             address: new FormControl(address),
             unit: this.unitFormControl,
             cost: new FormControl(cost),
-            currentClient: this.clientForm
+            currentClient: new FormControl({value: currentClient,disabled: true})
         });
     }
 
@@ -76,11 +64,8 @@ export class RentDetailsComponent extends AbstractDetailsComponent implements On
         if (code && code !== NEW_ITEM) {
             this.$rent = this.itemService.getItemByCode<Rent>(code, true).pipe(
                 tap(rent => {
-                    let {code, name, address,cost,unit, currentClient} = rent;
-                    this.itemForm = this.createFrom(code, name, address, cost,unit,{
-                        code: currentClient?.code || "",
-                        name: currentClient?.name || ""
-                    });
+                    let {code, name, address,cost,unit, currentContract} = rent;
+                    this.itemForm = this.createFrom(code, name, address, cost,unit,currentContract?.client?.name);
                     this.subscribeToForm();
                 }),
                 // tap(value => this.$orders = this.orderService.getOrdersByRentalCode<InventoryOrder[]>(value.code))

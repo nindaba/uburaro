@@ -88,7 +88,7 @@ export interface Capital {
     entries?: CapitalEntry[]
 }
 
-export interface RentOrder extends Item {
+export interface RentOrder extends Order {
     from: Date;
     to: Date;
 }
@@ -130,13 +130,13 @@ export interface Facility extends Item {
 }
 
 export interface Rent extends Item {
-    rentOrders?: Order[];
-    currentClient?: Client;
     facility?: Facility;
     name?: string;
     unit?: UnitType;
     cost?: number;
     address?: string;
+    contracts?:RentContract[];
+    currentContract?: RentContract;
 }
 
 interface Name {
