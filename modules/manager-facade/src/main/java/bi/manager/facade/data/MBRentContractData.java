@@ -12,6 +12,15 @@ public class MBRentContractData extends ItemData {
     private LocalDate to;
     private long costPerUnit;
     private int unit;
+    private String ContractFileName;
+
+    public String getContractFileName() {
+        return ContractFileName;
+    }
+
+    public void setContractFileName(String ContractFileName) {
+        this.ContractFileName = ContractFileName;
+    }
 
     private NamedItemData property;
 
@@ -86,8 +95,7 @@ public class MBRentContractData extends ItemData {
         if (unit != that.unit) return false;
         if (!Objects.equals(from, that.from)) return false;
         if (!Objects.equals(to, that.to)) return false;
-        if (!Objects.equals(property, that.property)) return false;
-        return Objects.equals(client, that.client);
+        return Objects.equals(ContractFileName, that.ContractFileName);
     }
 
     @Override
@@ -96,8 +104,7 @@ public class MBRentContractData extends ItemData {
         result = 31 * result + (to != null ? to.hashCode() : 0);
         result = 31 * result + (int) (costPerUnit ^ (costPerUnit >>> 32));
         result = 31 * result + unit;
-        result = 31 * result + (property != null ? property.hashCode() : 0);
-        result = 31 * result + (client != null ? client.hashCode() : 0);
+        result = 31 * result + (ContractFileName != null ? ContractFileName.hashCode() : 0);
         return result;
     }
 }

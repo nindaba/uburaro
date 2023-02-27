@@ -91,6 +91,9 @@ public class DefaultMBRentContractService extends AbstractMBTypeService<MBRentCo
             target.setFrom(source.getFrom());
         }
 
+    }
+
+    private static void populateCurrentContract(MBRentContractType target) {
         LocalDate today = LocalDate.now();
         MBRentPropertyType property = target.getRentProperty();
         if ((target.getFrom().isAfter(today) || target.getFrom().equals(today))
@@ -113,6 +116,9 @@ public class DefaultMBRentContractService extends AbstractMBTypeService<MBRentCo
         } else {
             target.setCostPerUnit(target.getRentProperty().getCost());
         }
+        if(StringUtils.isNotEmpty(source.getContractFileName())){
+            target.setContractFileName(source.getContractFileName());
+        }
     }
 
     private void populateRelations(final MBRentContractType source, final MBRentContractType target) {
@@ -133,6 +139,7 @@ public class DefaultMBRentContractService extends AbstractMBTypeService<MBRentCo
         }
         populateDates(source, target);
         populateRelations(source, target);
+        populateCurrentContract(target);
         return target;
     }
 

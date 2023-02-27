@@ -10,7 +10,7 @@ import org.mapstruct.Mapping;
 
 import java.util.Collection;
 
-@Mapper(componentModel = "spring", uses = {FacilityMapper.class})
+@Mapper(componentModel = "spring", uses = {FacilityMapper.class,RentContractMapper.class})
 public interface FullClientMapper {
     @Mapping(target = ItemType.MODIFICATION_LOGS, ignore = true)
     @Mapping(target = MBClientType.ORDERS, ignore = true)

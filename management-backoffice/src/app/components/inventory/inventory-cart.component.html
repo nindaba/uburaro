@@ -1,15 +1,5 @@
 <div class="details-cart">
-    <div class="title-cartbtn">
-        <span class="mb-title" translate>inventory.order.title</span>
-        <div>
-            <a class="btn btn-icon" [ngClass]="creating ? 'd-none': ''" (click)="creating = true" translate>
-                <div class="mb-icon mb-icon-green expand"></div>
-            </a>
-            <a class="btn btn-icon" [ngClass]="creating ? '': 'd-none'" (click)="creating = false" translate>
-                <div class="mb-icon mb-icon-green shrink"></div>
-            </a>
-        </div>
-    </div>
+    <mb-expand-shrink title="inventory.order.title" [creating]="creating"></mb-expand-shrink>
     <form (ngSubmit)="orderPlaced()" [formGroup]="inventoryOrderForm" [ngClass]="creating ? '': 'd-none'">
         <div class="content-top">
             <div class="input-grp">

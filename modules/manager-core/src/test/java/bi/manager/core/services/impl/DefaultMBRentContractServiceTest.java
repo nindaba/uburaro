@@ -64,6 +64,7 @@ class DefaultMBRentContractServiceTest {
         CONTRACT.setTo(LocalDate.now());
         CONTRACT.setClient(CLIENT);
         CONTRACT.setRentProperty(RENT);
+        CONTRACT.setContractFileName("contractFileName");
 
 
         RENT.setCode("1000");
@@ -89,6 +90,7 @@ class DefaultMBRentContractServiceTest {
         verify(CONTRACT_SPY).setTo(CONTRACT.getTo());
         verify(CONTRACT_SPY).setUnit(RENT.getUnit());
         verify(CONTRACT_SPY).setCostPerUnit(RENT.getCost());
+        verify(CONTRACT_SPY).setContractFileName(CONTRACT.getContractFileName());
         verify(typeService).save(CONTRACT_SPY);
     }
 
@@ -111,6 +113,7 @@ class DefaultMBRentContractServiceTest {
         verify(CONTRACT_SPY).setTo(CONTRACT.getTo());
         verify(CONTRACT_SPY).setUnit(RENT.getUnit());
         verify(CONTRACT_SPY).setCostPerUnit(RENT.getCost());
+        verify(CONTRACT_SPY).setContractFileName(CONTRACT.getContractFileName());
         verify(typeService).save(CONTRACT_SPY);
     }
 

@@ -13,8 +13,10 @@ export const endpointsConfig: EndpointConfig = {
     inventory: "facilities/{code}/inventories/{inventory-code}",
     clients: "facilities/{code}/clients",
     client: "facilities/{code}/clients/{client-code}",
+    clientRentContract: "facilities/{code}/clients/{client-code}/rent-contract",
     rents: "facilities/{code}/rents",
     rent: "facilities/{code}/rents/{rent-code}",
+    rentContract: "facilities/{code}/rents/{rent-code}/rent-contract",
 
     /**
      * note there is no endpoint for getting a specific order

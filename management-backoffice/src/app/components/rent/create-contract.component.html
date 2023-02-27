@@ -1,0 +1,43 @@
+<div class="details-contract create">
+    <mb-expand-shrink title="label.contract.create" [creating]="creating"></mb-expand-shrink>
+    <form (ngSubmit)="createContract()" [formGroup]="contractForm" [ngClass]="(creating | async) ? '': 'd-none'">
+        <div class="content-top">
+            <div class="input-grp">
+                <label for="from" class="" translate>label.from</label>
+                <input id="from" type="date" formControlName="from" class="input-date" min="2021-01-01">
+            </div>
+            <div class="input-grp">
+                <label for="to" class="" translate>label.to</label>
+                <input id="to" type="date" formControlName="to" class="input-date" min="2021-01-01">
+            </div>
+            <div class="input-grp">
+                <label for="cost" class="" translate>label.cost.perUnit</label>
+                <input id="cost" type="number" class="input-text" placeholder="{{'label.cost.perUnit' | translate}}"
+                       formControlName="costPerUnit">
+            </div>
+
+            <mb-input-drop-down
+                    [relatedItem]="{name: 'unitType', parentPage: ''}"
+                    [$items]="$unitTypes"
+                    [formDetails]="unitForm"
+            ></mb-input-drop-down>
+
+            <div class="input-grp" formGroupName="property">
+                <label for="rent" class="" translate>label.rent.property</label>
+                <input id="rent" type="text" class="input-text" placeholder="{{'label.rent.property' | translate}}"
+                       formControlName="code">
+            </div>
+
+            <mb-input-drop-down [relatedItem]="{name: 'client', parentPage: 'clients'}"
+                                [$items]="$clients"
+                                [formDetails]="clientForm"
+            ></mb-input-drop-down>
+
+        </div>
+        <div class="content-bottom">
+            <input type="file" class="d-none" #contractFile (change)="uploadContract(contractFile)">
+            <span class="btn" (click)="contractFile.click()"><a class="mb-icon add-file"></a>{{contractFileNameControl.getRawValue() | translate}}</span>
+            <button class="btn primary" type="submit" translate>btn.name.create</button>
+        </div>
+    </form>
+</div>

@@ -1,5 +1,3 @@
-import {BehaviorSubject} from "rxjs";
-
 export interface NavNode {
     id?: string,
     icon?: string;
@@ -49,8 +47,8 @@ export interface Item {
 }
 
 export interface CodeName {
-    code: string,
-    name: string
+    code: string | UnitType | InventoryOrderType;
+    name: string | UnitType | InventoryOrderType;
 }
 
 export enum CapitalType {
@@ -91,6 +89,8 @@ export interface Capital {
 }
 
 export interface RentOrder extends Item {
+    from: Date;
+    to: Date;
 }
 
 export interface InventoryOrder extends Item {
@@ -134,7 +134,28 @@ export interface Rent extends Item {
     currentClient?: Client;
     facility?: Facility;
     name?: string;
-    unit?: string;
+    unit?: UnitType;
     cost?: number;
     address?: string;
+}
+
+interface Name {
+    name?: string | UnitType | InventoryOrderType;
+}
+
+export interface RentContract extends Item, Name {
+    from: Date;
+    to: Date;
+    costPerUnit: number;
+    unit: UnitType;
+    contractFileName: string;
+    property?: Rent;
+    client?: Client;
+    orders?: RentOrder[];
+}
+
+export enum UnitType {
+    DAYS = 1,
+    MONTHS = 30,
+    YEARS = 365,
 }

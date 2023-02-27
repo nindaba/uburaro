@@ -11,6 +11,8 @@ import {MBItemService} from "./services/MBItem.service";
 import {MBItemServiceImpl} from "./services/MBItem.service.impl";
 import {OrderService} from "./components/inventory/order.service";
 import {OrderServiceImpl} from "./services/order.service.impl";
+import {ContractService} from "./components/rent/contract.service";
+import {ContractServiceImpl} from "./services/contract.service.impl";
 
 @NgModule({
     imports: [
@@ -28,7 +30,8 @@ import {OrderServiceImpl} from "./services/order.service.impl";
     providers: [
         {provide: EndpointConfig, useValue: endpointsConfig},
         {provide: MBItemService, useClass: MBItemServiceImpl},
-        {provide: OrderService, useClass: OrderServiceImpl}
+        {provide: OrderService, useClass: OrderServiceImpl},
+        {provide: ContractService, useClass: ContractServiceImpl}
     ]
 })
 export class AppCommonModule {

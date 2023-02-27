@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractDetailsComponent} from "../abstract-details.component";
-import {Observable, tap} from "rxjs";
-import {Client, CodeName, InventoryOrder, Order, Rent} from "../../model/navigation.model";
+import {Observable, of, tap} from "rxjs";
+import {Client, CodeName, InventoryOrder, Order, Rent, UnitType} from "../../model/navigation.model";
 import DetailsConfig from "../../../assets/content-config/details-page.json";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {MBItemService} from "../../services/MBItem.service";
@@ -22,11 +22,24 @@ export class RentDetailsComponent extends AbstractDetailsComponent implements On
     $clients: Observable<Client[]> = this.itemService.getItemByFacilityCode<Client[]>("clients");
 
     clientCodeControl: FormControl = new FormControl('');
-    clientNameControl: FormControl = new FormControl('');
 
     clientForm: FormGroup = new FormGroup({
         name: new FormControl(),
         code: this.clientCodeControl,
+    });
+
+    $unitTypes: Observable<CodeName[]> = of([UnitType.DAYS, UnitType.MONTHS, UnitType.YEARS].map(unit =>
+        ({
+            name: unit,
+            code: unit
+        })
+    ));
+
+    private unitFormControl: FormControl = new FormControl(UnitType.MONTHS);
+
+    unitForm: FormGroup = new FormGroup({
+        code: this.unitFormControl,
+        name: new FormControl(UnitType.MONTHS)
     });
 
     constructor(private formBuilder: FormBuilder,
@@ -39,18 +52,18 @@ export class RentDetailsComponent extends AbstractDetailsComponent implements On
         super(topNavService, router);
     }
 
-    private createFrom(code: string = "", name: string = "", address: string = "",cost:number = 0,unit: string ="",
+    private createFrom(code: string = "", name: string = "", address: string = "",cost:number = 0,unit: UnitType = UnitType.MONTHS,
                        currentClient: CodeName = {
                            code: "",
                            name: ""
                        }) {
         this.clientForm.setValue(currentClient);
-
+        this.unitFormControl.setValue(unit);
         return this.formBuilder.group({
             code: new FormControl({value: code, disabled: !!code}),
             name: new FormControl(name),
             address: new FormControl(address),
-            unit: new FormControl(unit),
+            unit: this.unitFormControl,
             cost: new FormControl(cost),
             currentClient: this.clientForm
         });

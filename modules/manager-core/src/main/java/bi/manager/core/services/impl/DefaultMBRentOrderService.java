@@ -43,13 +43,18 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
     public Collection<MBRentOrderType> getOrderByFacilityCode(String code) {
         return facilityService.getFacilityByCode(code).getRents().stream()
                 .filter(ItemType::isActive)
-                .flatMap(rent -> rent.getRentOrders().stream())
+                .flatMap(rent -> rent.getContracts().stream())
+                .filter(ItemType::isActive)
+                .flatMap(contract -> contract.getOrders().stream())
                 .collect(Collectors.toSet());
     }
 
     @Override
     public Collection<MBRentOrderType> getOrderByRentCode(String code) {
-        return typeService.findItemByCode(code, MBRentPropertyType.class).getRentOrders();
+        return typeService.findItemByCode(code, MBRentPropertyType.class).getContracts().stream()
+                .filter(ItemType::isActive)
+                .flatMap(contract -> contract.getOrders().stream())
+                .collect(Collectors.toSet());
     }
 
     @Override

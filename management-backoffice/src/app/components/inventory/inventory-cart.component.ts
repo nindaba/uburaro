@@ -1,5 +1,5 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {BehaviorSubject, Observable, Subscription} from "rxjs";
+import {BehaviorSubject, Observable, Subject, Subscription} from "rxjs";
 import {Client, CodeName, Inventory, InventoryOrder, InventoryOrderType} from "../../model/navigation.model";
 import {TranslateService} from "@ngx-translate/core";
 import {FormControl, FormGroup} from "@angular/forms";
@@ -47,7 +47,7 @@ export class InventoryCartComponent implements OnInit, OnDestroy {
     $clients: Observable<Client[]> = this.itemService.getItemByFacilityCode<Client[]>("clients");
     readonly soldType: InventoryOrderType = InventoryOrderType.SOLD;
 
-    creating: boolean = false;
+    creating: Subject<boolean> = new BehaviorSubject(false);
 
     constructor(private translateService: TranslateService,
                 private itemService: MBItemService,

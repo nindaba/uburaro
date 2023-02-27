@@ -45,7 +45,7 @@ export class InputDropDownComponent implements OnInit, OnDestroy {
             if (this.formDetails.get("name")?.value) {
                 this.undoInput();
             } else {
-                this.formDetails.setValue({name: "", code: ""});
+                this.changeInput({name: "", code: ""})
             }
         }, 150);
     }
@@ -53,9 +53,8 @@ export class InputDropDownComponent implements OnInit, OnDestroy {
     private undoInput() {
         this.subscription.add(
             this.$items.pipe(
-                map(value => value.find(item => item.code == this.formDetails.get("code")?.value)),
-                map(this.getCodeName))
-                .subscribe({next: value => this.formDetails.setValue(value)})
+                map(value => value.find(item => item.code == this.formDetails.get("code")?.value)))
+                .subscribe({next: value => this.changeInput(value)})
         );
     }
 

@@ -1,5 +1,5 @@
 <div class="details-page rent" *ngIf="($rent | async) || true">
-    <div class="attributes">
+    <div class="attributes d-none">
         <span class="mb-title" translate>label.details</span>
         <form class="attributes d-flex flex-wrap" [formGroup]="itemForm">
             <div class="input-grp">
@@ -23,14 +23,16 @@
             </div>
             <div class="input-grp">
                 <label for="cost" class="" translate>label.cost</label>
-                <input id="cost" formControlName="cost" type="text" class="input-text"
+                <input id="cost" formControlName="cost" type="number" class="input-text"
                        placeholder="{{'label.cost' | translate}}"/>
             </div>
-            <div class="input-grp">
-                <label for="unit" class="" translate>label.unit</label>
-                <input id="unit" formControlName="unit" type="text" class="input-text"
-                       placeholder="{{'label.unit' | translate}}"/>
-            </div>
+            <mb-input-drop-down
+                    [relatedItem]="{name: 'unitType', parentPage: ''}"
+                    [$items]="$unitTypes"
+                    [formDetails]="unitForm"
+            ></mb-input-drop-down>
         </form>
     </div>
+    <mb-create-contract [property]="$rent"></mb-create-contract>
+    <mb-list-contract></mb-list-contract>
 </div>

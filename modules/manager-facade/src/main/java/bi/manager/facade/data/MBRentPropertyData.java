@@ -7,8 +7,8 @@ import java.util.Objects;
 import java.util.Set;
 
 public class MBRentPropertyData extends ItemData {
-    private Set<MBRentOrderData> rentOrders = new HashSet<>();
-    private MBClientData currentClient;
+    private Set<MBRentContractData> contracts = new HashSet<>();
+    private MBRentContractData currentContract;
     private MBFacilityData facility;
 
     private String name;
@@ -16,42 +16,20 @@ public class MBRentPropertyData extends ItemData {
     private long cost;
     private String address;
 
-    public Set<MBRentOrderData> getRentOrders() {
-        return rentOrders;
+    public Set<MBRentContractData> getContracts() {
+        return contracts;
     }
 
-    public void setRentOrders(Set<MBRentOrderData> rentOrders) {
-        this.rentOrders = rentOrders;
+    public void setContracts(Set<MBRentContractData> contracts) {
+        this.contracts = contracts;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof MBRentPropertyData)) return false;
-
-        MBRentPropertyData that = (MBRentPropertyData) o;
-
-        if (unit != that.unit) return false;
-        if (cost != that.cost) return false;
-        if (!Objects.equals(name, that.name)) return false;
-        return Objects.equals(address, that.address);
+    public MBRentContractData getCurrentContract() {
+        return currentContract;
     }
 
-    @Override
-    public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + unit;
-        result = 31 * result + (int) (cost ^ (cost >>> 32));
-        result = 31 * result + (address != null ? address.hashCode() : 0);
-        return result;
-    }
-
-    public MBClientData getCurrentClient() {
-        return currentClient;
-    }
-
-    public void setCurrentClient(MBClientData currentClient) {
-        this.currentClient = currentClient;
+    public void setCurrentContract(MBRentContractData currentContract) {
+        this.currentContract = currentContract;
     }
 
     public MBFacilityData getFacility() {
@@ -94,4 +72,25 @@ public class MBRentPropertyData extends ItemData {
         this.address = address;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MBRentPropertyData)) return false;
+
+        MBRentPropertyData that = (MBRentPropertyData) o;
+
+        if (unit != that.unit) return false;
+        if (cost != that.cost) return false;
+        if (!Objects.equals(name, that.name)) return false;
+        return Objects.equals(address, that.address);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + unit;
+        result = 31 * result + (int) (cost ^ (cost >>> 32));
+        result = 31 * result + (address != null ? address.hashCode() : 0);
+        return result;
+    }
 }

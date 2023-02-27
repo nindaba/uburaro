@@ -39,12 +39,12 @@ public class RentPropertyController {
         return rentContractFacade.getContractsByRentCode(rentCode);
     }
     @PatchMapping(value = rentContract)
-    public void updateContract(@PathVariable String code, @PathVariable String rentCode, @RequestBody MBRentContractData contract){
+    public void updateContract(@PathVariable String code, @PathVariable(required = false) String rentCode, @RequestBody MBRentContractData contract){
         rentContractFacade.updateContract(contract);
     }
 
     @DeleteMapping(value = rentContract)
-    public void deleteContracts(@PathVariable String code, @PathVariable(required = false) String rentCode,@RequestParam Set<String> codes){
+    public void deleteContracts(@PathVariable(required = false) String code, @PathVariable(required = false) String rentCode,@RequestParam Set<String> codes){
         rentContractFacade.deleteContract(codes);
     }
 

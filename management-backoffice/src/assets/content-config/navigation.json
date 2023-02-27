@@ -30,8 +30,7 @@
         {
           "icon": "store",
           "name": "nodes.name.stock",
-          "routeId": "inventories",
-          "active": true
+          "routeId": "inventories"
         },
         {
           "icon": "building",
