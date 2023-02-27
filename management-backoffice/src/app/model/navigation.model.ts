@@ -105,6 +105,7 @@ export interface Client extends Item {
     address?: string;
     orders?: Order[];
     invoices?: Invoice[];
+    contracts?: RentContract[];
 }
 
 export interface Inventory extends Item {

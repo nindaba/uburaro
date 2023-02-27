@@ -35,10 +35,9 @@
         </form>
     </div>
     <mb-create-contract [property]="$rent"></mb-create-contract>
+
     <div class="details-contract list">
         <span class="mb-title" translate>label.list.contract</span>
-        <ng-container *ngFor="let contract of ($rent | async)?.contracts">
-            <mb-rent-contract [contract]="contract"/>
-        </ng-container>
+        <mb-rent-contract *ngFor="let contract of ($rent | async)?.contracts" [contract]="contract"/>
     </div>
 </div>

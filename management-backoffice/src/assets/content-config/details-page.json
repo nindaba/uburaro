@@ -27,8 +27,8 @@
       ]
     }
   },
-  "client": {
-    "inventory": {
+  "inventory": {
+    "order": {
       "heads": [
         "label.order.date",
         "label.order.number",

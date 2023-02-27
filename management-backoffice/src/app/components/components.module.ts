@@ -19,11 +19,11 @@ import {ReportModule} from "./report/report.module";
         InventoryModule,
         ClientModule,
         RentModule,
-        ReportModule
+        ReportModule,
     ],
     exports: [
         NavigationModule,
-    ],
+    ]
 })
 export class ComponentsModule {
 }

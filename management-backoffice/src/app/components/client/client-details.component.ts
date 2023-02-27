@@ -17,7 +17,7 @@ import {OrderService} from "../inventory/order.service";
 })
 export class ClientDetailsComponent extends AbstractDetailsComponent implements OnInit {
     $client: Observable<Client> = new Observable();
-    inventoryHeads: string[] = DetailsConfig.client.inventory.heads;
+    inventoryHeads: string[] = DetailsConfig.inventory.order.heads;
     $inventoryOrders: Observable<InventoryOrder[]> = new Observable();
 
     constructor(private formBuilder: FormBuilder,

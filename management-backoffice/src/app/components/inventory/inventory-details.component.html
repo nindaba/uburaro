@@ -30,18 +30,5 @@
         </form>
     </div>
     <mb-inventory-cart [$inventory]="$inventory"></mb-inventory-cart>
-
-    <div class="inventory-orders" *ngIf="$inventoryOrders | async as inventoryOrders">
-        <mb-relation title="inventory.orders" [heads]="orderHeads">
-            <tr *ngFor="let order of inventoryOrders">
-                <td>{{order.orderDate | date: 'dd/MM/yyyy'}}</td>
-                <td>{{order.orderNumber}}</td>
-                <td>{{order.orderEntry}}</td>
-                <td>{{order.clientName}}</td>
-                <td>{{order.cost}}</td>
-                <td>{{order.quantity}}</td>
-                <td>{{order.quantity * order.cost | currency : '':'':'1.0-0'}} FBU</td>
-            </tr>
-        </mb-relation>
-    </div>
+    <mb-inventory-orders [orders]="$inventoryOrders"></mb-inventory-orders>
 </div>

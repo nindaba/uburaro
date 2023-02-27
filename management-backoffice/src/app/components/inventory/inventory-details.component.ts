@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractDetailsComponent} from "../abstract-details.component";
-import {map, mergeMap, Observable, tap} from "rxjs";
+import {map, Observable, tap} from "rxjs";
 import {Category, CodeName, Inventory, InventoryOrder} from "../../model/navigation.model";
-import DetailsConfig from "../../../assets/content-config/details-page.json";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {MBItemService} from "../../services/MBItem.service";
 import {BreadcrumbsService} from "../navigation/top-nav/breadcrumbs.service";
@@ -20,7 +19,6 @@ export class InventoryDetailsComponent extends AbstractDetailsComponent implemen
     $inventory: Observable<Inventory> = new Observable();
     $inventoryOrders: Observable<InventoryOrder[]> = new Observable();
 
-    orderHeads: string[] = DetailsConfig.category.inventory.heads;
 
     categoryForm: FormGroup = new FormGroup({
         name: new FormControl(""),

@@ -16,6 +16,15 @@ public class MBClientData extends ItemData {
     private MBFacilityData facility;
     private Set<MBOrderData> orders =  new HashSet<>();
     private Set<MBInvoiceData> invoices =  new HashSet<>();
+    private Set<MBRentContractData> contracts = new HashSet<>();
+
+    public Set<MBRentContractData> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(Set<MBRentContractData> contracts) {
+        this.contracts = contracts;
+    }
 
     public long getTotalDebt() {
         return totalDebt;
