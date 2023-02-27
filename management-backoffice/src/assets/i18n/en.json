@@ -36,7 +36,6 @@
   "label.client.address": "Address",
   "label.client.name": "Client / Company",
   "label.current.client.name": "Current Client / Company",
-  "label.lastOrder.date": "Last Order Date",
   "label.facility.alias": "Alias",
   "label.facility.empty": "No Facility",
   "label.facility.add": "Add Facility",
