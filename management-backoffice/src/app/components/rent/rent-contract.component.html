@@ -41,7 +41,6 @@
             <mb-relation title="orders" [heads]="orderHeads">
                 {{orders?.length}}
                 <tr *ngFor="let order of orders">
-                    jjjj
                     <td>{{order.orderDate | date: 'dd/MM/yyyy'}}</td>
                     <td>{{order.orderNumber}}</td>
                     <td>{{order.itemName}}</td>
