@@ -17,16 +17,16 @@ import java.util.Set;
 
 @Data
 @EqualsAndHashCode(callSuper = true, exclude = {
-        "rentOrders",
-        "inventoryOrders",
+        "contracts",
         "invoices",
         "facility",
-        "inventoryOrders"
+        "orders"
 })
 @ToString(callSuper = true, exclude = {
         "orders",
         "invoices",
         "facility",
+        "contracts"
 })
 @NoArgsConstructor
 @Entity(name = MBClientType.ITEM_TYPE)

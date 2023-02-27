@@ -80,6 +80,8 @@ class DefaultMBRentOrderServiceTest {
         ORDER.setFrom(LocalDate.now().minusMonths(2));
         ORDER.setTo(LocalDate.now());
         ORDER.setUnit(30);
+        ORDER.setQuantity(2);
+        ORDER.setCost(100);
         ORDER.setClient(CLIENT);
         ORDER.setOrderNumber("number");
         ORDER.setRentProperty(RENT);

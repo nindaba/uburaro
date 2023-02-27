@@ -6,6 +6,7 @@ import {ListingModule} from "../listing/listing.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import { InventoryCartComponent } from './inventory-cart.component';
 import {InputDropDownComponent} from "../drop-down/input-drop-down.component";
+import {ExpandShrinkComponent} from "../expand-shrink/expand-shrink.component";
 
 
 
@@ -15,7 +16,8 @@ import {InputDropDownComponent} from "../drop-down/input-drop-down.component";
         AppCommonModule,
         ListingModule,
         ReactiveFormsModule,
-        InputDropDownComponent
+        InputDropDownComponent,
+        ExpandShrinkComponent
     ],
   exports:[
       InventoryDetailsComponent,

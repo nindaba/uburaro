@@ -5,17 +5,22 @@ import {RentListingComponent} from "./rent-listing.component";
 import {ListingModule} from "../listing/listing.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {InputDropDownComponent} from "../drop-down/input-drop-down.component";
+import {RentContractComponent} from "./rent-contract.component";
+import {CreateContractComponent} from "./create-contract.component";
+import {ListContractsComponent} from "./list-contracts.component";
+import {ExpandShrinkComponent} from "../expand-shrink/expand-shrink.component";
 
 
 
 @NgModule({
-  declarations: [RentDetailsComponent,RentListingComponent],
+  declarations: [RentDetailsComponent,RentListingComponent,RentContractComponent,CreateContractComponent,ListContractsComponent],
     imports: [
         AppCommonModule,
         ListingModule,
         ReactiveFormsModule,
-        InputDropDownComponent
+        InputDropDownComponent,
+        ExpandShrinkComponent
     ],
-  exports: [RentDetailsComponent,RentListingComponent]
+  exports: [RentDetailsComponent,RentListingComponent,ListContractsComponent]
 })
 export class RentModule { }

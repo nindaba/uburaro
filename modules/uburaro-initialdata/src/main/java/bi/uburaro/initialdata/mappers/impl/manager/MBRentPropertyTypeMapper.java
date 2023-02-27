@@ -48,10 +48,6 @@ public class MBRentPropertyTypeMapper extends AbstractTypeMapper<MBRentPropertyT
                 CONTRACTS, contractCodes -> getStringStream(contractCodes)
                         .map(contract -> typeService.findItemByCode(contract, MBRentContractType.class))
                         .forEach(target.getContracts()::add),
-                RENT_ORDERS, orderNumbers -> getStringStream(orderNumbers)
-                        .map(orderRepository::findByOrderNumber)
-                        .map(order -> (MBRentOrderType) order)
-                        .forEach(target.getRentOrders()::add),
                 FACILITY, facility -> target.setFacility(typeService.findItemByCode(facility, MBFacilityType.class))
 
         ));
