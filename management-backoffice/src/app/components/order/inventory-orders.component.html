@@ -1,0 +1,18 @@
+<mb-relation *ngIf="$inventoryOrders | async as inventoryOrders" title="inventory.orders" [heads]="orderHeads">
+    <tr *ngFor="let order of inventoryOrders">
+        <td>{{order.orderDate | date: 'dd/MM/yyyy'}}</td>
+        <td>{{order.orderNumber}}</td>
+        <td>{{order.itemName}}</td>
+        <td>{{order.cost}}</td>
+        <td>{{order.quantity}}</td>
+        <td>{{order.quantity * order.cost | currency : '':'':'1.0-0'}} FBU</td>
+    </tr>
+    <tr class="total">
+        <td>{{'total' | uppercase}}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>{{inventoryOrders | calcTotal : 'quantity'}}</td>
+        <td>{{inventoryOrders | calcTotalCost | currency : '':'':'1.0-0'}} FBU</td>
+    </tr>
+</mb-relation>

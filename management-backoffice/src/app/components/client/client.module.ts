@@ -4,8 +4,8 @@ import {ClientDetailsComponent} from "./client-details.component";
 import {ListingModule} from "../listing/listing.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {ClientListingComponent} from "./client-listing.component";
-import {TotalCostPipe} from "../../pipes/total-cost.pipe";
-import {TotalPipe} from "../../pipes/total.pipe";
+import {RentContractComponent} from "../rent/rent-contract.component";
+import {OrderModule} from "../order/order.module";
 
 
 @NgModule({
@@ -17,8 +17,8 @@ import {TotalPipe} from "../../pipes/total.pipe";
         AppCommonModule,
         ListingModule,
         ReactiveFormsModule,
-        TotalCostPipe,
-        TotalPipe
+        RentContractComponent,
+        OrderModule
     ],
     exports: [
         ClientDetailsComponent,

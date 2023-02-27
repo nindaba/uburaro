@@ -18,6 +18,7 @@ public interface ClientMapper {
     @Mapping(target = MBClientType.INVOICES, ignore = true)
     @Mapping(target = MBClientType.ORDERS, ignore = true)
     @Mapping(target = MBClientType.FACILITY, ignore = true)
+    @Mapping(target = MBClientType.CONTRACTS, ignore = true)
     MBClientData clientToData(MBClientType client);
 
 

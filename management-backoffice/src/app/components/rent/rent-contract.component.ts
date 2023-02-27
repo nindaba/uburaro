@@ -1,19 +1,29 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from "@angular/core";
+import {CommonModule, DatePipe} from "@angular/common";
+import {RelationComponent} from "../relation/relation.component";
+import {TotalPipe} from "../../pipes/total.pipe";
+import {TotalCostPipe} from "../../pipes/total-cost.pipe";
+import {TranslateModule} from "@ngx-translate/core";
 import {BehaviorSubject, Subject, Subscription} from "rxjs";
 import {RentContract} from "../../model/navigation.model";
-import DetailsConfig from "../../../assets/content-config/details-page.json";
+import {OrderModule} from "../order/order.module";
 
 @Component({
     selector: 'mb-rent-contract',
-    templateUrl: './rent-contract.component.html'
+    templateUrl: './rent-contract.component.html',
+    standalone: true,
+    imports: [
+        DatePipe, CommonModule, RelationComponent, TotalPipe, TotalCostPipe, TranslateModule, OrderModule
+    ]
 })
 export class RentContractComponent implements OnInit, OnDestroy {
     subscription: Subscription = new Subscription();
 
     @Input()
     contract: RentContract | undefined;
-    creating: Subject<boolean> = new BehaviorSubject(false);
-    orderHeads: string[] = DetailsConfig.contract.order.heads;
+    @Input()
+    showAll: Subject<boolean> = new BehaviorSubject(false);
+
 
     ngOnDestroy(): void {
     }
@@ -22,10 +32,10 @@ export class RentContractComponent implements OnInit, OnDestroy {
     }
 
     expand() {
-        this.creating.next(true)
+        this.showAll.next(true)
     }
 
     shrink() {
-        this.creating.next(false)
+        this.showAll.next(false)
     }
 }

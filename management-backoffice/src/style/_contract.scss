@@ -1,6 +1,7 @@
 .details-contract {
   &.list {
     border: none;
+    width: 100%;
     gap: $spacing;
   }
 }
@@ -18,6 +19,17 @@
     justify-content: space-between;
     font-size: 14px;
 
+    .code{
+      display: flex;
+      flex-direction: column;
+      flex: .2;
+    }
+    .name{
+      flex: .5;
+      display: flex;
+      flex-direction: column;
+    }
+
     label {
       color: $dark-grey;
       text-transform: uppercase;
@@ -31,6 +43,7 @@
 
     .date-status {
       display: flex;
+
       flex-direction: column;
       gap: 12px;
 
@@ -52,9 +65,5 @@
         }
       }
     }
-  }
-
-  .orders {
-
   }
 }

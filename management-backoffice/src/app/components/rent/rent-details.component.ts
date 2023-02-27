@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractDetailsComponent} from "../abstract-details.component";
-import {Observable, of, tap} from "rxjs";
-import {Client, CodeName, InventoryOrder, Order, Rent, RentContract, UnitType} from "../../model/navigation.model";
-import DetailsConfig from "../../../assets/content-config/details-page.json";
+import {BehaviorSubject, Observable, of, Subject, tap} from "rxjs";
+import {CodeName, Rent, UnitType} from "../../model/navigation.model";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {MBItemService} from "../../services/MBItem.service";
 import {BreadcrumbsService} from "../navigation/top-nav/breadcrumbs.service";
@@ -17,9 +16,7 @@ import {NEW_ITEM} from "../navigation/navigation.constants";
 })
 export class RentDetailsComponent extends AbstractDetailsComponent implements OnInit {
     $rent: Observable<Rent> = new Observable();
-    orderHeaders: string[] = DetailsConfig.client.inventory.heads;
-    $orders: Observable<Order[]> = new Observable();
-    $clients: Observable<Client[]> = this.itemService.getItemByFacilityCode<Client[]>("clients");
+    showAll: Subject<boolean> = new BehaviorSubject(false);
 
     $unitTypes: Observable<CodeName[]> = of([UnitType.DAYS, UnitType.MONTHS, UnitType.YEARS].map(unit =>
         ({
@@ -68,7 +65,6 @@ export class RentDetailsComponent extends AbstractDetailsComponent implements On
                     this.itemForm = this.createFrom(code, name, address, cost,unit,currentContract?.client?.name);
                     this.subscribeToForm();
                 }),
-                // tap(value => this.$orders = this.orderService.getOrdersByRentalCode<InventoryOrder[]>(value.code))
             );
 
             this.subscribeToDelete(this.breadService.pages.page);
