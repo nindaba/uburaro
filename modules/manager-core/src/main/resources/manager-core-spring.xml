@@ -30,6 +30,8 @@
         <ref bean="MBCategoryRepository"/>
         <ref bean="MBInventoryRepository"/>
         <ref bean="MBInventoryOrderRepository"/>
+        <ref bean="MBRentContractRepository"/>
+        <ref bean="MBInvoiceRepository"/>
     </util:list>
 
     <bean parent="mBRepositoriesMerger">

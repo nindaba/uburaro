@@ -1,5 +1,6 @@
 package bi.manager.core.types;
 
+import bi.manager.core.types.client.MBInvoiceType;
 import bi.uburaro.core.types.ItemType;
 import bi.manager.core.types.enums.MBEntryEnum;
 import lombok.Data;
@@ -29,4 +30,7 @@ public class MBCapitalEntryType extends ItemType {
     private MBEntryEnum entryType;
     @ManyToOne(cascade = CascadeType.ALL)
     private MBCapitalType capital;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private MBInvoiceType invoice;
 }

@@ -18,13 +18,18 @@ public interface ManagerWebConstants {
         interface Client {
             String endpoint = Facility.facility + "/clients";
             String client = "/{clientCode}";
-            String rentContract = client+"/rent-contract";
+            String rentContract = client + "/rent-contract";
+
+            interface Invoice {
+                String facilityInvoices = Facility.facility + "/invoices";
+                String clientInvoices = Client.endpoint + Client.client + "/invoices";
+            }
         }
 
         interface Rent {
             String endpoint = Facility.facility + "/rents";
             String rent = "/{rentCode}";
-            String rentContract = rent+"/rent-contract";
+            String rentContract = rent + "/rent-contract";
         }
 
         interface Inventory {

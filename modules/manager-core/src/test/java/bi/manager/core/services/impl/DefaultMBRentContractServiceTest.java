@@ -39,11 +39,7 @@ class DefaultMBRentContractServiceTest {
     DefaultMBRentContractService service;
 
     @Mock
-    MBFacilityService facilityService;
-    @Mock
     MBClientService clientService;
-    @Mock
-    MBRentService rentService;
     @Mock
     TypeService typeService;
     @Mock

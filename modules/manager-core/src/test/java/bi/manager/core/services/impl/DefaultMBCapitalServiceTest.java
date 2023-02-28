@@ -3,6 +3,8 @@ package bi.manager.core.services.impl;
 import bi.manager.core.types.MBCapitalEntryType;
 import bi.manager.core.types.MBCapitalType;
 import bi.manager.core.types.MBFacilityType;
+import bi.manager.core.types.client.MBClientType;
+import bi.manager.core.types.client.MBInvoiceType;
 import bi.manager.core.types.enums.MBEntryEnum;
 import bi.uburaro.core.services.TypeService;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,6 +36,7 @@ class DefaultMBCapitalServiceTest {
     static final MBCapitalEntryType CAPITAL_ENTRY_TYPE2 = new MBCapitalEntryType();
     static final MBCapitalEntryType CAPITAL_ENTRY_TYPE3 = new MBCapitalEntryType();
     static final String FACILITY_CODE = "FACILITY";
+    static final MBInvoiceType INVOICE =  new MBInvoiceType();
 
     static final MBFacilityType FACILITY_TYPE = new MBFacilityType();
     static final Calendar CALENDAR = Calendar.getInstance();
@@ -59,6 +62,10 @@ class DefaultMBCapitalServiceTest {
         CAPITAL_ENTRY_TYPE3.setDateModified(CALENDAR.getTime());
         CAPITAL_TYPE.setEntries(Set.of(CAPITAL_ENTRY_TYPE1, CAPITAL_ENTRY_TYPE2, CAPITAL_ENTRY_TYPE3));
         FACILITY_TYPE.setCapital(CAPITAL_TYPE);
+        MBClientType mbClientType = new MBClientType();
+        mbClientType.setFacility(FACILITY_TYPE);
+        INVOICE.setClient(mbClientType);
+        INVOICE.setAmount(2400l);
     }
 
     @Test
@@ -100,5 +107,29 @@ class DefaultMBCapitalServiceTest {
         from = CALENDAR.getTime();
         entries = service.getCapitalEntries(FACILITY_CODE, from, to);
         assertEquals(3, entries.size());
+    }
+
+    @Test
+    void addInvoiceCapital() {
+        CAPITAL_TYPE.setCurrentValue(1200l*3);
+        MBCapitalEntryType ENTRY = spy(CAPITAL_ENTRY_TYPE1);
+        when(typeService.save(any())).thenReturn(true);
+        when(typeService.create(MBCapitalEntryType.class)).thenReturn(ENTRY);
+        service.addCapital(INVOICE);
+        verify(ENTRY).setInvoice(INVOICE);
+        verify(ENTRY).setAmount(INVOICE.getAmount());
+        verify(ENTRY).setEntryType(MBEntryEnum.INTERNAL);
+        verify(ENTRY).setCapital(CAPITAL_TYPE);
+        assertEquals(1200l*4,CAPITAL_TYPE.getCurrentValue());
+    }
+    @Test
+    void updateInvoiceCapital() {
+        CAPITAL_TYPE.setCurrentValue(1200l*4);
+        MBCapitalEntryType ENTRY = spy(CAPITAL_ENTRY_TYPE1);
+        when(typeService.save(any())).thenReturn(true);
+        INVOICE.setCapitalEntry(ENTRY);
+        service.addCapital(INVOICE);
+        verify(ENTRY).setAmount(INVOICE.getAmount());
+        assertEquals(1200l*5,CAPITAL_TYPE.getCurrentValue());
     }
 }

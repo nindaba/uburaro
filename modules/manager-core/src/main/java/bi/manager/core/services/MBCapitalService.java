@@ -3,6 +3,8 @@ package bi.manager.core.services;
 import bi.manager.core.types.MBCapitalEntryType;
 import bi.manager.core.types.MBCapitalType;
 import bi.manager.core.types.MBFacilityType;
+import bi.manager.core.types.client.MBClientType;
+import bi.manager.core.types.client.MBInvoiceType;
 import bi.manager.core.types.enums.MBEntryEnum;
 
 import java.util.Collection;
@@ -29,6 +31,14 @@ public interface MBCapitalService {
      * @param type
      */
     void addCapital(long value, MBEntryEnum type, MBFacilityType facility);
+
+    /**
+     * Adds a capital entry if th invoice din't have a capital entry,
+     * but if it has a capital entry it will just update it
+     *
+     * @param invoice
+     */
+    void addCapital(MBInvoiceType invoice);
 
     /**
      * Gets a Capital that is related to the facility

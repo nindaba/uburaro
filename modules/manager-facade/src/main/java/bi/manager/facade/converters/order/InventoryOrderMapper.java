@@ -9,7 +9,7 @@ import org.mapstruct.Mapping;
 
 import java.util.Collection;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring" ,uses = {OrderMapper.class})
 public interface InventoryOrderMapper {
     @Mapping(target = ItemType.MODIFICATION_LOGS, ignore = true)
     @Mapping(target = "clientName", source = "client.name")
