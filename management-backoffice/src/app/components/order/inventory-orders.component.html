@@ -2,7 +2,8 @@
     <tr *ngFor="let order of inventoryOrders">
         <td>{{order.orderDate | date: 'dd/MM/yyyy'}}</td>
         <td>{{order.orderNumber}}</td>
-        <td>{{order.itemName}}</td>
+        <td *ngIf="clientPage">{{order.itemName}}</td>
+        <td *ngIf="!clientPage">{{order.clientName}}</td>
         <td>{{order.cost}}</td>
         <td>{{order.quantity}}</td>
         <td>{{order.quantity * order.cost | currency : '':'':'1.0-0'}} FBU</td>
