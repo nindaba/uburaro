@@ -13,5 +13,7 @@ export class InventoryOrdersComponent {
     $inventoryOrders: Observable<InventoryOrder[]> = new Observable();
 
     orderHeads: string[] = DetailsConfig.inventory.order.heads;
+    @Input()
+    clientPage: boolean = false;
 
 }
