@@ -14,17 +14,11 @@ import org.mapstruct.Mapping;
 import java.util.Collection;
 
 @Mapper(componentModel = "spring", uses = {RentOrderMapper.class})
-public interface RentContractMapper {
+public interface RentContractMapper extends ClientNamedMapper{
     @Mapping(target = ItemType.MODIFICATION_LOGS, ignore = true)
     @Mapping(target = "property", source = MBRentContractType.RENT_PROPERTY)
     MBRentContractData contractToData(MBRentContractType client);
 
-    default NamedItemData clientToData(MBClientType source) {
-        NamedItemData target = new NamedItemData();
-        target.setName(source.getName());
-        target.setCode(source.getCode());
-        return target;
-    }
 
     default NamedItemData propertyToData(MBRentPropertyType source) {
         NamedItemData target = new NamedItemData();

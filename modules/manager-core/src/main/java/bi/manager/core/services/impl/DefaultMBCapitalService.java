@@ -4,6 +4,7 @@ import bi.manager.core.services.MBCapitalService;
 import bi.manager.core.types.MBCapitalEntryType;
 import bi.manager.core.types.MBCapitalType;
 import bi.manager.core.types.MBFacilityType;
+import bi.manager.core.types.client.MBInvoiceType;
 import bi.manager.core.types.enums.MBEntryEnum;
 import bi.uburaro.core.services.TypeService;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,7 @@ public class DefaultMBCapitalService implements MBCapitalService {
         addCapital(value, type, facility);
     }
 
+    @Override
     public void addCapital(long value, MBEntryEnum type, MBFacilityType facility) {
         MBCapitalType capital = facility.getCapital();
 
@@ -63,5 +65,33 @@ public class DefaultMBCapitalService implements MBCapitalService {
                     .collect(Collectors.toList());
         }
         return Collections.emptyList();
+    }
+
+    @Override
+    public void addCapital(final MBInvoiceType invoice) {
+        MBCapitalType capital = invoice.getClient().getFacility().getCapital();
+
+        long currentValue = capital.getCurrentValue() + invoice.getAmount();
+
+        if (invoice.getCapitalEntry() == null) {
+            capital.setCurrentValue(currentValue);
+            MBCapitalEntryType entry = typeService.create(MBCapitalEntryType.class);
+            entry.setEntryType(MBEntryEnum.INTERNAL);
+            entry.setAmount(invoice.getAmount());
+            entry.setCapital(capital);
+            entry.setInvoice(invoice);
+        } else {
+            updateCapital(invoice);
+        }
+
+        typeService.save(invoice);
+    }
+
+    private void updateCapital(final MBInvoiceType invoice) {
+        MBCapitalType capital = invoice.getClient().getFacility().getCapital();
+        MBCapitalEntryType entry = invoice.getCapitalEntry();
+
+        capital.setCurrentValue(capital.getCurrentValue() - entry.getAmount() + invoice.getAmount());
+        entry.setAmount(invoice.getAmount());
     }
 }

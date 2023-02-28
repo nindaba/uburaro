@@ -16,6 +16,15 @@ public class MBOrderData extends ItemData {
     private String itemCode;
     private String clientName;
     private String clientCode;
+    private boolean paid;
+
+    public boolean isPaid() {
+        return paid;
+    }
+
+    public void setPaid(boolean paid) {
+        this.paid = paid;
+    }
 
     public String getOrderNumber() {
         return orderNumber;
@@ -99,6 +108,7 @@ public class MBOrderData extends ItemData {
         if (quantity != that.quantity) return false;
         if (unit != that.unit) return false;
         if (cost != that.cost) return false;
+        if (paid != that.paid) return false;
         if (!Objects.equals(orderNumber, that.orderNumber)) return false;
         if (!Objects.equals(orderDate, that.orderDate)) return false;
         if (!Objects.equals(itemName, that.itemName)) return false;
@@ -118,6 +128,7 @@ public class MBOrderData extends ItemData {
         result = 31 * result + (itemCode != null ? itemCode.hashCode() : 0);
         result = 31 * result + (clientName != null ? clientName.hashCode() : 0);
         result = 31 * result + (clientCode != null ? clientCode.hashCode() : 0);
+        result = 31 * result + (paid ? 1 : 0);
         return result;
     }
 }
