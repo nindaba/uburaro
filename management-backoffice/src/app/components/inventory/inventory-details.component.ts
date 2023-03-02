@@ -46,7 +46,7 @@ export class InventoryDetailsComponent extends AbstractDetailsComponent implemen
             code: "",
             name: ""
         },
-        quantity: number = 0, cost: number = 0) {
+        quantity: number = 0, cost: number = 0,unit: string = "") {
         this.categoryForm.setValue(category)
 
         return new FormGroup({
@@ -54,7 +54,8 @@ export class InventoryDetailsComponent extends AbstractDetailsComponent implemen
             name: new FormControl(name),
             category: this.categoryForm,
             quantity: new FormControl({value: quantity, disabled: !!quantity}),
-            cost: new FormControl({value: cost, disabled: !!cost})
+            cost: new FormControl({value: cost, disabled: !!cost}),
+            unit: new FormControl(unit)
         });
     }
 
@@ -65,13 +66,13 @@ export class InventoryDetailsComponent extends AbstractDetailsComponent implemen
         if (code && code !== NEW_ITEM) {
             this.$inventory = this.itemService.getItemByCode<Inventory>(code, true).pipe(
                 tap(inventory => {
-                    let {code, name, quantity, cost, category} = inventory;
+                    let {code, name, quantity, cost, category,unit} = inventory;
                     this.itemForm = this.createFrom(code, name,
                         {
                             code: category.code,
                             name: category.name || ""
                         },
-                        quantity, cost);
+                        quantity, cost,unit);
                     this.subscribeToForm();
                 }),
                 tap(value => this.$inventoryOrders = this.orderService.getOrdersByInventoryCode<InventoryOrder[]>(value.code))

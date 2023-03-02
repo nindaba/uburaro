@@ -1,5 +1,4 @@
-﻿##01/03/2023;;;;;;;
-##mBInventory;;;;;;;
+﻿##mBInventory;;;;;;;
 code;name;category;quantity;cost;active;visible;unit
 INVENTORY-CONGERATEUR;Congerateur;categorie-icizanye-cuisine;4;4000000;TRUE;TRUE;piece
 INVENTORY-FRIGOT;Frigot;categorie-icizanye-cuisine;1;2000000;TRUE;TRUE;piece
@@ -71,7 +70,7 @@ INVENTORY-MARTEAU_A_STEACK;Marteau a steack;categorie-icizanye-cuisine;2;;TRUE;T
 ;;;;;;;
 ;;;;;;;
 ##mBInventory;;;;;;;
-code;name;category;quantity;cost;active;visible;unite
+code;name;category;quantity;cost;active;visible;unit
 INVENTORY-CIBOIRE;Ciboire;categorie-icizanye-bar;9;9000000;TRUE;TRUE;piece
 INVENTORY-FRIGOT;Frigot;categorie-icizanye-bar;4;8000000;TRUE;TRUE;piece
 INVENTORY-ORDINATEUR_DE_BUREAU;Ordinateur de bureau;categorie-icizanye-bar;2;600000;TRUE;TRUE;piece
@@ -119,7 +118,7 @@ INVENTORY-ETAGERE;Etagere;categorie-icizanye-bar;2;;TRUE;TRUE;piece
 ;;;;;;;
 ;;;;;;;
 ##mBInventory;;;;;;;
-code;name;category;quantity;cost;active;visible;unite
+code;name;category;quantity;cost;active;visible;unit
 INVENTORY-PISCINE_;Piscine ;categorie-icizanye-gymnase;1;30000000;TRUE;TRUE;piece
 INVENTORY-FILTRE_DE_SABLE;Filtre de sable;categorie-icizanye-gymnase;1;12000000;TRUE;TRUE;piece
 INVENTORY-ASPIRATEUR_ET_TUYAUX;Aspirateur et tuyaux;categorie-icizanye-gymnase;1;10000000;TRUE;TRUE;piece
@@ -151,11 +150,11 @@ INVENTORY-APPAR_DE_MUSCULATION;Appar de musculation;categorie-icizanye-gymnase;1
 INVENTORY-PAIRE_DE_GROS_DISQUE;Paire de gros disque;categorie-icizanye-gymnase;3;7000000;TRUE;TRUE;piece
 INVENTORY-MIROIRE_DE_VESTIAIRE;Miroire de vestiaire;categorie-icizanye-gymnase;2;120000;TRUE;TRUE;piece
 INVENTORY-PETIT_PORTE_MENTEAU;Petit porte menteau;categorie-icizanye-gymnase;2;50000;TRUE;TRUE;piece
-;;;;232220000;;;
+;;;;;;;
 ;;;;;;;
 ;;;;;;;
 ##mBInventory;;;;;;;
-code;name;category;quantity;cost;active;visible;unite
+code;name;category;quantity;cost;active;visible;unit
 INVENTORY-DRAPS;Draps;categorie-icizanye-hebergement;43;3010000;TRUE;TRUE;piece
 INVENTORY-ESSUIE-MAIN;Essuie-main;categorie-icizanye-hebergement;64;2560000;TRUE;TRUE;piece
 INVENTORY-LITS;Lits;categorie-icizanye-hebergement;27;18900000;TRUE;TRUE;piece
