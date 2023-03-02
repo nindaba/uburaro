@@ -34,9 +34,8 @@ public interface MBFacilityFacade {
      * Updates facility related to the code
      *
      * @param facility
-     * @param code
      */
-    void updateFacility(String code, MBFacilityData facility);
+    void updateFacility(MBFacilityData facility);
 
     /**
      * Creates a facility and saves it
