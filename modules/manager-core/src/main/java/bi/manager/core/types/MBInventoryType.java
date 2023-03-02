@@ -21,6 +21,7 @@ public class MBInventoryType extends ItemType {
     public static final String CATEGORY = "category";
     public static final String QUANTITY = "quantity";
     public static final String COST = "cost";
+    public static final String UNIT = "unit";
     public static final String INVENTORY_ORDERS = "inventoryOrders";
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = MBInventoryOrderType.INVENTORY)
@@ -29,6 +30,7 @@ public class MBInventoryType extends ItemType {
     private MBCategoryType category;
 
     private String name;
+    private String unit;
     private int quantity;
     private long cost;
 

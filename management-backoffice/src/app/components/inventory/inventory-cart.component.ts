@@ -32,7 +32,8 @@ export class InventoryCartComponent implements OnInit, OnDestroy {
         code: "",
         cost: 0,
         name: "",
-        quantity: 0
+        quantity: 0,
+        unit: ""
     })
 
     orderTypeForm: FormGroup = new FormGroup({

@@ -124,6 +124,7 @@ export interface Inventory extends Item {
     quantity: number;
     cost: number;
     category: Category;
+    unit:string;
 }
 
 export interface Category extends Item {

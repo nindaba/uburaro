@@ -8,6 +8,7 @@ import bi.uburaro.initialdata.factory.impl.DefaultFileLineFactory;
 import bi.uburaro.initialdata.services.DataImporterService;
 import bi.uburaro.initialdata.strategies.DataBatchProcessorStrategy;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.RegExUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,6 +23,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 import static bi.uburaro.initialdata.InitialdataConstants.*;
@@ -88,9 +90,9 @@ public class DefaultImporterService extends SimpleFileVisitor<Path> implements D
     }
 
     private void addLine(BatchLineData line, List<BatchData> batches) {
-        if (StringUtils.startsWith(line.getValue(), TYPE_PREFIX)) {
+        if (StringUtils.contains(line.getValue(), TYPE_PREFIX)) {
             BatchData batchData = new BatchData();
-            batchData.setTarget(StringUtils.strip(line.getValue(), TYPE_PREFIX));
+            batchData.setTarget(line.getValue().replaceFirst(TYPE_PREFIX_REGEXP,""));
             batchData.setTarget(StringUtils.split(batchData.getTarget(), DELIMITER)[0]);
             batches.add(batchData);
         } else {

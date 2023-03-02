@@ -14,6 +14,7 @@ public class MBInventoryData extends ItemData {
     private MBCategoryData category;
 
     private String name;
+    private String unit;
     private Integer quantity;
     private Long cost;
 
@@ -57,6 +58,14 @@ public class MBInventoryData extends ItemData {
         this.cost = cost;
     }
 
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -65,6 +74,7 @@ public class MBInventoryData extends ItemData {
         MBInventoryData that = (MBInventoryData) o;
 
         if (!Objects.equals(name, that.name)) return false;
+        if (!Objects.equals(unit, that.unit)) return false;
         if (!Objects.equals(quantity, that.quantity)) return false;
         return Objects.equals(cost, that.cost);
     }
@@ -72,6 +82,7 @@ public class MBInventoryData extends ItemData {
     @Override
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (unit != null ? unit.hashCode() : 0);
         result = 31 * result + (quantity != null ? quantity.hashCode() : 0);
         result = 31 * result + (cost != null ? cost.hashCode() : 0);
         return result;
