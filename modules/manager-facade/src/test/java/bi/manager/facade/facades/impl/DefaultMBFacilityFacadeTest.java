@@ -1,6 +1,5 @@
 package bi.manager.facade.facades.impl;
 
-import bi.manager.facade.facades.impl.DefaultMBFacilityFacade;
 import bi.manager.core.services.MBFacilityService;
 import bi.manager.core.types.MBFacilityType;
 import bi.manager.facade.converters.facility.FacilityMapper;
@@ -86,7 +85,7 @@ class DefaultMBFacilityFacadeTest {
         when(facilityService.getFacilityByCode("a")).thenReturn(TYPE);
         TYPE.setAddress("muyinga");
         DATA.setAddress("muyinga");
-        facilityFacade.updateFacility("a",DATA);
+        facilityFacade.updateFacility(DATA);
         verify(facilityService, atLeastOnce()).updateFacility(TYPE);
     }
 

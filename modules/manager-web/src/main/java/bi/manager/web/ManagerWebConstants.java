@@ -8,6 +8,7 @@ public interface ManagerWebConstants {
         interface Facility {
             String endpoint = "facilities";
             String facility = endpoint + "/{code}";
+            String facilityCode =  "/{code}";
             String capital = facility + "/capital";
         }
 

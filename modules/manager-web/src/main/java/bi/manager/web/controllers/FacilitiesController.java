@@ -1,8 +1,8 @@
 package bi.manager.web.controllers;
 
-import bi.manager.web.ManagerWebConstants;
 import bi.manager.facade.data.MBFacilityData;
 import bi.manager.facade.facades.MBFacilityFacade;
+import bi.manager.web.ManagerWebConstants;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,21 +11,23 @@ import java.util.Collection;
 import java.util.Set;
 
 import static bi.manager.web.ManagerWebConstants.Controller.Facility.endpoint;
+import static bi.manager.web.ManagerWebConstants.Controller.Facility.facilityCode;
 
 @RestController
 @CrossOrigin()
+@RequestMapping(path = endpoint)
 public class FacilitiesController {
     @Resource(name = "facilityFacade")
     protected MBFacilityFacade facilityFacade;
 
-    @RequestMapping(path = endpoint, method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public Collection<MBFacilityData> getFacilities(
             @RequestParam(name = ManagerWebConstants.Controller.allFields, required = false) boolean allFields) {
 
         return facilityFacade.getAllFacilities(allFields);
     }
 
-    @RequestMapping(path = ManagerWebConstants.Controller.Facility.facility, method = RequestMethod.GET)
+    @RequestMapping(path = facilityCode, method = RequestMethod.GET)
     public MBFacilityData getFacilityForCode(
             @RequestParam(name = ManagerWebConstants.Controller.allFields, required = false) boolean allFields,
             @PathVariable String code) {
@@ -33,19 +35,14 @@ public class FacilitiesController {
         return facilityFacade.getFacilityByCode(code, allFields);
     }
 
-    @RequestMapping(path = ManagerWebConstants.Controller.Facility.facility, method = RequestMethod.PATCH)
+    @RequestMapping(method = RequestMethod.PATCH)
     @ResponseStatus(HttpStatus.OK)
-    public void updateFacility(@PathVariable String code, @RequestBody MBFacilityData facilityData) {
-        facilityFacade.updateFacility(code, facilityData);
+    public void updateFacility(@RequestBody MBFacilityData facilityData) {
+        facilityFacade.updateFacility(facilityData);
     }
 
-    @RequestMapping(path = endpoint, method = RequestMethod.DELETE)
+    @RequestMapping(method = RequestMethod.DELETE)
     public void deleteFacility(@RequestParam Set<String> codes) {
         facilityFacade.deleteFacilities(codes);
-    }
-
-    @RequestMapping(path = endpoint , method = RequestMethod.POST)
-    public void createFacility(@RequestBody MBFacilityData facilityData){
-        facilityFacade.createFacility(facilityData);
     }
 }

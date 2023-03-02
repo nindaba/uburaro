@@ -7,6 +7,7 @@ import bi.manager.core.types.MBFacilityType;
 import bi.manager.facade.converters.facility.FacilityMapper;
 import bi.manager.facade.converters.facility.FullFacilityMapper;
 import bi.manager.facade.data.MBFacilityData;
+import bi.uburaro.core.exceptions.NotFoundException;
 import bi.uburaro.core.services.TypeService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -49,14 +50,16 @@ public class DefaultMBFacilityFacade implements MBFacilityFacade {
     }
 
     @Override
-    public void updateFacility(final String code, final MBFacilityData facility) {
-        final MBFacilityType facilityByCode = facilityService.getFacilityByCode(code);
-
-        if (facilityByCode != null) {
+    public void updateFacility(final MBFacilityData facility) {
+        try {
+            final MBFacilityType facilityByCode = facilityService.getFacilityByCode(facility.getCode());
             populateType(facility, facilityByCode);
+            facilityService.updateFacility(facilityByCode);
+        }
+        catch (NotFoundException e){
+            createFacility(facility);
         }
 
-        facilityService.updateFacility(facilityByCode);
     }
 
     @Override
