@@ -5,6 +5,7 @@ import bi.manager.core.types.MBFacilityType;
 import bi.manager.facade.converters.facility.FacilityMapper;
 import bi.manager.facade.converters.facility.FullFacilityMapper;
 import bi.manager.facade.data.MBFacilityData;
+import bi.uburaro.core.exceptions.NotFoundException;
 import bi.uburaro.core.services.TypeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,6 +18,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -82,7 +84,8 @@ class DefaultMBFacilityFacadeTest {
 
     @Test
     void updateFacility() {
-        when(facilityService.getFacilityByCode("a")).thenReturn(TYPE);
+        when(facilityService.getFacilityByCode(DATA.getCode())).thenReturn(TYPE);
+
         TYPE.setAddress("muyinga");
         DATA.setAddress("muyinga");
         facilityFacade.updateFacility(DATA);
@@ -92,7 +95,8 @@ class DefaultMBFacilityFacadeTest {
     @Test
     void createFacility(){
         when(typeService.create(MBFacilityType.class)).thenReturn(TYPE);
-        facilityFacade.createFacility(DATA);
+        when(facilityService.getFacilityByCode(DATA.getCode())).thenThrow(NotFoundException.class);
+        facilityFacade.updateFacility(DATA);
         verify(facilityService, atLeastOnce()).createFacility(TYPE);
     }
 }
