@@ -17,7 +17,7 @@ export class ContractServiceImpl implements ContractService {
 
     private getRentContractUrl() {
         let url = this.urlBuilder.getUrlForEndPoint("rentContract");
-        return url.replaceAll(/{|}/g,"").replaceAll("}","");
+        return url.replaceAll(/{|}/g,"");
     }
 
     deleteContract(codes: string[]): Observable<any> {
