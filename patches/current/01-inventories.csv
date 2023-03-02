@@ -1,0 +1,200 @@
+﻿##01/03/2023;;;;;;;
+##mBInventory;;;;;;;
+code;name;category;quantity;cost;active;visible;unit
+INVENTORY-CONGERATEUR;Congerateur;categorie-icizanye-cuisine;4;4000000;TRUE;TRUE;piece
+INVENTORY-FRIGOT;Frigot;categorie-icizanye-cuisine;1;2000000;TRUE;TRUE;piece
+INVENTORY-MICRO_ONDE;Micro onde;categorie-icizanye-cuisine;3;1500000;TRUE;TRUE;piece
+INVENTORY-FRITEUSE;Friteuse;categorie-icizanye-cuisine;4;1000000;TRUE;TRUE;piece
+INVENTORY-CAFETIERE;Cafetiere;categorie-icizanye-cuisine;4;800000;TRUE;TRUE;piece
+INVENTORY-CHAUFFE_EAU;Chauffe eau;categorie-icizanye-cuisine;2;90000;TRUE;TRUE;piece
+INVENTORY-TOOSTER;Tooster;categorie-icizanye-cuisine;2;60000;TRUE;TRUE;piece
+INVENTORY-MIXER_A_JUS;Mixer a jus;categorie-icizanye-cuisine;2;180000;TRUE;TRUE;piece
+INVENTORY-TABLE_GRAND;Table grand;categorie-icizanye-cuisine;1;1500000;TRUE;TRUE;piece
+INVENTORY-BALANCE_GRAND;Balance grand;categorie-icizanye-cuisine;4;600000;TRUE;TRUE;piece
+INVENTORY-BALANCE_PETIT;Balance petit;categorie-icizanye-cuisine;1;45000;TRUE;TRUE;piece
+INVENTORY-TELEMOS_GRAND;Telemos grand;categorie-icizanye-cuisine;9;225000;TRUE;TRUE;piece
+INVENTORY-TELEMOS_PETIT;Telemos petit;categorie-icizanye-cuisine;18;270000;TRUE;TRUE;piece
+INVENTORY-ISAFUNIYA_NINI;Isafuniya nini;categorie-icizanye-cuisine;4;360000;TRUE;TRUE;piece
+INVENTORY-ISAFUNIYA_NTOYA;Isafuniya ntoya;categorie-icizanye-cuisine;5;75000;TRUE;TRUE;piece
+INVENTORY-PANNEAU_D?OMLETTE;Panneau d?omlette;categorie-icizanye-cuisine;4;240000;TRUE;TRUE;piece
+INVENTORY-PANNEAU_DE_THÈ;Panneau de thÈ;categorie-icizanye-cuisine;9;135000;TRUE;TRUE;piece
+INVENTORY-PANNEAU_SIMPLE;Panneau simple;categorie-icizanye-cuisine;15;;TRUE;TRUE;piece
+INVENTORY-PANNEAU_DES_FRITTES;Panneau des frittes;categorie-icizanye-cuisine;5;100000;TRUE;TRUE;piece
+INVENTORY-MARMITE_DE_PATTE_P;Marmite de patte p;categorie-icizanye-cuisine;2;30000;TRUE;TRUE;piece
+INVENTORY-GRAND_BASSIN;Grand bassin;categorie-icizanye-cuisine;6;210000;TRUE;TRUE;piece
+INVENTORY-PETIT__BASSIN;Petit  bassin;categorie-icizanye-cuisine;8;32000;TRUE;TRUE;piece
+INVENTORY-IMBABURA;Imbabura;categorie-icizanye-cuisine;5;60000;TRUE;TRUE;piece
+INVENTORY-SEAUX;Seaux;categorie-icizanye-cuisine;6;;TRUE;TRUE;piece
+INVENTORY-BAIN_MALIN;Bain malin;categorie-icizanye-cuisine;10;600000;TRUE;TRUE;piece
+INVENTORY-VERRE_DE_LAIT;Verre de lait;categorie-icizanye-cuisine;7;28000;TRUE;TRUE;piece
+INVENTORY-CHINWA;Chinwa;categorie-icizanye-cuisine;1;;TRUE;TRUE;piece
+INVENTORY-FOUE;Foue;categorie-icizanye-cuisine;4;;TRUE;TRUE;piece
+INVENTORY-SOUS_TASSE;Sous tasse ;categorie-icizanye-cuisine;120;3000000;TRUE;TRUE;piece
+INVENTORY-JAGUE;Jague;categorie-icizanye-cuisine;1;5000;TRUE;TRUE;piece
+INVENTORY-BOLLE_DE_FRUIT;Bolle de Fruit;categorie-icizanye-cuisine;2;10000;TRUE;TRUE;piece
+INVENTORY-BOLLE_DE_SOUPE;Bolle de soupe;categorie-icizanye-cuisine;6;30000;TRUE;TRUE;piece
+INVENTORY-BOLLE_DE_PUMA;Bolle de puma;categorie-icizanye-cuisine;9;45000;TRUE;TRUE;piece
+INVENTORY-B0LLE_DE_SUCRE;B0lle de sucre;categorie-icizanye-cuisine;3;15000;TRUE;TRUE;piece
+INVENTORY-VENTULATEUR;Ventulateur;categorie-icizanye-cuisine;5;;TRUE;TRUE;piece
+INVENTORY-MARMITE_DE_BUFFET;Marmite de buffet;categorie-icizanye-cuisine;16;480000;TRUE;TRUE;piece
+INVENTORY-PLATEAU_SALADE_G;Plateau salade G;categorie-icizanye-cuisine;7;45500;TRUE;TRUE;piece
+INVENTORY-PLATEAU_SALADE_P;Plateau salade P;categorie-icizanye-cuisine;13;52000;TRUE;TRUE;piece
+INVENTORY-ASSIETTE_DE_P_ENTIER;Assiette de P entier;categorie-icizanye-cuisine;3;180000;TRUE;TRUE;piece
+INVENTORY-ASSIETTE_DE_MUKEKE;Assiette de mukeke;categorie-icizanye-cuisine;16;800000;TRUE;TRUE;piece
+INVENTORY-ASSIETTE_DE_MELANGE;Assiette de melange;categorie-icizanye-cuisine;17;204000;TRUE;TRUE;piece
+INVENTORY-ASSIETTE_DE_COM_SIMPLE;Assiette de com simple;categorie-icizanye-cuisine;88;1056000;TRUE;TRUE;piece
+INVENTORY-FOURCHETTE;Fourchette;categorie-icizanye-cuisine;412;824000;TRUE;TRUE;piece
+INVENTORY-LOUCHE;Louche;categorie-icizanye-cuisine;25;100000;TRUE;TRUE;piece
+INVENTORY-COUTEAU;Couteau;categorie-icizanye-cuisine;160;320000;TRUE;TRUE;piece
+INVENTORY-PETIT_CUIERRE;Petit cuierre;categorie-icizanye-cuisine;62;93000;TRUE;TRUE;piece
+INVENTORY-CUIERRE_DE_SOUPE;Cuierre de soupe;categorie-icizanye-cuisine;65;195000;TRUE;TRUE;piece
+INVENTORY-ASSIETTE_IGISAFURIYA;Assiette igisafuriya;categorie-icizanye-cuisine;2;120000;TRUE;TRUE;piece
+INVENTORY-PLANCHE;Planche;categorie-icizanye-cuisine;4;100000;TRUE;TRUE;piece
+INVENTORY-ETAGERE;Etagere;categorie-icizanye-cuisine;2;300000;TRUE;TRUE;piece
+INVENTORY-CALCULATRICE;Calculatrice;categorie-icizanye-cuisine;1;10000;TRUE;TRUE;piece
+INVENTORY-HOT_POT;Hot pot;categorie-icizanye-cuisine;2;;TRUE;TRUE;piece
+INVENTORY-MACHINE_VIANDE;Machine viande;categorie-icizanye-cuisine;2;;TRUE;TRUE;piece
+INVENTORY-MIXEUR_A_SOUPE;Mixeur a soupe;categorie-icizanye-cuisine;5;;TRUE;TRUE;piece
+INVENTORY-PORTE-CUILLEUR;Porte-cuilleur;categorie-icizanye-cuisine;2;;TRUE;TRUE;piece
+INVENTORY-IFURU;Ifuru;categorie-icizanye-cuisine;2;;TRUE;TRUE;piece
+INVENTORY-MACHINEPOMM_DE_TERRE;Machinepomm de terre;categorie-icizanye-cuisine;1;;TRUE;TRUE;piece
+INVENTORY-PLATINE;Platine;categorie-icizanye-cuisine;4;;TRUE;TRUE;piece
+INVENTORY-KETIA;Ketia;categorie-icizanye-cuisine;2;;TRUE;TRUE;piece
+INVENTORY-GRIADE;Griade;categorie-icizanye-cuisine;7;;TRUE;TRUE;piece
+INVENTORY-LAPPE_CHOUX;Lappe choux;categorie-icizanye-cuisine;5;;TRUE;TRUE;piece
+INVENTORY-LAPPE_CAROTTE;Lappe carotte;categorie-icizanye-cuisine;4;;TRUE;TRUE;piece
+INVENTORY-COUTEAU_STEACK;Couteau steack;categorie-icizanye-cuisine;4;;TRUE;TRUE;piece
+INVENTORY-CUISINIERE_A_GAZ;Cuisiniere a gaz;categorie-icizanye-cuisine;1;;TRUE;TRUE;piece
+INVENTORY-COUTEAU_SIMPLE;couteau simple;categorie-icizanye-cuisine;2;;TRUE;TRUE;piece
+INVENTORY-MARTEAU_A_STEACK;Marteau a steack;categorie-icizanye-cuisine;2;;TRUE;TRUE;piece
+;;;;;;;
+;;;;;;;
+;;;;;;;
+##mBInventory;;;;;;;
+code;name;category;quantity;cost;active;visible;unite
+INVENTORY-CIBOIRE;Ciboire;categorie-icizanye-bar;9;9000000;TRUE;TRUE;piece
+INVENTORY-FRIGOT;Frigot;categorie-icizanye-bar;4;8000000;TRUE;TRUE;piece
+INVENTORY-ORDINATEUR_DE_BUREAU;Ordinateur de bureau;categorie-icizanye-bar;2;600000;TRUE;TRUE;piece
+INVENTORY-ORDINATEUR_PORTABLE;Ordinateur portable;categorie-icizanye-bar;2;2000000;TRUE;TRUE;piece
+INVENTORY-RETRO_PROJECTEUR;Retro projecteur;categorie-icizanye-bar;4;1800000;TRUE;TRUE;o
+INVENTORY-RADIO;Radio;categorie-icizanye-bar;1;1000000;TRUE;TRUE;piece
+INVENTORY-TELEVISION;Television;categorie-icizanye-bar;1;3000000;TRUE;TRUE;piece
+INVENTORY-MIXISSAIRE;Mixissaire;categorie-icizanye-bar;1;3000000;TRUE;TRUE;piece
+INVENTORY-IMPRIMANTE;Imprimante;categorie-icizanye-bar;2;1500000;TRUE;TRUE;piece
+INVENTORY-CHAISE_PLASTIQUE;Chaise plastique;categorie-icizanye-bar;217;7595000;TRUE;TRUE;piece
+INVENTORY-CHAISE_RESTO_BAR;Chaise resto bar;categorie-icizanye-bar;49;2940000;TRUE;TRUE;piece
+INVENTORY-CHAISE_ET_TABLE_PALLAUTE;Chaise et table pallaute;categorie-icizanye-bar;10;5000000;TRUE;TRUE;piece
+INVENTORY-TABLE_PLASTIQUE;Table plastique;categorie-icizanye-bar;39;2340000;TRUE;TRUE;piece
+INVENTORY-TABLE_METALLIQUE;Table metallique;categorie-icizanye-bar;5;1000000;TRUE;TRUE;piece
+INVENTORY-TABLE_EN_BOIS;Table en bois;categorie-icizanye-bar;49;1715000;TRUE;TRUE;piece
+INVENTORY-TABLE_ZIBIYO_NINI;Table zibiyo nini;categorie-icizanye-bar;4;2000000;TRUE;TRUE;piece
+INVENTORY-TABLE_ZIBIYO_NTOYA;Table zibiyo ntoya;categorie-icizanye-bar;3;750000;TRUE;TRUE;piece
+INVENTORY-VERRE_DE_LIMONADE;Verre de limonade;categorie-icizanye-bar;17;68000;TRUE;TRUE;piece
+INVENTORY-VERRE_DE_VIN;Verre de vin;categorie-icizanye-bar;10;40000;TRUE;TRUE;piece
+INVENTORY-VERRE_DE_PRIMUS;Verre de primus;categorie-icizanye-bar;72;;TRUE;TRUE;piece
+INVENTORY-VERRE_DE_AMSTEL;Verre de amstel;categorie-icizanye-bar;142;;TRUE;TRUE;piece
+INVENTORY-CARTON_DE_G_AMSTEL;Carton de G amstel;categorie-icizanye-bar;44;;TRUE;TRUE;caisse
+INVENTORY-CARTON_DE_G_PRIMUS;Carton de G primus;categorie-icizanye-bar;34;;TRUE;TRUE;caisse
+INVENTORY-CARTON_DE_P_AMSTEL;Carton de P amstel;categorie-icizanye-bar;18;;TRUE;TRUE;caisse
+INVENTORY-CARTON_DE_P_PRIMUS;Carton de P primus;categorie-icizanye-bar;25;;TRUE;TRUE;caisse
+INVENTORY-CARTON_SKOOL;Carton skool;categorie-icizanye-bar;28;;TRUE;TRUE;caisse
+INVENTORY-CARTON_SOMA;Carton soma;categorie-icizanye-bar;5;;TRUE;TRUE;caisse
+INVENTORY-CARTON_FANTA;Carton fanta;categorie-icizanye-bar;25;;TRUE;TRUE;caisse
+INVENTORY-CARTON_ROYAL;Carton royal;categorie-icizanye-bar;16;;TRUE;TRUE;caisse
+INVENTORY-CARTON_VIVA;Carton viva;categorie-icizanye-bar;32;;TRUE;TRUE;caisse
+INVENTORY-VIDE_G_AMSTEL;Vide G amstel;categorie-icizanye-bar;20;;TRUE;TRUE;caisse
+INVENTORY-VIDE_G_PRIMUS;Vide G primus;categorie-icizanye-bar;47;;TRUE;TRUE;caisse
+INVENTORY-VIDE_ROYAL;Vide royal;categorie-icizanye-bar;71;;TRUE;TRUE;caisse
+INVENTORY-VIDE_FANTA;Vide fanta;categorie-icizanye-bar;21;;TRUE;TRUE;caisse
+INVENTORY-TISSU;Tissu;categorie-icizanye-bar;80;;TRUE;TRUE;piece
+INVENTORY-ALLONGE;Allonge;categorie-icizanye-bar;8;;TRUE;TRUE;piece
+INVENTORY-TABLE_COMPTOIRE;Table comptoire;categorie-icizanye-bar;3;;TRUE;TRUE;piece
+INVENTORY-CHAISE_COMPTOIRE;Chaise comptoire;categorie-icizanye-bar;14;;TRUE;TRUE;piece
+INVENTORY-CHAISE_BLANC;Chaise blanc;categorie-icizanye-bar;19;;TRUE;TRUE;piece
+INVENTORY-CHAISE_METTALIQUE;Chaise mettalique;categorie-icizanye-bar;27;;TRUE;TRUE;piece
+INVENTORY-PLATEAU_EN_BOIS;Plateau en bois;categorie-icizanye-bar;9;;TRUE;TRUE;piece
+INVENTORY-PLTEAU_BRARUDI;Plteau brarudi;categorie-icizanye-bar;20;;TRUE;TRUE;piece
+INVENTORY-ETAGERE;Etagere;categorie-icizanye-bar;2;;TRUE;TRUE;piece
+;;;;;;;
+;;;;;;;
+;;;;;;;
+##mBInventory;;;;;;;
+code;name;category;quantity;cost;active;visible;unite
+INVENTORY-PISCINE_;Piscine ;categorie-icizanye-gymnase;1;30000000;TRUE;TRUE;piece
+INVENTORY-FILTRE_DE_SABLE;Filtre de sable;categorie-icizanye-gymnase;1;12000000;TRUE;TRUE;piece
+INVENTORY-ASPIRATEUR_ET_TUYAUX;Aspirateur et tuyaux;categorie-icizanye-gymnase;1;10000000;TRUE;TRUE;piece
+INVENTORY-SCEAU;Sceau;categorie-icizanye-gymnase;1;50000;TRUE;TRUE;piece
+INVENTORY-PORTE_MENTAUX;Porte mentaux;categorie-icizanye-gymnase;2;50000;TRUE;TRUE;piece
+INVENTORY-RACLETTE;Raclette;categorie-icizanye-gymnase;1;5000000;TRUE;TRUE;piece
+INVENTORY-TUYAUX_ALIMANTA;Tuyaux alimanta;categorie-icizanye-gymnase;1;5000000;TRUE;TRUE;piece
+INVENTORY-TAPIS_AU_SOL;Tapis au sol;categorie-icizanye-gymnase;4;400000;TRUE;TRUE;piece
+INVENTORY-PETIT_TAPIS_;Petit tapis ;categorie-icizanye-gymnase;8;800000;TRUE;TRUE;piece
+INVENTORY-POUILIE_MULTICOMBINÈ;Pouilie multicombinÈ;categorie-icizanye-gymnase;1;5000000;TRUE;TRUE;piece
+INVENTORY-APAREIL_DE_MUSCULATION;Apareil de musculation;categorie-icizanye-gymnase;1;15000000;TRUE;TRUE;piece
+INVENTORY-ALTHERE_AVEC_SES_DISQUES;Althere avec ses disques;categorie-icizanye-gymnase;1;5000000;TRUE;TRUE;piece
+INVENTORY-SUPPORT_DE_L?ALTHERE;Support de l?althere;categorie-icizanye-gymnase;1;5000000;TRUE;TRUE;piece
+INVENTORY-BANC_DE_MUSCULATION;Banc de musculation;categorie-icizanye-gymnase;1;12000000;TRUE;TRUE;piece
+INVENTORY-APPAREIL_VIBRO-MASSER;Appareil vibro-masser;categorie-icizanye-gymnase;1;2000000;TRUE;TRUE;piece
+INVENTORY-PESEPERSONNE;Pesepersonne;categorie-icizanye-gymnase;1;5000000;TRUE;TRUE;piece
+INVENTORY-BALLONS_SUISSE;Ballons suisse;categorie-icizanye-gymnase;4;20000000;TRUE;TRUE;piece
+INVENTORY-VELO_CARDIOLOGIQUE;Velo cardiologique;categorie-icizanye-gymnase;3;15000000;TRUE;TRUE;piece
+INVENTORY-ASPIRATEUR_DES_TAPIS;Aspirateur des tapis;categorie-icizanye-gymnase;1;5000000;TRUE;TRUE;piece
+INVENTORY-POSTE_RADIO_ALIPU;Poste radio alipu;categorie-icizanye-gymnase;1;250000;TRUE;TRUE;piece
+INVENTORY-STABILISATEUR;Stabilisateur;categorie-icizanye-gymnase;1;300000;TRUE;TRUE;piece
+INVENTORY-TABLETTE;Tablette;categorie-icizanye-gymnase;1;50000;TRUE;TRUE;piece
+INVENTORY-PAIRE_DE_POIDS_DE_MUSCL;Paire de poids de muscl;categorie-icizanye-gymnase;11;25000000;TRUE;TRUE;piece
+INVENTORY-SUPPORT_DES_POIDS;Support des poids;categorie-icizanye-gymnase;1;5000000;TRUE;TRUE;piece
+INVENTORY-ETAGERE;Etagere;categorie-icizanye-gymnase;1;150000;TRUE;TRUE;piece
+INVENTORY-ROULETTE_DE_MUSCULTION;Roulette de muscultion;categorie-icizanye-gymnase;2;12000000;TRUE;TRUE;piece
+INVENTORY-APPAR_D?ASSOUPLESSEMENT;Appar d?assouplessement;categorie-icizanye-gymnase;1;15000000;TRUE;TRUE;piece
+INVENTORY-APPAR_DE_MUSCULATION;Appar de musculation;categorie-icizanye-gymnase;1;15000000;TRUE;TRUE;piece
+INVENTORY-PAIRE_DE_GROS_DISQUE;Paire de gros disque;categorie-icizanye-gymnase;3;7000000;TRUE;TRUE;piece
+INVENTORY-MIROIRE_DE_VESTIAIRE;Miroire de vestiaire;categorie-icizanye-gymnase;2;120000;TRUE;TRUE;piece
+INVENTORY-PETIT_PORTE_MENTEAU;Petit porte menteau;categorie-icizanye-gymnase;2;50000;TRUE;TRUE;piece
+;;;;232220000;;;
+;;;;;;;
+;;;;;;;
+##mBInventory;;;;;;;
+code;name;category;quantity;cost;active;visible;unite
+INVENTORY-DRAPS;Draps;categorie-icizanye-hebergement;43;3010000;TRUE;TRUE;piece
+INVENTORY-ESSUIE-MAIN;Essuie-main;categorie-icizanye-hebergement;64;2560000;TRUE;TRUE;piece
+INVENTORY-LITS;Lits;categorie-icizanye-hebergement;27;18900000;TRUE;TRUE;piece
+INVENTORY-MATELAS;Matelas;categorie-icizanye-hebergement;27;27000000;TRUE;TRUE;piece
+INVENTORY-CAMERA;Camera;categorie-icizanye-hebergement;6;15000000;TRUE;TRUE;piece
+INVENTORY-TELEVISION;Television;categorie-icizanye-hebergement;17;13600000;TRUE;TRUE;piece
+INVENTORY-CHAUFFE-EAU;Chauffe-eau;categorie-icizanye-hebergement;12;6000000;TRUE;TRUE;piece
+INVENTORY-SALLON_MINISTRE;Sallon ministre;categorie-icizanye-hebergement;7;7000000;TRUE;TRUE;piece
+INVENTORY-MACHINE_A_LAVER;Machine a laver;categorie-icizanye-hebergement;3;4500000;TRUE;TRUE;piece
+INVENTORY-MIROIRES;Miroires;categorie-icizanye-hebergement;25;625000;TRUE;TRUE;piece
+INVENTORY-STABILISATEUR;Stabilisateur;categorie-icizanye-hebergement;2;300000;TRUE;TRUE;piece
+INVENTORY-GROUPE_ELECTROGENE;Groupe electrogene;categorie-icizanye-hebergement;1;24500000;TRUE;TRUE;piece
+INVENTORY-ROUTEUR;Routeur;categorie-icizanye-hebergement;3;450000;TRUE;TRUE;piece
+INVENTORY-MOUSTIQUAIRE;Moustiquaire;categorie-icizanye-hebergement;25;1500000;TRUE;TRUE;piece
+INVENTORY-TELEPHONE_FIXE;Telephone fixe;categorie-icizanye-hebergement;15;2700000;TRUE;TRUE;piece
+INVENTORY-CHAISE;Chaise;categorie-icizanye-hebergement;51;3570000;TRUE;TRUE;piece
+INVENTORY-TAPIS;Tapis;categorie-icizanye-hebergement;44;660000;TRUE;TRUE;piece
+INVENTORY-SEAUX;Seaux;categorie-icizanye-hebergement;37;444000;TRUE;TRUE;piece
+INVENTORY-BABOUCHE;Babouche;categorie-icizanye-hebergement;25;100000;TRUE;TRUE;piece
+INVENTORY-ALLONGES;Allonges;categorie-icizanye-hebergement;7;140000;TRUE;TRUE;piece
+INVENTORY-CONTRE_FAUTEUIL;Contre fauteuil;categorie-icizanye-hebergement;3;15000;TRUE;TRUE;piece
+INVENTORY-GRAND_BASSIN;Grand bassin;categorie-icizanye-hebergement;5;175000;TRUE;TRUE;piece
+INVENTORY-FAIRE_A_REPASSER;Faire a repasser;categorie-icizanye-hebergement;2;130000;TRUE;TRUE;piece
+INVENTORY-POUBELLES;Poubelles;categorie-icizanye-hebergement;25;375000;TRUE;TRUE;piece
+INVENTORY-FRIGOT;Frigot;categorie-icizanye-hebergement;1;2000000;TRUE;TRUE;piece
+INVENTORY-TE_D?OREILLE;Te d?oreille;categorie-icizanye-hebergement;39;195000;TRUE;TRUE;piece
+INVENTORY-DECODEUR;Decodeur;categorie-icizanye-hebergement;6;420000;TRUE;TRUE;piece
+INVENTORY-RIDEAUX;Rideaux ;categorie-icizanye-hebergement;67;2512000;TRUE;TRUE;piece
+INVENTORY-RIDEAUX_DU_JOUR;Rideaux du jour;categorie-icizanye-hebergement;6;360000;TRUE;TRUE;piece
+INVENTORY-PORTE_MENTAUX;Porte mentaux;categorie-icizanye-hebergement;51;300000;TRUE;TRUE;piece
+INVENTORY-PORTE_RIDEAU;Porte rideau;categorie-icizanye-hebergement;27;2160000;TRUE;TRUE;piece
+INVENTORY-MALES;Males;categorie-icizanye-hebergement;3;180000;TRUE;TRUE;piece
+INVENTORY-EXTINCTEUR;Extincteur;categorie-icizanye-hebergement;2;640000;TRUE;TRUE;piece
+INVENTORY-ORDINATEUR_DE_BUREAU;Ordinateur de bureau;categorie-icizanye-hebergement;1;300000;TRUE;TRUE;piece
+INVENTORY-PHOTOCOPIEUSE;Photocopieuse;categorie-icizanye-hebergement;1;3000000;TRUE;TRUE;piece
+INVENTORY-CENTRAL_TELEPHONIQUE;Central telephonique;categorie-icizanye-hebergement;1;11200000;TRUE;TRUE;piece
+INVENTORY-BAGAGE_D?EAU;Bagage d?eau;categorie-icizanye-hebergement;6;840000;TRUE;TRUE;piece
+INVENTORY-COUVRE-LITS;Couvre-lits;categorie-icizanye-hebergement;27;5400000;TRUE;TRUE;piece
+INVENTORY-ETAGERE;Etagere;categorie-icizanye-hebergement;2;150000;TRUE;TRUE;piece
+INVENTORY-IMPRIMANTE;Imprimante;categorie-icizanye-hebergement;2;800000;TRUE;TRUE;piece
+INVENTORY-TABLE;Table;categorie-icizanye-hebergement;40;800000;TRUE;TRUE;piece
+INVENTORY-TELECOMMANDE;Telecommande;categorie-icizanye-hebergement;15;300000;TRUE;TRUE;piece

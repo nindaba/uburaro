@@ -130,6 +130,11 @@
   "report-tabs": {
     "nodes": [
       {
+        "name": "nodes.name.capital",
+        "routeId": "reports/capital",
+        "active": true
+      },
+      {
         "name": "nodes.name.clients",
         "routeId": "reports/clients"
       },
@@ -140,11 +145,19 @@
       {
         "name": "nodes.name.rents",
         "routeId": "reports/rents"
+      }
+
+    ]
+  },
+  "clientDetailsTabs":{
+    "nodes": [
+      {
+        "name": "label.details",
+        "routeId": "code/details"
       },
       {
-        "name": "nodes.name.capital",
-        "routeId": "reports/capital",
-        "active": true
+        "name": "nodes.name.invoices",
+        "routeId": "code/invoices"
       }
     ]
   }

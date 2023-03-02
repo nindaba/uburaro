@@ -29,6 +29,9 @@
       display: flex;
       flex-direction: column;
     }
+    .controls{
+      flex: .2;
+    }
 
     label {
       color: $dark-grey;

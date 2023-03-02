@@ -66,7 +66,7 @@ public class DefaultTypeService implements TypeService {
             save(logType);
             instance.setModificationLogs(Set.of(logType));
 
-            return instance;
+            return (TYPE) itemRepository.save(instance);
         } catch (InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchFieldException |
                  NoSuchMethodException e) {
             log.debug(ERROR_RESPONSE, typeClass::getName);

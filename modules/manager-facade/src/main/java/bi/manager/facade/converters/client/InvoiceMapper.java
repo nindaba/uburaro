@@ -17,6 +17,7 @@ import java.util.Collection;
 public interface InvoiceMapper extends ClientNamedMapper{
 
     @Mapping(target = ItemType.MODIFICATION_LOGS, ignore = true)
+    @Mapping(target = "dateCreated", source = "dateModified")
     MBInvoiceData invoiceToDate(MBInvoiceType invoice);
 
     @InheritInverseConfiguration

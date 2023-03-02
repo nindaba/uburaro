@@ -47,7 +47,7 @@ public class MBClientType extends ItemType {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = MBInventoryOrderType.CLIENT)
     private Set<MBOrderType> orders = new HashSet<>();
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL , mappedBy = MBInvoiceType.CLIENT)
     private Set<MBInvoiceType> invoices = new HashSet<>();
     @ManyToOne(cascade = CascadeType.ALL)
     private MBFacilityType facility;

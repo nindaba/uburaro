@@ -22,4 +22,14 @@
     background-color: $pink;
     color: white;
   }
+  &.chip{
+    background-color: $light-green;
+    border-radius: 20px;
+    width: fit-content;
+  }
+  .badge{
+    &-green{
+      background-color: $primary;
+    }
+  }
 }

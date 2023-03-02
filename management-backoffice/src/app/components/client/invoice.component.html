@@ -1,0 +1,53 @@
+<div class="invoice">
+    <div class="d-flex flex-column">
+        <div class="details">
+            <span class="code">
+            <label translate>label.invoice.number</label>
+            <span>{{invoice?.invoiceNumber}}</span>
+        </span>
+            <span class="amount">
+            <label translate>label.amount</label>
+            <span>{{invoice?.amount | currency : '': '': '1.0-0'}} FBU</span>
+        </span>
+            <div class="date-status">
+            <span>
+                <label translate>label.invoice.date</label>
+                <span>{{invoice?.dateCreated | date: 'dd/MM/yyyy'}}</span>
+            </span>
+            </div>
+
+            <div class="controls d-flex flex-row justify-content-end">
+                <a class="btn" translate *ngIf="false">
+                    <div class="mb-icon download"></div>
+                    label.download
+                </a>
+                <ng-container *ngIf="invoice?.orders?.length else noOrders">
+                    <a class="btn btn-icon" [ngClass]="(showAll | async ) ? 'd-none': ''" (click)="expand()" translate>
+                        <div class="mb-icon mb-icon-green expand"></div>
+                    </a>
+                    <a class="btn btn-icon" [ngClass]="(showAll | async ) ? '': 'd-none'" (click)="shrink()" translate>
+                        <div class="mb-icon mb-icon-green shrink"></div>
+                    </a>
+                </ng-container>
+                <ng-template #noOrders>
+                    <div>no orders</div>
+                </ng-template>
+            </div>
+        </div>
+        <div class="details justify-content-start">
+            <span class="payment-type">
+                <label translate>label.payment.type.name</label>
+                <span>{{invoice?.paymentMode}}</span>
+            </span>
+            <div class="d-flex flex-row" *ngIf="invoice?.description">
+                <label translate>label.invoice.desc</label>
+                <div>{{invoice?.description}}</div>
+            </div>
+        </div>
+    </div>
+    <ng-container *ngIf="invoice?.orders?.length">
+        <mb-orders [ngClass]="(showAll | async) ? 'active-card': 'd-none'"
+                   [orders]="invoice?.orders || []"></mb-orders>
+    </ng-container>
+</div>
+

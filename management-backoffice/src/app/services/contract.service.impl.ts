@@ -16,7 +16,7 @@ export class ContractServiceImpl implements ContractService {
     }
 
     private getRentContractUrl() {
-        let url = this.urlBuilder.getBaseUrlForEndPoint("rentContract");
+        let url = this.urlBuilder.getUrlForEndPoint("rentContract");
         return url.replaceAll(/{|}/g,"").replaceAll("}","");
     }
 

@@ -10,6 +10,7 @@ import bi.manager.core.types.MBFacilityType;
 import bi.manager.core.types.client.MBClientType;
 import bi.manager.core.types.client.MBInvoiceType;
 import bi.manager.core.types.client.MBOrderType;
+import bi.manager.core.types.enums.MBPaymentModeEnum;
 import bi.uburaro.core.exceptions.NotFoundException;
 import bi.uburaro.core.repositories.GeneratedKeyRepository;
 import bi.uburaro.core.services.TypeService;
@@ -86,7 +87,8 @@ public class DefaultMBInvoiceService implements MBInvoiceService {
     private void removeDebt(MBInvoiceType invoice) {
         MBClientType client = invoice.getClient();
 
-        long newDebt = client.getTotalDebt() + invoice.getAmount();
+        long newDebt =client.getTotalDebt();
+        newDebt += invoice.getPaymentMode() != MBPaymentModeEnum.DEBT ?  + invoice.getAmount() : -invoice.getAmount();
         if (invoice.getCapitalEntry() != null) {
             newDebt -= invoice.getCapitalEntry().getAmount();
         }
@@ -107,6 +109,7 @@ public class DefaultMBInvoiceService implements MBInvoiceService {
         String invoiceNumber = environment.getProperty(INVOICE_NUMBER_PREFIX, "IN-") + key.getGeneratedValue();
         invoice.setCode(invoiceNumber);
         invoice.setInvoiceNumber(invoiceNumber);
+        invoice.setDateModified(source.getDateModified());
         populateClient(source, invoice);
         populateOrders(source, invoice);
         return invoice;

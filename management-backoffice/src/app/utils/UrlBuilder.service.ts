@@ -43,11 +43,20 @@ export class UrlBuilderService {
             ]);
     }
     getBaseUrlForPage(){
-        return this.getBaseUrlForEndPoint(this.bread.pages.page || "");
+        return this.getUrlForEndPoint(this.bread.pages.page || "");
     }
 
-    getBaseUrlForEndPoint(endpoint:string,code?:string){
-        let replaceValue = code || this.bread.facility;
-        return this.getUrl(endpoint).replace("{code}",replaceValue);
+    getUrlForEndPoint(endpoint:string, code?:string){
+        let pages = this.bread.pages;
+        return this.getUrl(endpoint,[
+            {
+                key: "code",
+                value: code || this.bread.facility
+            },
+            {
+                key: `${this.config.relation[pages.page || 'def']}-code`,
+                value: pages.details
+            }
+        ]);
     }
 }

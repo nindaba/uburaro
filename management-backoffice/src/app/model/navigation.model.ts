@@ -20,6 +20,8 @@ export class EndpointConfig {
     inventory: string = "";
     clients: string = "";
     client: string = "";
+    invoices:string ="";
+    clientInvoices: string ="";
     rents: string = "";
     rent: string = "";
     inventoryOrders: string = "";
@@ -60,7 +62,9 @@ export enum InventoryOrderType {
     SOLD = "SOLD",
     OUT = "OUT"
 }
-
+export enum PaymentModeType {
+    CASH="CASH", BANK = "BANK", DEBT = "DEBT"
+}
 export interface Order {
     orderNumber?: string;
     quantity: number;
@@ -71,6 +75,7 @@ export interface Order {
     itemCode?: string;
     clientName?: string;
     clientCode?: string;
+    paid?: boolean;
 }
 
 export interface InventoryOrder extends Order {
@@ -97,6 +102,12 @@ export interface InventoryOrder extends Item {
 }
 
 export interface Invoice extends Item {
+    client?: CodeName;
+    orders?: Order[];
+    amount?: number;
+    invoiceNumber?: string;
+    paymentMode?: PaymentModeType;
+    description?: string;
 }
 
 export interface Client extends Item {
@@ -136,7 +147,7 @@ export interface Rent extends Item {
     unit?: UnitType;
     cost?: number;
     address?: string;
-    contracts?:RentContract[];
+    contracts?: RentContract[];
     currentContract?: RentContract;
 }
 

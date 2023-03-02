@@ -1,0 +1,38 @@
+<div class="details-contract create">
+    <span class="mb-title">{{'label.create.invoice' | translate}}</span>
+    <form (ngSubmit)="createInvoice()" [formGroup]="invoiceForm">
+        <div class="content-top">
+            <div class="input-grp">
+                <label for="invoicedate" class="" translate>label.invoice.date</label>
+                <input id="invoicedate" type="date" formControlName="dateCreated" class="input-date" min="2021-01-01">
+            </div>
+            <div class="input-grp">
+                <label for="amount" class="" translate>label.amount</label>
+                <input id="amount" type="number" formControlName="amount" class="input-text">
+            </div>
+            <mb-input-drop-down
+                    [relatedItem]="{name: 'payment.type', parentPage: ''}"
+                    [$items]="paymentTypes"
+                    [formDetails]="paymentForm"
+            ></mb-input-drop-down>
+            <div class="input-grp area">
+                <label for="description" class="" translate>label.invoice.desc</label>
+                <textarea id="description" type="text"
+                       placeholder="{{'label.invoice.desc' | translate}}"
+                          formControlName="description">
+                </textarea>
+            </div>
+
+        </div>
+        <div class="content-bottom">
+            <div class="orders-chips">
+                <div class="btn chip" *ngFor="let order of orders">
+                    {{order.orderNumber}} : {{order.cost*order.quantity | currency :'': '': '1.0-0'}}FBU
+                    <a class="btn mb-icon btn-close text-light" (click)="remove(order)"></a>
+                </div>
+            </div>
+            <button class="btn primary" type="submit" translate>btn.name.create</button>
+        </div>
+    </form>
+</div>
+

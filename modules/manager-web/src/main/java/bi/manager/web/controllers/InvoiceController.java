@@ -31,11 +31,12 @@ public class InvoiceController {
         return invoiceFacade.getAllInvoicesByClientCode(clientCode);
     }
 
-    @PatchMapping(value = facilityInvoices)
+    @PatchMapping(value = clientInvoices)
     void updateInvoice(@RequestBody MBInvoiceData invoice,@PathVariable String clientCode){
         NamedItemData named = new NamedItemData();
         named.setCode(clientCode);
         invoice.setClient(named);
+        invoiceFacade.updateInvoice(invoice);
     }
 
     @DeleteMapping(value = clientInvoices)
