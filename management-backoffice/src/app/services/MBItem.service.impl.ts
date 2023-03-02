@@ -20,7 +20,7 @@ export class MBItemServiceImpl implements MBItemService {
         if (!this.bread.isFacilitySelected()) {
             return new Observable<ITEM>();
         }
-        let url = endpoint ? this.urlBuilder.getBaseUrlForEndPoint(endpoint,facility) : this.urlBuilder.getFullUrl();
+        let url = endpoint ? this.urlBuilder.getUrlForEndPoint(endpoint,facility) : this.urlBuilder.getFullUrl();
         return this.http.get<ITEM>(url);
     }
 

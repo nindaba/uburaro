@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractDetailsComponent} from "../abstract-details.component";
 import {Observable, tap} from "rxjs";
-import {Category, Client, InventoryOrder} from "../../model/navigation.model";
+import {Category, Client, InventoryOrder, NavNode} from "../../model/navigation.model";
 import DetailsConfig from "../../../assets/content-config/details-page.json";
 import {FormBuilder, FormControl} from "@angular/forms";
 import {MBItemService} from "../../services/MBItem.service";
@@ -17,8 +17,8 @@ import {OrderService} from "../inventory/order.service";
 })
 export class ClientDetailsComponent extends AbstractDetailsComponent implements OnInit {
     $client: Observable<Client> = new Observable();
-    inventoryHeads: string[] = DetailsConfig.inventory.order.heads;
     $inventoryOrders: Observable<InventoryOrder[]> = new Observable();
+
 
     constructor(private formBuilder: FormBuilder,
                 private itemService: MBItemService,

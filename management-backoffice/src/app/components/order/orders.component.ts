@@ -6,17 +6,14 @@ import {InvoiceService} from "../client/invoice.service";
 import {AbstractOrdersComponent} from "./abstract-orders.component";
 
 @Component({
-    selector: 'mb-inventory-orders',
-    templateUrl: './inventory-orders.component.html'
+    selector: 'mb-orders',
+    templateUrl: './orders.component.html'
 })
-export class InventoryOrdersComponent extends AbstractOrdersComponent{
-
-    @Input()
-    clientPage: boolean = false;
+export class OrdersComponent{
 
     @Input("orders")
-    $inventoryOrders: Observable<InventoryOrder[]> = new Observable();
+    orders: Order[] = [];
 
-    orderHeads: string[] = DetailsConfig.inventory.order.heads;
+    orderHeads: string[] = DetailsConfig.invoice.order.heads;
 
 }

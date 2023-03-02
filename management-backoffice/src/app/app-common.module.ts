@@ -13,6 +13,8 @@ import {OrderService} from "./components/inventory/order.service";
 import {OrderServiceImpl} from "./services/order.service.impl";
 import {ContractService} from "./components/rent/contract.service";
 import {ContractServiceImpl} from "./services/contract.service.impl";
+import {InvoiceService} from "./components/client/invoice.service";
+import {InvoiceServiceImpl} from "./services/invoice.service.impl";
 
 @NgModule({
     imports: [
@@ -31,7 +33,8 @@ import {ContractServiceImpl} from "./services/contract.service.impl";
         {provide: EndpointConfig, useValue: endpointsConfig},
         {provide: MBItemService, useClass: MBItemServiceImpl},
         {provide: OrderService, useClass: OrderServiceImpl},
-        {provide: ContractService, useClass: ContractServiceImpl}
+        {provide: ContractService, useClass: ContractServiceImpl},
+        {provide: InvoiceService, useClass: InvoiceServiceImpl}
     ]
 })
 export class AppCommonModule {

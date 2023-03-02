@@ -13,8 +13,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
-@EqualsAndHashCode(callSuper = true, exclude = {"client", "order"})
-@ToString(callSuper = true, exclude = {"client", "order"})
+@EqualsAndHashCode(callSuper = true, exclude = {"client", "orders"})
+@ToString(callSuper = true, exclude = {"client", "orders"})
 @NoArgsConstructor
 @Entity(name = MBInvoiceType.ITEM_TYPE)
 public class MBInvoiceType extends ItemType {

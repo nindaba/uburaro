@@ -24,17 +24,22 @@
             </div>
         </div>
 
-        <div class="d-flex flex-row">
-            <a class="btn" translate>
+        <div class="controls d-flex flex-row justify-content-end">
+            <a class="btn" translate *ngIf="false">
                 <div class="mb-icon download"></div>
                 label.download
             </a>
-            <a class="btn btn-icon" [ngClass]="(showAll | async ) ? 'd-none': ''" (click)="expand()" translate>
-                <div class="mb-icon mb-icon-green expand"></div>
-            </a>
-            <a class="btn btn-icon" [ngClass]="(showAll | async ) ? '': 'd-none'" (click)="shrink()" translate>
-                <div class="mb-icon mb-icon-green shrink"></div>
-            </a>
+            <ng-container *ngIf="contract?.orders?.length else noOrders">
+                <a class="btn btn-icon" [ngClass]="(showAll | async ) ? 'd-none': ''" (click)="expand()" translate>
+                    <div class="mb-icon mb-icon-green expand"></div>
+                </a>
+                <a class="btn btn-icon" [ngClass]="(showAll | async ) ? '': 'd-none'" (click)="shrink()" translate>
+                    <div class="mb-icon mb-icon-green shrink"></div>
+                </a>
+            </ng-container>
+            <ng-template #noOrders>
+                <div>no orders</div>
+            </ng-template>
         </div>
     </div>
     <mb-rent-orders [ngClass]="(showAll | async) ? '': 'd-none'" *ngIf="contract?.orders as orders"  [orders]="contract?.orders || []"></mb-rent-orders>

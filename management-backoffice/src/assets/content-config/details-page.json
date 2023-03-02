@@ -27,9 +27,22 @@
       ]
     }
   },
+  "invoice": {
+    "order": {
+      "heads": [
+        "label.order.date",
+        "label.order.number",
+        "label.order.item",
+        "label.cost",
+        "label.quantity",
+        "label.total"
+      ]
+    }
+  },
   "inventory": {
     "order": {
       "heads": [
+        "label.select",
         "label.order.date",
         "label.order.number",
         "label.order.item",

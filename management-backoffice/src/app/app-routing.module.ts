@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {FacilityDetailsComponent} from "./components/facility/facility-details.component";
-import {ClientDetailsComponent} from "./components/client/client-details.component";
 import {CategoryDetailsComponent} from "./components/category/category-details.component";
 import {InventoryDetailsComponent} from "./components/inventory/inventory-details.component";
 import {RentDetailsComponent} from "./components/rent/rent-details.component";
@@ -15,6 +14,10 @@ import {CapitalReportComponent} from "./components/report/capital-report.compone
 import {InventoriesReportComponent} from "./components/report/inventories-report.component";
 import {RentsReportComponent} from "./components/report/rents-report.component";
 import {ClientsReportComponent} from "./components/report/clients-report.component";
+import {ClientDetailsComponent} from "./components/client/client-details.component";
+import {LandingPageComponent} from "./components/client/landing-page.component";
+import {InvoicesComponent} from "./components/client/invoices.component";
+
 
 const routes: Routes = [
     {
@@ -39,12 +42,26 @@ const routes: Routes = [
         component: ClientListingComponent
     },
     {
-        path: "clients/new",
-        component: ClientDetailsComponent
-    },
-    {
         path: "clients/:clientId",
-        component: ClientDetailsComponent
+        component: LandingPageComponent,
+        children: [
+            {
+                path: "new",
+                component: ClientDetailsComponent
+            },
+            {
+                path: ":clientId/details",
+                component: ClientDetailsComponent
+            },
+            {
+                path: ":clientId/invoices",
+                component: InvoicesComponent
+            },
+            {
+                path: "**",
+                component: ClientDetailsComponent
+            },
+        ]
     },
     {
         path: "categories",
