@@ -1,0 +1,12 @@
+.value{
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  &-amount{
+    font-size: 82px;
+    font-weight: 700;
+  }
+  &-currency{
+    margin-bottom: 26px;
+  }
+}
