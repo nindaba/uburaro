@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes, UrlMatcher} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {FacilityDetailsComponent} from "./components/facility/facility-details.component";
 import {CategoryDetailsComponent} from "./components/category/category-details.component";
 import {InventoryDetailsComponent} from "./components/inventory/inventory-details.component";
@@ -18,22 +18,6 @@ import {ClientDetailsComponent} from "./components/client/client-details.compone
 import {LandingPageComponent} from "./components/client/landing-page.component";
 import {InvoicesComponent} from "./components/client/invoices.component";
 
-const invoicesMatcher: UrlMatcher = url => {
-    let consumed = {consumed: url};
-    console.log(url)
-    if (url.length >= 1 && url.pop()?.path.endsWith("invoices")) {
-        return consumed;
-    }
-    return consumed;
-}
-const detailsMatcher: UrlMatcher = url => {
-    let consumed = {consumed: url};
-    console.log(url)
-    if (url.length >= 1 && url.pop()?.path.endsWith("details")) {
-        return consumed;
-    }
-    return consumed;
-}
 
 const routes: Routes = [
     {
