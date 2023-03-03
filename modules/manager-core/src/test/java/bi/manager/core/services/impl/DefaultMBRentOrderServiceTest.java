@@ -96,6 +96,8 @@ class DefaultMBRentOrderServiceTest {
         CLIENT_SPY = spy(CLIENT);
         RENT_SPY = spy(RENT);
 
+        CONTRACT.setRentProperty(RENT_SPY);
+
         //the unit is 30, so I expect that it will calculate months
         COST = RENT.getCost() * (int) ChronoUnit.MONTHS.between(ORDER.getFrom(), ORDER.getTo());
     }
@@ -105,7 +107,6 @@ class DefaultMBRentOrderServiceTest {
         GeneratedKey key = new GeneratedKey();
         key.setGeneratedValue(23l);
         when(clientService.getClientByCode(CLIENT.getCode())).thenReturn(CLIENT_SPY);
-        when(typeService.findItemByCode(RENT.getCode(), MBRentPropertyType.class)).thenReturn(RENT_SPY);
         when(environment.getProperty(RENT_ORDER_PREFIX, String.class, "RO-")).thenReturn("RO-");
         when(generatedKeyRepository.save(new GeneratedKey())).thenReturn(key);
         when(typeService.create(MBRentOrderType.class)).thenReturn(ORDER_SPY);

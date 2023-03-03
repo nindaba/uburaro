@@ -24,6 +24,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static bi.manager.core.ManagerCoreConstants.RENT_UNIT_SCALE;
+
 @Service(value = "mBRentOrderService")
 public class DefaultMBRentOrderService extends AbstractOrderService implements MBRentOrderService {
 
@@ -40,7 +42,7 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
     }
 
     @Override
-    public Collection<MBRentOrderType> getOrderByFacilityCode(String code) {
+    public Collection<MBRentOrderType> getOrderByFacilityCode(final String code) {
         return facilityService.getFacilityByCode(code).getRents().stream()
                 .filter(ItemType::isActive)
                 .flatMap(rent -> rent.getContracts().stream())
@@ -50,7 +52,7 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
     }
 
     @Override
-    public Collection<MBRentOrderType> getOrderByRentCode(String code) {
+    public Collection<MBRentOrderType> getOrderByRentCode(final String code) {
         return typeService.findItemByCode(code, MBRentPropertyType.class).getContracts().stream()
                 .filter(ItemType::isActive)
                 .flatMap(contract -> contract.getOrders().stream())
@@ -58,7 +60,7 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
     }
 
     @Override
-    public Collection<MBRentOrderType> getOrderByClientCode(String code) {
+    public Collection<MBRentOrderType> getOrderByClientCode(final String code) {
         return clientService.getClientByCode(code).getOrders().stream()
                 .filter(orderType -> orderType instanceof MBRentOrderType)
                 .map(orderType -> (MBRentOrderType) orderType)
@@ -66,13 +68,12 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
     }
 
     @Override
-    public void placeOrder(MBRentOrderType order) {
-        MBRentOrderType rentOrder = typeService.create(MBRentOrderType.class);
-        GeneratedKey generatedKey = generatedKeyRepository.save(new GeneratedKey());
-        String prefix = environment.getProperty(RENT_ORDER_PREFIX, String.class, "RO-");
+    public void placeOrder(final MBRentOrderType order) {
+        final MBRentOrderType rentOrder = typeService.create(MBRentOrderType.class);
+        final GeneratedKey generatedKey = generatedKeyRepository.save(new GeneratedKey());
+        final String prefix = environment.getProperty(RENT_ORDER_PREFIX, String.class, "RO-");
         rentOrder.setOrderNumber(prefix + generatedKey.getGeneratedValue());
 
-        populateRent(order, rentOrder);
         populateOrder(order, rentOrder);
         populateContract(order, rentOrder);
         populateQuantity(rentOrder);
@@ -82,21 +83,20 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
         typeService.save(rentOrder);
     }
 
-    private void populateQuantity(MBRentOrderType target) {
-        Map<Integer, ChronoUnit> units = Map.of(1, ChronoUnit.DAYS,7, ChronoUnit.DAYS, 30, ChronoUnit.MONTHS, 365, ChronoUnit.YEARS);
-
-        long quantity = units.getOrDefault(target.getUnit(), ChronoUnit.MONTHS).between(target.getFrom(), target.getTo());
+    private void populateQuantity(final MBRentOrderType target) {
+        final long quantity = RENT_UNIT_SCALE.getOrDefault(target.getUnit(), ChronoUnit.MONTHS).between(target.getFrom(), target.getTo());
         target.setQuantity((int) quantity);
     }
 
-    private void populateContract(MBRentOrderType source, MBRentOrderType target) {
-        MBRentContractType sourceContract = source.getContract();
+    private void populateContract(final MBRentOrderType source, final MBRentOrderType target) {
+        final MBRentContractType sourceContract = source.getContract();
         if(sourceContract == null || StringUtils.isEmpty(sourceContract.getCode())){
             throw new NotFoundException("No Contract was fount on the order");
         }
         MBRentContractType contract = typeService.findItemByCode(sourceContract.getCode(), MBRentContractType.class);
 
         target.setContract(contract);
+        target.setRentProperty(contract.getRentProperty());
 
         if (source.getUnit() == 0) {
             target.setUnit(contract.getUnit());
@@ -112,30 +112,19 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
         }
     }
 
-    private void addIncome(MBRentOrderType rentOrder) {
-        MBRentPropertyType rentProperty = rentOrder.getRentProperty();
-        long income = rentProperty.getTotalIncome() + rentOrder.getQuantity() * rentOrder.getCost();
+    private void addIncome(final MBRentOrderType rentOrder) {
+        final MBRentPropertyType rentProperty = rentOrder.getRentProperty();
+        final long income = rentProperty.getTotalIncome() + rentOrder.getQuantity() * rentOrder.getCost();
         rentProperty.setTotalIncome(income);
     }
 
-    private void populateOrder(MBRentOrderType source, MBRentOrderType target) {
+    private void populateOrder(final MBRentOrderType source, final MBRentOrderType target) {
         target.setFrom(source.getFrom());
         target.setTo(source.getTo());
         target.setOrderDate(source.getFrom());
     }
-
-    private void populateRent(MBRentOrderType source, MBRentOrderType target) {
-        MBRentPropertyType rentProperty = source.getRentProperty();
-        if (rentProperty != null && StringUtils.isNotEmpty(rentProperty.getCode())) {
-            MBRentPropertyType rent = typeService.findItemByCode(rentProperty.getCode(), MBRentPropertyType.class);
-            target.setRentProperty(rent);
-        } else {
-            throw new NotFoundException("No property code found on the rent property");
-        }
-    }
-
     @Override
-    public void deleteOrder(Set<String> orderNumber) {
+    public void deleteOrder(final Set<String> orderNumber) {
         orderNumber.stream()
                 .map(orderRepository::findByOrderNumber)
                 .filter(Objects::nonNull)
@@ -145,16 +134,16 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
                 .forEach(typeService::delete);
     }
 
-    private void revertRentProperty(MBRentOrderType order) {
-        MBRentPropertyType rentProperty = order.getRentProperty();
-        long income = rentProperty.getTotalIncome() - order.getQuantity() * order.getCost();
+    private void revertRentProperty(final MBRentOrderType order) {
+        final MBRentPropertyType rentProperty = order.getRentProperty();
+        final long income = rentProperty.getTotalIncome() - order.getQuantity() * order.getCost();
         rentProperty.setTotalIncome(income);
         typeService.save(rentProperty);
     }
 
-    public void revertClient(MBRentOrderType order) {
-        MBClientType client = order.getClient();
-        long debt = client.getTotalDebt() + order.getQuantity() * order.getCost();
+    public void revertClient(final MBRentOrderType order) {
+        final MBClientType client = order.getClient();
+        final long debt = client.getTotalDebt() + order.getQuantity() * order.getCost();
         client.setTotalDebt(debt);
         typeService.save(client);
     }

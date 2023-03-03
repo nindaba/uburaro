@@ -1,6 +1,7 @@
 package bi.manager.facade.facades;
 
 
+import bi.manager.core.types.client.MBRentContractType;
 import bi.manager.facade.data.MBRentContractData;
 import java.util.Collection;
 import java.util.Set;
@@ -44,4 +45,12 @@ public interface MBRentContractFacade {
      * @param codes
      */
     void deleteContract(Set<String> codes);
+
+
+    /**
+     * Generates today's rent orders
+     *
+     * @return collection of the contracts whose orders are created
+     */
+    Collection<MBRentContractData> generateOrders();
 }

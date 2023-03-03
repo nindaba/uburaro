@@ -1,7 +1,9 @@
 package bi.manager.web.controllers;
 
 import bi.manager.facade.data.MBFacilityData;
+import bi.manager.facade.data.MBRentContractData;
 import bi.manager.facade.facades.MBFacilityFacade;
+import bi.manager.facade.facades.MBRentContractFacade;
 import bi.manager.web.ManagerWebConstants;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,8 @@ import static bi.manager.web.ManagerWebConstants.Controller.Facility.facilityCod
 public class FacilitiesController {
     @Resource(name = "facilityFacade")
     protected MBFacilityFacade facilityFacade;
+    @Resource(name = "mBRentContractFacade")
+    protected MBRentContractFacade rentContractFacade;
 
     @RequestMapping(method = RequestMethod.GET)
     public Collection<MBFacilityData> getFacilities(
@@ -44,5 +48,10 @@ public class FacilitiesController {
     @RequestMapping(method = RequestMethod.DELETE)
     public void deleteFacility(@RequestParam Set<String> codes) {
         facilityFacade.deleteFacilities(codes);
+    }
+
+    @PostMapping
+    public Collection<MBRentContractData> onBackOfficeInit(){
+        return rentContractFacade.generateOrders();
     }
 }
