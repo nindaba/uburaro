@@ -100,8 +100,6 @@ public class DefaultMBRentContractService extends AbstractMBTypeService<MBRentCo
                 && (target.getTo().isAfter(today) || target.getTo().equals(today))) {
 
             property.setCurrentContract(target);
-        } else {
-            property.setCurrentContract(null);
         }
     }
 
