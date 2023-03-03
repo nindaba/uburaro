@@ -18,7 +18,7 @@ public interface MBRentOrderService {
 
     /**
      * Get all the rent orders by finding rent property which belongs to the code
-     * {@link MBRentPropertyType#getRentOrders()}
+     * {@link MBRentPropertyType#getContracts()}
      *
      * @param code
      * @return collection of rent orders
@@ -38,6 +38,14 @@ public interface MBRentOrderService {
      * and changes the current cline
      * <p>
      * finally saves the order
+     *
+     * @apiNote in order to place an order we need
+     * the order to have all this fields<br>
+     * {@link MBRentOrderType#getContract() contract}<br>
+     * {@link MBRentOrderType#getClient() client}<br>
+     * {@link MBRentOrderType#getFrom() from}<br>
+     * {@link MBRentOrderType#getTo() to}<br>
+     * {@link MBRentOrderType#getOrderDate() orderdate }<br>
      *
      * @param order
      */

@@ -30,6 +30,7 @@ public class MBRentContractType extends ItemType {
     public static final String COST_PER_UNIT = "costPerUnit";
     public static final String UNIT = "unit";
     public static final String CONTRACT_NAME = "contractFileName";
+    public static final String NEXT_ORDER_DATE = "nextOrderDate";
 
 
     @Column(name = TABLE_PREFIX+FROM)
@@ -39,6 +40,7 @@ public class MBRentContractType extends ItemType {
     private long costPerUnit;
     private int unit;
     private String contractFileName;
+    private LocalDate nextOrderDate;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private MBRentPropertyType rentProperty;

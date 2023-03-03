@@ -1,6 +1,7 @@
 package bi.manager.facade.facades.impl;
 
 import bi.manager.core.services.MBRentContractService;
+import bi.manager.core.strategies.GenerateRentOrdersStrategy;
 import bi.manager.facade.converters.client.RentContractMapper;
 import bi.manager.facade.data.MBRentContractData;
 import bi.manager.facade.facades.MBRentContractFacade;
@@ -14,10 +15,12 @@ public class MBDefaultRentContractFacade implements MBRentContractFacade {
 
     protected final MBRentContractService service;
     protected final RentContractMapper mapper;
+    protected final GenerateRentOrdersStrategy ordersStrategy;
 
-    public MBDefaultRentContractFacade(MBRentContractService service, RentContractMapper mapper) {
+    public MBDefaultRentContractFacade(MBRentContractService service, RentContractMapper mapper, GenerateRentOrdersStrategy ordersStrategy) {
         this.service = service;
         this.mapper = mapper;
+        this.ordersStrategy = ordersStrategy;
     }
 
     @Override
@@ -43,5 +46,10 @@ public class MBDefaultRentContractFacade implements MBRentContractFacade {
     @Override
     public void deleteContract(Set<String> codes) {
         service.deleteMBItem(codes);
+    }
+
+    @Override
+    public Collection<MBRentContractData> generateOrders() {
+        return mapper.contractsToData(ordersStrategy.generateOrders());
     }
 }
