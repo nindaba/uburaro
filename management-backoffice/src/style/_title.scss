@@ -10,7 +10,7 @@
 
   &-tab {
     padding-bottom: 8px;
-    &.active{
+    &.active,&:hover{
       border-bottom: solid 3px $primary;
       border-radius: 0;
     }
