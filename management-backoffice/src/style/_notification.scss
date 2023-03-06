@@ -1,0 +1,32 @@
+.notification{
+  position: absolute;
+  top: -40px;
+  left: calc(50% - 180px);
+  min-height: 40px;
+  width: 360px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 14px;
+
+  transition: top .5s;
+
+  .message{
+    padding-left: 20px;
+    width: 90%;
+  }
+
+  &-success, &-fail{
+    top: 30px;
+  }
+
+  &-success{
+    background-color: $primary;
+  }
+  &-fail{
+    background-color: $danger;
+  }
+}

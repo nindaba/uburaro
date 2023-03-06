@@ -6,6 +6,7 @@ import {FacilityService} from "../../facility/facility.service";
 import {Facility} from "../../../model/navigation.model";
 import {FormControl} from "@angular/forms";
 import {NEW_ITEM} from "../navigation.constants";
+import {TopNavService} from "./top-nav.service";
 
 @Component({
     selector: 'mb-breadcrumbs',
@@ -19,7 +20,12 @@ export class BreadcrumbsComponent implements OnInit {
     $searchResults: Observable<Facility[]> = new Observable<Facility[]>();
     pattern: FormControl = new FormControl<string>("");
 
-    constructor(private router: Router, private breadService: BreadcrumbsService, private facilityService: FacilityService) {
+    constructor(
+        private router: Router,
+        private breadService: BreadcrumbsService,
+        private facilityService: FacilityService,
+        private topService: TopNavService
+    ) {
     }
 
     toggleFacilitySelector() {
@@ -39,7 +45,8 @@ export class BreadcrumbsComponent implements OnInit {
                 this.breadService.pages.page = paths[1];
                 this.breadService.pages.details = paths[2];
                 return this.breadService.pages;
-            })
+            }),
+            tap(()=> this.topService.$formChanged.next(false))
         );
     }
 

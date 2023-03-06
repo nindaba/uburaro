@@ -1,11 +1,13 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {BehaviorSubject, Observable, of, Subject, Subscription} from "rxjs";
-import {Client, CodeName, Rent, UnitType} from "../../model/navigation.model";
+import {Client, CodeName, NotificationStatus, Rent, UnitType} from "../../model/navigation.model";
 import {FormControl, FormGroup} from "@angular/forms";
 import {MBItemService} from "../../services/MBItem.service";
 import {formatDate} from "@angular/common";
 import {ContractService} from "./contract.service";
-
+import {NotificationService} from "../notification/notification.service";
+import {NotificationKeys} from "../../config/notifications.config";
+import {HttpErrorResponse} from "@angular/common/http";
 
 
 @Component({
@@ -43,7 +45,7 @@ export class CreateContractComponent implements OnInit, OnDestroy {
     @Input()
     property: Observable<Rent> = new Observable();
 
-    constructor(protected itemService: MBItemService,protected contractService: ContractService) {
+    constructor(protected itemService: MBItemService, protected contractService: ContractService, protected notification: NotificationService) {
     }
 
     ngOnDestroy(): void {
@@ -60,7 +62,11 @@ export class CreateContractComponent implements OnInit, OnDestroy {
 
     createContract() {
         this.subscription.add(
-            this.contractService.createContract(this.contractForm.getRawValue()).subscribe({next: value => this.onSuccess()})
+            this.contractService.createContract(this.contractForm.getRawValue()).subscribe(
+                {
+                    next: value => this.onSuccess(),
+                    error: (err: HttpErrorResponse) => this.notification.notify(err.error.message,NotificationStatus.ERROR)
+                })
         );
     }
 
@@ -80,9 +86,8 @@ export class CreateContractComponent implements OnInit, OnDestroy {
     }
 
     uploadContract(contractFile: HTMLInputElement) {
-        if(contractFile.files)
-        {
-            let file : File = contractFile.files[0];
+        if (contractFile.files) {
+            let file: File = contractFile.files[0];
             this.contractFileNameControl.setValue(file.name);
         }
     }
@@ -90,5 +95,6 @@ export class CreateContractComponent implements OnInit, OnDestroy {
     private onSuccess() {
         this.contractFileNameControl.setValue("label.upload.contract");
         this.contractForm.reset();
+        this.notification.notify(NotificationKeys.CONTRACT_CREATED);
     }
 }

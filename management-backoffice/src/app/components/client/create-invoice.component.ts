@@ -4,12 +4,14 @@ import {CodeName, Order, PaymentModeType} from "../../model/navigation.model";
 import {Observable, of, Subscription} from "rxjs";
 import {formatDate} from "@angular/common";
 import {InvoiceService} from "./invoice.service";
+import {NotificationService} from "../notification/notification.service";
+import {NotificationKeys} from "../../config/notifications.config";
 
 @Component({
     selector: 'mb-create-invoice',
     templateUrl: './create-invoice.component.html'
 })
-export class CreateInvoiceComponent implements OnInit ,OnDestroy{
+export class CreateInvoiceComponent implements OnInit, OnDestroy {
 
     subscriptions: Subscription = new Subscription();
     orders: Order[] = [];
@@ -33,10 +35,11 @@ export class CreateInvoiceComponent implements OnInit ,OnDestroy{
         paymentMode: this.paymentFormControl
     });
 
-    constructor(protected invoiceService: InvoiceService) {
+    constructor(protected invoiceService: InvoiceService, protected notification: NotificationService) {
     }
 
     createInvoice() {
+        console.log(this.invoiceForm.getRawValue())
         this.subscriptions.add(
             this.invoiceService.createInvoice(this.invoiceForm.getRawValue()).subscribe({next: value => this.onSuccess()})
         )
@@ -44,7 +47,7 @@ export class CreateInvoiceComponent implements OnInit ,OnDestroy{
 
     ngOnInit(): void {
         this.orders = this.invoiceService.orders;
-        this.ordersFormControl.setValue(this.orders.map(order => ({ orderNumber: order.orderNumber})));
+        this.ordersFormControl.setValue(this.orders.map(order => ({orderNumber: order.orderNumber})));
         this.amountFromControl.setValue(this.orders.reduce((acc, order) => acc + order.cost * order.quantity, 0));
     }
 
@@ -57,10 +60,19 @@ export class CreateInvoiceComponent implements OnInit ,OnDestroy{
     }
 
     private onSuccess() {
-        this.amountFromControl.reset()
+        this.amountFromControl.setValue(0)
         this.ordersFormControl.setValue([]);
-        this.invoiceForm.reset();
+
+        this.invoiceForm.setValue({
+            dateCreated: formatDate(new Date(), "yyyy-MM-dd", "en"),
+            orders: [],
+            paymentMode: PaymentModeType.CASH,
+            description: '',
+            amount: 0,
+        });
+
         this.invoiceService.orders = [];
         this.orders = [];
+        this.notification.notify(NotificationKeys.INVOICE_CREATED);
     }
 }

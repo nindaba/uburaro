@@ -21,7 +21,7 @@ export class FacilityDetailsComponent extends AbstractDetailsComponent implement
     $rents: Observable<Rent[]> = new Observable();
     newCapital: FormControl = new FormControl<string>('')
     capitalType: CapitalType = CapitalType.INTERNAL;
-    $capital: Observable<Capital> = new BehaviorSubject<Capital>({currentValue: 0});
+    $capital: Observable<Capital> = new Observable();
 
     categoryHeads: string[] = DetailsConfig.facilities.category.heads;
     clientHeads: string[] = DetailsConfig.facilities.clients.heads;

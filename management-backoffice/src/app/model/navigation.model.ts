@@ -172,3 +172,12 @@ export enum UnitType {
     MONTHS = 30,
     YEARS = 365,
 }
+
+export enum NotificationStatus{
+    ERROR="fail",SUCCESS="success",NONE=""
+}
+
+export interface MBNotification{
+    status: NotificationStatus,
+    message?: string;
+}
