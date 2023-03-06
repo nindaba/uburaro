@@ -66,7 +66,7 @@ public class DefaultMBRentContractService extends AbstractMBTypeService<MBRentCo
     @Override
     public void updateContract(final MBRentContractType contract) {
         if (contract.getClient() == null || StringUtils.isEmpty(contract.getClient().getCode())) {
-            throw new NotFoundException("No client was found on the contract");
+            throw new NotFoundException("contract.client.notfound");
         }
         if (contract.getRentProperty() == null || StringUtils.isEmpty(contract.getRentProperty().getCode())) {
             throw new NotFoundException("No rent property was found on the contract");

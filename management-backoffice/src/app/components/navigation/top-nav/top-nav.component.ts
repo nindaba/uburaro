@@ -31,7 +31,8 @@ export class TopNavComponent implements OnInit {
     }
 
     add() {
-        this.router.navigate([this.breadcrumbsService.pages.page, NEW_ITEM]);
+        this.router.navigate([this.breadcrumbsService.pages.page])
+            .then(() => this.router.navigate([this.breadcrumbsService.pages.page, NEW_ITEM]));
     }
 
     facilitySelected() {

@@ -104,10 +104,6 @@ export class InventoryCartComponent implements OnInit, OnDestroy {
         let {page, details} = this.bread.pages;
 
         this.router.navigate([page, NEW_ITEM])
-            .then(() => {
-                console.log(page, details)
-                this.router.navigate([page, details])
-            })
-
+            .then(() => this.router.navigate([page, details]))
     }
 }

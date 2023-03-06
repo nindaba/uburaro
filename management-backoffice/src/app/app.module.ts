@@ -10,13 +10,12 @@ import {LogoComponent} from "./components/logo/logo.component";
   declarations: [
     AppComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ComponentsModule,
-    LogoComponent,
-
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ComponentsModule,
+        LogoComponent,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,13 +1,13 @@
 import NavigationConfig from "../../../../assets/content-config/navigation.json";
 import {EventEmitter, Injectable} from "@angular/core";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Subject} from "rxjs";
 import {FormControl} from "@angular/forms";
-import {EndpointConfig, NavNode} from "../../../model/navigation.model";
-import {HttpClient} from "@angular/common/http";
+import {EndpointConfig, NavNode, NotificationStatus} from "../../../model/navigation.model";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {BreadcrumbsService} from "./breadcrumbs.service";
-import {NEW_ITEM} from "../navigation.constants";
 import {UrlBuilderService} from "../../../utils/UrlBuilder.service";
+import {NotificationService} from "../../notification/notification.service";
 
 @Injectable({providedIn: "root"})
 export class TopNavService {
@@ -17,7 +17,7 @@ export class TopNavService {
     activeNode: NavNode = {};
     formValues: any;
     selectedCodes: string[] = [];
-    $formChanged: BehaviorSubject<boolean> = new BehaviorSubject(false);
+    $formChanged: Subject<boolean> = new BehaviorSubject(false);
     searchForm: FormControl = new FormControl('');
 
     constructor(
@@ -25,7 +25,8 @@ export class TopNavService {
         private endpoints: EndpointConfig,
         private http: HttpClient,
         private breadService: BreadcrumbsService,
-        private urlBuilder: UrlBuilderService
+        private urlBuilder: UrlBuilderService,
+        private notification: NotificationService
     ) {
     }
 
@@ -55,38 +56,49 @@ export class TopNavService {
 
             this.http.delete(this.urlBuilder.getBaseUrlForPage(), {params: {"codes": this.selectedCodes.join(",")}}
             ).subscribe({
-                next: value => {
-                    this.$delete.emit();
-                    if (this.selectedCodes.includes(this.breadService.facility)) {
-                        this.breadService.setFacility(this.breadService.CHOSE_FACILITY);
-                    }
-                    this.selectedCodes = [];
-                }
+                next: value => this.deleteSuccess(),
+                error: (err: HttpErrorResponse) => this.notification.notify(err.message, NotificationStatus.NONE)
             })
         }
     }
 
 
+    private deleteSuccess() {
+        this.notification.notify("notification.delete.completed", NotificationStatus.SUCCESS)
+        this.$delete.emit();
+        if (this.selectedCodes.includes(this.breadService.facility)) {
+            this.breadService.setFacility(this.breadService.CHOSE_FACILITY);
+        }
+        this.selectedCodes = [];
+        this.router.navigate([this.breadService.pages.page])
+    }
+
     saveForm() {
         this.http.patch(this.urlBuilder.getBaseUrlForPage(), this.formValues).subscribe({
-            next: value => {
-            }
+            next: value => this.patched([this.breadService.pages.page,this.formValues.code]),
+            error: (err: HttpErrorResponse) => this.notification.notify(err.message, NotificationStatus.NONE)
         })
     }
 
     private createItem() {
         this.http.post(this.urlBuilder.getFullUrl(), this.formValues).subscribe({
-            next: value => {
-            }
+            next: value => this.notification.notify("notification.creation.completed", NotificationStatus.SUCCESS)
         })
 
     }
 
     private updateItem() {
         this.http.patch(this.urlBuilder.getFullUrl(), this.formValues).subscribe({
-            next: value => {
-            }
+            next: value => this.notification.notify("notification.creation.completed", NotificationStatus.SUCCESS)
         })
     }
 
+    private patched(redirect:string[]) {
+        this.notification.notify("notification.save.completed", NotificationStatus.SUCCESS);
+        this.router.navigate([this.breadService.pages.page])
+            .then(() =>this.router.navigate(redirect));
+
+        this.$formChanged.next(false);
+        this.formValues = {}
+    }
 }
