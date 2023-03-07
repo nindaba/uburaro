@@ -15,6 +15,8 @@ export class TopNavComponent implements OnInit {
     $formChanged: Subject<boolean> = this.service.$formChanged;
     searchFrom: FormControl = this.service.searchForm;
 
+    selectedCodes: string[] = [];
+
     constructor(private service: TopNavService, private router: Router, private breadcrumbsService: BreadcrumbsService) {
     }
 
@@ -27,7 +29,7 @@ export class TopNavComponent implements OnInit {
     }
 
     delete() {
-        this.service.delete();
+        this.service.$confirmDelete.next(true);
     }
 
     add() {
@@ -49,6 +51,7 @@ export class TopNavComponent implements OnInit {
         this.router.events.subscribe({
             next: value => this.refreshFacility()
         })
+        this.selectedCodes = this.service.selectedCodes;
     }
 
     discard() {

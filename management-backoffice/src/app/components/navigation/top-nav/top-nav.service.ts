@@ -19,6 +19,7 @@ export class TopNavService {
     selectedCodes: string[] = [];
     $formChanged: Subject<boolean> = new BehaviorSubject(false);
     searchForm: FormControl = new FormControl('');
+    $confirmDelete: Subject<boolean> = new BehaviorSubject(false);
 
     constructor(
         private router: Router,

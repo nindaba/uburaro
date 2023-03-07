@@ -3,6 +3,7 @@ import {TopNavComponent} from './top-nav.component';
 import {AppCommonModule} from "../../../app-common.module";
 import {BreadcrumbsComponent} from './breadcrumbs.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {NotificationModule} from "../../notification/notification.module";
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     imports: [
         AppCommonModule,
         ReactiveFormsModule,
+        NotificationModule,
     ],
 })
 export class TopNavModule {

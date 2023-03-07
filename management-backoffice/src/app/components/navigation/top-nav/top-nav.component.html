@@ -1,3 +1,4 @@
+<mb-confirm></mb-confirm>
 <div class="top-nav">
     <mb-breadcrumbs></mb-breadcrumbs>
     <div class="row nodes">
@@ -26,7 +27,7 @@
             </a>
 
             <ng-container *ngIf="$formChanged | async">
-                <a class="btn warning" (click)="discard()" translate >{{getName('discard')}}</a>
+                <a class="btn danger" (click)="discard()" translate >{{getName('discard')}}</a>
                 <a class="btn primary" (click)="save()" translate >{{getName('save')}}</a>
             </ng-container>
 

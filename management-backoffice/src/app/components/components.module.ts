@@ -9,8 +9,6 @@ import {RentModule} from "./rent/rent.module";
 import {ReportModule} from "./report/report.module";
 import {NotificationModule} from "./notification/notification.module";
 
-
-
 @NgModule({
     imports: [
         NavigationModule,
