@@ -8,7 +8,6 @@ import {filter, Observable, Subject, tap} from "rxjs";
     templateUrl: './confirm.component.html'
 })
 export class ConfirmComponent {
-    message: string | undefined;
     routerChanged: Observable<any> = this.router.events.pipe(
         filter(ev => ev instanceof NavigationEnd),
         tap(value => this.items = this.topService.selectedCodes)
