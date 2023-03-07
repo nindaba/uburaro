@@ -20,7 +20,7 @@ export class InventoryListingComponent extends AbstractListingComponent<Inventor
     ngOnInit(): void {
         this.setItems();
         this.subscribeToSearch();
-        this.subscribeToSearch();
+        this.subscribeToDelete();
     }
 
     getItems(): Observable<Inventory[]> {

@@ -1,17 +1,19 @@
 import {Component} from '@angular/core';
 import {TopNavService} from "../navigation/top-nav/top-nav.service";
 import {NavigationEnd, Router} from "@angular/router";
-import {filter, Observable, Subject, tap} from "rxjs";
+import {filter, Observable, OperatorFunction, Subject, tap} from "rxjs";
 
 @Component({
     selector: 'mb-confirm',
     templateUrl: './confirm.component.html'
 })
 export class ConfirmComponent {
-    routerChanged: Observable<any> = this.router.events.pipe(
+    private changeCodes: OperatorFunction<any, void> = tap(() => this.items = this.topService.selectedCodes);
+    routerChanged: Observable<void> = this.router.events.pipe(
         filter(ev => ev instanceof NavigationEnd),
-        tap(value => this.items = this.topService.selectedCodes)
+        this.changeCodes
     );
+    $onDelete: Observable<void> = this.topService.$delete.pipe(this.changeCodes);
     $confirmDelete: Subject<boolean> = this.topService.$confirmDelete;
     items: string[] = this.topService.selectedCodes;
 
@@ -31,6 +33,5 @@ export class ConfirmComponent {
 
     confirmationDone() {
         this.$confirmDelete.next(false);
-        this.items = this.topService.selectedCodes = [];
     }
 }
