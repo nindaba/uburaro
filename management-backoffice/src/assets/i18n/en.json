@@ -24,6 +24,7 @@
   "nodes.name.invoices": "Invoices",
   "btn.name.close": "Close",
   "btn.name.create": "Create",
+  "btn.name.delete": "Delete",
   "facility.selector.title": "Select Facility",
   "facility.empty": "No Facility Registered",
   "label.code": "Code",

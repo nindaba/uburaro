@@ -1,4 +1,4 @@
-.notification{
+.notification {
   position: absolute;
   top: -40px;
   left: calc(50% - 180px);
@@ -14,19 +14,34 @@
 
   transition: top .5s;
 
-  .message{
+  .message {
     padding-left: 20px;
     width: 90%;
   }
 
-  &-success, &-fail{
+  &-success, &-fail {
     top: 30px;
   }
 
-  &-success{
+  &-success {
     background-color: $primary;
   }
-  &-fail{
+
+  &-fail {
     background-color: $danger;
+  }
+
+  &-confirm {
+    position: absolute;
+    z-index: 1000;
+    box-shadow: 1px 1px $border-color;
+    background-color: white;
+    border: solid 2px $border-color;
+    padding: $spacing;
+    border-radius: 8px;
+    width: 360px;
+    min-height: 100px;
+    left: calc(50% - 180px);
+    top: 20%;
   }
 }
