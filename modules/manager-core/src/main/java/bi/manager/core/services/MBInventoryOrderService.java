@@ -1,6 +1,7 @@
 package bi.manager.core.services;
 
 import bi.manager.core.types.MBInventoryOrderType;
+import bi.manager.core.types.client.MBOrderType;
 
 import java.util.Collection;
 import java.util.Set;

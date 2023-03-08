@@ -31,7 +31,7 @@
             <mb-inventory-orders [orders]="$inventoryOrders" [clientPage]="true"></mb-inventory-orders>
             <div class="details-contract list">
                 <span class="mb-title" translate>label.list.contract</span>
-                <mb-rent-contract *ngFor="let contract of client?.contracts" [contract]="contract"/>
+                <mb-rent-contract [isClientPage]="true" *ngFor="let contract of client?.contracts" [contract]="contract"/>
             </div>
         </div>
     </ng-container>

@@ -55,6 +55,7 @@
   "contract": {
     "order": {
       "heads": [
+        "label.select",
         "label.order.date",
         "label.order.number",
         "label.order.item",

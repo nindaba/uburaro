@@ -20,7 +20,7 @@
                 </span>
             </div>
             <div class="status">
-                <span class="progress"></span>
+                <span class="progress" style="{{width}}"></span>
             </div>
         </div>
 
@@ -42,5 +42,5 @@
             </ng-template>
         </div>
     </div>
-    <mb-rent-orders [ngClass]="(showAll | async) ? '': 'd-none'" *ngIf="contract?.orders as orders"  [orders]="contract?.orders || []"></mb-rent-orders>
+    <mb-rent-orders [clientPage]="isClientPage" [ngClass]="(showAll | async) ? '': 'd-none'" *ngIf="contract?.orders as orders"  [orders]="contract?.orders || []"></mb-rent-orders>
 </div>

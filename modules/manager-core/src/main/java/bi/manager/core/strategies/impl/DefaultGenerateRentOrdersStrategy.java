@@ -31,14 +31,19 @@ public class DefaultGenerateRentOrdersStrategy implements GenerateRentOrdersStra
 
     @Override
     public Collection<MBRentContractType> generateOrders() {
-        return this.rentContractRepository.findMBRentContractTypesByNextOrderDateAfter(LocalDate.now()).stream()
+        return this.rentContractRepository.findMBRentContractTypesByNextOrderDateBefore(LocalDate.now()).stream()
                 .filter(ItemType::isActive)
                 .filter(contract -> contract.getRentProperty().getCurrentContract() == contract)
-                .filter(contract -> contract.getNextOrderDate().isBefore(LocalDate.now()))
-                .peek(this::createOrder)
-                .peek(this::scheduleNextOrderDate)
+                .peek(this::createOrdersAndSchedule)
                 .map(rentContractRepository::save)
                 .collect(Collectors.toList());
+    }
+
+    protected void createOrdersAndSchedule(MBRentContractType contract) {
+        while (contract.getNextOrderDate().isBefore(LocalDate.now())){
+            createOrder(contract);
+            this.scheduleNextOrderDate(contract);
+        }
     }
 
     protected void createOrder(final MBRentContractType contract) {

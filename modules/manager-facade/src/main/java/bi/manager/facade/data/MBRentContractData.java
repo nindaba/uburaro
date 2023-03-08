@@ -10,6 +10,7 @@ import java.util.Set;
 public class MBRentContractData extends ItemData {
     private LocalDate from;
     private LocalDate to;
+    private LocalDate nextOrderDate;
     private long costPerUnit;
     private int unit;
     private String ContractFileName;
@@ -38,6 +39,14 @@ public class MBRentContractData extends ItemData {
 
     public LocalDate getTo() {
         return to;
+    }
+
+    public LocalDate getNextOrderDate() {
+        return nextOrderDate;
+    }
+
+    public void setNextOrderDate(LocalDate nextOrderDate) {
+        this.nextOrderDate = nextOrderDate;
     }
 
     public void setTo(LocalDate to) {
@@ -95,6 +104,8 @@ public class MBRentContractData extends ItemData {
         if (unit != that.unit) return false;
         if (!Objects.equals(from, that.from)) return false;
         if (!Objects.equals(to, that.to)) return false;
+        if (!Objects.equals(nextOrderDate, that.nextOrderDate))
+            return false;
         return Objects.equals(ContractFileName, that.ContractFileName);
     }
 
@@ -102,6 +113,7 @@ public class MBRentContractData extends ItemData {
     public int hashCode() {
         int result = from != null ? from.hashCode() : 0;
         result = 31 * result + (to != null ? to.hashCode() : 0);
+        result = 31 * result + (nextOrderDate != null ? nextOrderDate.hashCode() : 0);
         result = 31 * result + (int) (costPerUnit ^ (costPerUnit >>> 32));
         result = 31 * result + unit;
         result = 31 * result + (ContractFileName != null ? ContractFileName.hashCode() : 0);

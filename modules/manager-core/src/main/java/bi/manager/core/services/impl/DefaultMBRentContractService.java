@@ -17,8 +17,11 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 import java.util.stream.Collectors;
+
+import static bi.manager.core.ManagerCoreConstants.RENT_UNIT_SCALE;
 
 @Service(value = "mBRentContractService")
 public class DefaultMBRentContractService extends AbstractMBTypeService<MBRentContractType> implements MBRentContractService {
@@ -90,7 +93,6 @@ public class DefaultMBRentContractService extends AbstractMBTypeService<MBRentCo
         if (source.getFrom() != null) {
             target.setFrom(source.getFrom());
         }
-
     }
 
     private static void populateCurrentContract(MBRentContractType target) {
@@ -117,6 +119,9 @@ public class DefaultMBRentContractService extends AbstractMBTypeService<MBRentCo
         if(StringUtils.isNotEmpty(source.getContractFileName())){
             target.setContractFileName(source.getContractFileName());
         }
+        if (target.getNextOrderDate() == null) {
+            target.setNextOrderDate(target.getFrom().plus(1,RENT_UNIT_SCALE.getOrDefault(target.getUnit(), ChronoUnit.MONTHS)));
+        }
     }
 
     private void populateRelations(final MBRentContractType source, final MBRentContractType target) {
@@ -138,6 +143,7 @@ public class DefaultMBRentContractService extends AbstractMBTypeService<MBRentCo
         populateDates(source, target);
         populateRelations(source, target);
         populateCurrentContract(target);
+
         return target;
     }
 
