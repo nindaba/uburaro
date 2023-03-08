@@ -53,7 +53,7 @@ export class InventoryDetailsComponent extends AbstractDetailsComponent implemen
             code: new FormControl({value: code, disabled: !!code}),
             name: new FormControl(name),
             category: this.categoryForm,
-            quantity: new FormControl({value: quantity, disabled: !!quantity}),
+            quantity: new FormControl({value: quantity, disabled:true}),
             cost: new FormControl({value: cost, disabled: !!cost}),
             unit: new FormControl(unit)
         });
