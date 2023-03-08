@@ -23,7 +23,7 @@ export class RentContractComponent implements OnInit, OnDestroy {
     contract: RentContract | undefined;
     @Input()
     showAll: Subject<boolean> = new BehaviorSubject(false);
-    width: string = "width: 0%;"
+    progressStyle: string = "width: 0%;"
     @Input()
     isClientPage: boolean = false;
 
@@ -39,7 +39,7 @@ export class RentContractComponent implements OnInit, OnDestroy {
             let paid = this.contract.orders?.reduce((acc, order) => acc && (order.paid || false), true);
             let progressColor = paid ? '' : '#E34A4A';
             
-            this.width = `width:${ordered / contractLength * 100}%; background-color:${progressColor};`;
+            this.progressStyle = `width:${ordered / contractLength * 100}%; background-color:${progressColor};`;
         }
     }
 
