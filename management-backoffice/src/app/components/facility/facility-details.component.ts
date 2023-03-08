@@ -4,13 +4,15 @@ import {TopNavService} from "../navigation/top-nav/top-nav.service";
 import {map, Observable, tap} from "rxjs";
 import {FacilityService} from "./facility.service";
 import {BreadcrumbsService} from "../navigation/top-nav/breadcrumbs.service";
-import {Capital, CapitalType, Facility, Rent} from "../../model/navigation.model";
+import {Capital, CapitalType, Facility, NotificationStatus, Rent} from "../../model/navigation.model";
 import {NEW_ITEM} from "../navigation/navigation.constants";
 import {CapitalService} from "./capital.service";
 import {Router} from "@angular/router";
 import {AbstractDetailsComponent} from "../abstract-details.component";
 import DetailsConfig from "../../../assets/content-config/details-page.json"
 import {MBItemService} from "../../services/MBItem.service";
+import {NotificationService} from "../notification/notification.service";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
     selector: 'mb-facility-details',
@@ -40,7 +42,8 @@ export class FacilityDetailsComponent extends AbstractDetailsComponent implement
         private formBuilder: FormBuilder,
         private capitalService: CapitalService,
         private itemService: MBItemService,
-        protected override router: Router
+        private notification: NotificationService,
+        protected override router: Router,
     ) {
         super(topNavService, router)
     }
@@ -85,7 +88,15 @@ export class FacilityDetailsComponent extends AbstractDetailsComponent implement
     addCapital() {
         this.capitalService.addCapital(this.newCapital.value, this.capitalType,this.capitalDescription.value)
             .subscribe({
-                next: value => this.$capital = this.capitalService.getCapital()
+                next: () => this.onSuccess(),
+                error: (err: HttpErrorResponse) => this.notification.notify(err.error.message,NotificationStatus.ERROR)
             })
+    }
+
+    private onSuccess() {
+        this.$capital = this.capitalService.getCapital();
+        this.notification.notify("capital.added.success");
+        this.capitalDescription.reset();
+        this.newCapital.reset();
     }
 }
