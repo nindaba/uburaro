@@ -1,14 +1,15 @@
 import NavigationConfig from "../../../../assets/content-config/navigation.json";
 import {EventEmitter, Injectable} from "@angular/core";
-import {BehaviorSubject, Subject} from "rxjs";
-import {FormControl} from "@angular/forms";
+import {BehaviorSubject, Observable, of, Subject, throwError} from "rxjs";
+import {FormControl, FormGroup} from "@angular/forms";
 import {EndpointConfig, NavNode, NotificationStatus} from "../../../model/navigation.model";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {BreadcrumbsService} from "./breadcrumbs.service";
 import {UrlBuilderService} from "../../../utils/UrlBuilder.service";
 import {NotificationService} from "../../notification/notification.service";
-import {NEW_ITEM} from "../navigation.constants";
+import {error} from "@angular/compiler-cli/src/transformers/util";
+import {NotificationKeys} from "../../../config/notifications.config";
 
 @Injectable({providedIn: "root"})
 export class TopNavService {
@@ -16,7 +17,7 @@ export class TopNavService {
     nodes: NavNode[] = NavigationConfig["top-nav"].nodes;
 
     activeNode: NavNode = {};
-    formValues: any;
+    itemForm: FormGroup | undefined;
     selectedCodes: string[] = [];
     $formChanged: Subject<boolean> = new BehaviorSubject(false);
     searchForm: FormControl = new FormControl('');
@@ -74,32 +75,32 @@ export class TopNavService {
         this.$delete.emit();
     }
 
-    saveForm() {
-        this.http.patch(this.urlBuilder.getBaseUrlForPage(), this.formValues).subscribe({
-            next: value => this.patched([this.breadService.pages.page, this.formValues.code]),
-            error: (err: HttpErrorResponse) => this.notification.notify(err.message, NotificationStatus.NONE)
-        })
+    saveForm(): Observable<any> {
+        if (this.itemForm?.invalid){
+            return throwError(()=> new Error(NotificationKeys.INVALID_FORM));
+        }
+        return this.http.patch(this.urlBuilder.getBaseUrlForPage(), this.itemForm?.getRawValue());
     }
 
     private createItem() {
-        this.http.post(this.urlBuilder.getFullUrl(), this.formValues).subscribe({
-            next: value => this.notification.notify("notification.creation.completed", NotificationStatus.SUCCESS)
+        this.http.post(this.urlBuilder.getFullUrl(), this.itemForm?.getRawValue()).subscribe({
+            next: value => this.notification.notify(NotificationKeys.CREATION_COMPLETED, NotificationStatus.SUCCESS)
         })
 
     }
 
     private updateItem() {
-        this.http.patch(this.urlBuilder.getFullUrl(), this.formValues).subscribe({
-            next: value => this.notification.notify("notification.creation.completed", NotificationStatus.SUCCESS)
+        this.http.patch(this.urlBuilder.getFullUrl(), this.itemForm).subscribe({
+            next: value => this.notification.notify(NotificationKeys.CREATION_COMPLETED, NotificationStatus.SUCCESS)
         })
     }
 
-    private patched(redirect: string[]) {
+    patched(redirect: string[]) {
         this.notification.notify("notification.save.completed", NotificationStatus.SUCCESS);
         this.router.navigate([this.breadService.pages.page])
             .then(() => this.router.navigate(redirect));
 
         this.$formChanged.next(false);
-        this.formValues = {}
+        this.itemForm?.reset();
     }
 }

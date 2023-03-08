@@ -3,12 +3,12 @@
     <form (ngSubmit)="createInvoice()" [formGroup]="invoiceForm">
         <div class="content-top">
             <div class="input-grp">
-                <label for="invoicedate" class="" translate>label.invoice.date</label>
-                <input id="invoicedate" type="date" formControlName="dateCreated" class="input-date" min="2021-01-01">
+                <label for="invoicedate" class="">{{'label.invoice.date'| translate}}*</label>
+                <input id="invoicedate" type="date" formControlName="dateCreated" class="input-date" min="2021-01-01" required>
             </div>
             <div class="input-grp">
-                <label for="amount" class="" translate>label.amount</label>
-                <input id="amount" type="number" formControlName="amount" class="input-text">
+                <label for="amount" class="">{{'label.amount'| translate}}*</label>
+                <input id="amount" type="number" formControlName="amount" class="input-text" required>
             </div>
             <mb-input-drop-down
                     [relatedItem]="{name: 'payment.type', parentPage: ''}"

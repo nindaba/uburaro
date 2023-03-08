@@ -49,6 +49,12 @@
     margin-left: -2px;
     color: $font-color;
 
+    &.ng-touched{
+      &.ng-invalid{
+        border-color: $danger;
+      }
+    }
+
     &:focus {
       outline-color: $dark-grey;
     }

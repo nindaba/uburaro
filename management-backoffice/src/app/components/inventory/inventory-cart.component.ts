@@ -1,14 +1,17 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {BehaviorSubject, Observable, Subject, Subscription} from "rxjs";
-import {Client, CodeName, Inventory, InventoryOrder, InventoryOrderType} from "../../model/navigation.model";
+import {Client, CodeName, Inventory, InventoryOrderType, NotificationStatus} from "../../model/navigation.model";
 import {TranslateService} from "@ngx-translate/core";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MBItemService} from "../../services/MBItem.service";
 import {formatDate} from "@angular/common";
 import {OrderService} from "./order.service";
 import {Router} from "@angular/router";
 import {BreadcrumbsService} from "../navigation/top-nav/breadcrumbs.service";
 import {NEW_ITEM} from "../navigation/navigation.constants";
+import {NotificationService} from "../notification/notification.service";
+import {HttpErrorResponse} from "@angular/common/http";
+import {NotificationKeys} from "../../config/notifications.config";
 
 @Component({
     selector: 'mb-inventory-cart',
@@ -42,7 +45,7 @@ export class InventoryCartComponent implements OnInit, OnDestroy {
     });
 
     clientForm: FormGroup = new FormGroup({
-        name: new FormControl(),
+        name: new FormControl('',Validators.required),
         code: this.clientCodeControl,
     });
     $clients: Observable<Client[]> = this.itemService.getItemByFacilityCode<Client[]>("clients");
@@ -54,7 +57,8 @@ export class InventoryCartComponent implements OnInit, OnDestroy {
                 private itemService: MBItemService,
                 private orderService: OrderService,
                 private router: Router,
-                private bread: BreadcrumbsService) {
+                private bread: BreadcrumbsService,
+                private notification:NotificationService) {
     }
 
     ngOnDestroy(): void {
@@ -93,14 +97,23 @@ export class InventoryCartComponent implements OnInit, OnDestroy {
     }
 
     orderPlaced() {
-        this.subscription.add(
-            this.orderService.placeOrder(this.inventoryOrderForm.getRawValue())
-                .subscribe({next: value => this.refreshPage()})
-        );
+        if(this.inventoryOrderForm.valid){
+            this.subscription.add(
+                this.orderService.placeOrder(this.inventoryOrderForm.getRawValue())
+                    .subscribe({
+                        next: () => this.refreshPage(),
+                        error: (err: HttpErrorResponse) => this.notification.notify(err.error.message,NotificationStatus.ERROR)
+                    })
+            );
+        }
+        else {
+            this.notification.notify(NotificationKeys.INVALID_FORM,NotificationStatus.ERROR)
+        }
 
     }
 
     private refreshPage() {
+        this.notification.notify(NotificationKeys.INVENTORY_ORDER_CREATED,NotificationStatus.SUCCESS)
         let {page, details} = this.bread.pages;
 
         this.router.navigate([page, NEW_ITEM])

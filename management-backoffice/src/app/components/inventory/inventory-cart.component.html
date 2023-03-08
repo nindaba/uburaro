@@ -3,8 +3,8 @@
     <form (ngSubmit)="orderPlaced()" [formGroup]="inventoryOrderForm" [ngClass]="(creating | async) ? '': 'd-none'">
         <div class="content-top">
             <div class="input-grp">
-                <label for="date" class="" translate>label.order.date</label>
-                <input id="date" type="date" formControlName="orderDate" class="input-date" min="2021-01-01">
+                <label for="date" class="">{{'label.order.date'| translate}}*</label>
+                <input id="date" type="date" formControlName="orderDate" class="input-date" min="2021-01-01" required>
             </div>
             <mb-input-drop-down
                     [relatedItem]="{name: 'orderType', parentPage: 'orderType'}"
@@ -27,15 +27,15 @@
             </div>
 
             <div class="input-grp">
-                <label for="quantity" class="" translate>label.quantity</label>
+                <label for="quantity" class="">{{'label.quantity'| translate}}*</label>
                 <input id="quantity" formControlName="quantity" type="number" class="input-text"
-                       placeholder="{{'label.quantity' | translate}}"/>
+                       placeholder="{{'label.quantity' | translate}}" min="1"/>
             </div>
 
             <div class="input-grp">
-                <label for="cost" class="" translate>label.cost</label>
+                <label for="cost" class="">{{'label.cost'| translate}}*</label>
                 <input id="cost" formControlName="cost" type="number" class="input-text"
-                       placeholder="{{'label.cost' | translate}}"/>
+                       placeholder="{{'label.cost' | translate}}" min="1"/>
             </div>
 
         </div>

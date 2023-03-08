@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
-import {CodeName, Order, PaymentModeType} from "../../model/navigation.model";
+import {CodeName, NotificationStatus, Order, PaymentModeType} from "../../model/navigation.model";
 import {Observable, of, Subscription} from "rxjs";
 import {formatDate} from "@angular/common";
 import {InvoiceService} from "./invoice.service";
@@ -39,10 +39,17 @@ export class CreateInvoiceComponent implements OnInit, OnDestroy {
     }
 
     createInvoice() {
-        console.log(this.invoiceForm.getRawValue())
-        this.subscriptions.add(
-            this.invoiceService.createInvoice(this.invoiceForm.getRawValue()).subscribe({next: value => this.onSuccess()})
-        )
+        if(this.invoiceForm.valid){
+            this.subscriptions.add(
+                this.invoiceService.createInvoice(this.invoiceForm.getRawValue()).subscribe({
+                    next: () => this.onSuccess(),
+                    error: err => this.notification.notify(err.message, NotificationStatus.ERROR)
+                })
+            )
+        }
+        else {
+            this.notification.notify(NotificationKeys.INVALID_FORM,NotificationStatus.ERROR);
+        }
     }
 
     ngOnInit(): void {

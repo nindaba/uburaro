@@ -14,9 +14,9 @@ export class AbstractDetailsComponent implements OnDestroy {
     }
 
     protected subscribeToForm() {
+        this.topNavService.itemForm = this.itemForm;
         let subscription = this.itemForm.valueChanges.subscribe({
-            next: value => {
-                this.topNavService.formValues = this.itemForm.getRawValue();
+            next: () => {
                 this.topNavService.$formChanged.next(true);
             }
         });
@@ -24,7 +24,7 @@ export class AbstractDetailsComponent implements OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.topNavService.formValues = {};
+        this.topNavService.itemForm?.reset();
         this.subscriptions.unsubscribe();
     }
 

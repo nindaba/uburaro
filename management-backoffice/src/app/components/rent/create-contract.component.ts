@@ -1,7 +1,7 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {BehaviorSubject, Observable, of, Subject, Subscription} from "rxjs";
 import {Client, CodeName, NotificationStatus, Rent, UnitType} from "../../model/navigation.model";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MBItemService} from "../../services/MBItem.service";
 import {formatDate} from "@angular/common";
 import {ContractService} from "./contract.service";
@@ -37,7 +37,7 @@ export class CreateContractComponent implements OnInit, OnDestroy {
     });
 
     clientForm: FormGroup = new FormGroup({
-        name: new FormControl(),
+        name: new FormControl(Validators.required),
         code: this.clientCodeControl,
     });
     contractForm: FormGroup = this.createForm({code: ""} as Rent);

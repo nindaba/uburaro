@@ -5,6 +5,9 @@ import {BreadcrumbsService} from "./breadcrumbs.service";
 import {Subject} from "rxjs";
 import {NEW_ITEM} from "../navigation.constants";
 import {FormControl} from "@angular/forms";
+import {HttpErrorResponse} from "@angular/common/http";
+import {NotificationStatus} from "../../../model/navigation.model";
+import {NotificationService} from "../../notification/notification.service";
 
 @Component({
     selector: 'mb-top-nav',
@@ -17,7 +20,11 @@ export class TopNavComponent implements OnInit {
 
     selectedCodes: string[] = [];
 
-    constructor(private service: TopNavService, private router: Router, private breadcrumbsService: BreadcrumbsService) {
+    constructor(
+        private service: TopNavService,
+        private router: Router,
+        private breadcrumbsService: BreadcrumbsService,
+        private notification:NotificationService) {
     }
 
     getName(nodeId: string) {
@@ -55,11 +62,14 @@ export class TopNavComponent implements OnInit {
     }
 
     discard() {
-        this.service.formValues = {};
+        this.service.itemForm?.reset();
         this.$formChanged.next(false);
     }
 
     save() {
-        this.service.saveForm()
+        this.service.saveForm().subscribe({
+            next: () => this.service.patched([this.breadcrumbsService.pages.page, this.service.itemForm?.get("code")?.value]),
+            error: err => this.notification.notify(err.message, NotificationStatus.ERROR)
+        });
     }
 }

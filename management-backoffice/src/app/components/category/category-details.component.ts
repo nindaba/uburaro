@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Observable, tap} from "rxjs";
 import {Category} from "../../model/navigation.model";
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, FormControl} from "@angular/forms";
 import {NEW_ITEM} from "../navigation/navigation.constants";
 import {BreadcrumbsService} from "../navigation/top-nav/breadcrumbs.service";
 import {TopNavService} from "../navigation/top-nav/top-nav.service";
@@ -29,7 +29,7 @@ export class CategoryDetailsComponent extends AbstractDetailsComponent implement
 
     private createFrom(code: string = "", name: string = "") {
         return this.formBuilder.group({
-            code: [code],
+            code: new FormControl({value: code, disabled: !!code}),
             name: [name]
         });
     }
