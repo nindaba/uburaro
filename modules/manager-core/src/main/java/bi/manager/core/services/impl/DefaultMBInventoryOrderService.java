@@ -122,8 +122,9 @@ public class DefaultMBInventoryOrderService extends AbstractOrderService impleme
         if (target.getCost() <= 0) {
             target.setCost(inventory.getCost());
         }
-
-        inventory.setCost(source.getCost());
+        if(source.getOrderEntry() != MBInventoryEntryEnum.SOLD){
+            inventory.setCost(source.getCost());
+        }
         target.setInventory(inventory);
     }
 
