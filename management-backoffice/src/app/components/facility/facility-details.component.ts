@@ -1,7 +1,7 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {TopNavService} from "../navigation/top-nav/top-nav.service";
-import {BehaviorSubject, catchError, EMPTY, map, Observable, Subject, Subscription, tap} from "rxjs";
+import {map, Observable, tap} from "rxjs";
 import {FacilityService} from "./facility.service";
 import {BreadcrumbsService} from "../navigation/top-nav/breadcrumbs.service";
 import {Capital, CapitalType, Facility, Rent} from "../../model/navigation.model";
@@ -69,8 +69,8 @@ export class FacilityDetailsComponent extends AbstractDetailsComponent implement
 
     private createFrom(code: string, name: string, alias: string, address: string) {
         return this.formBuilder.group({
-            code: [code],
-            name: [name],
+            code: new FormControl({value: code, disabled: !!code}, Validators.required),
+            name: [name,Validators.required],
             alias: [alias],
             address: [address]
         });

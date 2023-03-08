@@ -3,7 +3,7 @@ import {AbstractDetailsComponent} from "../abstract-details.component";
 import {Observable, tap} from "rxjs";
 import {Category, Client, InventoryOrder, NavNode} from "../../model/navigation.model";
 import DetailsConfig from "../../../assets/content-config/details-page.json";
-import {FormBuilder, FormControl} from "@angular/forms";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {MBItemService} from "../../services/MBItem.service";
 import {BreadcrumbsService} from "../navigation/top-nav/breadcrumbs.service";
 import {TopNavService} from "../navigation/top-nav/top-nav.service";

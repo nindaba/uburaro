@@ -28,6 +28,7 @@
   "facility.selector.title": "Select Facility",
   "facility.empty": "No Facility Registered",
   "label.code": "Code",
+  "label.code.required": "Code*",
   "label.cost": "Cost",
   "label.from": "From",
   "label.to": "To",
@@ -46,6 +47,7 @@
   "label.order.place": "Place Order",
   "label.order.create": "Create Order",
   "label.name": "Name",
+  "label.name.required": "Name*",
   "label.unit": "Unit",
   "label.unitType.name": "Unit",
   "label.facility.address": "Address",
@@ -69,7 +71,7 @@
   "label.invoice.date": "Invoice Date",
   "label.invoice.desc": "Description",
   "invoice.created": "Invoice Created successfully",
-  "label.create.invoice" : "New Invoice",
+  "label.create.invoice": "New Invoice",
   "label.payment.type.name": "Payment Type",
   "label.order.date": "Order Date",
   "label.order.type": "Type",
@@ -97,5 +99,7 @@
   "notification.save.completed": "Saved",
   "notification.delete.completed": "Deleted",
   "notification.create.completed": "Created",
-  "message.confirm.delete": "Are you sure you want to delete the following"
+  "inventory.order.created": "Inventory Order Created",
+  "message.confirm.delete": "Are you sure you want to delete the following",
+  "invalid.form": "Fill the form correctly"
 }

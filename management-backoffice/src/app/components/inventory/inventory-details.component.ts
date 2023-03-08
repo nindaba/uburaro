@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractDetailsComponent} from "../abstract-details.component";
 import {map, Observable, tap} from "rxjs";
 import {Category, CodeName, Inventory, InventoryOrder} from "../../model/navigation.model";
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MBItemService} from "../../services/MBItem.service";
 import {BreadcrumbsService} from "../navigation/top-nav/breadcrumbs.service";
 import {TopNavService} from "../navigation/top-nav/top-nav.service";
@@ -21,7 +21,7 @@ export class InventoryDetailsComponent extends AbstractDetailsComponent implemen
 
 
     categoryForm: FormGroup = new FormGroup({
-        name: new FormControl(""),
+        name: new FormControl("",Validators.required),
         code: new FormControl(""),
     })
 

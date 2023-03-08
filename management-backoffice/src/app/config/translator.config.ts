@@ -7,7 +7,7 @@ export function httpLoaderFactory(http: HttpClient){
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 export const translatorConfig: TranslateModuleConfig = {
-    defaultLanguage: "fr",
+    defaultLanguage: "en",
     useDefaultLang: true,
     loader: {
         provide: TranslateLoader,
