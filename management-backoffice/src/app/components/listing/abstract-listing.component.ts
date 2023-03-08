@@ -9,7 +9,7 @@ export abstract class AbstractListingComponent<ITEM extends Item> implements OnD
     subscriptions: Subscription = new Subscription();
     $searchResult: Observable<ITEM[]> = new Observable();
 
-    constructor(protected topService: TopNavService) {
+    protected constructor(protected topService: TopNavService) {
     }
 
 

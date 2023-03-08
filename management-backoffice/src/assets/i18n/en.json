@@ -96,5 +96,6 @@
   "contract.client.notfound": "No client found on the contract",
   "notification.save.completed": "Saved",
   "notification.delete.completed": "Deleted",
-  "notification.create.completed": "Created"
+  "notification.create.completed": "Created",
+  "message.confirm.delete": "Are you sure you want to delete the following"
 }

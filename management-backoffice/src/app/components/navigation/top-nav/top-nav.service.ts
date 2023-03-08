@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
 import {BreadcrumbsService} from "./breadcrumbs.service";
 import {UrlBuilderService} from "../../../utils/UrlBuilder.service";
 import {NotificationService} from "../../notification/notification.service";
+import {NEW_ITEM} from "../navigation.constants";
 
 @Injectable({providedIn: "root"})
 export class TopNavService {
@@ -66,17 +67,16 @@ export class TopNavService {
 
     private deleteSuccess() {
         this.notification.notify("notification.delete.completed", NotificationStatus.SUCCESS)
-        this.$delete.emit();
         if (this.selectedCodes.includes(this.breadService.facility)) {
             this.breadService.setFacility(this.breadService.CHOSE_FACILITY);
         }
         this.selectedCodes = [];
-        this.router.navigate([this.breadService.pages.page])
+        this.$delete.emit();
     }
 
     saveForm() {
         this.http.patch(this.urlBuilder.getBaseUrlForPage(), this.formValues).subscribe({
-            next: value => this.patched([this.breadService.pages.page,this.formValues.code]),
+            next: value => this.patched([this.breadService.pages.page, this.formValues.code]),
             error: (err: HttpErrorResponse) => this.notification.notify(err.message, NotificationStatus.NONE)
         })
     }
@@ -94,10 +94,10 @@ export class TopNavService {
         })
     }
 
-    private patched(redirect:string[]) {
+    private patched(redirect: string[]) {
         this.notification.notify("notification.save.completed", NotificationStatus.SUCCESS);
         this.router.navigate([this.breadService.pages.page])
-            .then(() =>this.router.navigate(redirect));
+            .then(() => this.router.navigate(redirect));
 
         this.$formChanged.next(false);
         this.formValues = {}
