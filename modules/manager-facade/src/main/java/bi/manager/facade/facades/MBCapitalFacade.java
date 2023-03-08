@@ -10,13 +10,14 @@ import java.util.Date;
 public interface MBCapitalFacade {
 
     /**
-     * Creates a Capital entry with the value and the capital type
+     * Creates a Capital entry with the value , the capital type and the description
      *
      * @param facilityCode
      * @param value
      * @param type capitalType
+     * @param description
      */
-    void addCapital(String facilityCode,long value, String type);
+    void addCapital(String facilityCode,long value, String type, String description);
 
     /**
      * Gets a Capital that is related to the facility

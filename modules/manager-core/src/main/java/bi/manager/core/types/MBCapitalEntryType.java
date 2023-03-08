@@ -25,9 +25,11 @@ public class MBCapitalEntryType extends ItemType {
     public static final String AMOUNT = "amount";
     public static final String ENTRY_TYPE = "entryType";
     public static final String CAPITAL = "capital";
+    public static final String DESCRIPTION = "description";
 
     private long amount;
     private MBEntryEnum entryType;
+    private String description;
     @ManyToOne(cascade = CascadeType.ALL)
     private MBCapitalType capital;
 

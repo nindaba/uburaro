@@ -55,6 +55,7 @@
   "label.details": "Details",
   "inventory.order.title": "Out / Sell / Refill",
   "capital.type.external": "External",
+  "label.capital.desc": "Description",
   "btn.name.all": "All",
   "label.inventory.empty": "No Inventory",
   "label.client.empty": "No Client",

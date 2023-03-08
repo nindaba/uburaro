@@ -14,11 +14,11 @@ export class CapitalServiceImpl implements CapitalService {
         private urlBuilder: UrlBuilderService) {
     }
 
-    addCapital(value: number, type: CapitalType): Observable<any> {
+    addCapital(value: number, type: CapitalType,description:string=""): Observable<any> {
         let url = this.urlBuilder.getUrl("capital", [{
             key: "code",
             value: this.bread.pages.details
-        }]).concat(`/${value}/${type}`);
+        }]).concat(`/${value}/${type}/${description}`);
         return this.http.post(url, {});
     }
 

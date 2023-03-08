@@ -17,9 +17,9 @@ public class CapitalController {
     @Resource(name = "mbCapitalFacade")
     protected MBCapitalFacade facade;
 
-    @PostMapping("/{value}/{type}")
-    public void addCapital(@PathVariable String code, @PathVariable long value, @PathVariable String type) {
-        facade.addCapital(code,value,type);
+    @PostMapping({"/{value}/{type}/{description}", "/{value}/{type}"})
+    public void addCapital(@PathVariable String code, @PathVariable long value, @PathVariable String type, @PathVariable(required = false) String description) {
+        facade.addCapital(code,value,type,description);
     }
 
     @GetMapping("/entries")

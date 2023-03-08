@@ -20,6 +20,7 @@ export class FacilityDetailsComponent extends AbstractDetailsComponent implement
     $facility: Observable<Facility> = new Observable<Facility>();
     $rents: Observable<Rent[]> = new Observable();
     newCapital: FormControl = new FormControl<string>('')
+    capitalDescription: FormControl = new FormControl<string>('')
     capitalType: CapitalType = CapitalType.INTERNAL;
     $capital: Observable<Capital> = new Observable();
 
@@ -82,7 +83,7 @@ export class FacilityDetailsComponent extends AbstractDetailsComponent implement
     }
 
     addCapital() {
-        this.capitalService.addCapital(this.newCapital.value, this.capitalType)
+        this.capitalService.addCapital(this.newCapital.value, this.capitalType,this.capitalDescription.value)
             .subscribe({
                 next: value => this.$capital = this.capitalService.getCapital()
             })
