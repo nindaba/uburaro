@@ -3,7 +3,6 @@ package bi.manager.core.services;
 import bi.manager.core.types.MBCapitalEntryType;
 import bi.manager.core.types.MBCapitalType;
 import bi.manager.core.types.MBFacilityType;
-import bi.manager.core.types.client.MBClientType;
 import bi.manager.core.types.client.MBInvoiceType;
 import bi.manager.core.types.enums.MBEntryEnum;
 
@@ -31,6 +30,14 @@ public interface MBCapitalService {
      * @param type
      */
     void addCapital(long value, MBEntryEnum type, MBFacilityType facility);
+
+    /**
+     * Creates a Capital entry with the value,description and add it to the capital of the facility provided
+     *
+     * @param entry
+     * @param facility
+     */
+    void addCapital(MBCapitalEntryType entry, String facility);
 
     /**
      * Adds a capital entry if th invoice din't have a capital entry,

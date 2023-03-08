@@ -55,6 +55,7 @@
   "label.details": "Details",
   "inventory.order.title": "Out / Sell / Refill",
   "capital.type.external": "External",
+  "label.capital.desc": "Description",
   "btn.name.all": "All",
   "label.inventory.empty": "No Inventory",
   "label.client.empty": "No Client",
@@ -99,6 +100,7 @@
   "notification.save.completed": "Saved",
   "notification.delete.completed": "Deleted",
   "notification.create.completed": "Created",
+  "capital.added.success": "Capital was added",
   "inventory.order.created": "Inventory Order Created",
   "message.confirm.delete": "Are you sure you want to delete the following",
   "invalid.form": "Fill the form correctly"
