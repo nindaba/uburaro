@@ -23,12 +23,33 @@ export class RentContractComponent implements OnInit, OnDestroy {
     contract: RentContract | undefined;
     @Input()
     showAll: Subject<boolean> = new BehaviorSubject(false);
+    progressStyle: string = "width: 0%;"
+    @Input()
+    isClientPage: boolean = false;
 
 
     ngOnDestroy(): void {
     }
 
     ngOnInit(): void {
+        if (this.contract) {
+            let contractLength = this.getDateDiff(this.contract.from, this.contract.to);
+            let ordered = this.getDateDiff(this.contract.from, this.contract.nextOrderDate);
+
+            let paid = this.contract.orders?.reduce((acc, order) => acc && (order.paid || false), true);
+            let progressColor = paid ? '' : '#E34A4A';
+            
+            this.progressStyle = `width:${ordered / contractLength * 100}%; background-color:${progressColor};`;
+        }
+    }
+
+    private getDateDiff(from: Date, to: Date) {
+        let contractLength = this.getTime(to) - this.getTime(new Date(from));
+        return contractLength;
+    }
+
+    private getTime(date: Date): number {
+        return new Date(date).getTime();
     }
 
     expand() {

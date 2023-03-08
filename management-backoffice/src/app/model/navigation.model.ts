@@ -165,6 +165,7 @@ export interface RentContract extends Item, Name {
     property?: Rent;
     client?: Client;
     orders?: RentOrder[];
+    nextOrderDate : Date;
 }
 
 export enum UnitType {

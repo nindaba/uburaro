@@ -109,6 +109,7 @@ class DefaultMBRentContractServiceTest {
         verify(CONTRACT_SPY).setTo(CONTRACT.getTo());
         verify(CONTRACT_SPY).setUnit(RENT.getUnit());
         verify(CONTRACT_SPY).setCostPerUnit(RENT.getCost());
+        verify(CONTRACT_SPY).setNextOrderDate(CONTRACT.getFrom().plusMonths(1));
         verify(CONTRACT_SPY).setContractFileName(CONTRACT.getContractFileName());
         verify(typeService).save(CONTRACT_SPY);
     }

@@ -1,4 +1,5 @@
-<div class="details-page rent" *ngIf="($rent | async) && ($notif | async) || true">
+<ng-container *ngIf="$notif | async"></ng-container>
+<div class="details-page rent">
     <div class="attributes">
         <span class="mb-title" translate>label.details</span>
         <form class="attributes d-flex flex-wrap" [formGroup]="itemForm">
@@ -34,7 +35,7 @@
             ></mb-input-drop-down>
         </form>
     </div>
-    <mb-create-contract [property]="$rent"></mb-create-contract>
+    <mb-create-contract *ngIf="$rent | async" [property]="$rent"></mb-create-contract>
 
     <div class="details-contract list">
         <span class="mb-title" translate>label.list.contract</span>

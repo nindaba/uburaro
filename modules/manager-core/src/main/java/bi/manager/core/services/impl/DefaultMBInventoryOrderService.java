@@ -60,6 +60,7 @@ public class DefaultMBInventoryOrderService extends AbstractOrderService impleme
     @Override
     public Collection<MBInventoryOrderType> getOrderByClientCode(final String code) {
         return clientService.getClientByCode(code).getOrders().stream()
+                .filter(order -> order instanceof MBInventoryOrderType)
                 .map(order -> (MBInventoryOrderType) order)
                 .collect(Collectors.toList());
     }
