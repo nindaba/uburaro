@@ -2,11 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {TopNavService} from "./top-nav.service";
 import {Router} from "@angular/router";
 import {BreadcrumbsService} from "./breadcrumbs.service";
-import {Subject} from "rxjs";
+import {filter, Subject} from "rxjs";
 import {NEW_ITEM} from "../navigation.constants";
-import {FormControl} from "@angular/forms";
-import {HttpErrorResponse} from "@angular/common/http";
-import {NotificationStatus} from "../../../model/navigation.model";
+import {FormControl, FormGroup} from "@angular/forms";
+import {DateRange, NotificationStatus} from "../../../model/navigation.model";
 import {NotificationService} from "../../notification/notification.service";
 
 @Component({
@@ -19,12 +18,16 @@ export class TopNavComponent implements OnInit {
     searchFrom: FormControl = this.service.searchForm;
 
     selectedCodes: string[] = [];
+    dateRangeFrom: FormGroup = new FormGroup({
+        from: new FormControl(),
+        to: new FormControl(),
+    });
 
     constructor(
         private service: TopNavService,
         private router: Router,
         private breadcrumbsService: BreadcrumbsService,
-        private notification:NotificationService) {
+        private notification: NotificationService) {
     }
 
     getName(nodeId: string) {
@@ -59,6 +62,9 @@ export class TopNavComponent implements OnInit {
             next: value => this.refreshFacility()
         })
         this.selectedCodes = this.service.selectedCodes;
+        this.service.$dateRange = this.dateRangeFrom.valueChanges.pipe(
+            filter((dateRange: DateRange) => new Date(dateRange.from).getTime() < new Date(dateRange.to).getTime()),
+        )
     }
 
     discard() {

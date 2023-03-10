@@ -2,7 +2,7 @@ import NavigationConfig from "../../../../assets/content-config/navigation.json"
 import {EventEmitter, Injectable} from "@angular/core";
 import {BehaviorSubject, Observable, of, Subject, throwError} from "rxjs";
 import {FormControl, FormGroup} from "@angular/forms";
-import {EndpointConfig, NavNode, NotificationStatus} from "../../../model/navigation.model";
+import {DateRange, EndpointConfig, NavNode, NotificationStatus} from "../../../model/navigation.model";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {BreadcrumbsService} from "./breadcrumbs.service";
@@ -22,6 +22,7 @@ export class TopNavService {
     $formChanged: Subject<boolean> = new BehaviorSubject(false);
     searchForm: FormControl = new FormControl('');
     $confirmDelete: Subject<boolean> = new BehaviorSubject(false);
+    $dateRange: Observable<DateRange> = new Observable();
 
     constructor(
         private router: Router,

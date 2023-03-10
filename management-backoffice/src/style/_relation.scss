@@ -1,19 +1,22 @@
 .mb-relation{
   min-width: 280px;
-  max-height: 400px;
-  overflow-y: auto;
+  overflow-y: hidden;
   background-color: white;
   border-radius: 8px;
   padding: 30px 20px;
 
-  .table{
-    margin-top: 20px;
-    width: 100%;
-    thead{
-      height: 40px;
-      th{
-        padding-left: 6px;
-        vertical-align: middle;
+  .content{
+    max-height: 400px;
+    overflow-y: auto;
+    margin-top: $spacing;
+    margin-bottom: $spacing;
+    .table{
+      thead{
+        height: 40px;
+        th{
+          padding-left: 6px;
+          vertical-align: middle;
+        }
       }
     }
   }

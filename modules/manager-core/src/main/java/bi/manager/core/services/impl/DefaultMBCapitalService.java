@@ -1,5 +1,6 @@
 package bi.manager.core.services.impl;
 
+import bi.manager.core.repositories.MBCapitalEntryRepository;
 import bi.manager.core.services.MBCapitalService;
 import bi.manager.core.types.MBCapitalEntryType;
 import bi.manager.core.types.MBCapitalType;
@@ -10,16 +11,16 @@ import bi.uburaro.core.services.TypeService;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
-import java.util.stream.Collectors;
 
 @Service(value = "mbCapitalService")
 public class DefaultMBCapitalService implements MBCapitalService {
     protected final TypeService typeService;
+    protected final MBCapitalEntryRepository entryRepository;
 
-    public DefaultMBCapitalService(TypeService typeService) {
+    public DefaultMBCapitalService(TypeService typeService, MBCapitalEntryRepository entryRepository) {
         this.typeService = typeService;
+        this.entryRepository = entryRepository;
     }
 
     @Override
@@ -57,14 +58,8 @@ public class DefaultMBCapitalService implements MBCapitalService {
 
     @Override
     public Collection<MBCapitalEntryType> getCapitalEntries(String facilityCode, Date from, Date to) {
-        MBFacilityType facility = typeService.findItemByCode(facilityCode, MBFacilityType.class);
-
-        if (facility != null) {
-            return facility.getCapital().getEntries().stream()
-                    .filter(entry -> entry.getDateModified().compareTo(from) + to.compareTo(entry.getDateModified()) >= 0)
-                    .collect(Collectors.toList());
-        }
-        return Collections.emptyList();
+        MBCapitalType capital = getCapitalByFacility(facilityCode);
+        return entryRepository.findAllByCapitalAndDateModifiedBetween(capital,from,to);
     }
 
     @Override

@@ -2,11 +2,14 @@ package bi.manager.web.controllers;
 
 import bi.manager.facade.data.MBCapitalData;
 import bi.manager.facade.data.MBCapitalEntryData;
+import bi.manager.facade.data.MBDateRangeData;
 import bi.manager.facade.facades.MBCapitalFacade;
 import bi.manager.web.ManagerWebConstants;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Date;
 
@@ -22,9 +25,9 @@ public class CapitalController {
         facade.addCapital(code,value,type);
     }
 
-    @GetMapping("/entries")
-    public Collection<MBCapitalEntryData> getEntries(@RequestParam Date from, @RequestParam Date to, @PathVariable String code){
-        return facade.getCapitalEntries(code,from,to);
+    @PostMapping("/entries")
+    public Collection<MBCapitalEntryData> getEntries(@RequestBody MBDateRangeData range , @PathVariable String code){
+        return facade.getCapitalEntries(code,range.getFrom(),range.getTo());
     }
 
     @GetMapping

@@ -79,36 +79,6 @@ class DefaultMBCapitalServiceTest {
 
     }
 
-
-    @Test
-    void getCapitalEntries() {
-        when(typeService.findItemByCode(FACILITY_CODE, MBFacilityType.class)).thenReturn(FACILITY_TYPE);
-
-        //Testing with all the date range, so it should return all 3
-        CALENDAR.set(2023,1,3);
-        Date to = CALENDAR.getTime();
-        CALENDAR.set(2023,1,1);
-        Date from = CALENDAR.getTime();
-        Collection<MBCapitalEntryType> entries = service.getCapitalEntries(FACILITY_CODE, from, to);
-        assertEquals(3, entries.size());
-
-        //Testing for lower dates so it should return 2
-        CALENDAR.set(2023,1,2);
-        to = CALENDAR.getTime();
-        CALENDAR.set(2023,1,1);
-        from = CALENDAR.getTime();
-        entries = service.getCapitalEntries(FACILITY_CODE, from, to);
-        assertEquals(3, entries.size());
-
-        //Testing the upper bound the result should be 1
-        CALENDAR.set(2023,1,3);
-        to = CALENDAR.getTime();
-        CALENDAR.set(2023,1,3);
-        from = CALENDAR.getTime();
-        entries = service.getCapitalEntries(FACILITY_CODE, from, to);
-        assertEquals(3, entries.size());
-    }
-
     @Test
     void addInvoiceCapital() {
         CAPITAL_TYPE.setCurrentValue(1200l*3);

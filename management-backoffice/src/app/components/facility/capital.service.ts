@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Capital, CapitalEntry, CapitalType} from "../../model/navigation.model";
+import {Capital, CapitalEntry, CapitalType, DateRange} from "../../model/navigation.model";
 import {Observable} from "rxjs";
 
 export abstract class CapitalService {
@@ -22,5 +22,5 @@ export abstract class CapitalService {
      * @param to Date
      * @return observable of entries
      */
-    abstract getCapitalEntries(from: Date, to: Date): Observable<CapitalEntry[]>
+    abstract getCapitalEntries(dateRange:DateRange): Observable<CapitalEntry[]>
 }

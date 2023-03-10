@@ -1,0 +1,11 @@
+<ng-container *ngIf="$dateRange | async"/>
+<div class="capital" colspan="all">
+    <mb-relation title="capital" [heads]="capitalHeads">
+        <tr *ngFor="let entry of $entries| async">
+            <td>{{entry.dateCreated | date: 'dd/MM/yyyy'}}</td>
+            <td>{{entry.amount}}</td>
+            <td>{{entry.entryType}}</td>
+            <td>{{entry.description}}</td>
+        </tr>
+    </mb-relation>
+</div>

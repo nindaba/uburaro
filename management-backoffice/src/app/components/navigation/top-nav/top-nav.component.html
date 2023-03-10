@@ -33,14 +33,16 @@
 
         </div>
         <div class="col nav-right">
-            <div class="input-grp label-front" *ngIf="isEnabled('from')">
-                <span class="input-label">{{getName('from') | translate}}</span>
-                <input type="date" class="input-date nav-search" min="2021-01-01">
-            </div>
-            <div class="input-grp label-front" *ngIf="isEnabled('to')">
-                <span class="input-label">{{getName('to')|translate}}</span>
-                <input type="date" class="input-date nav-search" min="2021-01-01" placeholder="{{getName('save')}}">
-            </div>
+            <form [formGroup]="dateRangeFrom">
+                <div class="input-grp label-front" *ngIf="isEnabled('from')">
+                    <span class="input-label">{{getName('from') | translate}}</span>
+                    <input formControlName="from" type="date" class="input-date nav-search" min="2021-01-01">
+                </div>
+                <div class="input-grp label-front" *ngIf="isEnabled('to')">
+                    <span class="input-label">{{getName('to')|translate}}</span>
+                    <input formControlName="to" type="date" class="input-date nav-search" min="2021-01-01" placeholder="{{getName('save')}}">
+                </div>
+            </form>
             <div class="input-grp label-front">
                 <input type="text" class="input-text nav-search mb-icon search"
                        placeholder="{{getName('search') | translate}}" [formControl]="searchFrom">
