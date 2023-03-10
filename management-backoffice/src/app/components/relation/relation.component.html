@@ -3,17 +3,19 @@
         <span class="mb-title" translate>nodes.name.{{title}}  </span>
         <a class="btn primary" *ngIf="createLink.length" translate (click)="createNew()">btn.name.create</a>
     </span>
-    <table class="table">
-        <thead>
-        <th scope="col" *ngFor="let head of heads" translate>
-            {{head}}
-        </th>
-        </thead>
-        <tbody>
-        <ng-content>
-        </ng-content>
-        </tbody>
-    </table>
+    <div class="content">
+        <table class="table">
+            <thead>
+            <th scope="col" *ngFor="let head of heads" translate>
+                {{head}}
+            </th>
+            </thead>
+            <tbody>
+            <ng-content>
+            </ng-content>
+            </tbody>
+        </table>
+    </div>
     <div class="content-bottom" *ngIf="allLink.length">
         <a class="btn primary-text" translate (click)="showAll()">
             <div class="mb-icon left-right mb-icon-green"></div>

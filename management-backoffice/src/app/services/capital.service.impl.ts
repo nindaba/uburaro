@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {CapitalService} from "../components/facility/capital.service";
-import {Capital, CapitalEntry, CapitalType, EndpointConfig} from "../model/navigation.model";
-import {Observable} from "rxjs";
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {Capital, CapitalEntry, CapitalType, DateRange, EndpointConfig} from "../model/navigation.model";
+import {map, Observable} from "rxjs";
+import {HttpClient, HttpParams, HttpRequest} from "@angular/common/http";
 import {BreadcrumbsService} from "../components/navigation/top-nav/breadcrumbs.service";
 import {UrlBuilderService} from "../utils/UrlBuilder.service";
 
@@ -22,18 +22,13 @@ export class CapitalServiceImpl implements CapitalService {
         return this.http.post(url, {});
     }
 
-    getCapitalEntries(from: Date, to: Date): Observable<CapitalEntry[]> {
-        let url = this.urlBuilder.getUrl("capitalEntries", [{key: "code", value: this.bread.pages.details}]);
-        let params: any = {from: from, to: to}
-
-        return this.http.get<CapitalEntry[]>(url, {params: params});
+    getCapitalEntries(dateRange:DateRange): Observable<CapitalEntry[]> {
+        let url = this.urlBuilder.getUrlForEndPoint("capitalEntries");
+        return this.http.post<CapitalEntry[]>(url, dateRange);
     }
 
     getCapital(): Observable<Capital> {
-        let url = this.urlBuilder.getUrl("capital", [{
-            key: "code",
-            value: this.bread.pages.details
-        }])
+        let url = this.urlBuilder.getUrlForEndPoint("capital");
         return this.http.get<Capital>(url);
     }
 

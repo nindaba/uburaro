@@ -4,6 +4,7 @@ package bi.manager.facade.facades;
 import bi.manager.facade.data.MBCapitalData;
 import bi.manager.facade.data.MBCapitalEntryData;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Date;
 
@@ -36,4 +37,5 @@ public interface MBCapitalFacade {
      * @return collection of entries
      */
     Collection<MBCapitalEntryData> getCapitalEntries(String facilityCode, Date from, Date to);
+
 }

@@ -87,6 +87,7 @@ export interface CapitalEntry {
     entryType: CapitalType;
     description?:string;
     dateCreated: Date;
+    description: string;
 }
 
 export interface Capital {
@@ -182,4 +183,9 @@ export enum NotificationStatus{
 export interface MBNotification{
     status: NotificationStatus,
     message?: string;
+}
+
+export interface DateRange{
+    from:Date,
+    to:Date
 }

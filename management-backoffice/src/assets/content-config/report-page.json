@@ -1,0 +1,10 @@
+{
+  "capital": {
+    "heads": [
+      "label.entry.date",
+      "label.amount",
+      "label.entry.type",
+      "label.entry.desc"
+    ]
+  }
+}
