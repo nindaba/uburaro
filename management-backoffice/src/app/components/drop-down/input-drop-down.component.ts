@@ -47,7 +47,7 @@ export class InputDropDownComponent implements OnInit, OnDestroy {
             } else {
                 this.changeInput({name: "", code: ""})
             }
-        }, 150);
+        }, 300);
     }
 
     private undoInput() {
