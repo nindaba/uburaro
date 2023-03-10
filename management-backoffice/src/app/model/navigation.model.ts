@@ -85,7 +85,6 @@ export interface InventoryOrder extends Order {
 export interface CapitalEntry {
     amount: number;
     entryType: CapitalType;
-    description?:string;
     dateCreated: Date;
     description: string;
 }
