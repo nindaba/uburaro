@@ -8,8 +8,8 @@ import {Router} from "@angular/router";
 import {BreadcrumbsService} from "./breadcrumbs.service";
 import {UrlBuilderService} from "../../../utils/UrlBuilder.service";
 import {NotificationService} from "../../notification/notification.service";
-import {error} from "@angular/compiler-cli/src/transformers/util";
 import {NotificationKeys} from "../../../config/notifications.config";
+import {InvoiceService} from "../../client/invoice.service";
 
 @Injectable({providedIn: "root"})
 export class TopNavService {
@@ -30,7 +30,8 @@ export class TopNavService {
         private http: HttpClient,
         private breadService: BreadcrumbsService,
         private urlBuilder: UrlBuilderService,
-        private notification: NotificationService
+        private notification: NotificationService,
+        private invoiceService: InvoiceService
     ) {
     }
 
@@ -55,10 +56,17 @@ export class TopNavService {
     }
 
     delete() {
+        let orders = this.invoiceService.orders;
+        let url = this.urlBuilder.getBaseUrlForPage();
+
+        if(orders){
+            this.selectedCodes = orders.map(order => order.orderNumber||"").filter(order => order);
+        }
+
         if (this.selectedCodes.length > 0 || this.breadService.pages.details) {
             this.selectedCodes.push(this.breadService.pages.details || "");
 
-            this.http.delete(this.urlBuilder.getBaseUrlForPage(), {params: {"codes": this.selectedCodes.join(",")}}
+            this.http.delete(url, {params: {"codes": this.selectedCodes.join(",")}}
             ).subscribe({
                 next: value => this.deleteSuccess(),
                 error: (err: HttpErrorResponse) => this.notification.notify(err.message, NotificationStatus.NONE)
