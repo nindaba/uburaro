@@ -41,7 +41,7 @@
     }
   }
 
-  > input, textarea{
+  > input, textarea,select{
     border: solid 2px $border-color;
     border-radius: 4px;
     padding: 8px;
@@ -59,7 +59,7 @@
       outline-color: $dark-grey;
     }
 
-    &.input-text {
+    &.input-text,&.input-select {
       height: 30px;
       max-width: 280px;
       &.nav-search {
@@ -69,7 +69,9 @@
         padding-right: 24px;
       }
     }
-
+    &.input-select{
+      padding: 0 0 0 6px;
+    }
     &.input-date {
         height: 30px;
     }
