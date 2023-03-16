@@ -17,7 +17,6 @@ import {OrderService} from "./order.service";
 })
 export class InventoryDetailsComponent extends AbstractDetailsComponent implements OnInit {
     $inventory: Observable<Inventory> = new Observable();
-    $inventoryOrders: Observable<InventoryOrder[]> = new Observable();
 
 
     categoryForm: FormGroup = new FormGroup({
@@ -75,10 +74,7 @@ export class InventoryDetailsComponent extends AbstractDetailsComponent implemen
                         quantity, cost,unit);
                     this.subscribeToForm();
                 }),
-                tap(value => this.$inventoryOrders = this.orderService.getOrdersByInventoryCode<InventoryOrder[]>(value.code))
             );
-
-            this.subscribeToDelete(this.breadService.pages.page);
         } else {
             this.subscribeToForm();
         }

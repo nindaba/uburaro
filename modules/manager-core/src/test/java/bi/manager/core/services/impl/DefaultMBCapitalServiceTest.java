@@ -90,7 +90,7 @@ class DefaultMBCapitalServiceTest {
         verify(ENTRY).setAmount(INVOICE.getAmount());
         verify(ENTRY).setEntryType(MBEntryEnum.INTERNAL);
         verify(ENTRY).setCapital(CAPITAL_TYPE);
-        assertEquals(1200l*4,CAPITAL_TYPE.getCurrentValue());
+        assertEquals(1200l*5,CAPITAL_TYPE.getCurrentValue());
     }
     @Test
     void updateInvoiceCapital() {

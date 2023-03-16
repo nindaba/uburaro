@@ -50,4 +50,8 @@ public class ClientController {
         client.setFacility(facility);
         facade.updateClient(client);
     }
+    @DeleteMapping(value = ManagerWebConstants.Controller.Orders.clientOrders)
+    public void deleteOrders(@RequestParam(name = "codes") Set<String> orderNumbers, @PathVariable String clientCode, @PathVariable String code){
+        facade.deleteOrders(orderNumbers);
+    }
 }

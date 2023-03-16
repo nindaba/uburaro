@@ -1,4 +1,7 @@
-<div class="details-page client" *ngIf="($client | async) || true">
+<ng-container *ngIf="$notif | async"></ng-container>
+<ng-container *ngIf="$client | async"></ng-container>
+
+<div class="details-page client">
     <div class="attributes">
         <span class="mb-title" translate>label.details</span>
         <form class="attributes d-flex flex-wrap" [formGroup]="itemForm">
@@ -28,7 +31,7 @@
             <h3 class="value-currency">FBU</h3>
         </div>
         <div class="relations orders">
-            <mb-inventory-orders [orders]="$inventoryOrders" [clientPage]="true"></mb-inventory-orders>
+            <mb-inventory-orders [clientPage]="true"></mb-inventory-orders>
             <div class="details-contract list">
                 <span class="mb-title" translate>label.list.contract</span>
                 <mb-rent-contract [isClientPage]="true" *ngFor="let contract of client?.contracts" [contract]="contract"/>

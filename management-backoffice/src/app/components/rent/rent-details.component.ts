@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractDetailsComponent} from "../abstract-details.component";
 import {BehaviorSubject, filter, Observable, of, Subject, tap} from "rxjs";
-import {CodeName, Rent, UnitType} from "../../model/navigation.model";
+import {CodeName, MBNotification, Rent, UnitType} from "../../model/navigation.model";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {MBItemService} from "../../services/MBItem.service";
 import {BreadcrumbsService} from "../navigation/top-nav/breadcrumbs.service";
@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 import {NEW_ITEM} from "../navigation/navigation.constants";
 import {NotificationKeys} from "../../config/notifications.config";
 import {NotificationService} from "../notification/notification.service";
+import {ContractService} from "./contract.service";
 
 @Component({
     selector: 'mb-rent-details',
@@ -33,15 +34,15 @@ export class RentDetailsComponent extends AbstractDetailsComponent implements On
         code: this.unitFormControl,
         name: new FormControl(UnitType.MONTHS)
     });
-    $notif: Observable<any> = new Observable();
+    $notif: Observable<MBNotification> = new Observable();
 
     constructor(private formBuilder: FormBuilder,
                 private itemService: MBItemService,
                 private breadService: BreadcrumbsService,
-                private orderService: OrderService,
                 protected override topNavService: TopNavService,
                 protected override router: Router,
-                protected notification: NotificationService
+                protected notification: NotificationService,
+                protected contractService:ContractService
     ) {
         super(topNavService, router);
     }
@@ -65,8 +66,9 @@ export class RentDetailsComponent extends AbstractDetailsComponent implements On
         this.getRent(code);
 
         this.$notif = this.notification.getNotification().pipe(
-            filter(notif => notif.message == NotificationKeys.INVOICE_CREATED),
-            tap(() => this.getRent(code))
+            filter(notif => [NotificationKeys.CONTRACT_CREATED, NotificationKeys.DELETION_COMPLETED].includes(notif.message || "")),
+            tap(() => this.getRent(code)),
+            tap(()=> this.contractService.resetSelection())
         )
     }
 
@@ -79,8 +81,6 @@ export class RentDetailsComponent extends AbstractDetailsComponent implements On
                     this.subscribeToForm();
                 }),
             );
-
-            this.subscribeToDelete(this.breadService.pages.page);
         } else {
             this.subscribeToForm();
         }

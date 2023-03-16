@@ -2,6 +2,7 @@ package bi.manager.core.services;
 
 import bi.manager.core.types.MBInventoryOrderType;
 import bi.manager.core.types.client.MBOrderType;
+import bi.manager.core.types.client.MBRentOrderType;
 
 import java.util.Collection;
 import java.util.Set;
@@ -50,5 +51,4 @@ public interface MBInventoryOrderService {
      * @param orderNumber
      */
     void deleteOrder(Set<String> orderNumber);
-
 }

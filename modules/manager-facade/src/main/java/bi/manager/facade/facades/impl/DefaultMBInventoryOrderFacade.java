@@ -1,7 +1,6 @@
 package bi.manager.facade.facades.impl;
 
 import bi.manager.core.services.MBInventoryOrderService;
-import bi.manager.core.types.MBInventoryOrderType;
 import bi.manager.facade.converters.order.InventoryOrderMapper;
 import bi.manager.facade.data.MBInventoryOrderData;
 import bi.manager.facade.facades.MBInventoryOrderFacade;

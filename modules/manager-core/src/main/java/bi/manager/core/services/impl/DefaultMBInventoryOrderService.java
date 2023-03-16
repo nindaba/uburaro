@@ -25,10 +25,11 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static bi.manager.core.ManagerCoreConstants.INVENTORY_ORDER_PREFIX;
+
 @Service(value = "mBInventoryOrderService")
 public class DefaultMBInventoryOrderService extends AbstractOrderService implements MBInventoryOrderService {
 
-    public static final String INVENTORY_ORDER_PREFIX = "inventory.order.prefix";
     protected final MBInventoryService inventoryService;
     protected final MBCapitalService capitalService;
     protected final ItemRepository itemRepository;

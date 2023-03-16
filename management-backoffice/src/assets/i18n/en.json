@@ -100,11 +100,12 @@
   "label.contract.create": "Create Contract",
   "contract.created": "Contract Created Successfully",
   "contract.client.notfound": "No client found on the contract",
+  "order.client.notfound": "No client found on the contract",
   "notification.save.completed": "Saved",
   "notification.delete.completed": "Deleted",
   "notification.create.completed": "Created",
   "capital.added.success": "Capital was added",
   "inventory.order.created": "Inventory Order Created",
-  "message.confirm.delete": "Are you sure you want to delete the following",
+  "message.confirm.delete": "Are you sure you want to delete",
   "invalid.form": "Fill the form correctly"
 }

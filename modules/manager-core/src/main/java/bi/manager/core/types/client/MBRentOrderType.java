@@ -26,10 +26,10 @@ public class MBRentOrderType extends MBOrderType {
     public static final String TO = "to";
     public static final String CONTRACT = "contract";
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private MBRentPropertyType rentProperty;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private MBRentContractType contract;
 
     @Column(name = TABLE_PREFIX+FROM)

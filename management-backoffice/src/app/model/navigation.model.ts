@@ -28,6 +28,8 @@ export class EndpointConfig {
     inventoryOrder: string = "";
     inventoryFacilityOrders: string = "";
     inventoryClientOrders: string = "";
+    clientOrders:string = "";
+    contractOrders:string = "";
 
     relation: { [key: string]: string } = {};
 
@@ -65,7 +67,7 @@ export enum InventoryOrderType {
 export enum PaymentModeType {
     CASH="CASH", BANK = "BANK", DEBT = "DEBT"
 }
-export interface Order {
+export interface Order extends Item{
     orderNumber?: string;
     quantity: number;
     unit?: string;
@@ -167,6 +169,7 @@ export interface RentContract extends Item, Name {
     client?: Client;
     orders?: RentOrder[];
     nextOrderDate : Date;
+    hasOrders: boolean;
 }
 
 export enum UnitType {

@@ -30,7 +30,7 @@ public class MBCapitalEntryType extends ItemType {
     private long amount;
     private MBEntryEnum entryType;
     private String description;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private MBCapitalType capital;
 
     @OneToOne(cascade = CascadeType.ALL)

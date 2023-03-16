@@ -84,6 +84,9 @@ input[type="checkbox"] {
   border: solid 2px $border-color;
   display: grid;
   place-content: center;
+  &.lg{
+    width: 24px;
+  }
 
   &:checked::before {
     background-size: 12px;

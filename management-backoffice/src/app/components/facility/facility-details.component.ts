@@ -64,7 +64,6 @@ export class FacilityDetailsComponent extends AbstractDetailsComponent implement
             );
 
             this.$capital = this.$facility.pipe(map(facility => facility.capital || {currentValue: 0}))
-            this.subscribeToDelete(this.breadService.pages.page);
 
         } else {
             this.subscribeToForm();

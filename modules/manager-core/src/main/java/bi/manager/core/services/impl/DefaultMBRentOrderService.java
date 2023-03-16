@@ -19,18 +19,17 @@ import org.springframework.stereotype.Service;
 
 import java.time.temporal.ChronoUnit;
 import java.util.Collection;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static bi.manager.core.ManagerCoreConstants.RENT_ORDER_PREFIX;
 import static bi.manager.core.ManagerCoreConstants.RENT_UNIT_SCALE;
 
 @Service(value = "mBRentOrderService")
 public class DefaultMBRentOrderService extends AbstractOrderService implements MBRentOrderService {
 
 
-    public static final String RENT_ORDER_PREFIX = "rent.order.prefix";
 
     protected DefaultMBRentOrderService(MBFacilityService facilityService,
                                         MBClientService clientService,
@@ -66,7 +65,10 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
                 .map(orderType -> (MBRentOrderType) orderType)
                 .collect(Collectors.toSet());
     }
-
+    @Override
+    public Collection<MBRentOrderType> getOrdersByContract(String code) {
+        return typeService.findItemByCode(code, MBRentContractType.class).getOrders();
+    }
     @Override
     public void placeOrder(final MBRentOrderType order) {
         final MBRentOrderType rentOrder = typeService.create(MBRentOrderType.class);

@@ -12,15 +12,23 @@ export abstract class OrderService {
     /**
      * Gets all the orders that belong to the inventory {@link code}
      *
-     * @param code
+     * @param code, if empty then the current inventory is used
      * @return observable array of orders
      */
-    abstract getOrdersByInventoryCode<ITEM extends Order[]>(code:string): Observable<ITEM>;
+    abstract getOrdersByInventoryCode<ITEM extends Order[]>(code?:string): Observable<ITEM>;
 
     /**
      * Gets all the orders that belong to the client {@link code}
      *
+     * @param code, if empty then the current client is used
+     * @return observable of orsers
+     */
+    abstract getOrdersByClientCode<ITEM extends Order[]>(code?:string): Observable<ITEM>;
+
+    /**
+     * Gets all the orders that belong to the contract {@link code}
+     *
      * @param code
      */
-    abstract getOrdersByClientCode<ITEM extends Order[]>(code:string): Observable<ITEM>;
+    abstract getOrdersByContractCode<ITEM extends Order[]>(code:string): Observable<ITEM>;
 }

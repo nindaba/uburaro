@@ -27,10 +27,10 @@ public class MBOrderType extends ItemType {
     public static final String INVOICE = "invoice";
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private MBClientType client;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private MBInvoiceType invoice;
 
     private String orderNumber;

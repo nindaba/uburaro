@@ -40,4 +40,12 @@ public interface MBClientFacade {
      *
      */
     void updateClient(MBClientData client);
+
+    /**
+     * Deletes orders <br>
+     * by checking the order number prefix and determine which facade should delete the order<br>
+     * either {@link MBInventoryOrderFacade} or {@link MBRentOrderFacade}
+     * @param orderNumbers
+     */
+    void deleteOrders(Set<String> orderNumbers);
 }

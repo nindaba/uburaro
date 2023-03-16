@@ -1,7 +1,7 @@
-<mb-relation *ngIf="$inventoryOrders | async as inventoryOrders" title="inventory.orders"
-             [heads]="clientPage ? orderHeads : orderHeads.slice(1)">
+<mb-relation *ngIf="($withCreatedOrder | async) || ($refreshedOrders | async) || ($orders | async) as inventoryOrders" title="inventory.orders"
+             [heads]="orderHeads">
     <tr *ngFor="let order of inventoryOrders">
-        <th *ngIf="clientPage" scope="row">
+        <th scope="row">
             <input class="primary" type="checkbox" (click)="addOrder(order)" [checked]="isSelected(order)">
         </th>
         <td>{{order.orderDate | date: 'dd/MM/yyyy'}}</td>
@@ -19,7 +19,7 @@
     </tr>
     <tr class="total">
         <td>{{'total' | uppercase}}</td>
-        <td *ngIf="clientPage"></td>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>

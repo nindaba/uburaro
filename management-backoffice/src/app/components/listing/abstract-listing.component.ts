@@ -42,7 +42,7 @@ export abstract class AbstractListingComponent<ITEM extends Item> implements OnD
 
     subscribeToDelete(){
         this.subscriptions.add(
-            this.topService.$delete.subscribe({next: () => this.setItems()})
+            this.topService.$refreshData.subscribe({next: () => this.setItems()})
         );
     }
 

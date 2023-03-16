@@ -97,7 +97,7 @@ class DefaultMBInvoiceServiceTest {
         verify(INVOICE_SPY).setAmount(INVOICE.getAmount());
         verify(INVOICE_SPY).setPaymentMode(INVOICE.getPaymentMode());
         verify(INVOICE_SPY).setDescription(INVOICE.getDescription());
-        verify(CLIENT_SPY).setTotalDebt(0);
+        verify(CLIENT_SPY).setTotalDebt(50);
         verify(typeService).save(INVOICE_SPY);
 
     }
@@ -145,7 +145,7 @@ class DefaultMBInvoiceServiceTest {
 
         service.deleteInvoice(Set.of(INVOICE.getInvoiceNumber()));
 
-        verify(CLIENT_SPY).setTotalDebt(-ENTRY.getAmount());
-        verify(CAPITAL_SPY).setCurrentValue(-ENTRY.getAmount());
+        verify(CLIENT_SPY).setTotalDebt(-INVOICE.getAmount());
+        verify(CAPITAL_SPY).setCurrentValue(-INVOICE.getAmount());
     }
 }

@@ -40,7 +40,7 @@ public class InvoiceController {
     }
 
     @DeleteMapping(value = clientInvoices)
-    void deleteInvoice(@RequestParam Set<String> invoiceNumbers){
+    void deleteInvoice(@RequestParam("codes") Set<String> invoiceNumbers){
         invoiceFacade.deleteInvoice(invoiceNumbers);
     }
 }

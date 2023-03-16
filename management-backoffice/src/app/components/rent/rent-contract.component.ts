@@ -1,19 +1,29 @@
 import {Component, Input, OnDestroy, OnInit} from "@angular/core";
-import {CommonModule, DatePipe} from "@angular/common";
+import {DatePipe} from "@angular/common";
 import {RelationComponent} from "../relation/relation.component";
 import {TotalPipe} from "../../pipes/total.pipe";
 import {TotalCostPipe} from "../../pipes/total-cost.pipe";
 import {TranslateModule} from "@ngx-translate/core";
-import {BehaviorSubject, Subject, Subscription} from "rxjs";
-import {RentContract} from "../../model/navigation.model";
+import {BehaviorSubject, map, mergeMap, Observable, Subject, Subscription, tap} from "rxjs";
+import {RentContract, RentOrder} from "../../model/navigation.model";
 import {OrderModule} from "../order/order.module";
+import {AppCommonModule} from "../../app-common.module";
+import {OrderService} from "../inventory/order.service";
+import {TopNavService} from "../navigation/top-nav/top-nav.service";
+import {ContractService} from "./contract.service";
 
 @Component({
     selector: 'mb-rent-contract',
     templateUrl: './rent-contract.component.html',
     standalone: true,
     imports: [
-        DatePipe, CommonModule, RelationComponent, TotalPipe, TotalCostPipe, TranslateModule, OrderModule
+        DatePipe,
+        RelationComponent,
+        TotalPipe,
+        TotalCostPipe,
+        TranslateModule,
+        OrderModule,
+        AppCommonModule
     ]
 })
 export class RentContractComponent implements OnInit, OnDestroy {
@@ -27,6 +37,10 @@ export class RentContractComponent implements OnInit, OnDestroy {
     @Input()
     isClientPage: boolean = false;
 
+    constructor(protected service: OrderService,
+                protected topService: TopNavService,
+                protected contractService:ContractService) {
+    }
 
     ngOnDestroy(): void {
     }
@@ -38,7 +52,7 @@ export class RentContractComponent implements OnInit, OnDestroy {
 
             let paid = this.contract.orders?.reduce((acc, order) => acc && (order.paid || false), true);
             let progressColor = paid ? '' : '#E34A4A';
-            
+
             this.progressStyle = `width:${ordered / contractLength * 100}%; background-color:${progressColor};`;
         }
     }
@@ -58,5 +72,13 @@ export class RentContractComponent implements OnInit, OnDestroy {
 
     shrink() {
         this.showAll.next(false)
+    }
+
+    isSelected() {
+        this.contractService.isSelected(this.contract)
+    }
+
+    selectContract() {
+        this.contractService.updateSelection(this.contract);
     }
 }
