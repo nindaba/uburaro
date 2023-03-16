@@ -44,8 +44,8 @@ public class AbstractOrderService {
             MBClientType clientByCode = clientService.getClientByCode(client.getCode());
             target.setClient(clientByCode);
         }
-        if(target instanceof MBRentOrderType && target.getClient() == null){
-            throw new NotFoundException("No client was not found on the order");
+        if(target.getClient() == null){
+            throw new NotFoundException("order.client.notfound");
         }
     }
 

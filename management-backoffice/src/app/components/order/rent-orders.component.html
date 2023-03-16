@@ -1,6 +1,6 @@
-<div class="orders" colspan="all">
+<div class="orders" colspan="all" *ngIf="($refreshedOrders | async) || ($orders | async) as orders">
     <mb-relation title="orders" [heads]="clientPage ? orderHeads : orderHeads.slice(1)">
-        <tr *ngFor="let order of orders">
+        <tr *ngFor="let order of orders ">
             <th *ngIf="clientPage" scope="row">
                 <input class="primary" type="checkbox" (click)="addOrder(order)" [checked]="isSelected(order)">
             </th>

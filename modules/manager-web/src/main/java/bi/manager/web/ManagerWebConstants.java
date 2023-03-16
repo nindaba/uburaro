@@ -41,6 +41,7 @@ public interface ManagerWebConstants {
 
         interface Orders {
             String endpoint = "orders";
+            String clientOrders = Client.client+"/"+endpoint;
 
             interface Inventory {
                 String endpoint = Orders.endpoint + "/inventory";
@@ -54,6 +55,8 @@ public interface ManagerWebConstants {
                 String inventoryOrders = "/{code}";
                 String facilityOrders = "/facility/{code}";
                 String clientOrders = "/client/{code}";
+                String contractOrders = "/contract/{code}";
+
             }
 
         }

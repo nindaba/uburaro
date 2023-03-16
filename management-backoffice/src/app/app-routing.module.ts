@@ -17,6 +17,7 @@ import {ClientsReportComponent} from "./components/report/clients-report.compone
 import {ClientDetailsComponent} from "./components/client/client-details.component";
 import {LandingPageComponent} from "./components/client/landing-page.component";
 import {InvoicesComponent} from "./components/client/invoices.component";
+import {CLIENTS_ROUTE, INVENTORIES_ROUTE} from "./components/navigation/navigation.constants";
 
 
 const routes: Routes = [
@@ -38,7 +39,7 @@ const routes: Routes = [
         component: FacilityDetailsComponent
     },
     {
-        path: "clients",
+        path: CLIENTS_ROUTE,
         component: ClientListingComponent
     },
     {
@@ -76,7 +77,7 @@ const routes: Routes = [
         component: CategoryDetailsComponent
     },
     {
-        path: "inventories",
+        path: INVENTORIES_ROUTE,
         component: InventoryListingComponent
     },
     {

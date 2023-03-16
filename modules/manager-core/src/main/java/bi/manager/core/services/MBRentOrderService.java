@@ -58,4 +58,11 @@ public interface MBRentOrderService {
      */
     void deleteOrder(Set<String> orderNumber);
 
+    /**
+     * Finds all the orders that belong to a contract
+     *
+     * @param code
+     * @return a collection of rent orders
+     */
+    Collection<MBRentOrderType> getOrdersByContract(String code);
 }

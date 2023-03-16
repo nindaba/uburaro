@@ -12,6 +12,7 @@ import {NEW_ITEM} from "../navigation/navigation.constants";
 import {NotificationService} from "../notification/notification.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {NotificationKeys} from "../../config/notifications.config";
+import {TopNavService} from "../navigation/top-nav/top-nav.service";
 
 @Component({
     selector: 'mb-inventory-cart',
@@ -56,8 +57,7 @@ export class InventoryCartComponent implements OnInit, OnDestroy {
     constructor(private translateService: TranslateService,
                 private itemService: MBItemService,
                 private orderService: OrderService,
-                private router: Router,
-                private bread: BreadcrumbsService,
+                private topService: TopNavService,
                 private notification:NotificationService) {
     }
 
@@ -101,7 +101,7 @@ export class InventoryCartComponent implements OnInit, OnDestroy {
             this.subscription.add(
                 this.orderService.placeOrder(this.inventoryOrderForm.getRawValue())
                     .subscribe({
-                        next: () => this.refreshPage(),
+                        next: () => this.notify(),
                         error: (err: HttpErrorResponse) => this.notification.notify(err.error.message,NotificationStatus.ERROR)
                     })
             );
@@ -112,11 +112,8 @@ export class InventoryCartComponent implements OnInit, OnDestroy {
 
     }
 
-    private refreshPage() {
+    private notify() {
         this.notification.notify(NotificationKeys.INVENTORY_ORDER_CREATED,NotificationStatus.SUCCESS)
-        let {page, details} = this.bread.pages;
-
-        this.router.navigate([page, NEW_ITEM])
-            .then(() => this.router.navigate([page, details]))
+        this.topService.$createdItem.emit();
     }
 }
