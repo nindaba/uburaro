@@ -101,7 +101,7 @@ export class TopNavService {
             this.invoiceService.getOrderCount().next(0)
         }
 
-        if (!this.invoiceService.orders && this.breadService.pages.details) {
+        if (this.selectedCodes.includes(this.breadService.pages.details || "detailsPage")) {
             this.breadService.pages.details = "";
             this.router.navigate([this.breadService.pages.page])
         }
