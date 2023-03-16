@@ -27,7 +27,6 @@ export class ClientDetailsComponent extends AbstractDetailsComponent implements 
                 private breadService: BreadcrumbsService,
                 protected override topNavService: TopNavService,
                 protected override router: Router,
-                protected invoiceService: InvoiceService,
                 protected notification: NotificationService,
                 protected contractService: ContractService
     ) {
@@ -68,9 +67,9 @@ export class ClientDetailsComponent extends AbstractDetailsComponent implements 
         }
 
     }
-
-    removeSelectedItems() {
-        this.invoiceService.orders;
+    override ngOnDestroy() {
+        super.ngOnDestroy();
+        this.contractService.resetSelection();
     }
 }
 

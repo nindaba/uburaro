@@ -5,7 +5,6 @@ import {CodeName, MBNotification, Rent, UnitType} from "../../model/navigation.m
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {MBItemService} from "../../services/MBItem.service";
 import {BreadcrumbsService} from "../navigation/top-nav/breadcrumbs.service";
-import {OrderService} from "../inventory/order.service";
 import {TopNavService} from "../navigation/top-nav/top-nav.service";
 import {Router} from "@angular/router";
 import {NEW_ITEM} from "../navigation/navigation.constants";
@@ -42,7 +41,7 @@ export class RentDetailsComponent extends AbstractDetailsComponent implements On
                 protected override topNavService: TopNavService,
                 protected override router: Router,
                 protected notification: NotificationService,
-                protected contractService:ContractService
+                protected contractService: ContractService
     ) {
         super(topNavService, router);
     }
@@ -68,7 +67,7 @@ export class RentDetailsComponent extends AbstractDetailsComponent implements On
         this.$notif = this.notification.getNotification().pipe(
             filter(notif => [NotificationKeys.CONTRACT_CREATED, NotificationKeys.DELETION_COMPLETED].includes(notif.message || "")),
             tap(() => this.getRent(code)),
-            tap(()=> this.contractService.resetSelection())
+            tap(() => this.contractService.resetSelection())
         )
     }
 
@@ -84,6 +83,11 @@ export class RentDetailsComponent extends AbstractDetailsComponent implements On
         } else {
             this.subscribeToForm();
         }
+    }
+
+    override ngOnDestroy() {
+        super.ngOnDestroy();
+        this.contractService.resetSelection();
     }
 }
 

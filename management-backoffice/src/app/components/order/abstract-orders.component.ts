@@ -34,6 +34,7 @@ export abstract class AbstractOrdersComponent<ORDER extends Order> implements On
 
     ngOnDestroy(): void {
         this.invoiceService.orders = this.selected;
+        this.invoiceService.resetSelection();
     }
 
     ngOnInit(): void {
