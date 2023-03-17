@@ -1,0 +1,19 @@
+<div class="report-clients" colspan="all" *ngIf="($clientsWithNewRange | async) || ($clientReport | async) as report">
+    <div class="report-clients-debt">
+        <mb-relation title="client.withDebt" [heads]="clientHeader">
+            <tr *ngFor="let entry of report.clients">
+                <td>{{entry.name}}</td>
+                <td>{{entry.totalDebt}}</td>
+            </tr>
+        </mb-relation>
+    </div>
+    <mb-relation title="payments" [heads]="invoiceHeader">
+        <tr *ngFor="let entry of report.invoices">
+            <td>{{entry.dateCreated | date: 'dd/MM/yyyy'}}</td>
+            <td>{{entry.client?.name}}</td>
+            <td>{{entry.amount}}</td>
+            <td>{{entry.paymentMode}}</td>
+            <td>{{entry.description}}</td>
+        </tr>
+    </mb-relation>
+</div>
