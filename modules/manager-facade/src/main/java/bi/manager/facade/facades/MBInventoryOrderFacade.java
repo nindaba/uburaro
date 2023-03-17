@@ -46,7 +46,7 @@ public interface MBInventoryOrderFacade {
     /**
      * Delete order, using {@link MBInventoryOrderService#deleteOrder(Set<String>)}
      *
-     * @param orderNumber
+     * @param orderNumbers
      */
     void deleteOrder(Set<String> orderNumbers);
 }

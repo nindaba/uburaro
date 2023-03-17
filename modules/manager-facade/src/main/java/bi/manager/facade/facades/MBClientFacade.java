@@ -1,6 +1,9 @@
 package bi.manager.facade.facades;
 
 import bi.manager.facade.data.MBClientData;
+import bi.manager.facade.data.MBClientReportData;
+import bi.manager.facade.data.MBDateRangeData;
+import bi.manager.facade.data.MBInvoiceData;
 
 import java.util.Collection;
 import java.util.Set;
@@ -48,4 +51,12 @@ public interface MBClientFacade {
      * @param orderNumbers
      */
     void deleteOrders(Set<String> orderNumbers);
+
+    /**
+     *
+     * @param facility
+     * @param range
+     * @return
+     */
+    MBClientReportData getClientsReport(String facility, MBDateRangeData range);
 }
