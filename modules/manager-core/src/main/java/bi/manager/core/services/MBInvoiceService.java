@@ -3,6 +3,7 @@ package bi.manager.core.services;
 import bi.manager.core.types.client.MBInvoiceType;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.Set;
 
 public interface MBInvoiceService {
@@ -40,4 +41,14 @@ public interface MBInvoiceService {
      * finally deleting the invoice
      */
     void deleteInvoice(Set<String> invoiceNumbers);
+
+    /**
+     * Gets all the invoices that belong to ht facility which where places in the date range
+     *
+     * @param facility
+     * @param from
+     * @param to
+     * @return collection of Invoices
+     */
+    Collection<MBInvoiceType> getInvoiceReport(String facility, Date from, Date to);
 }

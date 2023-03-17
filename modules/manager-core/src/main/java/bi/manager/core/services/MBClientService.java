@@ -30,4 +30,11 @@ public interface MBClientService extends MBTypeService<MBClientType>{
      */
     void updateClient(MBClientType client);
 
+    /**
+     * Gets all the clients with totalDebt less than 0 who belong {@code  facility}
+     *
+     * @param facility
+     * @return collection of clients
+     */
+    Collection<MBClientType> getClientsWithDebt(String facility);
 }

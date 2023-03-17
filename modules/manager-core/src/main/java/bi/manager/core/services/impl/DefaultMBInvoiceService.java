@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -132,6 +133,11 @@ public class DefaultMBInvoiceService implements MBInvoiceService {
                 .peek(this::revertCapital)
                 .peek(this::revertOrders)
                 .forEach(typeService::delete);
+    }
+
+    @Override
+    public Collection<MBInvoiceType> getInvoiceReport(final String facility, final Date from, final Date to) {
+        return invoiceRepository.findInvoiceReport(facility,from,to);
     }
 
     private void revertOrders(MBInvoiceType invoice) {
