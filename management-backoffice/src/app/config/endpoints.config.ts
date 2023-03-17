@@ -16,6 +16,7 @@ export const endpointsConfig: EndpointConfig = {
     clientInvoices: "facilities/{code}/clients/{client-code}/invoices",
     clientRentContract: "facilities/{code}/clients/{client-code}/rent-contract",
     clientOrders: "facilities/{code}/clients/{client-code}/orders",
+    clientsReport: "facilities/{code}/clients/report",
     rents: "facilities/{code}/rents",
     rent: "facilities/{code}/rents/{rent-code}",
     rentContract: "facilities/{code}/rents/{rent-code}/rent-contract",

@@ -19,7 +19,7 @@ public interface FacilityMapper {
     @Mapping(target = "clients", ignore = true)
     @Mapping(target = "capital")
     @Mapping(target = "modificationLogs", ignore = true)
-    @Mapping(target = "dateCreated", expression = "java(new java.util.Date())")
+    @Mapping(target = "dateCreated", source = "dateModified")
     MBFacilityData facilityToData(MBFacilityType facility);
 
     @Mapping(target = "dateCreated", ignore = true)

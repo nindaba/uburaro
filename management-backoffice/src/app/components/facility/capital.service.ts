@@ -22,5 +22,5 @@ export abstract class CapitalService {
      * @param to Date
      * @return observable of entries
      */
-    abstract getCapitalEntries(dateRange:DateRange): Observable<CapitalEntry[]>
+    abstract getCapitalEntries(dateRange?:DateRange): Observable<CapitalEntry[]>
 }

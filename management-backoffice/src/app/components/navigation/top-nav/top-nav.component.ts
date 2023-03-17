@@ -18,10 +18,7 @@ export class TopNavComponent implements OnInit {
     searchFrom: FormControl = this.service.searchForm;
 
     selectedCodes: string[] = [];
-    dateRangeFrom: FormGroup = new FormGroup({
-        from: new FormControl(),
-        to: new FormControl(),
-    });
+    dateRangeFrom: FormGroup = this.service.createRangeForm();
 
     constructor(
         private service: TopNavService,
@@ -62,9 +59,6 @@ export class TopNavComponent implements OnInit {
             next: value => this.refreshFacility()
         })
         this.selectedCodes = this.service.selectedCodes;
-        this.service.$dateRange = this.dateRangeFrom.valueChanges.pipe(
-            filter((dateRange: DateRange) => new Date(dateRange.from).getTime() < new Date(dateRange.to).getTime()),
-        )
     }
 
     discard() {

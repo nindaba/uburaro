@@ -1,7 +1,6 @@
-<ng-container *ngIf="$dateRange | async"/>
 <div class="capital" colspan="all">
     <mb-relation title="capital" [heads]="capitalHeads">
-        <tr *ngFor="let entry of $entries| async">
+        <tr *ngFor="let entry of ($ordersWithDateRange | async) || ($entries | async)">
             <td>{{entry.dateCreated | date: 'dd/MM/yyyy'}}</td>
             <td>{{entry.amount}}</td>
             <td>{{entry.entryType}}</td>

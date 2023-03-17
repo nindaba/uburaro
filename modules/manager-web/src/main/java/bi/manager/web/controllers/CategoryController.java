@@ -1,17 +1,13 @@
 package bi.manager.web.controllers;
 
-import bi.manager.facade.data.MBCapitalData;
-import bi.manager.facade.data.MBCapitalEntryData;
 import bi.manager.facade.data.MBCategoryData;
 import bi.manager.facade.data.MBFacilityData;
-import bi.manager.facade.facades.MBCapitalFacade;
 import bi.manager.facade.facades.MBCategoryFacade;
 import bi.manager.web.ManagerWebConstants;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Collection;
-import java.util.Date;
 import java.util.Set;
 
 @RestController
