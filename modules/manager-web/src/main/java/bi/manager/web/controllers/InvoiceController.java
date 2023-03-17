@@ -32,7 +32,7 @@ public class InvoiceController {
     Collection<MBInvoiceData> getAllInvoicesByClientCode(@PathVariable String clientCode){
         return invoiceFacade.getAllInvoicesByClientCode(clientCode);
     }
-    @PostMapping(facilityInvoices)
+    @PostMapping(value =facilityInvoices)
     Collection<MBInvoiceData> getInvoiceReport(@RequestBody MBDateRangeData rangeData,@PathVariable String code){
         return invoiceFacade.getInvoiceReport(code,rangeData);
     }
