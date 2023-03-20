@@ -5,6 +5,8 @@ import {CapitalReportComponent} from "./capital-report.component";
 import {InventoriesReportComponent} from "./inventories-report.component";
 import {RentsReportComponent} from "./rents-report.component";
 import {ClientsReportComponent} from "./clients-report.component";
+import {TotalPipe} from "../../pipes/total.pipe";
+import {CapitalEntryAmountPipe} from "../../pipes/capital-entry-amount.pipe";
 
 
 @NgModule({
@@ -17,6 +19,8 @@ import {ClientsReportComponent} from "./clients-report.component";
     ],
     imports: [
         AppCommonModule,
+        TotalPipe,
+        CapitalEntryAmountPipe,
     ],
 })
 export class ReportModule {

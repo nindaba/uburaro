@@ -13,6 +13,7 @@ export class CapitalReportComponent{
     $dateRange: Observable<DateRange> = this.topService.$dateRange.pipe(
         tap(daterange => this.$entries = this.capitalService.getCapitalEntries(daterange))
     );
+
     capitalHeads: string[] = ReportConfig.capital.heads;
     constructor(protected topService:TopNavService,protected capitalService:CapitalService) {
     }
