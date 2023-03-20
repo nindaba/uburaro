@@ -10,7 +10,7 @@ import ReportConfig from "../../../assets/content-config/report-page.json"
 })
 export class CapitalReportComponent{
     $entries: Observable<CapitalEntry[]> = new Observable();
-    $dateRange: Observable<DateRange> = this.topService.$dateRange.pipe(
+    $ordersWithDateRange: Observable<DateRange> = this.topService.$dateRange.pipe(
         tap(daterange => this.$entries = this.capitalService.getCapitalEntries(daterange))
     );
 
