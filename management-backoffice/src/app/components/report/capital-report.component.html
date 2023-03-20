@@ -11,7 +11,7 @@
     <div class="value">
         <div class="value-amount">
             <span class="me-5">{{'label.facility.capital' | translate}}</span>
-            <span>{{ entries | calcTotal : 'amount' | currency : '':'':'1.0-0'}}</span>
+            <span>{{ entries | calcCapital | currency : '':'':'1.0-0'}}</span>
         </div>
         <h3 class="value-currency">FBU</h3>
     </div>

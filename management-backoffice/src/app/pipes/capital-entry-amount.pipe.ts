@@ -7,9 +7,6 @@ import {CapitalEntry, PaymentModeType} from "../model/navigation.model";
 })
 export class CapitalEntryAmountPipe implements PipeTransform {
     transform(value: CapitalEntry): number {
-        if(value.description.startsWith(PaymentModeType.DEBT)){
-            return -value.amount;
-        }
-        return value.amount;
+        return value.description?.startsWith(PaymentModeType.DEBT) ? -value.amount: value.amount;
     }
 }

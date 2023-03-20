@@ -7,7 +7,6 @@ import {CapitalEntry, PaymentModeType} from "../model/navigation.model";
 })
 export class TotalPipe implements PipeTransform {
     transform(values: CapitalEntry[]): number {
-        return values.reduce((a, b) => a + b.entryType == PaymentModeType.DEBT
-            ? -b.amount : b.amount, 0);
+        return values.reduce((a, b) => a + (b.description?.startsWith(PaymentModeType.DEBT) ? -b.amount : b.amount), 0);
     }
 }
