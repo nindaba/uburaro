@@ -14,10 +14,12 @@ public class DefaultMBRentOrderFacade implements MBRentOrderFacade {
 
     protected final MBRentOrderService service;
     protected final RentOrderMapper mapper;
+    protected final RentOrderMapper rentOrderMapper;
 
-    public DefaultMBRentOrderFacade(MBRentOrderService service, RentOrderMapper mapper) {
+    public DefaultMBRentOrderFacade(MBRentOrderService service, RentOrderMapper mapper, RentOrderMapper rentOrderMapper) {
         this.service = service;
         this.mapper = mapper;
+        this.rentOrderMapper = rentOrderMapper;
     }
 
     @Override
@@ -43,5 +45,11 @@ public class DefaultMBRentOrderFacade implements MBRentOrderFacade {
     @Override
     public void deleteOrder(Set<String> orderNumbers) {
         service.deleteOrder(orderNumbers);
+    }
+
+    @Override
+    public Collection<MBRentOrderData> getOrdersByContract(String code) {
+        return rentOrderMapper.rentsToData(
+                service.getOrdersByContract(code));
     }
 }

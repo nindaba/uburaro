@@ -1,6 +1,6 @@
 package bi.manager.facade.facades;
 
-import bi.manager.core.types.client.MBInvoiceType;
+import bi.manager.facade.data.MBDateRangeData;
 import bi.manager.facade.data.MBInvoiceData;
 
 import java.util.Collection;
@@ -36,4 +36,13 @@ public interface MBInvoiceFacade {
      * Delete invoices which belong to the invoice Numbers
      */
     void deleteInvoice(Set<String> invoiceNumbers);
+
+    /**
+     * Get All the invoices, that belong to the facility placed in the date range
+     *
+     * @param facility
+     * @param range
+     * @return collection of invoices
+     */
+    Collection<MBInvoiceData> getInvoiceReport(String facility, MBDateRangeData range);
 }

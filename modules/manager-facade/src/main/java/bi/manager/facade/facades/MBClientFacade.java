@@ -1,6 +1,9 @@
 package bi.manager.facade.facades;
 
 import bi.manager.facade.data.MBClientData;
+import bi.manager.facade.data.MBClientReportData;
+import bi.manager.facade.data.MBDateRangeData;
+import bi.manager.facade.data.MBInvoiceData;
 
 import java.util.Collection;
 import java.util.Set;
@@ -40,4 +43,20 @@ public interface MBClientFacade {
      *
      */
     void updateClient(MBClientData client);
+
+    /**
+     * Deletes orders <br>
+     * by checking the order number prefix and determine which facade should delete the order<br>
+     * either {@link MBInventoryOrderFacade} or {@link MBRentOrderFacade}
+     * @param orderNumbers
+     */
+    void deleteOrders(Set<String> orderNumbers);
+
+    /**
+     *
+     * @param facility
+     * @param range
+     * @return
+     */
+    MBClientReportData getClientsReport(String facility, MBDateRangeData range);
 }

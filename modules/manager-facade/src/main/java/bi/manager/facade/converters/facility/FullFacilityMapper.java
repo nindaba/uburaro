@@ -16,7 +16,7 @@ public interface FullFacilityMapper {
     Collection<MBFacilityData> facilitiesToData(Collection<MBFacilityType> facilities);
 
 
-    @Mapping(target = "dateCreated", expression = "java(new java.util.Date())")
+    @Mapping(target = "dateCreated", source = "dateModified")
     @Mapping(target = "modificationLogs",ignore = true)
     MBFacilityData facilityToData(MBFacilityType facility);
 

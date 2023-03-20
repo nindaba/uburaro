@@ -7,6 +7,7 @@ import {Injectable} from "@angular/core";
 
 @Injectable()
 export class ContractServiceImpl implements ContractService {
+    selectedContracts:RentContract[] = [];
     constructor(protected urlBuilder: UrlBuilderService, protected http: HttpClient) {
     }
 
@@ -23,4 +24,33 @@ export class ContractServiceImpl implements ContractService {
     deleteContract(codes: string[]): Observable<any> {
         return this.http.delete(this.getRentContractUrl(), {params: {codes: codes}});
     }
+
+    getSelected(): RentContract[] {
+        return this.selectedContracts;
+    }
+
+    isSelected(contract?: RentContract): boolean {
+        if(contract){
+            return this.selectedContracts.includes(contract);
+        }
+        return false;
+    }
+
+    resetSelection(): void {
+        this.selectedContracts.splice(0);
+    }
+
+    updateSelection(contract?: RentContract): void {
+        if(contract){
+            let index = this.selectedContracts.indexOf(contract);
+            if(index >=0){
+                this.selectedContracts.splice(index,1);
+            }
+            else{
+                this.selectedContracts.push(contract);
+            }
+        }
+
+    }
+
 }

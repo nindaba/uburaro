@@ -15,11 +15,11 @@ import java.util.Collection;
 public interface FullCapitalMapper {
     Collection<MBCapitalEntryData> capitalEntriesToData(Collection<MBCapitalEntryType> entries);
 
-    @Mapping(target = "dateCreated", expression = "java(new java.util.Date())")
+    @Mapping(target = "dateCreated", source = "dateModified")
     @Mapping(target = "modificationLogs",ignore = true)
     MBCapitalData capitalToData(MBCapitalType capitalType);
 
-    @Mapping(target = "dateCreated", expression = "java(new java.util.Date())")
+    @Mapping(target = "dateCreated", source = "dateModified")
     @Mapping(target = "modificationLogs",ignore = true)
     MBCapitalEntryData capitalEntryToData(MBCapitalEntryType entryType);
 

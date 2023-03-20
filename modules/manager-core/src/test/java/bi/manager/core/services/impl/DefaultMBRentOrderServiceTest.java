@@ -25,7 +25,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Set;
 
-import static bi.manager.core.services.impl.DefaultMBRentOrderService.RENT_ORDER_PREFIX;
+import static bi.manager.core.ManagerCoreConstants.RENT_ORDER_PREFIX;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 

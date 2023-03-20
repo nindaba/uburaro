@@ -15,6 +15,14 @@ public class MBRentContractData extends ItemData {
     private int unit;
     private String ContractFileName;
 
+    private boolean hasOrders;
+
+    private NamedItemData property;
+
+    private NamedItemData client;
+
+    private Set<MBRentOrderData> orders = new HashSet<>();
+
     public String getContractFileName() {
         return ContractFileName;
     }
@@ -22,12 +30,6 @@ public class MBRentContractData extends ItemData {
     public void setContractFileName(String ContractFileName) {
         this.ContractFileName = ContractFileName;
     }
-
-    private NamedItemData property;
-
-    private NamedItemData client;
-
-    private Set<MBRentOrderData> orders = new HashSet<>();
 
     public LocalDate getFrom() {
         return from;
@@ -91,6 +93,14 @@ public class MBRentContractData extends ItemData {
 
     public void setOrders(Set<MBRentOrderData> orders) {
         this.orders = orders;
+    }
+
+    public boolean getHasOrders() {
+        return hasOrders;
+    }
+
+    public void setHasOrders(boolean hasOrders) {
+        this.hasOrders = hasOrders;
     }
 
     @Override

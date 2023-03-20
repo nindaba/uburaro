@@ -1,5 +1,7 @@
 package bi.manager.web.controllers;
 
+import bi.manager.core.types.client.MBInvoiceType;
+import bi.manager.facade.data.MBDateRangeData;
 import bi.manager.facade.data.MBInvoiceData;
 import bi.manager.facade.data.NamedItemData;
 import bi.manager.facade.facades.MBClientFacade;
@@ -30,6 +32,10 @@ public class InvoiceController {
     Collection<MBInvoiceData> getAllInvoicesByClientCode(@PathVariable String clientCode){
         return invoiceFacade.getAllInvoicesByClientCode(clientCode);
     }
+    @PostMapping(value =facilityInvoices)
+    Collection<MBInvoiceData> getInvoiceReport(@RequestBody MBDateRangeData rangeData,@PathVariable String code){
+        return invoiceFacade.getInvoiceReport(code,rangeData);
+    }
 
     @PatchMapping(value = clientInvoices)
     void updateInvoice(@RequestBody MBInvoiceData invoice,@PathVariable String clientCode){
@@ -40,7 +46,7 @@ public class InvoiceController {
     }
 
     @DeleteMapping(value = clientInvoices)
-    void deleteInvoice(@RequestParam Set<String> invoiceNumbers){
+    void deleteInvoice(@RequestParam("codes") Set<String> invoiceNumbers){
         invoiceFacade.deleteInvoice(invoiceNumbers);
     }
 }

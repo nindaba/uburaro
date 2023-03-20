@@ -40,6 +40,7 @@ export class InputDropDownComponent implements OnInit, OnDestroy {
     }
 
     onUnFocus() {
+        this.subscription.unsubscribe();
         setTimeout(() => {
             this.$showDrop.next(false);
             if (this.formDetails.get("name")?.value) {
@@ -47,7 +48,7 @@ export class InputDropDownComponent implements OnInit, OnDestroy {
             } else {
                 this.changeInput({name: "", code: ""})
             }
-        }, 150);
+        }, 300);
     }
 
     private undoInput() {

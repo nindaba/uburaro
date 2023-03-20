@@ -38,7 +38,7 @@ public class MBClientTypeMapper extends AbstractTypeMapper<MBClientType> {
                 VISIBLE, value -> target.setVisible(Boolean.valueOf(value)),
                 NAME, target::setName,
                 ADDRESS, target::setAddress,
-                TOTAL_DEBT, value -> target.setTotalDebt(Long.parseLong(value))
+                TOTAL_DEBT, value -> target.setTotalDebt(-Long.parseLong(value))
         ));
 
         fieldsMapper.putAll(Map.of(

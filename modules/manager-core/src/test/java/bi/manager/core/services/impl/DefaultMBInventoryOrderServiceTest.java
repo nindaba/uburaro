@@ -27,7 +27,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 
-import static bi.manager.core.services.impl.DefaultMBInventoryOrderService.INVENTORY_ORDER_PREFIX;
+import static bi.manager.core.ManagerCoreConstants.INVENTORY_ORDER_PREFIX;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 

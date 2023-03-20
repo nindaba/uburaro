@@ -4,5 +4,6 @@ export const NotificationKeys = {
     INVENTORY_ORDER_CREATED: "inventory.order.created",
     SAVED_NOTIFICATION: "notification.save.completed",
     INVALID_FORM: "invalid.form",
-    CREATION_COMPLETED: "notification.creation.completed"
+    CREATION_COMPLETED: "notification.creation.completed",
+    DELETION_COMPLETED: "notification.delete.completed",
 }

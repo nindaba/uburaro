@@ -28,10 +28,4 @@ export class AbstractDetailsComponent implements OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    subscribeToDelete(redirect: string = "/") {
-        this.subscriptions.add(this.topNavService
-            .$delete.subscribe({next: () => this.router.navigate([redirect])}));
-
-    }
-
 }

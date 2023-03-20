@@ -1,5 +1,6 @@
 package bi.manager.core.services.impl;
 
+import bi.manager.core.repositories.MBClientRepository;
 import bi.manager.core.services.MBClientService;
 import bi.manager.core.services.MBTypeService;
 import bi.manager.core.types.MBFacilityType;
@@ -16,9 +17,11 @@ import java.util.stream.Collectors;
 @Service(value = "mBClientService")
 public class DefaultMBClientService extends AbstractMBTypeService<MBClientType> implements MBClientService, MBTypeService<MBClientType> {
 
+    protected final MBClientRepository clientRepository;
 
-    public DefaultMBClientService(TypeService typeService) {
+    public DefaultMBClientService(TypeService typeService, MBClientRepository clientRepository) {
         super(typeService);
+        this.clientRepository = clientRepository;
     }
 
 
@@ -69,5 +72,10 @@ public class DefaultMBClientService extends AbstractMBTypeService<MBClientType> 
         } catch (NotFoundException e) {
             return null;
         }
+    }
+
+    @Override
+    public Collection<MBClientType> getClientsWithDebt(String facility) {
+        return clientRepository.findAllWithDebt(facility);
     }
 }

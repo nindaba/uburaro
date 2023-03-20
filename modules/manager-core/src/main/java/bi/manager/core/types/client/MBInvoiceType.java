@@ -13,8 +13,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
-@EqualsAndHashCode(callSuper = true, exclude = {"client", "orders"})
-@ToString(callSuper = true, exclude = {"client", "orders"})
+@EqualsAndHashCode(callSuper = true, exclude = {"client", "orders","capitalEntry"})
+@ToString(callSuper = true, exclude = {"client", "orders","capitalEntry"})
 @NoArgsConstructor
 @Entity(name = MBInvoiceType.ITEM_TYPE)
 public class MBInvoiceType extends ItemType {
@@ -26,10 +26,11 @@ public class MBInvoiceType extends ItemType {
     public static final String CLIENT = "client";
     public static final String AMOUNT = "amount";
     public static final String ORDERS = "orders";
+    public static final String CAPITAL_ENTRY = "capitalEntry";
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private MBClientType client;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = MBOrderType.INVOICE)
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = MBOrderType.INVOICE)
     private Set<MBOrderType> orders = new HashSet<>();
 
     private long amount;

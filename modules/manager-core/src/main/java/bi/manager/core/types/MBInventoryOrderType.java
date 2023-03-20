@@ -22,7 +22,7 @@ public class MBInventoryOrderType extends MBOrderType {
     public static final String INVENTORY = "inventory";
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private MBInventoryType inventory;
 
     private MBInventoryEntryEnum orderEntry;
