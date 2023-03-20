@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {mergeMap, Observable} from "rxjs";
-import {ClientReport} from "../../model/navigation.model";
+import {ClientReport, Invoice} from "../../model/navigation.model";
 import {TopNavService} from "../navigation/top-nav/top-nav.service";
 import {ReportService} from "./report.service";
 import ReportHeaders from "../../../assets/content-config/report-page.json"
@@ -17,5 +17,9 @@ export class ClientsReportComponent{
   invoiceHeader:string[] = ReportHeaders.clients.invoice;
 
   constructor(protected topService: TopNavService,protected reportService: ReportService) {
+  }
+
+  getPaidInvoice(invoices: Invoice[]): Invoice[]{
+    return invoices.filter(invoice => invoice.paymentMode != 'DEBT');
   }
 }

@@ -7,6 +7,7 @@ import {RentsReportComponent} from "./rents-report.component";
 import {ClientsReportComponent} from "./clients-report.component";
 import {ReportService} from "./report.service";
 import {ReportServiceImpl} from "../../services/report.service.impl";
+import {TotalPipe} from "../../pipes/total.pipe";
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {ReportServiceImpl} from "../../services/report.service.impl";
     ],
     imports: [
         AppCommonModule,
+        TotalPipe,
     ],
     providers: [{provide: ReportService, useClass: ReportServiceImpl}]
 })

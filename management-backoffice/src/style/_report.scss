@@ -25,7 +25,14 @@
 
 .report-clients{
   &-debt{
-    width: 50%;
     margin-bottom: $spacing;
+    mb-relation{
+      width: 50%;
+    }
+    .total{
+      margin-top: -$spacing;
+      padding-left: $spacing;
+    }
   }
+
 }
