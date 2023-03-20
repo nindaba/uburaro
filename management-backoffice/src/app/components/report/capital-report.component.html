@@ -1,5 +1,4 @@
-<ng-container *ngIf="$ordersWithDateRange | async"/>
-<div class="capital" *ngIf="$entries| async as entries">
+<div class="capital" *ngIf="($ordersWithDateRange | async) || ($entries| async) as entries">
     <mb-relation title="capital" [heads]="capitalHeads">
         <tr *ngFor="let entry of entries">
             <td>{{entry.dateCreated | date: 'dd/MM/yyyy'}}</td>
