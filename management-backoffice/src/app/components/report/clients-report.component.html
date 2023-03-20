@@ -1,19 +1,41 @@
 <div class="report-clients" colspan="all" *ngIf="($clientsWithNewRange | async) || ($clientReport | async) as report">
-    <div class="report-clients-debt">
+    <div class="report-clients-debt d-flex flex-row">
         <mb-relation title="client.withDebt" [heads]="clientHeader">
             <tr *ngFor="let entry of report.clients">
                 <td>{{entry.name}}</td>
                 <td>{{entry.totalDebt}}</td>
             </tr>
         </mb-relation>
+        <div class="report-clients total">
+            <div class="value">
+                <div class="value-amount">
+                    <span class="me-5">{{'label.client.debtTotal' | translate}}</span>
+                </div>
+            </div>
+            <div class="value">
+                <div class="value-amount">
+                    <span>{{report.invoices | calcTotal : 'amount'| currency : '':'':'1.0-0'}}</span>
+                </div>
+                <h3 class="value-currency">FBU</h3>
+            </div>
+        </div>
     </div>
-    <mb-relation title="payments" [heads]="invoiceHeader">
-        <tr *ngFor="let entry of report.invoices">
-            <td>{{entry.dateCreated | date: 'dd/MM/yyyy'}}</td>
-            <td>{{entry.client?.name}}</td>
-            <td>{{entry.amount}}</td>
-            <td>{{entry.paymentMode}}</td>
-            <td>{{entry.description}}</td>
-        </tr>
-    </mb-relation>
+    <ng-container *ngIf="getPaidInvoice(report.invoices) as invoices">
+        <mb-relation title="payments" [heads]="invoiceHeader">
+            <tr *ngFor="let entry of invoices">
+                <td>{{entry.dateCreated | date: 'dd/MM/yyyy'}}</td>
+                <td>{{entry.client?.name}}</td>
+                <td>{{entry.amount}}</td>
+                <td>{{entry.paymentMode}}</td>
+                <td>{{entry.description}}</td>
+            </tr>
+        </mb-relation>
+        <div class="value">
+            <div class="value-amount">
+                <span class="me-5">{{'label.total.paid' | translate}}</span>
+                <span>{{ invoices | calcTotal : 'amount'| currency : '':'':'1.0-0'}}</span>
+            </div>
+            <h3 class="value-currency">FBU</h3>
+        </div>
+    </ng-container>
 </div>

@@ -25,7 +25,7 @@
     <ng-container *ngIf="$client | async as client">
         <div class="value">
             <div class="value-amount">
-                <span class="me-5">DEBT</span>
+                <span class="me-5">{{'label.client.debt' | translate}}</span>
                 <span>{{client?.totalDebt || 0 | currency : '':'':'1.0-0'}}</span>
             </div>
             <h3 class="value-currency">FBU</h3>
