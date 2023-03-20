@@ -3,7 +3,7 @@
 <div class="notification-confirm"  *ngIf="$confirmDelete | async">
     <div class="mb-3 h6">{{'message.confirm.delete' | translate}}</div>
     <div class="orders-chips">
-        <div class="btn chip" *ngFor="let item of items">
+        <div class="btn chip" *ngFor="let item of orders || items">
             <span class="chip-text">{{item}}</span>
             <a class="btn mb-icon btn-close text-light" (click)="remove(item)"></a>
         </div>

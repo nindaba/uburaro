@@ -37,6 +37,7 @@ public class DefaultMBRentPropertyFacade implements MBRentPropertyFacade {
     @Override
     public MBRentPropertyData getRentalPropertyByCode(final String code, final boolean allFields) {
         MBRentPropertyType itemByCode = typeService.findItemByCode(code, MBRentPropertyType.class);
+        itemByCode.getContracts().removeIf(contract -> !contract.isActive());
         return allFields ? fullMapper.rentPropertyToData(itemByCode) : mapper.rentPropertyToData(itemByCode);
     }
 

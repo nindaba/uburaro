@@ -78,8 +78,8 @@ export class CreateInvoiceComponent implements OnInit, OnDestroy {
             amount: 0,
         });
 
-        this.invoiceService.orders = [];
-        this.orders = [];
+        this.invoiceService.resetOrders();
+        this.orders.splice(0);
         this.notification.notify(NotificationKeys.INVOICE_CREATED);
     }
 }

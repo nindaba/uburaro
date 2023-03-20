@@ -46,7 +46,6 @@ export class CategoryDetailsComponent extends AbstractDetailsComponent implement
                     this.subscribeToForm();
                 }),
             );
-            this.subscribeToDelete(this.breadService.pages.page);
         } else {
             this.subscribeToForm();
         }

@@ -7,6 +7,7 @@ import bi.manager.core.types.MBCapitalType;
 import bi.manager.core.types.MBFacilityType;
 import bi.manager.core.types.client.MBInvoiceType;
 import bi.manager.core.types.enums.MBEntryEnum;
+import bi.manager.core.types.enums.MBPaymentModeEnum;
 import bi.uburaro.core.services.TypeService;
 import org.springframework.stereotype.Service;
 
@@ -43,9 +44,32 @@ public class DefaultMBCapitalService implements MBCapitalService {
         currentValue += type == MBEntryEnum.EXPENSE ? -value : value;
 
         capital.setCurrentValue(currentValue);
+        populateEntry(value, type, capital);
+    }
+
+    private void populateEntry(long value, MBEntryEnum type, MBCapitalType capital) {
         MBCapitalEntryType entry = typeService.create(MBCapitalEntryType.class);
         entry.setEntryType(type);
         entry.setAmount(value);
+        entry.setCapital(capital);
+        typeService.save(entry);
+    }
+
+    @Override
+    public void addCapital(final MBCapitalEntryType entry, final String facilityCode) {
+        final MBFacilityType facility = typeService.findItemByCode(facilityCode, MBFacilityType.class);
+
+        MBCapitalType capital = facility.getCapital();
+        if (capital == null) {
+            capital = typeService.create(MBCapitalType.class);
+            facility.setCapital(capital);
+            typeService.save(facility);
+        }
+
+        long currentValue = capital.getCurrentValue();
+        currentValue += entry.getEntryType() == MBEntryEnum.EXPENSE ? -entry.getAmount() : entry.getAmount();
+
+        capital.setCurrentValue(currentValue);
         entry.setCapital(capital);
         typeService.save(entry);
     }
@@ -65,8 +89,9 @@ public class DefaultMBCapitalService implements MBCapitalService {
     @Override
     public void addCapital(final MBInvoiceType invoice) {
         MBCapitalType capital = invoice.getClient().getFacility().getCapital();
+        long currentValue = capital.getCurrentValue();
 
-        long currentValue = capital.getCurrentValue() + invoice.getAmount();
+        currentValue += invoice.getPaymentMode() == MBPaymentModeEnum.DEBT ? -invoice.getAmount() : invoice.getAmount();
 
         if (invoice.getCapitalEntry() == null) {
             capital.setCurrentValue(currentValue);
@@ -75,6 +100,8 @@ public class DefaultMBCapitalService implements MBCapitalService {
             entry.setAmount(invoice.getAmount());
             entry.setCapital(capital);
             entry.setInvoice(invoice);
+            entry.setDescription(invoice.getClient().getName()+" : "+invoice.getDescription());
+            invoice.setCapitalEntry(entry);
         } else {
             updateCapital(invoice);
         }

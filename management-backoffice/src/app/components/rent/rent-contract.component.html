@@ -1,7 +1,8 @@
 <div class="contract">
     <div class="details">
+        <input id="contract-{{contract?.code}}" class="primary" type="checkbox" (click)="selectContract()" [checked]="isSelected()">
         <span class="code">
-            <label translate>contract.code</label>
+            <label for="contract-{{contract?.code}}" translate>contract.code</label>
             <span>{{contract?.code}}</span>
         </span>
         <span class="name">
@@ -29,7 +30,7 @@
                 <div class="mb-icon download"></div>
                 label.download
             </a>
-            <ng-container *ngIf="contract?.orders?.length else noOrders">
+            <ng-container *ngIf="contract?.hasOrders else noOrders">
                 <a class="btn btn-icon" [ngClass]="(showAll | async ) ? 'd-none': ''" (click)="expand()" translate>
                     <div class="mb-icon mb-icon-green expand"></div>
                 </a>
@@ -42,5 +43,6 @@
             </ng-template>
         </div>
     </div>
-    <mb-rent-orders [clientPage]="isClientPage" [ngClass]="(showAll | async) ? '': 'd-none'" *ngIf="contract?.orders as orders"  [orders]="contract?.orders || []"></mb-rent-orders>
+    <mb-rent-orders [ngClass]="(showAll | async) && contract?.hasOrders ? '': 'd-none'"
+                    [clientPage]="isClientPage" [contract]="contract?.code || ''"></mb-rent-orders>
 </div>

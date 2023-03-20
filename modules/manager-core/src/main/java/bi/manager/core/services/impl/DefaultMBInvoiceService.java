@@ -20,7 +20,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -87,11 +89,8 @@ public class DefaultMBInvoiceService implements MBInvoiceService {
     private void removeDebt(MBInvoiceType invoice) {
         MBClientType client = invoice.getClient();
 
-        long newDebt =client.getTotalDebt();
-        newDebt += invoice.getPaymentMode() != MBPaymentModeEnum.DEBT ?  + invoice.getAmount() : -invoice.getAmount();
-        if (invoice.getCapitalEntry() != null) {
-            newDebt -= invoice.getCapitalEntry().getAmount();
-        }
+        final long newDebt =client.getTotalDebt() + getAmount(invoice);
+
         client.setTotalDebt(newDebt);
     }
 
@@ -132,14 +131,26 @@ public class DefaultMBInvoiceService implements MBInvoiceService {
                 .map(invoiceRepository::findByInvoiceNumber)
                 .peek(this::revertClient)
                 .peek(this::revertCapital)
+                .peek(this::revertOrders)
                 .forEach(typeService::delete);
+    }
+
+    @Override
+    public Collection<MBInvoiceType> getInvoiceReport(final String facility, final Date from, final Date to) {
+        return invoiceRepository.findInvoiceReport(facility,from,to);
+    }
+
+    private void revertOrders(MBInvoiceType invoice) {
+        invoice.getOrders().stream()
+                .peek(order -> order.setPaid(false))
+                .forEach(typeService::save);
     }
 
     private void revertCapital(MBInvoiceType invoice) {
         MBCapitalEntryType capitalEntry = invoice.getCapitalEntry();
         MBCapitalType capital = capitalEntry.getCapital();
-        long value = capital.getCurrentValue() - capitalEntry.getAmount();
-        capital.setCurrentValue(value);
+        long currentValue = capital.getCurrentValue() - getAmount(invoice);
+        capital.setCurrentValue(currentValue);
         capitalEntry.setCapital(null);
         typeService.save(capitalEntry);
         typeService.save(capital);
@@ -147,10 +158,14 @@ public class DefaultMBInvoiceService implements MBInvoiceService {
 
     private void revertClient(MBInvoiceType invoice) {
         MBClientType client = invoice.getClient();
-        MBCapitalEntryType entry = invoice.getCapitalEntry();
-        long debt = client.getTotalDebt() - entry.getAmount();
-        client.setTotalDebt(debt);
+        long newDebt = client.getTotalDebt() - getAmount(invoice);
+
+        client.setTotalDebt(newDebt);
         invoice.setClient(null);
         typeService.save(client);
+    }
+
+    protected long getAmount(MBInvoiceType invoice) {
+        return invoice.getPaymentMode() != MBPaymentModeEnum.DEBT ? +invoice.getAmount() : -invoice.getAmount();
     }
 }

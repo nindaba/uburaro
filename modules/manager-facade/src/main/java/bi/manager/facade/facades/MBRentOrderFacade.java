@@ -48,4 +48,12 @@ public interface MBRentOrderFacade {
      * @param orderNumbers
      */
     void deleteOrder(Set<String> orderNumbers);
+
+    /**
+     * Gets all the orders that belong to the contract
+     *
+     * @param code
+     * @return a collection of orders
+     */
+    Collection<MBRentOrderData> getOrdersByContract(String code);
 }

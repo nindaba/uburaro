@@ -11,7 +11,7 @@ export abstract class CapitalService {
      * @param type
      * @return void observable
      */
-    abstract addCapital(value: number, type: CapitalType): Observable<void>;
+    abstract addCapital(value: number, type: CapitalType,description?:string): Observable<void>;
 
     abstract getCapital():Observable<Capital>;
 
@@ -22,5 +22,5 @@ export abstract class CapitalService {
      * @param to Date
      * @return observable of entries
      */
-    abstract getCapitalEntries(dateRange:DateRange): Observable<CapitalEntry[]>
+    abstract getCapitalEntries(dateRange?:DateRange): Observable<CapitalEntry[]>
 }

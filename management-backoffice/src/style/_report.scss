@@ -22,3 +22,17 @@
     height: calc(100% - 60px);
   }
 }
+
+.report-clients{
+  &-debt{
+    margin-bottom: $spacing;
+    mb-relation{
+      width: 50%;
+    }
+    .total{
+      margin-top: -$spacing;
+      padding-left: $spacing;
+    }
+  }
+
+}

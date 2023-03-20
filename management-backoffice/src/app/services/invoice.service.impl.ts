@@ -10,6 +10,7 @@ export class InvoiceServiceImpl implements InvoiceService {
     protected orders_: Order[] = [];
     protected orderCount: number = 0;
     protected orderLength: Subject<number> = new BehaviorSubject(this.orderCount);
+    selectedInvoices: Invoice[] = [];
 
     constructor(protected urlBuilder: UrlBuilderService, protected http: HttpClient) {
     }
@@ -39,14 +40,41 @@ export class InvoiceServiceImpl implements InvoiceService {
     }
 
     createInvoice(invoice: Invoice): Observable<any> {
-        return this.http.patch(this.getClientUrl(),invoice);
+        return this.http.patch(this.getClientUrl(), invoice);
     }
 
     getClientsInvoices(): Observable<Invoice[]> {
         return this.http.get<Invoice[]>(this.getClientUrl());
     }
 
-    private getClientUrl(): string{
+    private getClientUrl(): string {
         return this.urlBuilder.getUrlForEndPoint("clientInvoices");
+    }
+
+    resetOrders(): void {
+        this.orders_.splice(0);
+        this.orderLength.next(0);
+        this.orderCount = 0;
+    }
+
+    isSelected(invoice?: Invoice): boolean {
+        return invoice ? this.selectedInvoices.includes(invoice) : false;
+    }
+
+    updateInvoiceSelection(invoice: Invoice): void {
+        let index = this.selectedInvoices.indexOf(invoice);
+
+        if (index >= 0) {
+            this.selectedInvoices.splice(index, 1);
+        } else {
+            this.selectedInvoices.push(invoice);
+        }
+    }
+    getSelectedInvoices(): Invoice[]{
+        return this.selectedInvoices;
+    }
+
+    resetSelection():void {
+        this.selectedInvoices.splice(0);
     }
 }

@@ -3,6 +3,7 @@ package bi.manager.web.controllers;
 import bi.manager.facade.data.MBRentOrderData;
 import bi.manager.facade.facades.MBRentContractFacade;
 import bi.manager.facade.facades.MBRentOrderFacade;
+import bi.manager.web.ManagerWebConstants;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -31,6 +32,10 @@ public class RentOrderController {
     @GetMapping(value = clientOrders)
     Collection<MBRentOrderData> getOrderByClientCode(@PathVariable String code) {
         return facade.getOrderByClientCode(code);
+    }
+    @GetMapping(value = contractOrders)
+    Collection<MBRentOrderData> getOrderByContract(@PathVariable String code) {
+        return facade.getOrdersByContract(code);
     }
 
     @PostMapping
