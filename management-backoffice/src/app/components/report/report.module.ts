@@ -5,6 +5,8 @@ import {CapitalReportComponent} from "./capital-report.component";
 import {InventoriesReportComponent} from "./inventories-report.component";
 import {RentsReportComponent} from "./rents-report.component";
 import {ClientsReportComponent} from "./clients-report.component";
+import {CapitalEntryAmountPipe} from "../../pipes/capital-entry-amount.pipe";
+import {CapitalPipe} from "../../pipes/capital.pipe";
 import {ReportService} from "./report.service";
 import {ReportServiceImpl} from "../../services/report.service.impl";
 import {TotalPipe} from "../../pipes/total.pipe";
@@ -21,6 +23,8 @@ import {TotalPipe} from "../../pipes/total.pipe";
     imports: [
         AppCommonModule,
         TotalPipe,
+        CapitalEntryAmountPipe,
+        CapitalPipe,
     ],
     providers: [{provide: ReportService, useClass: ReportServiceImpl}]
 })

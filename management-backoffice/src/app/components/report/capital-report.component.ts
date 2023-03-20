@@ -13,6 +13,7 @@ export class CapitalReportComponent{
     $ordersWithDateRange: Observable<CapitalEntry[]> = this.topService.dateRangeFrom.statusChanges.pipe(
         mergeMap(() => this.capitalService.getCapitalEntries())
     );
+
     capitalHeads: string[] = ReportConfig.capital.heads;
     constructor(protected topService:TopNavService,protected capitalService:CapitalService) {
     }
