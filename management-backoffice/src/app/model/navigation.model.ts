@@ -30,6 +30,7 @@ export class EndpointConfig {
     inventoryClientOrders: string = "";
     clientOrders:string = "";
     contractOrders:string = "";
+    clientsReport:string = "";
 
     relation: { [key: string]: string } = {};
 
@@ -190,4 +191,9 @@ export interface MBNotification{
 export interface DateRange{
     from:Date,
     to:Date
+}
+
+export interface ClientReport {
+    clients: Client[];
+    invoices: Invoice[];
 }

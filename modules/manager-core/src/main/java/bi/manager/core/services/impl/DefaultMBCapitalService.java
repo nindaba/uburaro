@@ -100,6 +100,7 @@ public class DefaultMBCapitalService implements MBCapitalService {
             entry.setAmount(invoice.getAmount());
             entry.setCapital(capital);
             entry.setInvoice(invoice);
+            entry.setDescription(invoice.getClient().getName()+" : "+invoice.getDescription());
             invoice.setCapitalEntry(entry);
         } else {
             updateCapital(invoice);

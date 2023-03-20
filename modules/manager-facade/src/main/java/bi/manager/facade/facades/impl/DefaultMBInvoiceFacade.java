@@ -1,7 +1,9 @@
 package bi.manager.facade.facades.impl;
 
 import bi.manager.core.services.MBInvoiceService;
+import bi.manager.core.types.client.MBInvoiceType;
 import bi.manager.facade.converters.client.InvoiceMapper;
+import bi.manager.facade.data.MBDateRangeData;
 import bi.manager.facade.data.MBInvoiceData;
 import bi.manager.facade.facades.MBInvoiceFacade;
 import org.springframework.stereotype.Service;
@@ -38,5 +40,12 @@ public class DefaultMBInvoiceFacade implements MBInvoiceFacade {
     @Override
     public void deleteInvoice(Set<String> invoiceNumbers) {
         invoiceService.deleteInvoice(invoiceNumbers);
+    }
+
+    @Override
+    public Collection<MBInvoiceData> getInvoiceReport(String facility, MBDateRangeData range) {
+        return mapper.invoicesToData(
+                invoiceService.getInvoiceReport(facility,range.getFrom(),range.getTo())
+        );
     }
 }

@@ -4,6 +4,7 @@ public interface ManagerWebConstants {
     interface Controller {
 
         String allFields = "allFields";
+        String report = "/report";
 
         interface Facility {
             String endpoint = "facilities";

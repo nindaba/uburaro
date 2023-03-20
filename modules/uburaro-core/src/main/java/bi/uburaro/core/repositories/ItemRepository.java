@@ -4,7 +4,6 @@ import bi.uburaro.core.types.ItemType;
 import bi.uburaro.core.types.PrimaryKeyType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import javax.transaction.Transactional;
 
 
 public interface ItemRepository<TYPE extends ItemType> extends JpaRepository<TYPE, PrimaryKeyType> {

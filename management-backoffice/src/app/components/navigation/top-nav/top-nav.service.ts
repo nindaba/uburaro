@@ -1,6 +1,6 @@
 import NavigationConfig from "../../../../assets/content-config/navigation.json";
 import {EventEmitter, Injectable} from "@angular/core";
-import {BehaviorSubject, Observable, Subject, throwError} from "rxjs";
+import {BehaviorSubject, filter, Observable, Subject, tap, throwError} from "rxjs";
 import {FormControl, FormGroup} from "@angular/forms";
 import {DateRange, EndpointConfig, NavNode, NotificationStatus} from "../../../model/navigation.model";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
@@ -11,6 +11,8 @@ import {NotificationService} from "../../notification/notification.service";
 import {NotificationKeys} from "../../../config/notifications.config";
 import {InvoiceService} from "../../client/invoice.service";
 import {ContractService} from "../../rent/contract.service";
+import {formatDate} from "@angular/common";
+import {dateRangeValidator} from "../../../validators/daterange.validator";
 
 @Injectable({providedIn: "root"})
 export class TopNavService {
@@ -18,13 +20,12 @@ export class TopNavService {
     $createdItem: EventEmitter<void> = new EventEmitter<void>();
     nodes: NavNode[] = NavigationConfig["top-nav"].nodes;
 
-    activeNode: NavNode = {};
     itemForm: FormGroup | undefined;
     selectedCodes: string[] = [];
     $formChanged: Subject<boolean> = new BehaviorSubject(false);
     searchForm: FormControl = new FormControl('');
     $confirmDelete: Subject<boolean> = new BehaviorSubject(false);
-    $dateRange: Observable<DateRange> = new Observable();
+    dateRangeFrom: FormGroup = new FormGroup({});
 
     constructor(
         private router: Router,
@@ -150,5 +151,15 @@ export class TopNavService {
             return this.urlBuilder.getUrlForEndPoint("rentContract");
         }
         return;
+    }
+
+    public createRangeForm() {
+        let from = new Date();
+        let formGroup = new FormGroup({
+            from: new FormControl(formatDate(from.setMonth(from.getMonth() - 1), "yyyy-MM-dd", "en")),
+            to: new FormControl(formatDate(new Date(), "yyyy-MM-dd", "en"))
+        },dateRangeValidator);
+        this.dateRangeFrom = formGroup;
+        return formGroup;
     }
 }

@@ -6,5 +6,18 @@
       "label.entry.type",
       "label.entry.desc"
     ]
+  },
+  "clients": {
+    "client": [
+      "label.client.name",
+      "label.client.debt"
+    ],
+    "invoice": [
+      "label.entry.date",
+      "label.client.name",
+      "label.amount",
+      "label.entry.type",
+      "label.entry.desc"
+    ]
   }
 }

@@ -33,7 +33,7 @@
 
         </div>
         <div class="col nav-right">
-            <form [formGroup]="dateRangeFrom">
+            <form [formGroup]="dateRangeFrom" class="d-flex gap-1">
                 <div class="input-grp label-front" *ngIf="isEnabled('from')">
                     <span class="input-label">{{getName('from') | translate}}</span>
                     <input formControlName="from" type="date" class="input-date nav-search" min="2021-01-01">
