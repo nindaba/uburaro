@@ -9,6 +9,7 @@ import ReportConfig from "../../../assets/content-config/report-page.json"
   templateUrl: './capital-report.component.html'
 })
 export class CapitalReportComponent{
+
     $entries: Observable<CapitalEntry[]> =this.capitalService.getCapitalEntries();
     $ordersWithDateRange: Observable<CapitalEntry[]> = this.topService.dateRangeFrom.statusChanges.pipe(
         mergeMap(() => this.capitalService.getCapitalEntries())
