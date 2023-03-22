@@ -14,7 +14,7 @@
             </div>
             <div class="value">
                 <div class="value-amount">
-                    <span>{{report.invoices | calcTotal : 'amount'| currency : '':'':'1.0-0'}}</span>
+                    <span>{{report.clients | calcTotal : 'totalDebt'| currency : '':'':'1.0-0'}}</span>
                 </div>
                 <h3 class="value-currency">FBU</h3>
             </div>

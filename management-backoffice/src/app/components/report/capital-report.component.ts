@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {TopNavService} from "../navigation/top-nav/top-nav.service";
-import {mergeMap, Observable, tap} from "rxjs";
-import {CapitalEntry, ClientReport, DateRange, NavNode} from "../../model/navigation.model";
+import {mergeMap, Observable} from "rxjs";
+import {CapitalEntry} from "../../model/navigation.model";
 import {CapitalService} from "../facility/capital.service";
 import ReportConfig from "../../../assets/content-config/report-page.json"
+
 @Component({
   selector: 'mb-capital-report',
   templateUrl: './capital-report.component.html'
