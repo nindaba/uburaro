@@ -2,6 +2,10 @@ package bi.manager.core.services;
 
 import bi.manager.core.types.MBRentPropertyType;
 import bi.manager.core.types.client.MBRentContractType;
+import bi.manager.core.utils.MBPage;
+import bi.manager.core.utils.MBPageable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -52,4 +56,15 @@ public interface MBRentContractService extends MBTypeService<MBRentContractType>
      */
     void endContract(String code,LocalDate endDate);
 
+    /**
+     * Get contracts which belongs to a {@code facility} within a given date range
+     *
+     * @param facility
+     * @param from
+     * @param to
+     * @param pageable
+     *
+     * @return page of contracts
+     */
+    MBPage<MBRentContractType> getContracts(String facility, LocalDate from, LocalDate to, MBPageable pageable);
 }

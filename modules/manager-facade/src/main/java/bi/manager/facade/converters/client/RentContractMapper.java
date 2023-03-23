@@ -2,6 +2,7 @@ package bi.manager.facade.converters.client;
 
 import bi.manager.core.types.client.MBRentContractType;
 import bi.manager.facade.converters.rent.RentPropertyMapper;
+import bi.manager.facade.data.MBPageData;
 import bi.manager.facade.data.MBRentContractData;
 import bi.uburaro.core.types.ItemType;
 import org.mapstruct.InheritInverseConfiguration;
@@ -22,5 +23,4 @@ public interface RentContractMapper extends CodeNamedMapper {
     MBRentContractType contractToType(MBRentContractData contract);
 
     Collection<MBRentContractData> contractsToData(Collection<MBRentContractType> contracts);
-
 }

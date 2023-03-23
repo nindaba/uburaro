@@ -1,19 +1,19 @@
 package bi.manager.web.controllers;
 
-import bi.manager.facade.data.MBRentContractData;
-import bi.manager.facade.data.MBRentPropertyData;
-import bi.manager.facade.data.MBFacilityData;
+import bi.manager.core.types.client.MBRentContractType;
+import bi.manager.facade.data.*;
 import bi.manager.facade.facades.MBRentContractFacade;
 import bi.manager.facade.facades.MBRentPropertyFacade;
 import bi.manager.web.ManagerWebConstants;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.Set;
 
-import static bi.manager.web.ManagerWebConstants.Controller.Rent.rent;
-import static bi.manager.web.ManagerWebConstants.Controller.Rent.rentContract;
+import static bi.manager.facade.factories.PageFactory.createPage;
+import static bi.manager.web.ManagerWebConstants.Controller.Rent.*;
 
 @RestController
 @RequestMapping(value = ManagerWebConstants.Controller.Rent.endpoint)
@@ -42,6 +42,16 @@ public class RentPropertyController {
     public void updateContract(@PathVariable String code, @PathVariable(required = false) String rentCode, @RequestBody MBRentContractData contract){
         rentContractFacade.updateContract(contract);
     }
+    @PostMapping(value = contracts)
+    public MBPageData<MBRentContractData> getContractFacilityInRange(@PathVariable String code,
+                                                                     @RequestBody MBDateRangeData range,
+                                                                     @RequestParam(required = false, defaultValue = "100") int pageSize,
+                                                                     @RequestParam(required = false, defaultValue = "0") int currentPage,
+                                                                     @RequestParam(required = false, defaultValue = MBRentContractType.NEXT_ORDER_DATE) String sort,
+                                                                     @RequestParam(required = false, defaultValue = "asc") String sortOrder){
+        return rentContractFacade.getFacilityContracts(code,range, createPage(pageSize, currentPage, sort, sortOrder));
+    }
+
 
     @DeleteMapping(value = rentContract)
     public void deleteContracts(@PathVariable(required = false) String code, @PathVariable(required = false) String rentCode,@RequestParam Set<String> codes){

@@ -1,5 +1,9 @@
 package bi.manager.web.controllers;
 
+import bi.manager.core.types.client.MBOrderType;
+import bi.manager.core.types.client.MBRentContractType;
+import bi.manager.facade.data.MBDateRangeData;
+import bi.manager.facade.data.MBPageData;
 import bi.manager.facade.data.MBRentOrderData;
 import bi.manager.facade.facades.MBRentContractFacade;
 import bi.manager.facade.facades.MBRentOrderFacade;
@@ -10,6 +14,7 @@ import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.Set;
 
+import static bi.manager.facade.factories.PageFactory.createPage;
 import static bi.manager.web.ManagerWebConstants.Controller.Orders.Rent.*;
 
 @RestController
@@ -22,6 +27,15 @@ public class RentOrderController {
     @GetMapping(value = facilityOrders)
     Collection<MBRentOrderData> getOrderByFacilityCode(@PathVariable String code) {
         return facade.getOrderByFacilityCode(code);
+    }
+    @PostMapping(value = facilityOrders)
+    MBPageData<MBRentOrderData> getOrderByFacilityCode(@PathVariable String code,
+                                                       @RequestBody MBDateRangeData range,
+                                                       @RequestParam(required = false, defaultValue = "100") int pageSize,
+                                                       @RequestParam(required = false, defaultValue = "0") int currentPage,
+                                                       @RequestParam(required = false, defaultValue = MBOrderType.ORDER_DATE) String sort,
+                                                       @RequestParam(required = false, defaultValue = "asc") String sortOrder) {
+        return facade.getOrderByFacilityCode(code,range,createPage(pageSize,currentPage,sort,sortOrder));
     }
 
     @GetMapping(value = inventoryOrders)

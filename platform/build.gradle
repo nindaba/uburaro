@@ -28,7 +28,7 @@ bootRun {
     environment 'spring.output.ansi.console-available', true
 }
 
-bootRun.jvmArgs += '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000'
+bootRun.jvmArgs += '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8800'
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'

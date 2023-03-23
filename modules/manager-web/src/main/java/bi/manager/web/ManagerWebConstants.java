@@ -32,6 +32,7 @@ public interface ManagerWebConstants {
             String endpoint = Facility.facility + "/rents";
             String rent = "/{rentCode}";
             String rentContract = rent + "/rent-contract";
+            String contracts = "/contracts";
         }
 
         interface Inventory {
