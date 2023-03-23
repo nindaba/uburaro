@@ -1,6 +1,7 @@
 package bi.manager.core.services.impl;
 
 import bi.manager.core.repositories.MBOrderRepository;
+import bi.manager.core.repositories.MBRentOrderRepository;
 import bi.manager.core.services.MBClientService;
 import bi.manager.core.services.MBFacilityService;
 import bi.manager.core.services.MBRentOrderService;
@@ -8,6 +9,8 @@ import bi.manager.core.types.MBRentPropertyType;
 import bi.manager.core.types.client.MBClientType;
 import bi.manager.core.types.client.MBRentContractType;
 import bi.manager.core.types.client.MBRentOrderType;
+import bi.manager.core.utils.MBPage;
+import bi.manager.core.utils.MBPageable;
 import bi.uburaro.core.exceptions.NotFoundException;
 import bi.uburaro.core.repositories.GeneratedKeyRepository;
 import bi.uburaro.core.services.TypeService;
@@ -15,8 +18,10 @@ import bi.uburaro.core.types.GeneratedKey;
 import bi.uburaro.core.types.ItemType;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.env.Environment;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 import java.util.Objects;
@@ -29,15 +34,16 @@ import static bi.manager.core.ManagerCoreConstants.RENT_UNIT_SCALE;
 @Service(value = "mBRentOrderService")
 public class DefaultMBRentOrderService extends AbstractOrderService implements MBRentOrderService {
 
-
+    protected final MBRentOrderRepository rentOrderRepository;
 
     protected DefaultMBRentOrderService(MBFacilityService facilityService,
                                         MBClientService clientService,
                                         TypeService typeService,
                                         GeneratedKeyRepository generatedKeyRepository,
                                         Environment environment,
-                                        MBOrderRepository orderRepository) {
+                                        MBOrderRepository orderRepository, MBRentOrderRepository rentOrderRepository) {
         super(facilityService, clientService, typeService, generatedKeyRepository, environment, orderRepository);
+        this.rentOrderRepository = rentOrderRepository;
     }
 
     @Override
@@ -65,10 +71,12 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
                 .map(orderType -> (MBRentOrderType) orderType)
                 .collect(Collectors.toSet());
     }
+
     @Override
     public Collection<MBRentOrderType> getOrdersByContract(String code) {
         return typeService.findItemByCode(code, MBRentContractType.class).getOrders();
     }
+
     @Override
     public void placeOrder(final MBRentOrderType order) {
         final MBRentOrderType rentOrder = typeService.create(MBRentOrderType.class);
@@ -85,6 +93,12 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
         typeService.save(rentOrder);
     }
 
+    @Override
+    public MBPage<MBRentOrderType> getOrderByFacilityCode(String facility, LocalDate from, LocalDate to, MBPageable pageable) {
+        Page<MBRentOrderType> page = rentOrderRepository.findOrdersByFacilityAndDates(facility, from, to, pageable);
+        return new MBPage<>(page);
+    }
+
     private void populateQuantity(final MBRentOrderType target) {
         final long quantity = RENT_UNIT_SCALE.getOrDefault(target.getUnit(), ChronoUnit.MONTHS).between(target.getFrom(), target.getTo());
         target.setQuantity((int) quantity);
@@ -92,7 +106,7 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
 
     private void populateContract(final MBRentOrderType source, final MBRentOrderType target) {
         final MBRentContractType sourceContract = source.getContract();
-        if(sourceContract == null || StringUtils.isEmpty(sourceContract.getCode())){
+        if (sourceContract == null || StringUtils.isEmpty(sourceContract.getCode())) {
             throw new NotFoundException("No Contract was fount on the order");
         }
         MBRentContractType contract = typeService.findItemByCode(sourceContract.getCode(), MBRentContractType.class);
@@ -102,8 +116,7 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
 
         if (source.getUnit() == 0) {
             target.setUnit(contract.getUnit());
-        }
-        else{
+        } else {
             target.setUnit(source.getUnit());
         }
 
@@ -125,6 +138,7 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
         target.setTo(source.getTo());
         target.setOrderDate(source.getFrom());
     }
+
     @Override
     public void deleteOrder(final Set<String> orderNumber) {
         orderNumber.stream()

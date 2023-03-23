@@ -2,7 +2,10 @@ package bi.manager.core.services;
 
 import bi.manager.core.types.MBRentPropertyType;
 import bi.manager.core.types.client.MBRentOrderType;
+import bi.manager.core.utils.MBPage;
+import bi.manager.core.utils.MBPageable;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Set;
 
@@ -65,4 +68,17 @@ public interface MBRentOrderService {
      * @return a collection of rent orders
      */
     Collection<MBRentOrderType> getOrdersByContract(String code);
+
+    /**
+     * Get rent orders which belongs to a {@code facility} within a given date range
+     *
+     * @param facility
+     * @param from
+     * @param to
+     * @param pageable
+     *
+     * @return page of contracts
+     */
+    MBPage<MBRentOrderType> getOrderByFacilityCode(String facility, LocalDate from, LocalDate to, MBPageable pageable);
+
 }

@@ -2,6 +2,9 @@ package bi.manager.facade.facades;
 
 import bi.manager.core.services.MBRentOrderService;
 import bi.manager.core.types.client.MBRentOrderType;
+import bi.manager.facade.data.MBDateRangeData;
+import bi.manager.facade.data.MBPageData;
+import bi.manager.facade.data.MBPageableData;
 import bi.manager.facade.data.MBRentOrderData;
 
 import java.util.Collection;
@@ -56,4 +59,13 @@ public interface MBRentOrderFacade {
      * @return a collection of orders
      */
     Collection<MBRentOrderData> getOrdersByContract(String code);
+
+    /**
+     * Gets all the rent orders which belong to the {@code  facility} and in {@code range}
+     *
+     * @param facility
+     * @param page
+     * @return page of rent orders
+     */
+    MBPageData<MBRentOrderData> getOrderByFacilityCode(String facility, MBDateRangeData range, MBPageableData page);
 }

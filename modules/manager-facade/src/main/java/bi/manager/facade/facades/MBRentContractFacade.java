@@ -2,6 +2,9 @@ package bi.manager.facade.facades;
 
 
 import bi.manager.core.types.client.MBRentContractType;
+import bi.manager.facade.data.MBDateRangeData;
+import bi.manager.facade.data.MBPageData;
+import bi.manager.facade.data.MBPageableData;
 import bi.manager.facade.data.MBRentContractData;
 import java.util.Collection;
 import java.util.Set;
@@ -53,4 +56,15 @@ public interface MBRentContractFacade {
      * @return collection of the contracts whose orders are created
      */
     Collection<MBRentContractData> generateOrders();
+
+    /**
+     * Get Facility Rent Contracts in a range
+     *
+     * @param facility
+     * @param range
+     * @param page
+     *
+     * @return page of contracts
+     */
+    MBPageData<MBRentContractData> getFacilityContracts(String facility, MBDateRangeData range, MBPageableData page);
 }

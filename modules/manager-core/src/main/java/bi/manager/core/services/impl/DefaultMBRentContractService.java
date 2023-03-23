@@ -1,5 +1,6 @@
 package bi.manager.core.services.impl;
 
+import bi.manager.core.repositories.MBRentContractRepository;
 import bi.manager.core.services.MBClientService;
 import bi.manager.core.services.MBFacilityService;
 import bi.manager.core.services.MBRentContractService;
@@ -7,6 +8,8 @@ import bi.manager.core.services.MBRentService;
 import bi.manager.core.types.MBRentPropertyType;
 import bi.manager.core.types.client.MBClientType;
 import bi.manager.core.types.client.MBRentContractType;
+import bi.manager.core.utils.MBPage;
+import bi.manager.core.utils.MBPageable;
 import bi.uburaro.core.exceptions.NotFoundException;
 import bi.uburaro.core.repositories.GeneratedKeyRepository;
 import bi.uburaro.core.services.TypeService;
@@ -14,6 +17,7 @@ import bi.uburaro.core.types.GeneratedKey;
 import bi.uburaro.core.types.ItemType;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.env.Environment;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -33,14 +37,16 @@ public class DefaultMBRentContractService extends AbstractMBTypeService<MBRentCo
     protected final MBRentService rentService;
     protected final Environment environment;
     protected final GeneratedKeyRepository generatedKeyRepository;
+    protected final MBRentContractRepository rentContractRepository;
 
-    protected DefaultMBRentContractService(TypeService typeService, MBFacilityService facilityService, MBClientService clientService, MBRentService rentService, Environment environment, GeneratedKeyRepository generatedKeyRepository) {
+    protected DefaultMBRentContractService(TypeService typeService, MBFacilityService facilityService, MBClientService clientService, MBRentService rentService, Environment environment, GeneratedKeyRepository generatedKeyRepository, MBRentContractRepository rentContractRepository) {
         super(typeService);
         this.facilityService = facilityService;
         this.clientService = clientService;
         this.rentService = rentService;
         this.environment = environment;
         this.generatedKeyRepository = generatedKeyRepository;
+        this.rentContractRepository = rentContractRepository;
     }
 
     @Override
@@ -163,5 +169,11 @@ public class DefaultMBRentContractService extends AbstractMBTypeService<MBRentCo
         } catch (NotFoundException e) {
             return null;
         }
+    }
+
+    @Override
+    public MBPage<MBRentContractType> getContracts(String facility, LocalDate from, LocalDate to, MBPageable pageable) {
+        Page<MBRentContractType> page = rentContractRepository.findContractsByFacilityAndDates(facility, from, to, pageable);
+        return new MBPage<>(page);
     }
 }
