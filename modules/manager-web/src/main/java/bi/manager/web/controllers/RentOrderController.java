@@ -1,5 +1,6 @@
 package bi.manager.web.controllers;
 
+import bi.manager.core.types.client.MBOrderType;
 import bi.manager.core.types.client.MBRentContractType;
 import bi.manager.facade.data.MBDateRangeData;
 import bi.manager.facade.data.MBPageData;
@@ -32,7 +33,7 @@ public class RentOrderController {
                                                        @RequestBody MBDateRangeData range,
                                                        @RequestParam(required = false, defaultValue = "100") int pageSize,
                                                        @RequestParam(required = false, defaultValue = "0") int currentPage,
-                                                       @RequestParam(required = false, defaultValue = MBRentContractType.NEXT_ORDER_DATE) String sort,
+                                                       @RequestParam(required = false, defaultValue = MBOrderType.ORDER_DATE) String sort,
                                                        @RequestParam(required = false, defaultValue = "asc") String sortOrder) {
         return facade.getOrderByFacilityCode(code,range,createPage(pageSize,currentPage,sort,sortOrder));
     }
