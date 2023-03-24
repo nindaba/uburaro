@@ -1,6 +1,9 @@
 package bi.manager.web.controllers;
 
+import bi.manager.core.types.client.MBOrderType;
+import bi.manager.facade.data.MBDateRangeData;
 import bi.manager.facade.data.MBInventoryOrderData;
+import bi.manager.facade.data.MBPageData;
 import bi.manager.facade.facades.MBInventoryOrderFacade;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,7 +11,8 @@ import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.Set;
 
-import static bi.manager.web.ManagerWebConstants.Controller.Orders.*;
+import static bi.manager.facade.factories.PageFactory.createPage;
+import static bi.manager.web.ManagerWebConstants.Controller.Orders.Inventory;
 
 @RestController
 @RequestMapping(value = Inventory.endpoint)
@@ -20,6 +24,17 @@ public class InventoryOrderController {
     @GetMapping(value = Inventory.facilityOrders)
     Collection<MBInventoryOrderData> getOrderByFacilityCode(@PathVariable String code) {
         return facade.getOrderByFacilityCode(code);
+    }
+
+    @PostMapping(value = Inventory.facilityOrders)
+    MBPageData<MBInventoryOrderData> getOrderByFacilityCode(@PathVariable String code,
+                                                            @RequestBody MBDateRangeData range,
+                                                            @RequestParam(required = false, defaultValue = "100") int pageSize,
+                                                            @RequestParam(required = false, defaultValue = "0") int currentPage,
+                                                            @RequestParam(required = false, defaultValue = MBOrderType.ORDER_DATE) String sort,
+                                                            @RequestParam(required = false, defaultValue = "asc") String sortOrder) {
+
+        return facade.getOrderByFacilityCode(code, range, createPage(pageSize, currentPage, sort, sortOrder));
     }
 
     @GetMapping(value = Inventory.inventoryOrders)

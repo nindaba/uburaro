@@ -1,5 +1,6 @@
 package bi.manager.core.services.impl;
 
+import bi.manager.core.repositories.MBInventoryOrderRepository;
 import bi.manager.core.repositories.MBOrderRepository;
 import bi.manager.core.services.*;
 import bi.manager.core.types.MBCapitalType;
@@ -9,6 +10,8 @@ import bi.manager.core.types.MBInventoryType;
 import bi.manager.core.types.client.MBOrderType;
 import bi.manager.core.types.enums.MBEntryEnum;
 import bi.manager.core.types.enums.MBInventoryEntryEnum;
+import bi.manager.core.utils.MBPage;
+import bi.manager.core.utils.MBPageable;
 import bi.uburaro.core.exceptions.NotFoundException;
 import bi.uburaro.core.repositories.GeneratedKeyRepository;
 import bi.uburaro.core.repositories.ItemRepository;
@@ -18,6 +21,7 @@ import bi.uburaro.core.types.ItemType;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.core.env.Environment;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -33,12 +37,14 @@ public class DefaultMBInventoryOrderService extends AbstractOrderService impleme
     protected final MBInventoryService inventoryService;
     protected final MBCapitalService capitalService;
     protected final ItemRepository itemRepository;
+    protected final MBInventoryOrderRepository inventoryOrderRepository;
 
-    public DefaultMBInventoryOrderService(MBFacilityService facilityService, MBClientService clientService, MBInventoryService inventoryService, TypeService typeService, GeneratedKeyRepository generatedKeyRepository, Environment environment, MBCapitalService capitalService, MBOrderRepository orderRepository, ItemRepository itemRepository) {
+    public DefaultMBInventoryOrderService(MBFacilityService facilityService, MBClientService clientService, MBInventoryService inventoryService, TypeService typeService, GeneratedKeyRepository generatedKeyRepository, Environment environment, MBCapitalService capitalService, MBOrderRepository orderRepository, ItemRepository itemRepository, MBInventoryOrderRepository inventoryOrderRepository) {
         super(facilityService, clientService, typeService, generatedKeyRepository, environment, orderRepository);
         this.inventoryService = inventoryService;
         this.capitalService = capitalService;
         this.itemRepository = itemRepository;
+        this.inventoryOrderRepository = inventoryOrderRepository;
     }
 
 
@@ -155,6 +161,12 @@ public class DefaultMBInventoryOrderService extends AbstractOrderService impleme
                 .peek(this::revertCapital)
                 .peek(this::revertStockLevels)
                 .forEach(orderRepository::delete);
+    }
+
+    @Override
+    public MBPage<MBInventoryOrderType> getOrderByFacilityCode(final String code, final LocalDate from,final LocalDate to, final MBPageable pageable) {
+        final Page<MBInventoryOrderType> page = inventoryOrderRepository.findAllByFacilityAndDateRange(code, from, to, pageable);
+        return new MBPage<>(page);
     }
 
     protected void revertStockLevels(MBOrderType order) {
