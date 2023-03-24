@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {OrderService} from "../components/inventory/order.service";
-import {Order} from "../model/navigation.model";
+import {Order, Page, Pageable, RentContract, RentOrder} from "../model/navigation.model";
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {BreadcrumbsService} from "../components/navigation/top-nav/breadcrumbs.service";

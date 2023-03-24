@@ -1,5 +1,5 @@
 import {Observable} from "rxjs";
-import {Invoice, RentContract} from "../../model/navigation.model";
+import {Invoice, Page, Pageable, RentContract} from "../../model/navigation.model";
 
 export abstract class ContractService{
 
