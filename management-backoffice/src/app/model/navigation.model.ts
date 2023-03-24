@@ -20,20 +20,20 @@ export class EndpointConfig {
     inventory: string = "";
     clients: string = "";
     client: string = "";
-    invoices:string ="";
-    clientInvoices: string ="";
+    invoices: string = "";
+    clientInvoices: string = "";
     rents: string = "";
     rent: string = "";
     inventoryOrders: string = "";
     inventoryOrder: string = "";
     inventoryFacilityOrders: string = "";
     inventoryClientOrders: string = "";
-    clientOrders:string = "";
-    contractOrders:string = "";
-    clientsReport:string = "";
-
+    clientOrders: string = "";
+    contractOrders: string = "";
+    clientsReport: string = "";
+    rentFacilityOrders:string = "";
     relation: { [key: string]: string } = {};
-
+    contracts: string = "";
 
     [key: string]: any;
 
@@ -65,10 +65,12 @@ export enum InventoryOrderType {
     SOLD = "SOLD",
     OUT = "OUT"
 }
+
 export enum PaymentModeType {
-    CASH="CASH", BANK = "BANK", DEBT = "DEBT"
+    CASH = "CASH", BANK = "BANK", DEBT = "DEBT"
 }
-export interface Order extends Item{
+
+export interface Order extends Item {
     orderNumber?: string;
     quantity: number;
     unit?: string;
@@ -128,7 +130,7 @@ export interface Inventory extends Item {
     quantity: number;
     cost: number;
     category: Category;
-    unit:string;
+    unit: string;
 }
 
 export interface Category extends Item {
@@ -169,7 +171,7 @@ export interface RentContract extends Item, Name {
     property?: Rent;
     client?: Client;
     orders?: RentOrder[];
-    nextOrderDate : Date;
+    nextOrderDate: Date;
     hasOrders: boolean;
 }
 
@@ -179,21 +181,33 @@ export enum UnitType {
     YEARS = 365,
 }
 
-export enum NotificationStatus{
-    ERROR="fail",SUCCESS="success",NONE=""
+export enum NotificationStatus {
+    ERROR = "fail", SUCCESS = "success", NONE = ""
 }
 
-export interface MBNotification{
+export interface MBNotification {
     status: NotificationStatus,
     message?: string;
 }
 
-export interface DateRange{
-    from:Date,
-    to:Date
+export interface DateRange {
+    from: Date,
+    to: Date
 }
 
 export interface ClientReport {
     clients: Client[];
     invoices: Invoice[];
+}
+
+export interface Pageable{
+    pageSize:number;
+    currentPage:number;
+    sort:string;
+    sortOrder:string;
+}
+
+export interface Page<ITEM extends Item>{
+    content: ITEM[];
+    page:number;
 }

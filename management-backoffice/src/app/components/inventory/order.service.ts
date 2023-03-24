@@ -1,4 +1,4 @@
-import {Order} from "../../model/navigation.model";
+import {Order, Page, Pageable, RentContract, RentOrder} from "../../model/navigation.model";
 import {Observable} from "rxjs";
 
 export abstract class OrderService {

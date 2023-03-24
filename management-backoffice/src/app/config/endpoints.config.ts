@@ -20,6 +20,7 @@ export const endpointsConfig: EndpointConfig = {
     rents: "facilities/{code}/rents",
     rent: "facilities/{code}/rents/{rent-code}",
     rentContract: "facilities/{code}/rents/{rent-code}/rent-contract",
+    contracts: "facilities/{code}/rents/contracts",
     invoices: "facilities/{code}/invoices",
 
     /**
@@ -28,7 +29,8 @@ export const endpointsConfig: EndpointConfig = {
     inventoryOrder: "orders/inventory",
     inventoryOrders: "orders/inventory/{code}",
     inventoryClientOrders: "orders/inventory/client/{code}",
-    inventoryFacilityOrders: "orders/facility/{code}",
+    inventoryFacilityOrders: "orders/inventory/facility/{code}",
+    rentFacilityOrders: "orders/rent/facility/{code}",
     contractOrders: "orders/rent/contract/{code}",
 
     relation: {

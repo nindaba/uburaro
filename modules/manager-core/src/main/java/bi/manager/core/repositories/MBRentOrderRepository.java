@@ -15,6 +15,6 @@ public interface MBRentOrderRepository extends ItemRepository<MBRentOrderType> {
         return MBRentOrderType.class.equals(typeClass);
     }
 
-    @Query("SELECT c FROM "+ MBRentOrderType.ITEM_TYPE+" AS c WHERE c."+MBRentOrderType.RENT_PROPERTY+".facility.code = ?1 AND (c."+MBRentOrderType.FROM+" <= ?3 OR c."+MBRentOrderType.TO+" >= ?2)")
+    @Query("SELECT c FROM "+ MBRentOrderType.ITEM_TYPE+" AS c WHERE c."+MBRentOrderType.RENT_PROPERTY+".facility.code = ?1 AND (c."+MBRentOrderType.FROM+" <= ?3 AND c."+MBRentOrderType.TO+" >= ?2)")
     Page<MBRentOrderType> findOrdersByFacilityAndDates(String facility, LocalDate from, LocalDate to, Pageable pageable);
 }
