@@ -2,8 +2,7 @@ package bi.manager.facade.facades;
 
 import bi.manager.core.services.MBInventoryOrderService;
 import bi.manager.core.types.MBInventoryOrderType;
-import bi.manager.facade.data.MBInventoryOrderData;
-import bi.manager.facade.data.MBRentOrderData;
+import bi.manager.facade.data.*;
 
 import java.util.Collection;
 import java.util.Set;
@@ -49,4 +48,14 @@ public interface MBInventoryOrderFacade {
      * @param orderNumbers
      */
     void deleteOrder(Set<String> orderNumbers);
+
+    /**
+     * Get all the inventory orders which belong to the facility, and they were ordered with in the date range
+     *
+     * @param code
+     * @param range
+     * @param page
+     * @return page of Inventory Order
+     */
+    MBPageData<MBInventoryOrderData> getOrderByFacilityCode(String code, MBDateRangeData range, MBPageableData page);
 }

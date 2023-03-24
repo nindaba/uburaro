@@ -3,8 +3,13 @@ package bi.manager.core.services;
 import bi.manager.core.types.MBInventoryOrderType;
 import bi.manager.core.types.client.MBOrderType;
 import bi.manager.core.types.client.MBRentOrderType;
+import bi.manager.core.utils.MBPage;
+import bi.manager.core.utils.MBPageable;
+import org.springframework.data.domain.Page;
 
+import java.time.LocalDate;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Set;
 
 public interface MBInventoryOrderService {
@@ -51,4 +56,15 @@ public interface MBInventoryOrderService {
      * @param orderNumber
      */
     void deleteOrder(Set<String> orderNumber);
+
+    /**
+     * Get paged inventory orders which belong to the facility, and placed in the range
+     *
+     * @param code
+     * @param from
+     * @param to
+     * @param pageable
+     * @return page of inventory orders
+     */
+    MBPage<MBInventoryOrderType> getOrderByFacilityCode(String code, LocalDate from, LocalDate to, MBPageable pageable);
 }
