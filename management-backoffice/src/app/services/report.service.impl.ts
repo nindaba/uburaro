@@ -20,8 +20,11 @@ export class ReportServiceImpl implements ReportService {
     constructor(protected urlBuilder: UrlBuilderService, protected http: HttpClient, protected topService: TopNavService) {
     }
 
-    getClientReport(range?: DateRange): Observable<ClientReport> {
-        return this.http.post<ClientReport>(this.urlBuilder.getUrlForEndPoint("clientsReport"), range || this.topService.dateRangeFrom.getRawValue());
+    getClientReport(pageable: Pageable,range?: DateRange): Observable<ClientReport> {
+        return this.http.post<ClientReport>(
+            this.urlBuilder.getUrlForEndPoint("clientsReport"),
+            range || this.topService.dateRangeFrom.getRawValue(),
+            {params: {...pageable}});
     }
 
     getContracts(pageable:Pageable): Observable<Page<RentContract>> {

@@ -1,9 +1,6 @@
 package bi.manager.facade.facades;
 
-import bi.manager.facade.data.MBClientData;
-import bi.manager.facade.data.MBClientReportData;
-import bi.manager.facade.data.MBDateRangeData;
-import bi.manager.facade.data.MBInvoiceData;
+import bi.manager.facade.data.*;
 
 import java.util.Collection;
 import java.util.Set;
@@ -59,4 +56,12 @@ public interface MBClientFacade {
      * @return
      */
     MBClientReportData getClientsReport(String facility, MBDateRangeData range);
+
+    /**
+     *
+     * @param facility
+     * @param range
+     * @return
+     */
+    MBClientReportData getClientsReport(String facility, MBDateRangeData range, MBPageableData pageable);
 }

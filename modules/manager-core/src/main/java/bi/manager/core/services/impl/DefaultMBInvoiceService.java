@@ -11,6 +11,8 @@ import bi.manager.core.types.client.MBClientType;
 import bi.manager.core.types.client.MBInvoiceType;
 import bi.manager.core.types.client.MBOrderType;
 import bi.manager.core.types.enums.MBPaymentModeEnum;
+import bi.manager.core.utils.MBPage;
+import bi.manager.core.utils.MBPageable;
 import bi.uburaro.core.exceptions.NotFoundException;
 import bi.uburaro.core.repositories.GeneratedKeyRepository;
 import bi.uburaro.core.services.TypeService;
@@ -18,6 +20,7 @@ import bi.uburaro.core.types.GeneratedKey;
 import bi.uburaro.core.types.ItemType;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.env.Environment;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -138,6 +141,12 @@ public class DefaultMBInvoiceService implements MBInvoiceService {
     @Override
     public Collection<MBInvoiceType> getInvoiceReport(final String facility, final Date from, final Date to) {
         return invoiceRepository.findInvoiceReport(facility,from,to);
+    }
+
+    @Override
+    public MBPage<MBInvoiceType> getInvoiceReport(final String facility, final Date from, final Date to, final MBPageable pageable) {
+        final Page<MBInvoiceType> page = invoiceRepository.findInvoiceReport(facility,from,to,pageable);
+        return new MBPage<>(page);
     }
 
     private void revertOrders(MBInvoiceType invoice) {

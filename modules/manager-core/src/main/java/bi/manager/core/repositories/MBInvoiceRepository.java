@@ -3,6 +3,8 @@ package bi.manager.core.repositories;
 import bi.manager.core.types.client.MBInvoiceType;
 import bi.uburaro.core.repositories.ItemRepository;
 import bi.uburaro.core.types.ItemType;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.Collection;
@@ -13,6 +15,9 @@ public interface MBInvoiceRepository extends ItemRepository<MBInvoiceType> {
 
     @Query("select i from mBInvoice as i where i.client.facility.code = ?1 and i.dateModified between ?2 and ?3")
     Collection<MBInvoiceType> findInvoiceReport(String facility, Date from, Date to);
+
+    @Query("select i from mBInvoice as i where i.client.facility.code = ?1 and i.dateModified between ?2 and ?3")
+    Page<MBInvoiceType> findInvoiceReport(String facility, Date from, Date to, Pageable pageable);
 
     @Override
     default <TYPE extends ItemType> boolean belongsTo(Class<TYPE> typeClass) {

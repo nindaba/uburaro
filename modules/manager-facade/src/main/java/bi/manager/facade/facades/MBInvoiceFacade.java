@@ -2,6 +2,7 @@ package bi.manager.facade.facades;
 
 import bi.manager.facade.data.MBDateRangeData;
 import bi.manager.facade.data.MBInvoiceData;
+import bi.manager.facade.data.MBPageableData;
 
 import java.util.Collection;
 import java.util.Set;
@@ -45,4 +46,14 @@ public interface MBInvoiceFacade {
      * @return collection of invoices
      */
     Collection<MBInvoiceData> getInvoiceReport(String facility, MBDateRangeData range);
+
+    /**
+     * Get paged invoices, that belong to the facility placed in the date range
+     *
+     * @param facility
+     * @param range
+     * @param pageable
+     * @return collection of invoices
+     */
+    Collection<MBInvoiceData> getInvoiceReport(String facility, MBDateRangeData range, MBPageableData pageable);
 }

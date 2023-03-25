@@ -6,13 +6,13 @@ import java.util.Set;
 
 public class MBClientReportData {
     Set<MBClientData> clients = new HashSet<>();
-    Set<MBInvoiceData> invoices = new HashSet<>();
+    MBPageData<MBInvoiceData> invoicesPage = new MBPageData<>();
 
     public Set<MBClientData> getClients() {
         return clients;
     }
 
-    public Set<MBInvoiceData> getInvoices() {
-        return invoices;
+    public MBPageData<MBInvoiceData> getInvoicesPage() {
+        return invoicesPage;
     }
 }
