@@ -57,7 +57,7 @@ public interface MBInvoiceService {
     Collection<MBInvoiceType> getInvoiceReport(String facility, Date from, Date to);
 
     /**
-     * Gets all the invoices that were placed in the date {@code range} <br>
+     * Gets a page of invoices that were placed in the date {@code range} <br>
      * and belong to the {@link MBFacilityType } with code {@code facility}
      *
      * @param facility
