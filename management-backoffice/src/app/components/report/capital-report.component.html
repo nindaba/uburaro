@@ -1,6 +1,6 @@
-<div class="capital" *ngIf="($ordersWithDateRange | async) || ($entries| async) as entries">
+<div class="capital" *ngIf="($ordersWithDateRange | async) || ($entries| async) as page">
     <mb-relation title="capital" [heads]="capitalHeads">
-        <tr *ngFor="let entry of entries">
+        <tr *ngFor="let entry of page.content">
             <td>{{entry.dateCreated | date: 'dd/MM/yyyy'}}</td>
             <td>{{entry | getEntryAmount}}</td>
             <td>{{entry.entryType}}</td>
@@ -10,7 +10,7 @@
     <div class="value">
         <div class="value-amount">
             <span class="me-5">{{'label.facility.capital' | translate}}</span>
-            <span>{{ entries | calcCapital | currency : '':'':'1.0-0'}}</span>
+            <span>{{ page.content | calcCapital | currency : '':'':'1.0-0'}}</span>
         </div>
         <h3 class="value-currency">FBU</h3>
     </div>

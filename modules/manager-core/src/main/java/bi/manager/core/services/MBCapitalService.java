@@ -5,6 +5,8 @@ import bi.manager.core.types.MBCapitalType;
 import bi.manager.core.types.MBFacilityType;
 import bi.manager.core.types.client.MBInvoiceType;
 import bi.manager.core.types.enums.MBEntryEnum;
+import bi.manager.core.utils.MBPage;
+import bi.manager.core.utils.MBPageable;
 
 import java.util.Collection;
 import java.util.Date;
@@ -64,4 +66,14 @@ public interface MBCapitalService {
      * @return collection of entries
      */
     Collection<MBCapitalEntryType> getCapitalEntries(String facilityCode, Date from, Date to);
+
+    /**
+     * Get Entries of capital which belongs to a facilityCode with date that is in the given range
+     *
+     * @param facilityCode
+     * @param from
+     * @param to
+     * @return page of capital Entries
+     */
+    MBPage<MBCapitalEntryType> getCapitalEntries(String facilityCode, Date from, Date to, MBPageable pageable);
 }
