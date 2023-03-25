@@ -50,7 +50,8 @@ public interface MBClientFacade {
     void deleteOrders(Set<String> orderNumbers);
 
     /**
-     *
+     *Gets facility client report, within the date range {@code range}
+     * 
      * @param facility
      * @param range
      * @return
@@ -58,7 +59,8 @@ public interface MBClientFacade {
     MBClientReportData getClientsReport(String facility, MBDateRangeData range);
 
     /**
-     *
+     *Gets a client report with invoices paged like {@link #getClientsReport(String, MBDateRangeData)}
+     * 
      * @param facility
      * @param range
      * @return
