@@ -10,7 +10,7 @@ import {
 } from "../../model/navigation.model";
 
 export abstract class ReportService{
-    abstract getClientReport(range?:DateRange): Observable<ClientReport>;
+    abstract getClientReport(pageable: Pageable,range?:DateRange): Observable<ClientReport>;
 
     /**
      * Get rent contracts which belong to the selected facility and date range from report

@@ -2,6 +2,8 @@ package bi.manager.core.services;
 
 import bi.manager.core.types.MBFacilityType;
 import bi.manager.core.types.client.MBInvoiceType;
+import bi.manager.core.utils.MBPage;
+import bi.manager.core.utils.MBPageable;
 
 import java.util.Collection;
 import java.util.Date;
@@ -53,4 +55,15 @@ public interface MBInvoiceService {
      * @return collection of Invoices
      */
     Collection<MBInvoiceType> getInvoiceReport(String facility, Date from, Date to);
+
+    /**
+     * Gets a page of invoices that were placed in the date {@code range} <br>
+     * and belong to the {@link MBFacilityType } with code {@code facility}
+     *
+     * @param facility
+     * @param from
+     * @param to
+     * @return collection of Invoices
+     */
+    MBPage<MBInvoiceType> getInvoiceReport(String facility, Date from, Date to, MBPageable pageable);
 }

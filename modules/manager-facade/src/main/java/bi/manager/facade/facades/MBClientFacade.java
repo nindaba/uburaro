@@ -1,9 +1,6 @@
 package bi.manager.facade.facades;
 
-import bi.manager.facade.data.MBClientData;
-import bi.manager.facade.data.MBClientReportData;
-import bi.manager.facade.data.MBDateRangeData;
-import bi.manager.facade.data.MBInvoiceData;
+import bi.manager.facade.data.*;
 
 import java.util.Collection;
 import java.util.Set;
@@ -53,10 +50,20 @@ public interface MBClientFacade {
     void deleteOrders(Set<String> orderNumbers);
 
     /**
-     *
+     *Gets facility client report, within the date range {@code range}
+     * 
      * @param facility
      * @param range
      * @return
      */
     MBClientReportData getClientsReport(String facility, MBDateRangeData range);
+
+    /**
+     *Gets a client report with invoices paged like {@link #getClientsReport(String, MBDateRangeData)}
+     * 
+     * @param facility
+     * @param range
+     * @return
+     */
+    MBClientReportData getClientsReport(String facility, MBDateRangeData range, MBPageableData pageable);
 }

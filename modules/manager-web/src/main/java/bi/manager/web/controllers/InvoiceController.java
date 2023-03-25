@@ -1,5 +1,6 @@
 package bi.manager.web.controllers;
 
+import bi.manager.core.types.MBCapitalEntryType;
 import bi.manager.core.types.client.MBInvoiceType;
 import bi.manager.facade.data.MBDateRangeData;
 import bi.manager.facade.data.MBInvoiceData;
@@ -13,6 +14,7 @@ import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.Set;
 
+import static bi.manager.facade.factories.PageFactory.createPage;
 import static bi.manager.web.ManagerWebConstants.Controller.Client.Invoice.*;
 
 @RestController
@@ -33,8 +35,13 @@ public class InvoiceController {
         return invoiceFacade.getAllInvoicesByClientCode(clientCode);
     }
     @PostMapping(value =facilityInvoices)
-    Collection<MBInvoiceData> getInvoiceReport(@RequestBody MBDateRangeData rangeData,@PathVariable String code){
-        return invoiceFacade.getInvoiceReport(code,rangeData);
+    Collection<MBInvoiceData> getInvoiceReport(@RequestBody MBDateRangeData rangeData,
+                                               @PathVariable String code,
+                                               @RequestParam(required = false, defaultValue = "100") int pageSize,
+                                               @RequestParam(required = false, defaultValue = "0") int currentPage,
+                                               @RequestParam(required = false, defaultValue = MBInvoiceType.AMOUNT) String sort,
+                                               @RequestParam(required = false, defaultValue = "asc") String sortOrder){
+        return invoiceFacade.getInvoiceReport(code,rangeData, createPage(pageSize,currentPage,sort,sortOrder));
     }
 
     @PatchMapping(value = clientInvoices)

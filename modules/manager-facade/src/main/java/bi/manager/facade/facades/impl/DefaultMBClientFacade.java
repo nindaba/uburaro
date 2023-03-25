@@ -7,6 +7,7 @@ import bi.manager.facade.converters.client.FullClientMapper;
 import bi.manager.facade.data.MBClientData;
 import bi.manager.facade.data.MBClientReportData;
 import bi.manager.facade.data.MBDateRangeData;
+import bi.manager.facade.data.MBPageableData;
 import bi.manager.facade.facades.MBClientFacade;
 import bi.manager.facade.facades.MBInventoryOrderFacade;
 import bi.manager.facade.facades.MBInvoiceFacade;
@@ -88,7 +89,16 @@ public class DefaultMBClientFacade implements MBClientFacade {
         final Collection<MBClientData> clientsWithDebt = mapper.clientsToData(service.getClientsWithDebt(facility));
 
         report.getClients().addAll(clientsWithDebt);
-        report.getInvoices().addAll(invoiceFacade.getInvoiceReport(facility,range));
+        report.getInvoicesPage().setContent(invoiceFacade.getInvoiceReport(facility,range));
+        return report;
+    }
+    @Override
+    public MBClientReportData getClientsReport(final String facility, final MBDateRangeData range, final MBPageableData pageable) {
+        final MBClientReportData report = new MBClientReportData();
+        final Collection<MBClientData> clientsWithDebt = mapper.clientsToData(service.getClientsWithDebt(facility));
+
+        report.getClients().addAll(clientsWithDebt);
+        report.getInvoicesPage().setContent(invoiceFacade.getInvoiceReport(facility,range,pageable));
         return report;
     }
 }

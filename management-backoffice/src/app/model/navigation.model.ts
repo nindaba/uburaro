@@ -197,7 +197,7 @@ export interface DateRange {
 
 export interface ClientReport {
     clients: Client[];
-    invoices: Invoice[];
+    invoicesPage: Page<Invoice>;
 }
 
 export interface Pageable{
