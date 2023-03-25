@@ -123,7 +123,7 @@ public class DefaultMBInventoryOrderService extends AbstractOrderService impleme
         if (source.getCost() > 0) {
             target.setCost(source.getCost());
         }
-        if (target.getCost() <= 0 && inventory.getCost() <= 0) {
+        if (source.getOrderEntry() == MBInventoryEntryEnum.SOLD && target.getCost() <= 0 && inventory.getCost() <= 0) {
             throw new NotFoundException("No cost was found on either the Inventory nor the Order");
         }
         if (target.getCost() <= 0) {
@@ -164,8 +164,8 @@ public class DefaultMBInventoryOrderService extends AbstractOrderService impleme
     }
 
     @Override
-    public MBPage<MBInventoryOrderType> getOrderByFacilityCode(final String code, final LocalDate from,final LocalDate to, final MBPageable pageable) {
-        final Page<MBInventoryOrderType> page = inventoryOrderRepository.findAllByFacilityAndDateRange(code, from, to, pageable);
+    public MBPage<MBInventoryOrderType> getOrderByFacilityCode(final String code, final MBInventoryEntryEnum orderType, final LocalDate from, final LocalDate to, final MBPageable pageable) {
+        final Page<MBInventoryOrderType> page = inventoryOrderRepository.findAllByFacilityAndDateRange(code, from, to,orderType, pageable);
         return new MBPage<>(page);
     }
 

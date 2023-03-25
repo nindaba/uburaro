@@ -36,5 +36,31 @@
       "label.quantity",
       "label.total"
     ]
+  },
+  "inventories": {
+    "inOrders": [
+      "label.order.date",
+      "label.order.number",
+      "label.order.item",
+      "label.cost",
+      "label.quantity",
+      "label.total"
+    ],
+    "outOrders": [
+      "label.order.date",
+      "label.order.number",
+      "label.order.item",
+      "label.cost",
+      "label.quantity",
+      "label.total"
+    ],
+    "soldOrders": [
+      "label.order.date",
+      "label.order.number",
+      "label.order.item",
+      "label.cost",
+      "label.quantity",
+      "label.total"
+    ]
   }
 }
