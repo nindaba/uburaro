@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {CapitalService} from "../components/facility/capital.service";
-import {Capital, CapitalEntry, CapitalType, DateRange, EndpointConfig} from "../model/navigation.model";
+import {Capital, CapitalEntry, CapitalType, DateRange, EndpointConfig, Page, Pageable} from "../model/navigation.model";
 import {map, Observable, of} from "rxjs";
 import {HttpClient, HttpParams, HttpRequest} from "@angular/common/http";
 import {BreadcrumbsService} from "../components/navigation/top-nav/breadcrumbs.service";
@@ -30,6 +30,16 @@ export class CapitalServiceImpl implements CapitalService {
         if(dateRange || dateRangeFrom.valid)
         {
             return this.http.post<CapitalEntry[]>(url, dateRange || dateRangeFrom.getRawValue());
+        }
+        return new Observable();
+    }
+
+    getCapitalEntriesPage(pageable?: Pageable,dateRange?:DateRange): Observable<Page<CapitalEntry>> {
+        let url = this.urlBuilder.getUrlForEndPoint("capitalEntries");
+        let dateRangeFrom = this.topService.dateRangeFrom;
+        if(dateRange || dateRangeFrom.valid)
+        {
+            return this.http.post<Page<CapitalEntry>>(url, dateRange || dateRangeFrom.getRawValue(),{params: {...pageable}});
         }
         return new Observable();
     }

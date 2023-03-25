@@ -207,7 +207,7 @@ export interface Pageable{
     sortOrder:string;
 }
 
-export interface Page<ITEM extends Item>{
+export interface Page<ITEM>{
     content: ITEM[];
     page:number;
 }

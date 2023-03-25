@@ -8,7 +8,10 @@ import bi.manager.core.types.MBFacilityType;
 import bi.manager.core.types.client.MBInvoiceType;
 import bi.manager.core.types.enums.MBEntryEnum;
 import bi.manager.core.types.enums.MBPaymentModeEnum;
+import bi.manager.core.utils.MBPage;
+import bi.manager.core.utils.MBPageable;
 import bi.uburaro.core.services.TypeService;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -84,6 +87,13 @@ public class DefaultMBCapitalService implements MBCapitalService {
     public Collection<MBCapitalEntryType> getCapitalEntries(String facilityCode, Date from, Date to) {
         MBCapitalType capital = getCapitalByFacility(facilityCode);
         return entryRepository.findAllByCapitalAndDateModifiedBetween(capital,from,to);
+    }
+
+    @Override
+    public MBPage<MBCapitalEntryType> getCapitalEntries(final String facilityCode, final Date from, final Date to,final MBPageable pageable) {
+        final MBCapitalType capital = getCapitalByFacility(facilityCode);
+        final Page<MBCapitalEntryType> page = entryRepository.findAllByCapitalAndDateModifiedBetween(capital, from, to,pageable);
+        return new MBPage<>(page);
     }
 
     @Override
