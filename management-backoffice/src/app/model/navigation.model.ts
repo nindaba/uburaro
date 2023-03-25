@@ -209,5 +209,5 @@ export interface Pageable{
 
 export interface Page<ITEM>{
     content: ITEM[];
-    page:number;
+    pages:number;
 }

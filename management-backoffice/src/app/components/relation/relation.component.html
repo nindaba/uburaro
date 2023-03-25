@@ -1,6 +1,7 @@
 <div class="mb-relation">
     <span class="title d-flex justify-content-between">
         <span class="mb-title" translate>nodes.name.{{title}}  </span>
+        <mb-pagination *ngIf="pageForm" [pageForm]="pageForm" [pages]="pages"></mb-pagination>
         <a class="btn primary" *ngIf="createLink.length" translate (click)="createNew()">btn.name.create</a>
     </span>
     <div class="content">

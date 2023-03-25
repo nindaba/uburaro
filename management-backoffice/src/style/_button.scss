@@ -39,4 +39,17 @@
       background-color: $primary;
     }
   }
+  &-pagination{
+    border-radius: 16px;
+    width: 28px;
+    height: 28px;
+    border: solid 2px $border-color;
+    &-active{
+      color: white;
+      background-color: $primary;
+    }
+    &:hover{
+      border-color: $primary;
+    }
+  }
 }

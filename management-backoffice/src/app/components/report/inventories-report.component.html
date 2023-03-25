@@ -1,4 +1,4 @@
-<mb-relation title="contract" [heads]="inOrderHead"
+<mb-relation title="contract" [heads]="inOrderHead" [pages]="page.pages" [pageForm]="inPage"
              *ngIf="($inOrdersOnChange | async) || ($inOrders| async) as page">
     <tr *ngFor="let order of page.content">
         <td>{{order.orderDate | date : 'dd/MM/yyyy'}}</td>
@@ -14,7 +14,7 @@
         </td>
     </tr>
 </mb-relation>
-<mb-relation title="contract" [heads]="outOrderHead"
+<mb-relation title="contract" [heads]="outOrderHead" [pages]="page.pages" [pageForm]="outPage"
              *ngIf="($outOrdersOnChange | async) || ($outOrders| async) as page">
     <tr *ngFor="let order of page.content">
         <td>{{order.orderDate | date : 'dd/MM/yyyy'}}</td>
@@ -30,7 +30,7 @@
         </td>
     </tr>
 </mb-relation>
-<mb-relation title="contract" [heads]="soldOrderHead"
+<mb-relation title="contract" [heads]="soldOrderHead" [pages]="page.pages" [pageForm]="soldPage"
              *ngIf="($soldOrdersOnChange | async) || ($soldOrders| async) as page">
     <tr *ngFor="let order of page.content">
         <td>{{order.orderDate | date : 'dd/MM/yyyy'}}</td>
