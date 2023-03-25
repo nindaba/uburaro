@@ -21,7 +21,7 @@
         </div>
     </div>
     <ng-container *ngIf="getPaidInvoice(report.invoicesPage.content) as invoices">
-        <mb-relation title="payments" [heads]="invoiceHeader">
+        <mb-relation title="payments" [heads]="invoiceHeader" [pages]="report.invoicesPage.pages" [pageForm]="pageForm">
             <tr *ngFor="let entry of invoices">
                 <td>{{entry.dateCreated | date: 'dd/MM/yyyy'}}</td>
                 <td>{{entry.client?.name}}</td>

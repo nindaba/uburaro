@@ -1,5 +1,5 @@
 <div class="capital" *ngIf="($ordersWithDateRange | async) || ($entries| async) as page">
-    <mb-relation title="capital" [heads]="capitalHeads">
+    <mb-relation title="capital" [heads]="capitalHeads" [pageForm]="pageForm" [pages] = page.pages>
         <tr *ngFor="let entry of page.content">
             <td>{{entry.dateCreated | date: 'dd/MM/yyyy'}}</td>
             <td>{{entry | getEntryAmount}}</td>

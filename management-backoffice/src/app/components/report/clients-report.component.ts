@@ -1,19 +1,26 @@
 import {Component} from '@angular/core';
-import {mergeMap, Observable, tap} from "rxjs";
+import {merge, mergeMap, Observable, tap} from "rxjs";
 import {ClientReport, Invoice, Pageable} from "../../model/navigation.model";
 import {TopNavService} from "../navigation/top-nav/top-nav.service";
 import {ReportService} from "./report.service";
 import ReportHeaders from "../../../assets/content-config/report-page.json"
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'mb-clients-report',
   templateUrl: './clients-report.component.html'
 })
 export class ClientsReportComponent{
-  pageable: Pageable = {currentPage: 0, pageSize: 8, sort: "amount", sortOrder: "desc"};
+  pageForm : FormGroup = new FormGroup({
+    currentPage: new FormControl(0),
+    pageSize: new FormControl(8),
+    sort: new FormControl("amount"),
+    sortOrder: new FormControl("desc")
+  })
 
-  $clientReport: Observable<ClientReport> = this.reportService.getClientReport(this.pageable);
-  $clientsWithNewRange: Observable<ClientReport> = this.topService.dateRangeFrom.valueChanges.pipe(mergeMap( ()=> this.reportService.getClientReport(this.pageable)));
+  $clientReport: Observable<ClientReport> = this.reportService.getClientReport(this.pageForm.getRawValue());
+  $clientsWithNewRange: Observable<ClientReport> = merge(this.topService.dateRangeFrom.valueChanges,this.pageForm.valueChanges).pipe(
+      mergeMap( ()=> this.reportService.getClientReport(this.pageForm.getRawValue())));
 
   clientHeader:string[] = ReportHeaders.clients.client;
   invoiceHeader:string[] = ReportHeaders.clients.invoice;

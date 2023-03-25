@@ -115,5 +115,6 @@
   "capital.added.success": "La capitale a été ajoutée",
   "inventory.order.created": "Commande d'inventaire créée",
   "message.confirm.delete": "Etes-vous sûr que vous voulez supprimer",
-  "invalid.form": "Remplissez correctement le formulaire"
+  "invalid.form": "Remplissez correctement le formulaire",
+  "label.pagination.rows": "Lignes"
 }
