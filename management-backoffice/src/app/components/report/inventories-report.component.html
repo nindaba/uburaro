@@ -1,0 +1,48 @@
+<mb-relation title="contract" [heads]="inOrderHead"
+             *ngIf="($inOrdersOnChange | async) || ($inOrders| async) as page">
+    <tr *ngFor="let order of page.content">
+        <td>{{order.orderDate | date : 'dd/MM/yyyy'}}</td>
+        <td>{{order.orderNumber}}</td>
+        <td>{{order.itemName}}</td>
+        <td>{{order.cost}}</td>
+        <td>{{order.quantity}}</td>
+        <td>
+            <div class="d-flex flex-row justify-content-between align-items-center">
+                {{order.quantity * order.cost | currency : '':'':'1.0-0'}} FBU
+                <div class="mb-icon mb-icon-green tick" *ngIf="order.paid"></div>
+            </div>
+        </td>
+    </tr>
+</mb-relation>
+<mb-relation title="contract" [heads]="outOrderHead"
+             *ngIf="($outOrdersOnChange | async) || ($outOrders| async) as page">
+    <tr *ngFor="let order of page.content">
+        <td>{{order.orderDate | date : 'dd/MM/yyyy'}}</td>
+        <td>{{order.orderNumber}}</td>
+        <td>{{order.itemName}}</td>
+        <td>{{order.cost}}</td>
+        <td>{{order.quantity}}</td>
+        <td>
+            <div class="d-flex flex-row justify-content-between align-items-center">
+                {{order.quantity * order.cost | currency : '':'':'1.0-0'}} FBU
+                <div class="mb-icon mb-icon-green tick" *ngIf="order.paid"></div>
+            </div>
+        </td>
+    </tr>
+</mb-relation>
+<mb-relation title="contract" [heads]="soldOrderHead"
+             *ngIf="($soldOrdersOnChange | async) || ($soldOrders| async) as page">
+    <tr *ngFor="let order of page.content">
+        <td>{{order.orderDate | date : 'dd/MM/yyyy'}}</td>
+        <td>{{order.orderNumber}}</td>
+        <td>{{order.itemName}}</td>
+        <td>{{order.cost}}</td>
+        <td>{{order.quantity}}</td>
+        <td>
+            <div class="d-flex flex-row justify-content-between align-items-center">
+                {{order.quantity * order.cost | currency : '':'':'1.0-0'}} FBU
+                <div class="mb-icon mb-icon-green tick" *ngIf="order.paid"></div>
+            </div>
+        </td>
+    </tr>
+</mb-relation>

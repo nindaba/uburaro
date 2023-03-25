@@ -2,6 +2,7 @@ package bi.manager.facade.facades.impl;
 
 import bi.manager.core.services.MBInventoryOrderService;
 import bi.manager.core.types.MBInventoryOrderType;
+import bi.manager.core.types.enums.MBInventoryEntryEnum;
 import bi.manager.core.utils.MBPage;
 import bi.manager.facade.converters.order.InventoryOrderMapper;
 import bi.manager.facade.data.MBDateRangeData;
@@ -59,9 +60,9 @@ public class DefaultMBInventoryOrderFacade implements MBInventoryOrderFacade {
     }
 
     @Override
-    public MBPageData<MBInventoryOrderData> getOrderByFacilityCode(final String code,final MBDateRangeData range, final MBPageableData pageable) {
+    public MBPageData<MBInventoryOrderData> getOrderByFacilityCode(final String code, final MBInventoryEntryEnum orderType, final MBDateRangeData range, final MBPageableData pageable) {
         final MBPageData<MBInventoryOrderData> pageData = new MBPageData<>();
-        final MBPage<MBInventoryOrderType> page = orderService.getOrderByFacilityCode(code, getLocalDate(range.getFrom()), getLocalDate(range.getTo()), createPage(pageable));
+        final MBPage<MBInventoryOrderType> page = orderService.getOrderByFacilityCode(code,orderType, getLocalDate(range.getFrom()), getLocalDate(range.getTo()), createPage(pageable));
         pageData.setContent(mapper.inventoriesToData(page.getContent()));
         pageData.setPages(page.getPages());
         return pageData;

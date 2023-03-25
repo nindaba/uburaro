@@ -2,6 +2,7 @@ package bi.manager.facade.facades;
 
 import bi.manager.core.services.MBInventoryOrderService;
 import bi.manager.core.types.MBInventoryOrderType;
+import bi.manager.core.types.enums.MBInventoryEntryEnum;
 import bi.manager.facade.data.*;
 
 import java.util.Collection;
@@ -55,7 +56,8 @@ public interface MBInventoryOrderFacade {
      * @param code
      * @param range
      * @param page
+     * @param orderType
      * @return page of Inventory Order
      */
-    MBPageData<MBInventoryOrderData> getOrderByFacilityCode(String code, MBDateRangeData range, MBPageableData page);
+    MBPageData<MBInventoryOrderData> getOrderByFacilityCode(String code, MBInventoryEntryEnum orderType, MBDateRangeData range, MBPageableData page);
 }
