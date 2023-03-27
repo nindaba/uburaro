@@ -1,10 +1,11 @@
 import {Component} from '@angular/core';
 import {TopNavService} from "../navigation/top-nav/top-nav.service";
-import {merge, mergeMap, Observable, tap} from "rxjs";
-import {CapitalEntry, Page, Pageable} from "../../model/navigation.model";
+import {merge, mergeMap, Observable, of, tap} from "rxjs";
+import {CapitalEntry, CapitalSummary, Page, Pageable} from "../../model/navigation.model";
 import {CapitalService} from "../facility/capital.service";
 import ReportConfig from "../../../assets/content-config/report-page.json"
 import {FormControl, FormGroup} from "@angular/forms";
+import {ReportService} from "./report.service";
 
 @Component({
   selector: 'mb-capital-report',
@@ -23,7 +24,11 @@ export class CapitalReportComponent{
         mergeMap(() => this.capitalService.getCapitalEntriesPage(this.pageForm.getRawValue()))
     );
 
+    $summary : Observable<CapitalSummary> = merge(of(1), this.topService.dateRangeFrom.statusChanges).pipe(
+        mergeMap(() => this.reportService.getCapitalSummary())
+    )
+
     capitalHeads: string[] = ReportConfig.capital.heads;
-    constructor(protected topService:TopNavService,protected capitalService:CapitalService) {
+    constructor(protected topService:TopNavService,protected capitalService:CapitalService,protected reportService: ReportService) {
     }
 }

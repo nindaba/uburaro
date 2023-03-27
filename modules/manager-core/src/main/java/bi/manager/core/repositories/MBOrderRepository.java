@@ -1,8 +1,8 @@
 package bi.manager.core.repositories;
 
+import bi.manager.core.types.client.MBOrderType;
 import bi.uburaro.core.repositories.ItemRepository;
 import bi.uburaro.core.types.ItemType;
-import bi.manager.core.types.client.MBOrderType;
 
 public interface MBOrderRepository extends ItemRepository<MBOrderType> {
 

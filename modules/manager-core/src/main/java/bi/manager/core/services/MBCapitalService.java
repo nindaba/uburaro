@@ -76,4 +76,6 @@ public interface MBCapitalService {
      * @return page of capital Entries
      */
     MBPage<MBCapitalEntryType> getCapitalEntries(String facilityCode, Date from, Date to, MBPageable pageable);
+
+    long getTotalAmount(String facilityCode, Date from, Date to, MBEntryEnum entryType);
 }

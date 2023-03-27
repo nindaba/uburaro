@@ -157,8 +157,8 @@ public class DefaultMBInventoryOrderService extends AbstractOrderService impleme
     public void deleteOrder(Set<String> orderNumber) {
         orderNumber.stream()
                 .map(orderRepository::findByOrderNumber)
+                .filter(order -> !order.isPaid())
                 .peek(this::revertClient)
-                .peek(this::revertCapital)
                 .peek(this::revertStockLevels)
                 .forEach(orderRepository::delete);
     }
@@ -167,6 +167,13 @@ public class DefaultMBInventoryOrderService extends AbstractOrderService impleme
     public MBPage<MBInventoryOrderType> getOrderByFacilityCode(final String code, final MBInventoryEntryEnum orderType, final LocalDate from, final LocalDate to, final MBPageable pageable) {
         final Page<MBInventoryOrderType> page = inventoryOrderRepository.findAllByFacilityAndDateRange(code, from, to,orderType, pageable);
         return new MBPage<>(page);
+    }
+
+    @Override
+    public long getTotalAmount(final String facility,final LocalDate from, final LocalDate to, final MBInventoryEntryEnum entryType) {
+        return inventoryOrderRepository.findAmountByFacilityAndDateRange(facility, from, to, entryType).stream()
+                .map(order -> order.getCost() * order.getQuantity())
+                .reduce(0l, Long::sum);
     }
 
     protected void revertStockLevels(MBOrderType order) {

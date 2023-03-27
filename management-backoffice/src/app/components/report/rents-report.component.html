@@ -24,4 +24,13 @@
             </td>
         </tr>
     </mb-relation>
+    <div class="mt-3 d-flex flex-column">
+        <span class="mb-title">{{'label.total.report.rent' | translate}}</span>
+        <div class="value">
+            <div class="value-amount">
+                <span>{{ page.content | calcTotalCost | currency : '':'':'1.0-0'}}</span>
+            </div>
+            <h3 class="value-currency">FBU</h3>
+        </div>
+    </div>
 </div>

@@ -10,6 +10,7 @@ import {CapitalPipe} from "../../pipes/capital.pipe";
 import {ReportService} from "./report.service";
 import {ReportServiceImpl} from "../../services/report.service.impl";
 import {TotalPipe} from "../../pipes/total.pipe";
+import {TotalCostPipe} from "../../pipes/total-cost.pipe";
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import {TotalPipe} from "../../pipes/total.pipe";
         TotalPipe,
         CapitalEntryAmountPipe,
         CapitalPipe,
+        TotalCostPipe,
     ],
     providers: [{provide: ReportService, useClass: ReportServiceImpl}]
 })

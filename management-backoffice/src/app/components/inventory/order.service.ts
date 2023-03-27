@@ -10,6 +10,12 @@ export abstract class OrderService {
     abstract placeOrder<ITEM extends Order>(order: ITEM): Observable<any>;
 
     /**
+     * create rent orders for those contracts with next order date less than today
+     * @return observable of orders created
+     */
+    abstract createRentOrders(): Observable<RentOrder[]>;
+
+    /**
      * Gets all the orders that belong to the inventory {@link code}
      *
      * @param code, if empty then the current inventory is used

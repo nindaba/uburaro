@@ -67,5 +67,10 @@ public interface ManagerWebConstants {
             String endpoint = "data-import";
         }
 
+        interface Summary{
+            String endpoint = "/facilities/{code}";
+            String capital= "/capital-summary";
+        }
+
     }
 }

@@ -1,48 +1,80 @@
-<mb-relation title="contract" [heads]="inOrderHead" [pages]="page.pages" [pageForm]="inPage"
-             *ngIf="($inOrdersOnChange | async) || ($inOrders| async) as page">
-    <tr *ngFor="let order of page.content">
-        <td>{{order.orderDate | date : 'dd/MM/yyyy'}}</td>
-        <td>{{order.orderNumber}}</td>
-        <td>{{order.itemName}}</td>
-        <td>{{order.cost}}</td>
-        <td>{{order.quantity}}</td>
-        <td>
-            <div class="d-flex flex-row justify-content-between align-items-center">
-                {{order.quantity * order.cost | currency : '':'':'1.0-0'}} FBU
-                <div class="mb-icon mb-icon-green tick" *ngIf="order.paid"></div>
+<div class="d-flex flex-column gap-4">
+    <ng-container *ngIf="($inOrdersOnChange | async) || ($inOrders| async) as page">
+        <mb-relation title="report.refill" [heads]="inOrderHead" [pages]="page.pages" [pageForm]="inPage">
+            <tr *ngFor="let order of page.content">
+                <td>{{order.orderDate | date : 'dd/MM/yyyy'}}</td>
+                <td>{{order.orderNumber}}</td>
+                <td>{{order.itemName}}</td>
+                <td>{{order.cost}}</td>
+                <td>{{order.quantity}}</td>
+                <td>
+                    <div class="d-flex flex-row justify-content-between align-items-center">
+                        {{order.quantity * order.cost | currency : '':'':'1.0-0'}} FBU
+                        <div class="mb-icon mb-icon-green tick" *ngIf="order.paid"></div>
+                    </div>
+                </td>
+            </tr>
+        </mb-relation>
+        <div class="d-flex flex-column">
+            <span class="mb-title">{{'label.total.report.refill' | translate}}</span>
+            <div class="value">
+                <div class="value-amount">
+                    <span>{{page.content | calcTotalCost | currency : '':'':'1.0-0'}}</span>
+                </div>
+                <h3 class="value-currency">FBU</h3>
             </div>
-        </td>
-    </tr>
-</mb-relation>
-<mb-relation title="contract" [heads]="outOrderHead" [pages]="page.pages" [pageForm]="outPage"
-             *ngIf="($outOrdersOnChange | async) || ($outOrders| async) as page">
-    <tr *ngFor="let order of page.content">
-        <td>{{order.orderDate | date : 'dd/MM/yyyy'}}</td>
-        <td>{{order.orderNumber}}</td>
-        <td>{{order.itemName}}</td>
-        <td>{{order.cost}}</td>
-        <td>{{order.quantity}}</td>
-        <td>
-            <div class="d-flex flex-row justify-content-between align-items-center">
-                {{order.quantity * order.cost | currency : '':'':'1.0-0'}} FBU
-                <div class="mb-icon mb-icon-green tick" *ngIf="order.paid"></div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="($outOrdersOnChange | async) || ($outOrders| async) as page">
+        <mb-relation title="report.out" [heads]="outOrderHead" [pages]="page.pages" [pageForm]="outPage">
+            <tr *ngFor="let order of page.content">
+                <td>{{order.orderDate | date : 'dd/MM/yyyy'}}</td>
+                <td>{{order.orderNumber}}</td>
+                <td>{{order.itemName}}</td>
+                <td>{{order.cost}}</td>
+                <td>{{order.quantity}}</td>
+                <td>
+                    <div class="d-flex flex-row justify-content-between align-items-center">
+                        {{order.quantity * order.cost | currency : '':'':'1.0-0'}} FBU
+                        <div class="mb-icon mb-icon-green tick" *ngIf="order.paid"></div>
+                    </div>
+                </td>
+            </tr>
+        </mb-relation>
+        <div class="d-flex flex-column">
+            <span class="mb-title">{{'label.total.report.out' | translate}}</span>
+            <div class="value">
+                <div class="value-amount">
+                    <span>{{page.content | calcTotalCost | currency : '':'':'1.0-0'}}</span>
+                </div>
+                <h3 class="value-currency">FBU</h3>
             </div>
-        </td>
-    </tr>
-</mb-relation>
-<mb-relation title="contract" [heads]="soldOrderHead" [pages]="page.pages" [pageForm]="soldPage"
-             *ngIf="($soldOrdersOnChange | async) || ($soldOrders| async) as page">
-    <tr *ngFor="let order of page.content">
-        <td>{{order.orderDate | date : 'dd/MM/yyyy'}}</td>
-        <td>{{order.orderNumber}}</td>
-        <td>{{order.itemName}}</td>
-        <td>{{order.cost}}</td>
-        <td>{{order.quantity}}</td>
-        <td>
-            <div class="d-flex flex-row justify-content-between align-items-center">
-                {{order.quantity * order.cost | currency : '':'':'1.0-0'}} FBU
-                <div class="mb-icon mb-icon-green tick" *ngIf="order.paid"></div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="($soldOrdersOnChange | async) || ($soldOrders| async) as page">
+        <mb-relation title="report.sold" [heads]="soldOrderHead" [pages]="page.pages" [pageForm]="soldPage">
+            <tr *ngFor="let order of page.content">
+                <td>{{order.orderDate | date : 'dd/MM/yyyy'}}</td>
+                <td>{{order.orderNumber}}</td>
+                <td>{{order.itemName}}</td>
+                <td>{{order.cost}}</td>
+                <td>{{order.quantity}}</td>
+                <td>
+                    <div class="d-flex flex-row justify-content-between align-items-center">
+                        {{order.quantity * order.cost | currency : '':'':'1.0-0'}} FBU
+                        <div class="mb-icon mb-icon-green tick" *ngIf="order.paid"></div>
+                    </div>
+                </td>
+            </tr>
+        </mb-relation>
+        <div class="d-flex flex-column">
+            <span class="mb-title">{{'label.total.report.sold' | translate}}</span>
+            <div class="value">
+                <div class="value-amount">
+                    <span>{{page.content | calcTotalCost | currency : '':'':'1.0-0'}}</span>
+                </div>
+                <h3 class="value-currency">FBU</h3>
             </div>
-        </td>
-    </tr>
-</mb-relation>
+        </div>
+    </ng-container>
+</div>

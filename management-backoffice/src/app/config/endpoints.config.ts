@@ -7,6 +7,7 @@ export const endpointsConfig: EndpointConfig = {
     facility: "facilities/{code}",
     capital: "facilities/{code}/capital",
     capitalEntries: "facilities/{code}/capital/entries",
+    capitalSummary: "facilities/{code}/capital-summary",
     categories: "facilities/{code}/categories",
     category: "facilities/{code}/categories/{category-code}",
     inventories: "facilities/{code}/inventories",
