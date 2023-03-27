@@ -1,6 +1,5 @@
 package bi.uburaro.core.repositories;
 
-import bi.uburaro.core.types.HotelType;
 import bi.uburaro.core.types.ItemType;
 import bi.uburaro.core.types.PrincipalType;
 

@@ -1,7 +1,6 @@
 package bi.manager.core.repositories;
 
 import bi.manager.core.types.MBInventoryOrderType;
-import bi.manager.core.types.client.MBOrderType;
 import bi.manager.core.types.enums.MBInventoryEntryEnum;
 import bi.uburaro.core.repositories.ItemRepository;
 import bi.uburaro.core.types.ItemType;
