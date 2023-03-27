@@ -1,5 +1,6 @@
 import {Observable} from "rxjs";
 import {
+    CapitalSummary,
     ClientReport,
     DateRange,
     InventoryOrder, InventoryOrderType,
@@ -32,4 +33,10 @@ export abstract class ReportService{
      */
     abstract getFacilityInventoryOrdersByRange(pageable:Pageable,orderEntry:InventoryOrderType): Observable<Page<InventoryOrder>>;
 
+    /**
+     * Gets the capital summary for the selected facility in the give date range <br>
+     *
+     * @return an observable of Capital summary
+     */
+    abstract getCapitalSummary(): Observable<CapitalSummary>;
 }

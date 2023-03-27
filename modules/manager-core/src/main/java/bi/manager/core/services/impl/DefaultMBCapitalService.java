@@ -119,6 +119,13 @@ public class DefaultMBCapitalService implements MBCapitalService {
         typeService.save(invoice);
     }
 
+    @Override
+    public long getTotalAmount(String facilityCode, Date from, Date to, MBEntryEnum entryType) {
+        return entryRepository.findTotalAmount(facilityCode, from,to, entryType).stream()
+                .map(MBCapitalEntryType::getAmount)
+                .reduce(0l, Long::sum);
+    }
+
     private void updateCapital(final MBInvoiceType invoice) {
         MBCapitalType capital = invoice.getClient().getFacility().getCapital();
         MBCapitalEntryType entry = invoice.getCapitalEntry();

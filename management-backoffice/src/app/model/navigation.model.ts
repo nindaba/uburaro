@@ -34,6 +34,7 @@ export class EndpointConfig {
     rentFacilityOrders:string = "";
     relation: { [key: string]: string } = {};
     contracts: string = "";
+    capitalSummary: string = "";
 
     [key: string]: any;
 
@@ -210,4 +211,10 @@ export interface Pageable{
 export interface Page<ITEM>{
     content: ITEM[];
     pages:number;
+}
+
+export interface CapitalSummary{
+    internalCapital: number;
+    externalCapital: number;
+    categoryExpenses: number;
 }

@@ -9,6 +9,9 @@
   "nodes.name.orders": "Orders",
   "nodes.name.rents": "Rents",
   "nodes.name.reports": "Reports",
+  "nodes.name.report.out": "Out Orders",
+  "nodes.name.report.refill": "Refill Orders",
+  "nodes.name.report.sold": "Sold Orders",
   "nodes.name.back": "Back",
   "nodes.name.add": "Add",
   "nodes.name.delete": "Delete",
@@ -37,6 +40,10 @@
   "label.cost.latest": "Cost",
   "label.total": "Total",
   "label.total.paid": "Paid",
+  "label.total.report.rent": "Total Rent Orders",
+  "label.total.report.out": "Total Out Orders",
+  "label.total.report.refill": "Total Refill Orders",
+  "label.total.report.sold": "Total Sold Orders",
   "label.amount": "Amount",
   "label.quantity": "Quantity",
   "label.client.debt": "Debt",
@@ -116,5 +123,8 @@
   "inventory.order.created": "Inventory Order Created",
   "message.confirm.delete": "Are you sure you want to delete",
   "invalid.form": "Fill the form correctly",
-  "label.pagination.rows": "rows"
+  "label.pagination.rows": "rows",
+  "label.summary.totalInternalCapital": "Total internal capital",
+  "label.summary.totalExternalCapital": "Total External capital",
+  "label.summary.totalCategoryExpenses": "Total category Expenses"
 }

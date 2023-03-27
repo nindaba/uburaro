@@ -2,6 +2,7 @@ import {ReportService} from "../components/report/report.service";
 import {Injectable} from "@angular/core";
 import {UrlBuilderService} from "../utils/UrlBuilder.service";
 import {
+    CapitalSummary,
     ClientReport,
     DateRange,
     InventoryOrder, InventoryOrderType, Item,
@@ -46,6 +47,16 @@ export class ReportServiceImpl implements ReportService {
             this.urlBuilder.getUrlForEndPoint("inventoryFacilityOrders"),
             pageable, {orderEntry: orderEntry});
     }
+
+    getCapitalSummary(): Observable<CapitalSummary> {
+        let rangeFrom = this.topService.dateRangeFrom;
+
+        if(rangeFrom.valid) {
+            return this.http.post<CapitalSummary>(this.urlBuilder.getUrlForEndPoint("capitalSummary"),rangeFrom.getRawValue());
+        }
+        return new Observable();
+    }
+
     protected getFacilityOrdersByRange<ITEM extends Item>(url:string,pageable: Pageable,additionalParam?: {[key:string]: any}): Observable<Page<ITEM>> {
         let rangeFrom = this.topService.dateRangeFrom;
 

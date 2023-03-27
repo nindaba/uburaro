@@ -17,6 +17,11 @@ export class OrderServiceImpl implements OrderService {
         return this.http.post(this.urlBuilder.getUrl("inventoryOrder"), order);
     }
 
+    createRentOrders(): Observable<RentOrder[]> {
+        return this.http.post<RentOrder[]>(this.urlBuilder.getUrl("facilities"),{});
+    }
+
+
     getOrdersByInventoryCode<ITEM extends Order[]>(code?: string): Observable<ITEM> {
         if (!code) {
             code = this.breadService.pages.details

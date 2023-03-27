@@ -1,5 +1,5 @@
 <div class="capital" *ngIf="($ordersWithDateRange | async) || ($entries| async) as page">
-    <mb-relation title="capital" [heads]="capitalHeads" [pageForm]="pageForm" [pages] = page.pages>
+    <mb-relation title="capital" [heads]="capitalHeads" [pageForm]="pageForm" [pages]=page.pages>
         <tr *ngFor="let entry of page.content">
             <td>{{entry.dateCreated | date: 'dd/MM/yyyy'}}</td>
             <td>{{entry | getEntryAmount}}</td>
@@ -7,11 +7,33 @@
             <td>{{entry.description}}</td>
         </tr>
     </mb-relation>
-    <div class="value">
-        <div class="value-amount">
-            <span class="me-5">{{'label.facility.capital' | translate}}</span>
-            <span>{{ page.content | calcCapital | currency : '':'':'1.0-0'}}</span>
+    <div class="" *ngIf="$summary | async as summary">
+        <div class="d-flex flex-column">
+            <span class="mb-title">{{'label.summary.totalInternalCapital' | translate}}</span>
+            <div class="value">
+                <div class="value-amount">
+                    <span>{{ summary.internalCapital | currency : '':'':'1.0-0'}}</span>
+                </div>
+                <h3 class="value-currency">FBU</h3>
+            </div>
         </div>
-        <h3 class="value-currency">FBU</h3>
+        <div class="d-flex flex-column">
+            <span class="mb-title">{{'label.summary.totalExternalCapital' | translate}}</span>
+            <div class="value">
+                <div class="value-amount">
+                    <span>{{ summary.externalCapital | currency : '':'':'1.0-0'}}</span>
+                </div>
+                <h3 class="value-currency">FBU</h3>
+            </div>
+        </div>
+        <div class="d-flex flex-column">
+            <span class="mb-title">{{'label.summary.totalCategoryExpenses' | translate}}</span>
+            <div class="value">
+                <div class="value-amount">
+                    <span>{{summary.categoryExpenses | currency : '':'':'1.0-0'}}</span>
+                </div>
+                <h3 class="value-currency">FBU</h3>
+            </div>
+        </div>
     </div>
 </div>
