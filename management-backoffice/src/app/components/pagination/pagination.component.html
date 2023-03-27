@@ -1,0 +1,13 @@
+<div class="d-flex flex-row gap-3 align-items-center" [formGroup]="pageForm">
+    <div class="d-flex flex-row gap-1">
+        <a class="btn btn-pagination" [ngClass]="getCurrentPage() == 0 ? 'btn-pagination-active' : ''" (click)="setCurrentPage(0)">1</a>
+        <a *ngFor="let pageNumber of getLeadingPages()" class="btn btn-pagination" [ngClass]="getCurrentPage() == pageNumber ? 'btn-pagination-active' : ''" (click)="setCurrentPage(pageNumber)">{{pageNumber + 1}}</a>
+        <ng-container *ngIf="pages > 3 && getCurrentPage() +1 != pages">
+            <span>...</span>
+            <a class="btn btn-pagination" [ngClass]="getCurrentPage() == pages-1 ? 'btn-pagination-active' : ''" (click)="setCurrentPage(pages-1)">{{pages}}</a>
+        </ng-container>
+    </div>
+    <div>
+        <input class="input-pagination me-1" type="number" formControlName="pageSize">{{'label.pagination.rows' | translate}}
+    </div>
+</div>
