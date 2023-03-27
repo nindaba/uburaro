@@ -10,7 +10,7 @@ export abstract class OrderService {
     abstract placeOrder<ITEM extends Order>(order: ITEM): Observable<any>;
 
     /**
-     * create rent orders for those contracts with next payment date less than today
+     * create rent orders for those contracts with next order date less than today
      * @return observable of orders created
      */
     abstract createRentOrders(): Observable<RentOrder[]>;
