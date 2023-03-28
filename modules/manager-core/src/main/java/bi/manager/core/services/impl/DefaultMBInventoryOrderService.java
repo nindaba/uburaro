@@ -129,7 +129,7 @@ public class DefaultMBInventoryOrderService extends AbstractOrderService impleme
         if (target.getCost() <= 0) {
             target.setCost(inventory.getCost());
         }
-        if(source.getOrderEntry() != MBInventoryEntryEnum.SOLD){
+        if (source.getOrderEntry() != MBInventoryEntryEnum.SOLD) {
             inventory.setCost(source.getCost());
         }
         target.setInventory(inventory);
@@ -158,45 +158,60 @@ public class DefaultMBInventoryOrderService extends AbstractOrderService impleme
         orderNumber.stream()
                 .map(orderRepository::findByOrderNumber)
                 .filter(order -> !order.isPaid())
-                .peek(this::revertClient)
-                .peek(this::revertStockLevels)
+                .peek(order -> {
+                    revertClient(order);
+                    revertStockLevels(order);
+                    revertCapital(order);
+                })
                 .forEach(orderRepository::delete);
     }
 
     @Override
     public MBPage<MBInventoryOrderType> getOrderByFacilityCode(final String code, final MBInventoryEntryEnum orderType, final LocalDate from, final LocalDate to, final MBPageable pageable) {
-        final Page<MBInventoryOrderType> page = inventoryOrderRepository.findAllByFacilityAndDateRange(code, from, to,orderType, pageable);
+        final Page<MBInventoryOrderType> page = inventoryOrderRepository.findAllByFacilityAndDateRange(code, from, to, orderType, pageable);
         return new MBPage<>(page);
     }
 
     @Override
-    public long getTotalAmount(final String facility,final LocalDate from, final LocalDate to, final MBInventoryEntryEnum entryType) {
+    public long getTotalAmount(final String facility, final LocalDate from, final LocalDate to, final MBInventoryEntryEnum entryType) {
         return inventoryOrderRepository.findAmountByFacilityAndDateRange(facility, from, to, entryType).stream()
                 .map(order -> order.getCost() * order.getQuantity())
                 .reduce(0l, Long::sum);
     }
 
-    protected void revertStockLevels(MBOrderType order) {
+    protected void revertStockLevels(final MBOrderType order) {
         if (order instanceof MBInventoryOrderType) {
-            MBInventoryType inventory = ((MBInventoryOrderType) order).getInventory();
-            inventory.setQuantity(inventory.getQuantity() + order.getQuantity());
+            final MBInventoryOrderType inventoryOrder = (MBInventoryOrderType) order;
+            final MBInventoryType inventory = inventoryOrder.getInventory();
+            int quantity = inventory.getQuantity();
+
+            if (inventoryOrder.getOrderEntry() == MBInventoryEntryEnum.REFILL) {
+                quantity -= order.getQuantity();
+            } else {
+                quantity += order.getQuantity();
+            }
+
+            inventory.setQuantity(quantity);
             itemRepository.save(inventory);
         }
 
     }
 
     protected void revertCapital(MBOrderType order) {
-        if (order instanceof MBInventoryOrderType) {
+        if (order instanceof MBInventoryOrderType && ((MBInventoryOrderType) order).getOrderEntry() == MBInventoryEntryEnum.REFILL) {
             MBFacilityType facility = ((MBInventoryOrderType) order).getInventory().getCategory().getFacility();
             MBCapitalType capital = facility.getCapital();
 
+            long cost = order.getCost() * order.getQuantity();
             capital.getEntries().stream()
-                    .filter(entry -> DateUtils.isSameDay(order.getDateModified(), entry.getDateModified())
-                            && entry.getAmount() == order.getCost())
+                    .filter(entry -> DateUtils.isSameDay(order.getDateModified(), entry.getDateModified()))
+                    .filter(entry -> entry.getAmount() == cost)
                     .findFirst()
-                    .ifPresent(itemRepository::delete);
+                    .stream()
+                    .peek(entryType -> capital.getEntries().remove(entryType))
+                    .forEach(itemRepository::delete);
 
-            capital.setCurrentValue(capital.getCurrentValue() + order.getCost() * order.getQuantity());
+            capital.setCurrentValue(capital.getCurrentValue() + cost);
             itemRepository.save(capital);
         }
     }
