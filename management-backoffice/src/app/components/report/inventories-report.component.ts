@@ -32,11 +32,11 @@ export class InventoriesReportComponent {
         sortOrder: new FormControl("desc")
     })
 
-    $inOrdersOnChange: Observable<Page<InventoryOrder>> = this.getInOrdersOnChange(this.inPage.getRawValue())
+    $inOrdersOnChange: Observable<Page<InventoryOrder>> = this.getInOrdersOnChange()
     $inOrders: Observable<Page<InventoryOrder>> = this.reportService.getFacilityInventoryOrdersByRange(this.inPage.getRawValue(),InventoryOrderType.REFILL);
-    $outOrdersOnChange: Observable<Page<InventoryOrder>> = this.getOutOrdersOnChange(this.outPage.getRawValue())
+    $outOrdersOnChange: Observable<Page<InventoryOrder>> = this.getOutOrdersOnChange()
     $outOrders: Observable<Page<InventoryOrder>> = this.reportService.getFacilityInventoryOrdersByRange(this.outPage.getRawValue(),InventoryOrderType.OUT);
-    $soldOrdersOnChange: Observable<Page<InventoryOrder>> = this.getSoldOrdersOnChange(this.soldPage.getRawValue());
+    $soldOrdersOnChange: Observable<Page<InventoryOrder>> = this.getSoldOrdersOnChange();
     $soldOrders: Observable<Page<InventoryOrder>> = this.reportService.getFacilityInventoryOrdersByRange(this.soldPage.getRawValue(),InventoryOrderType.SOLD);
     inOrderHead: string[] = ReportConfig.inventories.inOrders;
     outOrderHead: string[] = ReportConfig.inventories.outOrders;
@@ -45,16 +45,16 @@ export class InventoriesReportComponent {
     constructor(protected reportService: ReportService, protected topService: TopNavService) {
     }
 
-    private getInOrdersOnChange(pageable: Pageable): Observable<Page<InventoryOrder>> {
+    private getInOrdersOnChange(): Observable<Page<InventoryOrder>> {
         return merge(this.inPage.valueChanges,this.topService.dateRangeFrom.valueChanges).pipe(
-            mergeMap(() => this.reportService.getFacilityInventoryOrdersByRange(pageable,InventoryOrderType.REFILL)))
+            mergeMap(() => this.reportService.getFacilityInventoryOrdersByRange(this.inPage.getRawValue(),InventoryOrderType.REFILL)))
     }
-    private getOutOrdersOnChange(pageable: Pageable): Observable<Page<InventoryOrder>> {
+    private getOutOrdersOnChange(): Observable<Page<InventoryOrder>> {
         return merge(this.outPage.valueChanges,this.topService.dateRangeFrom.valueChanges).pipe(
-            mergeMap(() => this.reportService.getFacilityInventoryOrdersByRange(pageable,InventoryOrderType.OUT)))
+            mergeMap(() => this.reportService.getFacilityInventoryOrdersByRange(this.outPage.getRawValue(),InventoryOrderType.OUT)))
     }
-    private getSoldOrdersOnChange(pageable: Pageable): Observable<Page<InventoryOrder>> {
+    private getSoldOrdersOnChange(): Observable<Page<InventoryOrder>> {
         return merge(this.soldPage.valueChanges,this.topService.dateRangeFrom.valueChanges).pipe(
-            mergeMap(() => this.reportService.getFacilityInventoryOrdersByRange(pageable,InventoryOrderType.SOLD)))
+            mergeMap(() => this.reportService.getFacilityInventoryOrdersByRange(this.soldPage.getRawValue(),InventoryOrderType.SOLD)))
     }
 }

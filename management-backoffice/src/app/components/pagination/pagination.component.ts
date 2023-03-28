@@ -31,7 +31,7 @@ export class PaginationComponent {
     getCurrentPage() {
         return this.pageForm.get('currentPage')?.value;
     }
-    setCurrentPage(page:any){
+    setCurrentPage(page:number){
         this.pageForm.get('currentPage')?.setValue(page);
     }
 }
