@@ -55,8 +55,6 @@ public class MBClientTypeMapper extends AbstractTypeMapper<MBClientType> {
 
     private void setTotalDebt(final MBClientType target, final String value) {
         final long totalDebt = -Long.parseLong(value);
-        if(totalDebt < 0){
-            target.setTotalDebt(totalDebt);
-        }
+        target.setTotalDebt(totalDebt);
     }
 }
