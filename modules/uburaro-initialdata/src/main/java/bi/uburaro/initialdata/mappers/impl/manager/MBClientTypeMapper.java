@@ -4,7 +4,6 @@ import bi.manager.core.repositories.MBOrderRepository;
 import bi.manager.core.types.MBFacilityType;
 import bi.manager.core.types.client.MBClientType;
 import bi.manager.core.types.client.MBInvoiceType;
-import bi.manager.core.types.client.MBRentOrderType;
 import bi.uburaro.core.services.TypeService;
 import bi.uburaro.initialdata.mappers.impl.AbstractTypeMapper;
 
@@ -38,7 +37,7 @@ public class MBClientTypeMapper extends AbstractTypeMapper<MBClientType> {
                 VISIBLE, value -> target.setVisible(Boolean.valueOf(value)),
                 NAME, target::setName,
                 ADDRESS, target::setAddress,
-                TOTAL_DEBT, value -> target.setTotalDebt(-Long.parseLong(value))
+                TOTAL_DEBT, value -> setTotalDebt(target,value)
         ));
 
         fieldsMapper.putAll(Map.of(
@@ -52,5 +51,10 @@ public class MBClientTypeMapper extends AbstractTypeMapper<MBClientType> {
 
         ));
         return fieldsMapper;
+    }
+
+    private void setTotalDebt(final MBClientType target, final String value) {
+        final long totalDebt = -Long.parseLong(value);
+        target.setTotalDebt(totalDebt);
     }
 }
