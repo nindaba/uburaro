@@ -49,10 +49,12 @@ export class InventoriesReportComponent {
         return merge(this.inPage.valueChanges,this.topService.dateRangeFrom.valueChanges).pipe(
             mergeMap(() => this.reportService.getFacilityInventoryOrdersByRange(this.inPage.getRawValue(),InventoryOrderType.REFILL)))
     }
+    
     private getOutOrdersOnChange(): Observable<Page<InventoryOrder>> {
         return merge(this.outPage.valueChanges,this.topService.dateRangeFrom.valueChanges).pipe(
             mergeMap(() => this.reportService.getFacilityInventoryOrdersByRange(this.outPage.getRawValue(),InventoryOrderType.OUT)))
     }
+
     private getSoldOrdersOnChange(): Observable<Page<InventoryOrder>> {
         return merge(this.soldPage.valueChanges,this.topService.dateRangeFrom.valueChanges).pipe(
             mergeMap(() => this.reportService.getFacilityInventoryOrdersByRange(this.soldPage.getRawValue(),InventoryOrderType.SOLD)))
