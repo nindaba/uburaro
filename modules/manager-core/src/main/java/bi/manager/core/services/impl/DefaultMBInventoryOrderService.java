@@ -89,7 +89,7 @@ public class DefaultMBInventoryOrderService extends AbstractOrderService impleme
     }
 
     private void addCapitalEntry(MBInventoryOrderType order) {
-        if (MBInventoryEntryEnum.REFILL == order.getOrderEntry()) {
+        if (MBInventoryEntryEnum.REFILL == order.getOrderEntry() && order.getCost() > 0) {
             MBFacilityType facility = order.getInventory().getCategory().getFacility();
             capitalService.addCapital(order.getCost() * order.getQuantity(), MBEntryEnum.EXPENSE, facility);
         }
@@ -126,7 +126,7 @@ public class DefaultMBInventoryOrderService extends AbstractOrderService impleme
         if (source.getOrderEntry() == MBInventoryEntryEnum.SOLD && target.getCost() <= 0 && inventory.getCost() <= 0) {
             throw new NotFoundException("No cost was found on either the Inventory nor the Order");
         }
-        if (target.getCost() <= 0) {
+        if (target.getCost() <= 0 && target.getOrderEntry() != MBInventoryEntryEnum.REFILL) {
             target.setCost(inventory.getCost());
         }
         if (source.getOrderEntry() != MBInventoryEntryEnum.SOLD) {
