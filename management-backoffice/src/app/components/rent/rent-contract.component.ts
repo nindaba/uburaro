@@ -50,8 +50,11 @@ export class RentContractComponent implements OnInit, OnDestroy {
             let contractLength = this.getDateDiff(this.contract.from, this.contract.to);
             let ordered = this.getDateDiff(this.contract.from, this.contract.nextOrderDate);
 
-            let paid = this.contract.orders?.reduce((acc, order) => acc && (order.paid || false), true);
+            let paid = this.contract.orders?.map(order => order.paid)
+                .reduce((acc,paid)=> acc && paid, false);
             let progressColor = paid ? '' : '#E34A4A';
+
+            console.log(progressColor)
 
             this.progressStyle = `width:${ordered / contractLength * 100}%; background-color:${progressColor};`;
         }
