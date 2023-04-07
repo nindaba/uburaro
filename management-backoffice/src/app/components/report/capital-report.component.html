@@ -2,7 +2,7 @@
     <mb-relation title="capital" [heads]="capitalHeads" [pageForm]="pageForm" [pages]=page.pages>
         <tr *ngFor="let entry of page.content">
             <td>{{entry.dateCreated | date: 'dd/MM/yyyy'}}</td>
-            <td>{{entry | getEntryAmount}}</td>
+            <td>{{entry | getEntryAmount | currency : '':'':'1.0-0'}}</td>
             <td>{{entry.entryType}}</td>
             <td>{{entry.description}}</td>
         </tr>

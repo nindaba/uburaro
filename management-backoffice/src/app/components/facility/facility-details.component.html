@@ -64,7 +64,7 @@
                     <td>
                         {{category.name}}
                     </td>
-                    <td>{{category.inventories?.length || 0}}</td>
+                    <td>{{category.inventories || [] | calcTotalCost | currency : '':'':'1.0-0'}}</td>
                 </tr>
             </ng-container>
             <ng-template #emptyCategory>
@@ -79,7 +79,7 @@
                     <td>
                         {{client.name}}
                     </td>
-                    <td>{{client.totalDebt || 0}}</td>
+                    <td>{{client.totalDebt || 0 | currency : '':'':'1.0-0'}}}</td>
                 </tr>
             </ng-container>
             <ng-template #emptyClients>
@@ -93,7 +93,7 @@
                     <td>
                         {{rent.name}}
                     </td>
-                    <td>{{rent.cost || 0}}</td>
+                    <td>{{rent.cost || 0 | currency : '':'':'1.0-0'}}}</td>
                 </tr>
             </ng-container>
             <ng-template #emptyRents>
