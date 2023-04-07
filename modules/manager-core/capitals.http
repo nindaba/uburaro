@@ -1,0 +1,510 @@
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/4000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/2000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/90000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/1500000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/45000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/225000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/270000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/360000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/75000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/240000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/135000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/525000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/100000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/30000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/175000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/32000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/6000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/28000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/0/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/0/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/5000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/10000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/30000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/45000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/15000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/400000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/480000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/45500/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/180000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/800000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/1056000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/100000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/320000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/93000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/195000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/120000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/100000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/150000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/10000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/1200000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/400000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/900000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/700000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/550000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/50000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/175000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/15000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/12000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/6000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/2500000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/6000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/30000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/9000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/5000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/1000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/2000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/750000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/68000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/40000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/360000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/710000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/100000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/235000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/355000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/105000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/450000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/840000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/0/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/1620000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/4000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/4500000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/30000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/12000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/10000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/50000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/5000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/5000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/400000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/800000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/5000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/15000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/5000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/5000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/12000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/2000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/5000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/20000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/15000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/5000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/250000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/300000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/50000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/5000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/12000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/15000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/15000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/120000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/50000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/3010000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/2560000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/18900000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/27000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/15000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/6000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/7000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/4500000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/625000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/1500000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/2700000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/660000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/100000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/140000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/15000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/130000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/375000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/195000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/420000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/360000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/2160000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/180000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/640000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/3000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/11200000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/5400000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/800000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/300000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/1500000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/1960000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/1000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/280000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/0/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/220000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/90000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/1200000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/1000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/4700000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/90000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/75000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/120000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/52000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/168000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/76500/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/380000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/0/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/0/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/12500/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/0/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/6500000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/600000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/6600000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/2400000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/0/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/0/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/10000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/6000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/0/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/400000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/60000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/10000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/200000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/450000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/120000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/3700000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/1600000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/1000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/25000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/20000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/35000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/25000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/1054000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/566300/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/1105650/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/2701300/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/372350/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/1311000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/1768000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/297000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/60000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/50000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/0/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/5000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/4000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/9000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/8550000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/0/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/15000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/0/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/500000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/600000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/1000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/20000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/60000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/90000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/90000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/60000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/24000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/0/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/0/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/1539000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/40500/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/500000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/750000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/600000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/120000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/360000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/150000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/100000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/72000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/2500000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/48000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/72000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/824000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/20000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/60000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/800000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/3000000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/100000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/300000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/1500000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/7280000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/1860000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/2040000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/1610000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/1980000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/850000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/1440000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/1125000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/1260000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/160000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/2835000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/1600000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/1980000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/90000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/0/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/765000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/1650000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/750000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/450000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SPTPA-TERINTAMBWE/capital/3570000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/2512500/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/ICIZANYE-HOTEL/capital/8400000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/120000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/60000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/3015000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/2240000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/650000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/1485000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/4100000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/900000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/80000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/80000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/360000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/24000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/20000/EXPENSE
+###
+POST http://localhost:8080/manager-api/facilities/SNACK-BAR-KUGATUMBA/capital/21000/EXPENSE
