@@ -9,6 +9,7 @@ import {FacilityServiceImpl} from "../../services/facility.service.impl";
 import {CapitalService} from "./capital.service";
 import {CapitalServiceImpl} from "../../services/capital.service.impl";
 import {EmptyComponent} from "../empty/empty.component";
+import {TotalCostPipe} from "../../pipes/total-cost.pipe";
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {EmptyComponent} from "../empty/empty.component";
         ListingModule,
         ReactiveFormsModule,
         EmptyComponent,
+        TotalCostPipe,
     ],
     providers:[
         {provide: FacilityService, useClass:FacilityServiceImpl },

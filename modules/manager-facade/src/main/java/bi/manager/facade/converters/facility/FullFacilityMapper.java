@@ -11,7 +11,7 @@ import org.mapstruct.Mapping;
 
 import java.util.Collection;
 
-@Mapper(componentModel = "spring", uses = {FullCapitalMapper.class, CategoryMapper.class, ClientMapper.class})
+@Mapper(componentModel = "spring", uses = {FullCapitalMapper.class, CategoryInventoryMapper.class, ClientMapper.class})
 public interface FullFacilityMapper {
     Collection<MBFacilityData> facilitiesToData(Collection<MBFacilityType> facilities);
 
