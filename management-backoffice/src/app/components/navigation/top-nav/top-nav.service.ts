@@ -162,4 +162,10 @@ export class TopNavService {
         this.dateRangeFrom = formGroup;
         return formGroup;
     }
+
+    createDownloadLink(range: DateRange = this.dateRangeFrom.getRawValue()):string {
+        const params = `?from=${range.from}&to=${range.to}`;
+        const route = this.router.url.split("/").pop() +"Pdf";
+        return this.urlBuilder.getUrlForEndPoint(route)+params;
+    }
 }

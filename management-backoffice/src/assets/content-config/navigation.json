@@ -80,8 +80,8 @@
         "name": "nodes.name.discard"
       },
       {
-        "id": "print",
-        "name": "nodes.name.print",
+        "id": "download",
+        "name": "label.download",
         "disabledOn": [
           "dashboard"
         ]

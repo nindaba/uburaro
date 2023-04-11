@@ -16,9 +16,9 @@
                 {{getName('delete')}}
             </a>
 
-            <a class="btn btn-icon" translate *ngIf="isEnabled('print')">
-                <div class="mb-icon printer"></div>
-                {{getName('print')}}
+            <a class="btn btn-icon" translate *ngIf="isEnabled('download')" [href]="$downloadLink | async" target="_blank">
+                <div class="mb-icon download"></div>
+                {{getName('download')}}
             </a>
 
             <a class="btn btn-icon" translate *ngIf="isEnabled('use')">
