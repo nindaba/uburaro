@@ -65,5 +65,7 @@ public interface MBInventoryOrderService {
      */
     MBPage<MBInventoryOrderType> getOrderByFacilityCode(String code, MBInventoryEntryEnum orderType, LocalDate from, LocalDate to, MBPageable pageable);
 
+    Collection<MBInventoryOrderType> getOrderByFacilityCode(String code, MBInventoryEntryEnum orderType, LocalDate from, LocalDate to);
+
     long getTotalAmount(String facility, LocalDate from, LocalDate to, MBInventoryEntryEnum entryType);
 }

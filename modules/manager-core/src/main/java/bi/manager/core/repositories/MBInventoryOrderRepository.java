@@ -29,5 +29,5 @@ public interface MBInventoryOrderRepository extends ItemRepository<MBInventoryOr
             "AND c." + MBInventoryOrderType.ORDER_DATE + " <= ?3 " +
             "AND c." + MBInventoryOrderType.ORDER_DATE + " >= ?2 " +
             "AND c." + MBInventoryOrderType.ORDER_ENTRY + " = ?4")
-    Collection<MBInventoryOrderType> findAmountByFacilityAndDateRange(String facility, LocalDate from, LocalDate to, MBInventoryEntryEnum orderType);
+    Collection<MBInventoryOrderType> findAllByFacilityAndDateRange(String facility, LocalDate from, LocalDate to, MBInventoryEntryEnum orderType);
 }

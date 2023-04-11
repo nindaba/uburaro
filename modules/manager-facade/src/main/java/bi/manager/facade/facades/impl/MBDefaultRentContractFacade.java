@@ -73,4 +73,11 @@ public class MBDefaultRentContractFacade implements MBRentContractFacade {
         pageData.setPages(page.getPages());
         return pageData;
     }
+
+    @Override
+    public Collection<MBRentContractData> getFacilityContracts(final String facility,final MBDateRangeData range) {
+        final Collection<MBRentContractType> contracts = service.getContracts(facility, getLocalDate(range.getFrom()), getLocalDate(range.getTo()));
+        return mapper.contractsToData(contracts);
+    }
+
 }

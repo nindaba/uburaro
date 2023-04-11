@@ -16,13 +16,13 @@
       "label.entry.date",
       "label.client.name",
       "label.amount",
-      "label.entry.type",
+      "label.entry.paymentType",
       "label.entry.desc"
     ]
   },
   "rents": {
     "contract": [
-      "label.date.created",
+      "contract.code",
       "label.rent.property",
       "label.client.name",
       "label.rent.duration",

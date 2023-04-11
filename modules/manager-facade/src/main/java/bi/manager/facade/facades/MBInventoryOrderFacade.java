@@ -60,4 +60,5 @@ public interface MBInventoryOrderFacade {
      * @return page of Inventory Order
      */
     MBPageData<MBInventoryOrderData> getOrderByFacilityCode(String code, MBInventoryEntryEnum orderType, MBDateRangeData range, MBPageableData page);
+    Collection<MBInventoryOrderData> getOrderByFacilityCode(String code, MBInventoryEntryEnum orderType, MBDateRangeData range);
 }

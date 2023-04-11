@@ -21,4 +21,7 @@ public interface MBRentContractRepository extends ItemRepository<MBRentContractT
 
     @Query("SELECT c FROM "+MBRentContractType.ITEM_TYPE+" AS c WHERE c."+MBRentContractType.RENT_PROPERTY+".facility.code = ?1 AND (c."+MBRentContractType.FROM+" <= ?3 AND c."+MBRentContractType.TO+" >= ?2)")
     Page<MBRentContractType> findContractsByFacilityAndDates(String facility, LocalDate from, LocalDate to, Pageable pageable);
+
+    @Query("SELECT c FROM "+MBRentContractType.ITEM_TYPE+" AS c WHERE c."+MBRentContractType.RENT_PROPERTY+".facility.code = ?1 AND (c."+MBRentContractType.FROM+" <= ?3 AND c."+MBRentContractType.TO+" >= ?2)")
+    Collection<MBRentContractType> findContractsByFacilityAndDates(String facility, LocalDate from, LocalDate to);
 }

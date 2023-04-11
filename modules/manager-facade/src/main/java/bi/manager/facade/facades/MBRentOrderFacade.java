@@ -68,4 +68,6 @@ public interface MBRentOrderFacade {
      * @return page of rent orders
      */
     MBPageData<MBRentOrderData> getOrderByFacilityCode(String facility, MBDateRangeData range, MBPageableData page);
+
+    Collection<MBRentOrderData> getOrderByFacilityCode(String code, MBDateRangeData range);
 }

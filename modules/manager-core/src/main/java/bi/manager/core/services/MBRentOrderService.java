@@ -81,4 +81,5 @@ public interface MBRentOrderService {
      */
     MBPage<MBRentOrderType> getOrderByFacilityCode(String facility, LocalDate from, LocalDate to, MBPageable pageable);
 
+    Collection<MBRentOrderType> getOrderByFacilityCode(String facility, LocalDate from, LocalDate to);
 }

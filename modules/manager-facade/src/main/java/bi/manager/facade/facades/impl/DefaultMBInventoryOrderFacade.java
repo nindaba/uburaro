@@ -67,4 +67,9 @@ public class DefaultMBInventoryOrderFacade implements MBInventoryOrderFacade {
         pageData.setPages(page.getPages());
         return pageData;
     }
+    @Override
+    public Collection<MBInventoryOrderData> getOrderByFacilityCode(final String code, final MBInventoryEntryEnum orderType, final MBDateRangeData range) {
+        final Collection<MBInventoryOrderType> orders = orderService.getOrderByFacilityCode(code,orderType, getLocalDate(range.getFrom()), getLocalDate(range.getTo()));
+        return mapper.inventoriesToData(orders);
+    }
 }

@@ -67,4 +67,6 @@ public interface MBRentContractFacade {
      * @return page of contracts
      */
     MBPageData<MBRentContractData> getFacilityContracts(String facility, MBDateRangeData range, MBPageableData page);
+
+    Collection<MBRentContractData> getFacilityContracts(String code, MBDateRangeData range);
 }

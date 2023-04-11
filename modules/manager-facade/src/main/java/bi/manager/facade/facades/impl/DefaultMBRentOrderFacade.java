@@ -9,7 +9,6 @@ import bi.manager.facade.data.MBPageData;
 import bi.manager.facade.data.MBPageableData;
 import bi.manager.facade.data.MBRentOrderData;
 import bi.manager.facade.facades.MBRentOrderFacade;
-import bi.uburaro.facade.data.ItemData;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -64,7 +63,7 @@ public class DefaultMBRentOrderFacade implements MBRentOrderFacade {
     }
 
     @Override
-    public MBPageData<MBRentOrderData> getOrderByFacilityCode(final String facility,final MBDateRangeData range, final MBPageableData pageable) {
+    public MBPageData<MBRentOrderData> getOrderByFacilityCode(final String facility, final MBDateRangeData range, final MBPageableData pageable) {
         final LocalDate from = getLocalDate(range.getFrom());
         final LocalDate to = getLocalDate(range.getTo());
         final MBPage<MBRentOrderType> page = service.getOrderByFacilityCode(facility, from, to, createPage(pageable));
@@ -72,5 +71,11 @@ public class DefaultMBRentOrderFacade implements MBRentOrderFacade {
         pageData.setContent(mapper.rentsToData(page.getContent()));
         pageData.setPages(page.getPages());
         return pageData;
+    }
+
+    @Override
+    public Collection<MBRentOrderData> getOrderByFacilityCode(final String facility, final MBDateRangeData range) {
+        final Collection<MBRentOrderType> orders = service.getOrderByFacilityCode(facility, getLocalDate(range.getFrom()), getLocalDate(range.getTo()));
+        return mapper.rentsToData(orders);
     }
 }

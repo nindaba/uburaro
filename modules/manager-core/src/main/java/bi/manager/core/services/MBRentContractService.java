@@ -67,4 +67,6 @@ public interface MBRentContractService extends MBTypeService<MBRentContractType>
      * @return page of contracts
      */
     MBPage<MBRentContractType> getContracts(String facility, LocalDate from, LocalDate to, MBPageable pageable);
+
+    Collection<MBRentContractType> getContracts(String facility, LocalDate from, LocalDate to);
 }
