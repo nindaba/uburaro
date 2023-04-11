@@ -35,6 +35,10 @@ export class EndpointConfig {
     relation: { [key: string]: string } = {};
     contracts: string = "";
     capitalSummary: string = "";
+    rentsPdf:string = "";
+    clientsPdf: string = "";
+    capitalPdf: string = "";
+    inventoriesPdf: string = "";
 
     [key: string]: any;
 

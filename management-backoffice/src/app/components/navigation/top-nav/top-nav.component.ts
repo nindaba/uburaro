@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {TopNavService} from "./top-nav.service";
-import {Router} from "@angular/router";
+import {NavigationEnd, Router} from "@angular/router";
 import {BreadcrumbsService} from "./breadcrumbs.service";
-import {filter, Subject} from "rxjs";
+import {filter, map, merge, Observable, Subject} from "rxjs";
 import {NEW_ITEM} from "../navigation.constants";
 import {FormControl, FormGroup} from "@angular/forms";
-import {DateRange, NotificationStatus} from "../../../model/navigation.model";
+import {NotificationStatus} from "../../../model/navigation.model";
 import {NotificationService} from "../../notification/notification.service";
 
 @Component({
@@ -19,6 +19,9 @@ export class TopNavComponent implements OnInit {
 
     selectedCodes: string[] = [];
     dateRangeFrom: FormGroup = this.service.createRangeForm();
+    $downloadLink: Observable<string> =
+        merge(this.dateRangeFrom.valueChanges, this.router.events.pipe(filter(route => route instanceof NavigationEnd))).pipe(
+            map(value => this.service.createDownloadLink()))
 
     constructor(
         private service: TopNavService,
