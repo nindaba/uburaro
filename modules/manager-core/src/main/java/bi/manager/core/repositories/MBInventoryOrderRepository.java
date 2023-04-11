@@ -12,22 +12,20 @@ import java.time.LocalDate;
 import java.util.Collection;
 
 public interface MBInventoryOrderRepository extends ItemRepository<MBInventoryOrderType> {
+   String QUERY = "SELECT c FROM " + MBInventoryOrderType.ITEM_TYPE + " AS c " +
+           "WHERE c." + MBInventoryOrderType.INVENTORY + ".category.facility.code = ?1 " +
+           "AND c." + MBInventoryOrderType.ORDER_DATE + " <= ?3 " +
+           "AND c." + MBInventoryOrderType.ORDER_DATE + " >= ?2 " +
+           "AND c." + MBInventoryOrderType.ORDER_ENTRY + " = ?4";
+   
     @Override
     default <TYPE extends ItemType> boolean belongsTo(Class<TYPE> typeClass) {
         return MBInventoryOrderType.class.equals(typeClass);
     }
 
-    @Query("SELECT c FROM " + MBInventoryOrderType.ITEM_TYPE + " AS c " +
-            "WHERE c." + MBInventoryOrderType.INVENTORY + ".category.facility.code = ?1 " +
-            "AND c." + MBInventoryOrderType.ORDER_DATE + " <= ?3 " +
-            "AND c." + MBInventoryOrderType.ORDER_DATE + " >= ?2 " +
-            "AND c." + MBInventoryOrderType.ORDER_ENTRY + " = ?4")
+    @Query(QUERY)
     Page<MBInventoryOrderType> findAllByFacilityAndDateRange(String facility, LocalDate from, LocalDate to, MBInventoryEntryEnum orderType, Pageable pageable);
 
-    @Query("SELECT c FROM " + MBInventoryOrderType.ITEM_TYPE + " AS c " +
-            "WHERE c." + MBInventoryOrderType.INVENTORY + ".category.facility.code = ?1 " +
-            "AND c." + MBInventoryOrderType.ORDER_DATE + " <= ?3 " +
-            "AND c." + MBInventoryOrderType.ORDER_DATE + " >= ?2 " +
-            "AND c." + MBInventoryOrderType.ORDER_ENTRY + " = ?4")
-    Collection<MBInventoryOrderType> findAmountByFacilityAndDateRange(String facility, LocalDate from, LocalDate to, MBInventoryEntryEnum orderType);
+    @Query(QUERY)
+    Collection<MBInventoryOrderType> findAllByFacilityAndDateRange(String facility, LocalDate from, LocalDate to, MBInventoryEntryEnum orderType);
 }

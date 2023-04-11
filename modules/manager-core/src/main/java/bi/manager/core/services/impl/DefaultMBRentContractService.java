@@ -176,4 +176,9 @@ public class DefaultMBRentContractService extends AbstractMBTypeService<MBRentCo
         Page<MBRentContractType> page = rentContractRepository.findContractsByFacilityAndDates(facility, from, to, pageable);
         return new MBPage<>(page);
     }
+
+    @Override
+    public Collection<MBRentContractType> getContracts(String facility, LocalDate from, LocalDate to) {
+        return rentContractRepository.findContractsByFacilityAndDates(facility, from, to);
+    }
 }

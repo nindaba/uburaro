@@ -173,8 +173,13 @@ public class DefaultMBInventoryOrderService extends AbstractOrderService impleme
     }
 
     @Override
+    public Collection<MBInventoryOrderType> getOrderByFacilityCode(String code, MBInventoryEntryEnum orderType, LocalDate from, LocalDate to) {
+        return inventoryOrderRepository.findAllByFacilityAndDateRange(code,from,to, orderType);
+    }
+
+    @Override
     public long getTotalAmount(final String facility, final LocalDate from, final LocalDate to, final MBInventoryEntryEnum entryType) {
-        return inventoryOrderRepository.findAmountByFacilityAndDateRange(facility, from, to, entryType).stream()
+        return inventoryOrderRepository.findAllByFacilityAndDateRange(facility, from, to, entryType).stream()
                 .map(order -> order.getCost() * order.getQuantity())
                 .reduce(0l, Long::sum);
     }

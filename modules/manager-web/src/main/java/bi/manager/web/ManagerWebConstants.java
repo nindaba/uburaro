@@ -9,7 +9,7 @@ public interface ManagerWebConstants {
         interface Facility {
             String endpoint = "facilities";
             String facility = endpoint + "/{code}";
-            String facilityCode =  "/{code}";
+            String facilityCode = "/{code}";
             String capital = facility + "/capital";
         }
 
@@ -43,12 +43,13 @@ public interface ManagerWebConstants {
 
         interface Orders {
             String endpoint = "orders";
-            String clientOrders = Client.client+"/"+endpoint;
+            String clientOrders = Client.client + "/" + endpoint;
 
             interface Inventory {
                 String endpoint = Orders.endpoint + "/inventory";
                 String inventoryOrders = "/{code}";
                 String facilityOrders = "/facility/{code}";
+                String facilityOrdersPdf = facilityOrders + "/pdf";
                 String clientOrders = "/client/{code}";
             }
 
@@ -56,6 +57,7 @@ public interface ManagerWebConstants {
                 String endpoint = Orders.endpoint + "/rent";
                 String inventoryOrders = "/{code}";
                 String facilityOrders = "/facility/{code}";
+                String facilityOrdersPdf = facilityOrders + "/pdf";
                 String clientOrders = "/client/{code}";
                 String contractOrders = "/contract/{code}";
 
@@ -67,9 +69,9 @@ public interface ManagerWebConstants {
             String endpoint = "data-import";
         }
 
-        interface Summary{
+        interface Summary {
             String endpoint = "/facilities/{code}";
-            String capital= "/capital-summary";
+            String capital = "/capital-summary";
         }
 
     }

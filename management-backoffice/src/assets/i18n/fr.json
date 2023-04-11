@@ -85,6 +85,7 @@
   "inventory.quantity.error": "Pas assez d'inventaires",
   "label.entry.desc": "Description",
   "label.entry.type": "Type de capital",
+  "label.entry.paymentType": "Type de Paiement",
   "label.entry.date": "Date",
   "label.invoice.date": "Date de facturation",
   "label.invoice.desc": "Description",

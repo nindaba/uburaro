@@ -1,13 +1,13 @@
 package bi.manager.facade.data.jasper;
 
 import bi.manager.facade.data.MBCapitalEntryData;
-import bi.manager.facade.data.MBDateRangeData;
 import bi.manager.facade.data.total.MBCapitalSummaryData;
 
-public class MBCapitalReportData {
+import java.util.Collection;
+
+public class MBCapitalReportData extends MBReportData{
     private MBCapitalSummaryData totals;
-    private MBCapitalEntryData entries;
-    private MBDateRangeData range;
+    private Collection<MBCapitalEntryData> entries;
 
     public MBCapitalSummaryData getTotals() {
         return totals;
@@ -17,19 +17,11 @@ public class MBCapitalReportData {
         this.totals = totals;
     }
 
-    public MBCapitalEntryData getEntries() {
+    public Collection<MBCapitalEntryData> getEntries() {
         return entries;
     }
 
-    public void setEntries(MBCapitalEntryData entries) {
+    public void setEntries(Collection<MBCapitalEntryData> entries) {
         this.entries = entries;
-    }
-
-    public MBDateRangeData getRange() {
-        return range;
-    }
-
-    public void setRange(MBDateRangeData range) {
-        this.range = range;
     }
 }

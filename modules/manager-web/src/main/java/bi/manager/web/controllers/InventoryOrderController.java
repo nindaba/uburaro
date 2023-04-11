@@ -1,16 +1,20 @@
 package bi.manager.web.controllers;
 
-import bi.manager.core.types.MBInventoryOrderType;
 import bi.manager.core.types.client.MBOrderType;
 import bi.manager.core.types.enums.MBInventoryEntryEnum;
 import bi.manager.facade.data.MBDateRangeData;
 import bi.manager.facade.data.MBInventoryOrderData;
 import bi.manager.facade.data.MBPageData;
+import bi.manager.facade.data.jasper.MBInventoryJRData;
 import bi.manager.facade.facades.MBInventoryOrderFacade;
+import bi.manager.facade.facades.MBPdfReportFacade;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Set;
 
 import static bi.manager.facade.factories.PageFactory.createPage;
@@ -22,6 +26,8 @@ import static bi.manager.web.ManagerWebConstants.Controller.Orders.Inventory;
 public class InventoryOrderController {
     @Resource(name = "mBInventoryOrderFacade")
     protected MBInventoryOrderFacade facade;
+    @Resource(name = "inventoryPdfReportFacade")
+    protected MBPdfReportFacade pdfReportFacade;
 
     @GetMapping(value = Inventory.facilityOrders)
     Collection<MBInventoryOrderData> getOrderByFacilityCode(@PathVariable String code) {
@@ -37,7 +43,32 @@ public class InventoryOrderController {
                                                             @RequestParam(required = false, defaultValue = MBOrderType.ORDER_DATE) String sort,
                                                             @RequestParam(required = false, defaultValue = "asc") String sortOrder) {
 
-        return facade.getOrderByFacilityCode(code,orderEntry, range, createPage(pageSize, currentPage, sort, sortOrder));
+        return facade.getOrderByFacilityCode(code, orderEntry, range, createPage(pageSize, currentPage, sort, sortOrder));
+    }
+
+    @GetMapping(value = Inventory.facilityOrdersPdf)
+    void getOrderByFacilityCode(
+            @PathVariable String code,
+            @RequestParam Date from,
+            @RequestParam Date to,
+            HttpServletResponse response) throws IOException {
+
+        final MBDateRangeData range = new MBDateRangeData();
+        final MBInventoryJRData report = new MBInventoryJRData();
+
+        range.setFrom(from);
+        range.setTo(to);
+
+        final Collection<MBInventoryOrderData> refill = facade.getOrderByFacilityCode(code, MBInventoryEntryEnum.REFILL, range);
+        final Collection<MBInventoryOrderData> sold = facade.getOrderByFacilityCode(code, MBInventoryEntryEnum.SOLD, range);
+        final Collection<MBInventoryOrderData> out = facade.getOrderByFacilityCode(code, MBInventoryEntryEnum.OUT, range);
+
+        report.setSoldOrders(sold);
+        report.setRefillOrders(refill);
+        report.setOutOrders(out);
+        report.setRange(range);
+
+        pdfReportFacade.getPdfReport(report, response.getOutputStream());
     }
 
     @GetMapping(value = Inventory.inventoryOrders)

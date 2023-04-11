@@ -1,14 +1,21 @@
 package bi.manager.web.controllers;
 
+import bi.manager.core.types.enums.MBPaymentModeEnum;
 import bi.manager.facade.data.*;
+import bi.manager.facade.data.jasper.MBClientJRData;
 import bi.manager.facade.facades.MBClientFacade;
+import bi.manager.facade.facades.MBPdfReportFacade;
 import bi.manager.facade.facades.MBRentContractFacade;
 import bi.manager.web.ManagerWebConstants;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static bi.manager.web.ManagerWebConstants.Controller.Client.client;
 import static bi.manager.web.ManagerWebConstants.Controller.Client.rentContract;
@@ -22,6 +29,8 @@ public class ClientController {
     protected MBClientFacade facade;
     @Resource(name = "mBRentContractFacade")
     protected MBRentContractFacade rentContractFacade;
+    @Resource(name = "clientPdfReportFacade")
+    protected MBPdfReportFacade pdfReportFacade;
 
     @GetMapping
     public Collection<MBClientData> getClientsByFacility(@PathVariable String code, @RequestParam(required = false) boolean allFields) {
@@ -59,5 +68,30 @@ public class ClientController {
     @DeleteMapping(value = ManagerWebConstants.Controller.Orders.clientOrders)
     public void deleteOrders(@RequestParam(name = "codes") Set<String> orderNumbers, @PathVariable String clientCode, @PathVariable String code) {
         facade.deleteOrders(orderNumbers);
+    }
+
+    @GetMapping(value = "/pdf")
+    public void getPdfReport(@PathVariable String code,
+                             @RequestParam Date from,
+                             @RequestParam Date to,
+                             HttpServletResponse response) throws IOException {
+
+        final MBDateRangeData range = new MBDateRangeData();
+        final MBClientJRData report = new MBClientJRData();
+
+        range.setFrom(from);
+        range.setTo(to);
+
+        final MBClientReportData clientsReport = facade.getClientsReport(code, range);
+
+        final Collection<MBInvoiceData> invoices = clientsReport.getInvoicesPage().getContent().stream()
+                .collect(Collectors.filtering(invoice -> invoice.getPaymentMode().equals(MBPaymentModeEnum.DEBT)
+                        , Collectors.toList()));
+
+        report.setRange(range);
+        report.setInvoices(invoices);
+        report.setClients(clientsReport.getClients());
+
+        pdfReportFacade.getPdfReport(report, response.getOutputStream());
     }
 }
