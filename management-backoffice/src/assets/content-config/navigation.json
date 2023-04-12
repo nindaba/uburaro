@@ -83,6 +83,12 @@
         "id": "download",
         "name": "label.download",
         "disabledOn": [
+          "facilities",
+          "dashboard",
+          "clients",
+          "categories",
+          "inventories",
+          "rents",
           "dashboard"
         ]
       },
