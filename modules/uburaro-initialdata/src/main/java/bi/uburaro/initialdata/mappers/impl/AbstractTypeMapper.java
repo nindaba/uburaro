@@ -3,7 +3,7 @@ package bi.uburaro.initialdata.mappers.impl;
 import bi.uburaro.core.exceptions.NotFoundException;
 import bi.uburaro.core.services.TypeService;
 import bi.uburaro.core.types.ItemType;
-import bi.uburaro.initialdata.data.BatchLineData;
+import bi.uburaro.core.types.importer.BatchLineType;
 import bi.uburaro.initialdata.mappers.Mapper;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -25,28 +25,28 @@ public abstract class AbstractTypeMapper<TYPE extends ItemType> implements Mappe
     }
 
     @Override
-    public void set(final BatchLineData fields, final BatchLineData line, final TYPE target) {
+    public void set(final BatchLineType fields, final BatchLineType line, final TYPE target) {
         if (StringUtils.isNotBlank(line.getValue())) {
             final List<String> keys = List.of(StringUtils.split(fields.getValue(), DELIMITER));
             final List<String> values = new ArrayList<>(List.of(line.getValue().split(DELIMITER)));
 
-            if (!line.isFailed()) {
-                IntStream.range(0, keys.size() - values.size())
-                        .forEach(index -> values.add(null));
+            IntStream.range(0, keys.size() - values.size())
+                    .forEach(index -> values.add(null));
 
-                IntStream.range(0, keys.size())
-                        .collect(HashMap<String, String>::new,
-                                (map, index) -> map.put(keys.get(index), values.get(index)),
-                                Map::putAll)
-                        .forEach((key, value) -> setTargetValue(
-                                line,
-                                createFieldsMapper(target).getOrDefault(key, noSuchField(key, target.getClass().getName())),
-                                value));
-            }
+            IntStream.range(0, keys.size())
+                    .collect(HashMap<String, String>::new,
+                            (map, index) -> map.put(keys.get(index), values.get(index)),
+                            Map::putAll)
+                    .forEach((key, value) -> setTargetValue(
+                            line,
+                            createFieldsMapper(target).getOrDefault(key, noSuchField(key, target.getClass().getName())),
+                            value));
+
+            typeService.delete(line);
         }
     }
 
-    private void setTargetValue(BatchLineData line, Consumer<String> mapper, String value) {
+    private void setTargetValue(BatchLineType line, Consumer<String> mapper, String value) {
         try {
             if (StringUtils.isNoneEmpty(value)) {
                 mapper.accept(value);
@@ -59,7 +59,7 @@ public abstract class AbstractTypeMapper<TYPE extends ItemType> implements Mappe
 
 
     @Override
-    public void set(final BatchLineData fields, final Map<TYPE, BatchLineData> targetValues) {
+    public void set(final BatchLineType fields, final Map<TYPE, BatchLineType> targetValues) {
         targetValues.forEach((target, values) -> set(fields, values, target));
     }
 

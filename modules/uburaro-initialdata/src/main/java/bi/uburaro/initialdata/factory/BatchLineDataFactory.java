@@ -1,6 +1,6 @@
 package bi.uburaro.initialdata.factory;
 
-import bi.uburaro.initialdata.data.BatchLineData;
+import bi.uburaro.core.types.importer.BatchLineType;
 
 public interface BatchLineDataFactory {
     /**
@@ -9,5 +9,5 @@ public interface BatchLineDataFactory {
      * @param value of the line
      * @return fileLine of FileLineData
      */
-    BatchLineData create(String value);
+    BatchLineType create(String value);
 }

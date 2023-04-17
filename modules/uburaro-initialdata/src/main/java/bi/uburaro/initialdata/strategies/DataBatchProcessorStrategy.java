@@ -1,8 +1,6 @@
 package bi.uburaro.initialdata.strategies;
 
-import bi.uburaro.core.types.ItemType;
-import bi.uburaro.initialdata.data.BatchData;
-import bi.uburaro.initialdata.mappers.Mapper;
+import bi.uburaro.core.types.importer.BatchType;
 
 public interface DataBatchProcessorStrategy {
 
@@ -13,6 +11,6 @@ public interface DataBatchProcessorStrategy {
      * @param batch to be processed
      * @return true if the batch was successfully processed
      */
-    boolean processBatch(BatchData batch);
+    boolean processBatch(BatchType batch);
 
 }

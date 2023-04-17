@@ -86,13 +86,13 @@ public class DefaultMBCapitalService implements MBCapitalService {
     @Override
     public Collection<MBCapitalEntryType> getCapitalEntries(String facilityCode, Date from, Date to) {
         MBCapitalType capital = getCapitalByFacility(facilityCode);
-        return entryRepository.findAllByCapitalAndDateModifiedBetween(capital,from,to);
+        return entryRepository.findAllByCapitalAndDateModifiedBetween(capital.getFacility().getCode(), from,to);
     }
 
     @Override
     public MBPage<MBCapitalEntryType> getCapitalEntries(final String facilityCode, final Date from, final Date to,final MBPageable pageable) {
         final MBCapitalType capital = getCapitalByFacility(facilityCode);
-        final Page<MBCapitalEntryType> page = entryRepository.findAllByCapitalAndDateModifiedBetween(capital, from, to,pageable);
+        final Page<MBCapitalEntryType> page = entryRepository.findAllByCapitalAndDateModifiedBetween(capital.getFacility().getCode(), from, to,pageable);
         return new MBPage<>(page);
     }
 

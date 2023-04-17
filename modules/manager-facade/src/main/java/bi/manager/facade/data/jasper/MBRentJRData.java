@@ -7,7 +7,8 @@ import java.util.Collection;
 
 public class MBRentJRData extends MBReportData{
     private Collection<MBRentContractData> contracts;
-    private Collection<MBRentOrderData> orders;
+    private Collection<MBRentOrderData> paidOrders;
+    private Collection<MBRentOrderData> unPaidOrders;
 
     public Collection<MBRentContractData> getContracts() {
         return contracts;
@@ -17,11 +18,19 @@ public class MBRentJRData extends MBReportData{
         this.contracts = contracts;
     }
 
-    public Collection<MBRentOrderData> getOrders() {
-        return orders;
+    public Collection<MBRentOrderData> getPaidOrders() {
+        return paidOrders;
     }
 
-    public void setOrders(Collection<MBRentOrderData> orders) {
-        this.orders = orders;
+    public void setPaidOrders(Collection<MBRentOrderData> paidOrders) {
+        this.paidOrders = paidOrders;
+    }
+
+    public Collection<MBRentOrderData> getUnPaidOrders() {
+        return unPaidOrders;
+    }
+
+    public void setUnPaidOrders(Collection<MBRentOrderData> unPaidOrders) {
+        this.unPaidOrders = unPaidOrders;
     }
 }

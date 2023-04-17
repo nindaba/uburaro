@@ -13,14 +13,15 @@ import java.util.Collection;
 import java.util.Date;
 
 public interface MBCapitalEntryRepository extends ItemRepository<MBCapitalEntryType> {
-    Collection<MBCapitalEntryType> findAllByCapitalAndDateModifiedBetween(MBCapitalType capital, Date from, Date to);
-
-    Page<MBCapitalEntryType> findAllByCapitalAndDateModifiedBetween(MBCapitalType capital, Date from, Date to, Pageable pageable);
-
-    @Query("SELECT c FROM " +MBCapitalEntryType.ITEM_TYPE+" AS c"+
+    String QUERY = "SELECT c FROM " +MBCapitalEntryType.ITEM_TYPE+" AS c"+
             " WHERE "+MBCapitalEntryType.CAPITAL+".facility.code = ?1" +
-            " AND "+MBCapitalEntryType.DATE_MODIFIED+" BETWEEN ?2 AND ?3" +
-            " AND "+MBCapitalEntryType.ENTRY_TYPE +" = ?4")
+            " AND "+MBCapitalEntryType.DATE_MODIFIED+" BETWEEN ?2 AND ?3";
+    @Query(QUERY)
+    Collection<MBCapitalEntryType> findAllByCapitalAndDateModifiedBetween(String facility, Date from, Date to);
+    @Query(QUERY)
+    Page<MBCapitalEntryType> findAllByCapitalAndDateModifiedBetween(String facility, Date from, Date to, Pageable pageable);
+
+    @Query(QUERY+" AND "+MBCapitalEntryType.ENTRY_TYPE +" = ?4")
     Collection<MBCapitalEntryType> findTotalAmount(String facility, Date from, Date to, MBEntryEnum entryType);
 
     @Override
