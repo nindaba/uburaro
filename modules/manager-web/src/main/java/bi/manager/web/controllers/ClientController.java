@@ -85,8 +85,9 @@ public class ClientController {
         final MBClientReportData clientsReport = facade.getClientsReport(code, range);
 
         final Collection<MBInvoiceData> invoices = clientsReport.getInvoicesPage().getContent().stream()
-                .collect(Collectors.filtering(invoice -> invoice.getPaymentMode().equals(MBPaymentModeEnum.DEBT)
-                        , Collectors.toList()));
+                .collect(Collectors.filtering(
+                        invoice -> !invoice.getPaymentMode().equals(MBPaymentModeEnum.DEBT),
+                        Collectors.toList()));
 
         report.setRange(range);
         report.setInvoices(invoices);

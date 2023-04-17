@@ -33,8 +33,8 @@ public class MBInventoryTypeMapper extends AbstractTypeMapper<MBInventoryType> {
                 VISIBLE, value -> target.setVisible(Boolean.valueOf(value)),
                 NAME, target::setName,
                 UNIT,target::setUnit,
+                QUANTITY,value -> {},
                 COST, value -> target.setCost(Long.parseLong(value)),
-                QUANTITY, value -> target.setQuantity(Integer.parseInt(value)),
                 CATEGORY, category -> target.setCategory(typeService.findItemByCode(category, MBCategoryType.class))
         ));
 

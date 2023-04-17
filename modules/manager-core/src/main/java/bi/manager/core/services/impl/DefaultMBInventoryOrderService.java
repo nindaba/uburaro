@@ -89,11 +89,17 @@ public class DefaultMBInventoryOrderService extends AbstractOrderService impleme
     }
 
     private void addCapitalEntry(MBInventoryOrderType order) {
+        final MBInventoryType inventory = order.getInventory();
+        if (inventory == null) {
+            throw new NotFoundException("empty.order.inventory");
+        }
+        if (inventory.getCategory() == null) {
+            throw new NotFoundException("empty.inventory.category");
+        }
         if (MBInventoryEntryEnum.REFILL == order.getOrderEntry() && order.getCost() > 0) {
-            MBFacilityType facility = order.getInventory().getCategory().getFacility();
+            MBFacilityType facility = inventory.getCategory().getFacility();
             capitalService.addCapital(order.getCost() * order.getQuantity(), MBEntryEnum.EXPENSE, facility);
         }
-
     }
 
     private void changeStockLevels(final MBInventoryOrderType orderType) {
@@ -174,7 +180,7 @@ public class DefaultMBInventoryOrderService extends AbstractOrderService impleme
 
     @Override
     public Collection<MBInventoryOrderType> getOrderByFacilityCode(String code, MBInventoryEntryEnum orderType, LocalDate from, LocalDate to) {
-        return inventoryOrderRepository.findAllByFacilityAndDateRange(code,from,to, orderType);
+        return inventoryOrderRepository.findAllByFacilityAndDateRange(code, from, to, orderType);
     }
 
     @Override

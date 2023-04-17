@@ -15,6 +15,7 @@
         <bean class="bi.uburaro.initialdata.mappers.impl.EmployeeGroupTypeMapper" parent="abstractTypeMapper"/>
         <bean class="bi.uburaro.initialdata.mappers.impl.manager.MBCategoryTypeMapper" parent="abstractTypeMapper"/>
         <bean class="bi.uburaro.initialdata.mappers.impl.manager.MBInventoryTypeMapper" parent="abstractTypeMapper"/>
+        <bean class="bi.uburaro.initialdata.mappers.impl.manager.MBInventoryOrderTypeMapper" parent="abstractTypeMapper"/>
         <bean class="bi.uburaro.initialdata.mappers.impl.manager.MBRentContractTypeMapper" parent="abstractTypeMapper">
             <constructor-arg name="orderRepository" ref="MBOrderRepository"/>
             <constructor-arg name="typeService" ref="typeService"/>
@@ -37,6 +38,7 @@
         <constructor-arg name="typeService" ref="typeService"/>
         <constructor-arg name="dataBatchProcessorStrategies" ref="dataBatchProcessorStrategy"/>
         <constructor-arg name="environment" ref="environment"/>
+        <constructor-arg name="batchRepository" ref="batchRepository"/>
     </bean>
 
 
@@ -46,5 +48,6 @@
           class="bi.uburaro.initialdata.strategies.impl.DefaultDataBatchProcessorStrategy">
         <constructor-arg name="mappers" ref="typeMappers"/>
         <constructor-arg name="typeService" ref="typeService"/>
+        <constructor-arg name="inventoryOrderService" ref="mBInventoryOrderService"/>
     </bean>
 </beans>

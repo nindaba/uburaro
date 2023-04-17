@@ -1,10 +1,7 @@
 package bi.manager.web.controllers;
 
 import bi.manager.core.types.client.MBOrderType;
-import bi.manager.facade.data.MBDateRangeData;
-import bi.manager.facade.data.MBPageData;
-import bi.manager.facade.data.MBRentContractData;
-import bi.manager.facade.data.MBRentOrderData;
+import bi.manager.facade.data.*;
 import bi.manager.facade.data.jasper.MBRentJRData;
 import bi.manager.facade.facades.MBPdfReportFacade;
 import bi.manager.facade.facades.MBRentContractFacade;
@@ -17,6 +14,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static bi.manager.facade.factories.PageFactory.createPage;
 import static bi.manager.web.ManagerWebConstants.Controller.Orders.Rent.*;
@@ -61,7 +59,8 @@ public class RentOrderController {
         final Collection<MBRentContractData> contracts = rentContractFacade.getFacilityContracts(code, range);
         final MBRentJRData report = new MBRentJRData();
 
-        report.setOrders(rentOrders);
+        report.setPaidOrders(rentOrders.stream().filter(MBOrderData::isPaid).collect(Collectors.toList()));
+        report.setUnPaidOrders(rentOrders.stream().filter(order -> !order.isPaid()).collect(Collectors.toList()));
         report.setRange(range);
         report.setContracts(contracts);
         pdfReportFacade.getPdfReport(report, response.getOutputStream());

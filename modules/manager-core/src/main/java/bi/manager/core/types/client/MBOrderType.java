@@ -18,7 +18,7 @@ import java.time.LocalDate;
 public class MBOrderType extends ItemType {
     public static final String ITEM_TYPE = "mBOrderType";
     public static final String CLIENT = "client";
-    public static final String QUANTITY = "orderDate";
+    public static final String QUANTITY = "quantity";
     public static final String UNIT = "unit";
     public static final String ORDER_DATE = "orderDate";
     public static final String COST = "cost";
