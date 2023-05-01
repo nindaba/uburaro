@@ -40,7 +40,7 @@ export class CreateContractComponent implements OnInit, OnDestroy {
         name: new FormControl("",Validators.required),
         code: this.clientCodeControl,
     });
-    contractForm: FormGroup = this.createForm({code: ""} as Rent);
+    contractForm: FormGroup = this.createForm({code: "", unit: UnitType.MONTHS} as Rent);
 
     @Input()
     property: Observable<Rent> = new Observable();

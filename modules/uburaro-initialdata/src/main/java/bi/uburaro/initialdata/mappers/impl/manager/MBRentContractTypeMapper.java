@@ -41,7 +41,6 @@ public class MBRentContractTypeMapper extends AbstractTypeMapper<MBRentContractT
                 TO, value -> target.setTo(LocalDate.parse(value)),
                 UNIT, value -> target.setUnit(Integer.parseInt(value)),
                 COST_PER_UNIT, value -> target.setCostPerUnit(Long.parseLong(value))
-
         ));
 
         fieldsMapper.putAll(Map.of(

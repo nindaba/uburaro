@@ -1,0 +1,8 @@
+﻿##mBCategory;;;;
+code;facility;name;active;visible
+categorie-kugatumba-cuisine;SNACK-BAR-KUGATUMBA;CUISINE;TRUE;TRUE
+categorie-kugatumba-bar;SNACK-BAR-KUGATUMBA;BAR;TRUE;TRUE
+categorie-kugatumba-salle;SNACK-BAR-KUGATUMBA;SALLE;TRUE;TRUE
+categorie-kugatumba-automobile;SNACK-BAR-KUGATUMBA;AUTOMOBILE;TRUE;TRUE
+categorie-kugatumba-batiment;SNACK-BAR-KUGATUMBA;BATIMENT;TRUE;TRUE
+categorie-kugatumba-depense;SNACK-BAR-KUGATUMBA;DEPENSE;TRUE;TRUE

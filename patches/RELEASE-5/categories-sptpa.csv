@@ -1,0 +1,12 @@
+﻿##mBCategory;;;;;
+code;facility;name;active;visible;
+categorie-sptpa-matière-première;SPTPA-TERINTAMBWE;MATIERE-PREMIERE;TRUE;TRUE;
+categorie-sptpa-produit-finie;SPTPA-TERINTAMBWE;PRODUIT-FINIE;TRUE;TRUE;
+categorie-sptpa-son-maïs;SPTPA-TERINTAMBWE;SON-DE-MAïS;TRUE;TRUE;
+categorie-sptpa-automobile;SPTPA-TERINTAMBWE;AUTOMOBILE;TRUE;TRUE;
+categorie-sptpa-amballage;SPTPA-TERINTAMBWE;AMBALLAGE;TRUE;TRUE;
+categorie-sptpa-electrique;SPTPA-TERINTAMBWE;ELECTRIQUE;TRUE;TRUE;
+categorie-sptpa-batiment;SPTPA-TERINTAMBWE;BATIMENT;TRUE;TRUE;
+categorie-sptpa-machine;SPTPA-TERINTAMBWE;MACHINE;TRUE;TRUE;
+categorie-sptpa-matériel;SPTPA-TERINTAMBWE;MATERIEL;TRUE;TRUE;
+categorie-sptpa-depense;SPTPA-TERINTAMBWE;DEPENSE;TRUE;TRUE;

@@ -11,6 +11,7 @@ import bi.manager.core.types.enums.MBPaymentModeEnum;
 import bi.manager.core.utils.MBPage;
 import bi.manager.core.utils.MBPageable;
 import bi.uburaro.core.services.TypeService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -121,9 +122,16 @@ public class DefaultMBCapitalService implements MBCapitalService {
 
     @Override
     public long getTotalAmount(String facilityCode, Date from, Date to, MBEntryEnum entryType) {
-        return entryRepository.findTotalAmount(facilityCode, from,to, entryType).stream()
+        return entryRepository.findAllByFacilityAndDateModifiedBetween(facilityCode, from,to, entryType).stream()
+                .peek(this::negateAmountIfDebt)
                 .map(MBCapitalEntryType::getAmount)
                 .reduce(0l, Long::sum);
+    }
+
+    private void negateAmountIfDebt(final MBCapitalEntryType entryType) {
+        if(StringUtils.startsWith(entryType.getDescription(),MBPaymentModeEnum.DEBT.name())){
+            entryType.setAmount(-entryType.getAmount());
+        }
     }
 
     private void updateCapital(final MBInvoiceType invoice) {

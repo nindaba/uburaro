@@ -1,0 +1,102 @@
+﻿##mBInventory;;;;;;;
+code;name;category;quantity;cost;active;visible;unit
+INVENTORY-ASSIETTE;Assiette;categorie-kugatumba-cuisine;196;10000;TRUE;TRUE;piece
+INVENTORY-FLUTEUSES;Fluteuses;categorie-kugatumba-cuisine;4;250000;TRUE;TRUE;piece
+INVENTORY-BASSINS-G;Bassins G;categorie-kugatumba-cuisine;8;35000;TRUE;TRUE;piece
+INVENTORY-TAMIS;Tamis;categorie-kugatumba-cuisine;11;15000;TRUE;TRUE;piece
+INVENTORY-IMBABURA;Imbabura;categorie-kugatumba-cuisine;7;15000;TRUE;TRUE;piece
+INVENTORY-ISAFURIYA;Isafuriya;categorie-kugatumba-cuisine;11;20000;TRUE;TRUE;piece
+INVENTORY-IKARAYI;Ikarayi;categorie-kugatumba-cuisine;6;15000;TRUE;TRUE;piece
+INVENTORY-MIXEUR-CUISINE;Mixeur;categorie-kugatumba-cuisine;1;180000;TRUE;TRUE;piece
+INVENTORY-CONGELATEUR-CUISINE;Congelateur;categorie-kugatumba-cuisine;2;500000;TRUE;TRUE;piece
+INVENTORY-CUISINIERE;Cuisiniere a gaz;categorie-kugatumba-cuisine;1;4700000;TRUE;TRUE;piece
+INVENTORY-BALANCE;Balance;categorie-kugatumba-cuisine;2;45000;TRUE;TRUE;piece
+INVENTORY-PLANCHES;Planches;categorie-kugatumba-cuisine;3;25000;TRUE;TRUE;piece
+INVENTORY-PALLETTE;Pallette;categorie-kugatumba-cuisine;6;20000;TRUE;TRUE;piece
+INVENTORY-IPANU;Ipanu;categorie-kugatumba-cuisine;6;30000;TRUE;TRUE;piece
+INVENTORY-BASSIN_P;Bassin P;categorie-kugatumba-cuisine;13;4000;TRUE;TRUE;piece
+INVENTORY-IBIRIKA;Ibirika;categorie-kugatumba-cuisine;12;5000;TRUE;TRUE;piece
+INVENTORY-FOURCHETTE;Fourchette;categorie-kugatumba-cuisine;101;2000;TRUE;TRUE;piece
+INVENTORY-COUTEAU_DE_TABLE;Couteau de table;categorie-kugatumba-cuisine;84;2000;TRUE;TRUE;piece
+INVENTORY-UTUYIKO_DUTOYA;Utuyiko dutoya;categorie-kugatumba-cuisine;51;1500;TRUE;TRUE;piece
+INVENTORY-BOLLE;Bolle;categorie-kugatumba-cuisine;76;5000;TRUE;TRUE;piece
+INVENTORY-CHAUFFE_EAU;Chauffe eau;categorie-kugatumba-cuisine;2;45000;TRUE;TRUE;piece
+INVENTORY-TABLE_DE_CUISINE;Table de cuisine;categorie-kugatumba-cuisine;8;40000;TRUE;TRUE;piece
+INVENTORY-CABELAS;Cabelas;categorie-kugatumba-cuisine;1;0;TRUE;TRUE;piece
+INVENTORY-ROUCHE;Rouche;categorie-kugatumba-cuisine;5;2500;TRUE;TRUE;piece
+INVENTORY-MACHETTE_DE_CUISINE;Machette de cuisine;categorie-kugatumba-cuisine;3;8000;TRUE;TRUE;piece
+INVENTORY-FOUR_AKABENZI;Four akabenzi ;categorie-kugatumba-cuisine;1;6500000;TRUE;TRUE;piece
+INVENTORY-VANTILATEUR;Vantilateur;categorie-kugatumba-cuisine;1;600000;TRUE;TRUE;piece
+INVENTORY-CALCULATRICE-CUISINE;Calculatrice;categorie-kugatumba-cuisine;1;10000;TRUE;TRUE;piece
+;;;;;;;
+;;;;;;;
+;;;;;;;
+;;;;;;;
+##mBInventory;;;;;;;
+code;name;category;quantity;cost;active;visible;unit
+INVENTORY-CARTON_AMSTEL_G;Carton amstel G;categorie-kugatumba-bar;67;45000;TRUE;TRUE;caisse
+INVENTORY-CARTON_P_AMSTEL;Carton P amstel ;categorie-kugatumba-bar;28;80000;TRUE;TRUE;caisse
+INVENTORY-CARTON_PRIMUS_G;Carton primus G;categorie-kugatumba-bar;26;25000;TRUE;TRUE;caisse
+INVENTORY-CARTON_PRIMUS_P;Carton primus p;categorie-kugatumba-bar;33;45000;TRUE;TRUE;caisse
+INVENTORY-CARTON_VIVA;Carton viva;categorie-kugatumba-bar;36;55000;TRUE;TRUE;caisse
+INVENTORY-CARTON_FANTA;Carton fanta;categorie-kugatumba-bar;81;35000;TRUE;TRUE;caisse
+INVENTORY-CARTON_ROYALE;Carton royale;categorie-kugatumba-bar;41;100000;TRUE;TRUE;caisse
+INVENTORY-CARTON_SOMA;Carton soma;categorie-kugatumba-bar;4;30000;TRUE;TRUE;caisse
+INVENTORY-CARTON_SKOL;Carton skol;categorie-kugatumba-bar;20;47000;TRUE;TRUE;caisse
+INVENTORY-CARTON_TUSKER;Carton tusker;categorie-kugatumba-bar;2;0;TRUE;TRUE;caisse
+INVENTORY-CARTON_SMINOFF;Carton sminoff;categorie-kugatumba-bar;2;0;TRUE;TRUE;caisse
+INVENTORY-BOUTEUILLE_SOMA;Bouteuille soma;categorie-kugatumba-bar;12;1500;TRUE;TRUE;caisse
+INVENTORY-BOUTEUILLE_AMSTEL_G;Bouteuille amstel G;categorie-kugatumba-bar;6;4000;TRUE;TRUE;caisse
+INVENTORY-BOUTEUILLE_AMSTEL_P;Bouteuille amstel P;categorie-kugatumba-bar;5;4000;TRUE;TRUE;caisse
+INVENTORY-BOUTEUILLE_PRIMUS_G ;Bouteuille primus G;categorie-kugatumba-bar;7;4000;TRUE;TRUE;caisse
+INVENTORY-BOUTEUILLE_PRIMUS_P ;Bouteuille primus P;categorie-kugatumba-bar;13;2000;TRUE;TRUE;caisse
+INVENTORY-BOUTEUILLE_FANTA;Bouteuille fanta;categorie-kugatumba-bar;17;1000;TRUE;TRUE;caisse
+INVENTORY-BOUTEUILLE_VIVA;Bouteuille viva;categorie-kugatumba-bar;8;1000;TRUE;TRUE;caisse
+INVENTORY-BOUTEUILLE_ROYALE;Bouteuille royale;categorie-kugatumba-bar;3;5000;TRUE;TRUE;caisse
+INVENTORY-CARTON_VIDE_AMSTEL_G;Carton vide amstel G;categorie-kugatumba-bar;7;10000;TRUE;TRUE;caisse
+INVENTORY-CARTON_VIDE_AMSTEL_P;Carton vide amstel P;categorie-kugatumba-bar;33;10000;TRUE;TRUE;caisse
+INVENTORY-CARTON_VIDE_PRIMUS_G;Carton vide primus G;categorie-kugatumba-bar;16;10000;TRUE;TRUE;caisse
+INVENTORY-CARTON_VIDE_VIVA;Carton vide viva;categorie-kugatumba-bar;13;10000;TRUE;TRUE;caisse
+INVENTORY-CHAISES;Chaises ;categorie-kugatumba-bar;146;45000;TRUE;TRUE;piece
+INVENTORY-TABLES;Tables;categorie-kugatumba-bar;48;80000;TRUE;TRUE;piece
+INVENTORY-CHAISE_DE_COMPTOIR;Chaises de comptoir;categorie-kugatumba-bar;44;150000;TRUE;TRUE;piece
+INVENTORY-TABLES_DE_COMPTOIR;Tables de comptoir;categorie-kugatumba-bar;10;250000;TRUE;TRUE;piece
+INVENTORY-CHAISE_FAUTEUILS; fauteuils complet;categorie-kugatumba-bar;6;400000;TRUE;TRUE;piece
+INVENTORY-CHAISES_BRARUDI;Chaises plastiq;categorie-kugatumba-bar;270;35000;TRUE;TRUE;piece
+INVENTORY-TABLES_BRARUDI;Tables plastiq;categorie-kugatumba-bar;44;60000;TRUE;TRUE;piece
+INVENTORY-IMITAKA_YA_BRARUDI;Imitaka ;categorie-kugatumba-bar;30;150000;TRUE;TRUE;piece
+INVENTORY-BILLARD;Billard;categorie-kugatumba-bar;2;5000000;TRUE;TRUE;piece
+INVENTORY-FRIGO;Frigo;categorie-kugatumba-bar;2;3000000;TRUE;TRUE;piece
+INVENTORY-FRIGO_BRARUDI;Frigo brarudi;categorie-kugatumba-bar;1;0;TRUE;TRUE;piece
+INVENTORY-ORDINATEUR;Ordinateur;categorie-kugatumba-bar;1;800000;TRUE;TRUE;piece
+INVENTORY-IMPRIMANTE;Imprimante;categorie-kugatumba-bar;1;1000000;TRUE;TRUE;piece
+INVENTORY-PARAPLUIE;Parapluie;categorie-kugatumba-bar;5;12000;TRUE;TRUE;piece
+INVENTORY-CARCULATRICE;Carculatrice;categorie-kugatumba-bar;1;10000;TRUE;TRUE;piece
+INVENTORY-POUBELLE;Poubelle;categorie-kugatumba-bar;3;10000;TRUE;TRUE;piece
+INVENTORY-CAMERA;Camera;categorie-kugatumba-bar;1;2500000;TRUE;TRUE;piece
+INVENROTY-CONGELATEUR;Congelateur;categorie-kugatumba-bar;1;500000;TRUE;TRUE;piece
+INVENTORY-ROUTEUR;Routeur;categorie-kugatumba-bar;1;150000;TRUE;TRUE;piece
+INVENTORY-VERRE-SIMPLE;Verre simple;categorie-kugatumba-bar;50;5000;TRUE;TRUE;piece
+INVENTORY-CONGELATEUR-BRARUDI;Congelateur brarudi;categorie-kugatumba-bar;1;0;TRUE;TRUE;piece
+INVENTORY-PLATEAUX;Plateaux;categorie-kugatumba-bar;9;10000;TRUE;TRUE;piece
+INVENTORY-COUPE;Coupe;categorie-kugatumba-bar;30;5000;TRUE;TRUE;piece
+INVENTORY-VERRE-DE-VIN;Verre de vin;categorie-kugatumba-bar;19;5000;TRUE;TRUE;piece
+INVENTORY-VERRE-BRARUDI;Verre brarudi;categorie-kugatumba-bar;146;0;TRUE;TRUE;piece
+;;;;;;;
+;;;;;;;
+##mBInventory;;;;;;;
+code;name;category;quantity;cost;active;visible;unit
+INVENTORY-TISSU;Tissu;categorie-kugatumba-salle;10;20000;TRUE;TRUE;piece
+INVENTORY-RADIO;Radio JBL;categorie-kugatumba-salle;1;5100000;TRUE;TRUE;piece
+INVENTORY-HAUT_PARLEUR;Haut parleur;categorie-kugatumba-salle;1;3700000;TRUE;TRUE;piece
+INVENTORY-RETRO_PROJECTEUR;Retro projecteur;categorie-kugatumba-salle;1;450000;TRUE;TRUE;piece
+INVENTORY-VENTILLATEUR;Ventillateur;categorie-kugatumba-salle;2;800000;TRUE;TRUE;piece
+INVENTORY-MIXEUR-SNACK;Mixeur;categorie-kugatumba-salle;1;1200000;TRUE;TRUE;piece
+INVENTORY-RADIO-SIMPLE;Radio simple;categorie-kugatumba-salle;1;1000000;TRUE;TRUE;piece
+;;;;;;;
+;;;;;;;
+;;;;;;;
+##mBInventory;;;;;;;
+code;name;category;quantity;cost;active;visible;unit
+INVENTORY-CAMIONNETTE;Camionnette;categorie-kugatumba-automobile;1;30000000;TRUE;TRUE;piece
+INVENTORY-GROUPE_ELECTOGENE;Groupe electrogene;categorie-kugatumba-automobile;1;20000000;TRUE;TRUE;piece
