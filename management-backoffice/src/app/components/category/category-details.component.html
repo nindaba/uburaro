@@ -17,7 +17,7 @@
     <div class="inventory" *ngIf="$category | async as category">
         <mb-relation title="inventories" [heads]="inventoryHeads" [allLink]="['inventories']" [createLink]="['inventories','new']">
             <ng-container *ngIf="category?.inventories?.length || 0 > 0; else empty">
-                <tr *ngFor="let inventory of category.inventories">
+                <tr *ngFor="let inventory of category.inventories" [routerLink]="['/','inventories',inventory.code]">
                     <td>
                         {{inventory.name}}
                     </td>
