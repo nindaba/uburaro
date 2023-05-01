@@ -104,11 +104,11 @@ public class DefaultImporterService extends SimpleFileVisitor<Path> implements D
         return FileVisitResult.CONTINUE;
     }
 
-    private void addLine(final BatchLineType line,final List<BatchType> batches) {
+    private void addLine(final BatchLineType line, final List<BatchType> batches) {
         if (StringUtils.contains(line.getValue(), TYPE_PREFIX)) {
             final BatchType batchData = typeService.create(BatchType.class);
             final String target = StringUtils.split(line.getValue().replaceFirst(TYPE_PREFIX_REGEXP, ""), DELIMITER)[0];
-            final Integer order = environment.getProperty(ORDER_KEY_PREFIX +target,Integer.class,0);
+            final Integer order = environment.getProperty(ORDER_KEY_PREFIX + target, Integer.class, 0);
             batchData.setTarget(target);
             batchData.setTargetOrder(order);
             batches.add(batchData);

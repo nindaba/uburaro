@@ -1,0 +1,10 @@
+﻿##mBCategory;;;;
+code;facility;name;active;visible
+categorie-icizanye-cuisine;ICIZANYE-HOTEL;CUISINE;TRUE;TRUE
+categorie-icizanye-bar;ICIZANYE-HOTEL;BAR;TRUE;TRUE
+categorie-icizanye-salle;ICIZANYE-HOTEL;SALLE;TRUE;TRUE
+categorie-icizanye-hebergement;ICIZANYE-HOTEL;HEBERGEMENT;TRUE;TRUE
+categorie-icizanye-gymnase;ICIZANYE-HOTEL;GYMNASE;TRUE;TRUE
+categorie-icizanye-automobile;ICIZANYE-HOTEL;AUTOMOBILE;TRUE;TRUE
+categorie-icizanye-batiment;ICIZANYE-HOTEL;BATIMENT;TRUE;TRUE
+categorie-icizanye-depense;ICIZANYE-HOTEL;DEPENSE;TRUE;TRUE

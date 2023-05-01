@@ -1,0 +1,86 @@
+﻿##mBInventory;;;;;;;
+code;name;category;quantity;cost;active;visible;unit
+INVENTORY-AMBALLAGE-DE-25KG;Amballage de 25kg;categorie-sptpa-amballage;1054;1000;TRUE;TRUE;piece
+INVENTORY-AMBALLAGE-DE-10KG;Amballage de10kg;categorie-sptpa-amballage;809;700;TRUE;TRUE;piece
+INVENTORY-AMBALLAGE-DE-5KG;Amballage de 5kg;categorie-sptpa-amballage;1701;650;TRUE;TRUE;piece
+INVENTORY-AMBALLAGE-DE-1KG;Amballage de 1kg;categorie-sptpa-amballage;3859;700;TRUE;TRUE;piece
+INVENTORY-AMBALLAGE-DE-500G;Amballage de 500g;categorie-sptpa-amballage;677;550;TRUE;TRUE;piece
+;;;;;;;
+;;;;;;;
+;;;;;;;
+##mBInventory;;;;;;;
+code;name;category;quantity;cost;active;visible;unit
+INVENTORY-MAïS;Maïs;categorie-sptpa-matière-première;874;1500;TRUE;TRUE;kg
+INVENTORY-SORGHO;Sorgho;categorie-sptpa-matière-première;1040;1700;TRUE;TRUE;kg
+INVENTORY-SOJA;Soja;categorie-sptpa-matière-première;1024;2000;TRUE;TRUE;kg
+INVENTORY-BLE;Blé;categorie-sptpa-matière-première;110;2700;TRUE;TRUE;kg
+INVENTORY-RIZ;Riz;categorie-sptpa-matière-première;10;3500;TRUE;TRUE;kg
+;;;;;;;
+##mBInventory;;;;;;;
+code;name;category;quantity;cost;active;visible;unit
+INVENTORY-LIGNE-ELECTRIQUE;Ligne électrique;categorie-sptpa-electrique;1;60000000;TRUE;TRUE;piece
+INVENTORY-GROUPE-ELECTROGENE-SPTPA;Groupe electrogene-Sptpa;categorie-sptpa-electrique;1;50000000;TRUE;TRUE;piece
+;;;;;;;
+;;;;;;;
+##mBInventory;;;;;;;
+code;name;category;quantity;cost;active;visible;unit
+INVENTORY-DROYER;Droyer;categorie-sptpa-machine;1;;TRUE;TRUE;piece
+INVENTORY-GRADER;Grader;categorie-sptpa-machine;1;5000000;TRUE;TRUE;piece
+INVENTORY-MACHINE-CYNCLONE;Machine Cynclone;categorie-sptpa-machine;1;4000000;TRUE;TRUE;piece
+INVENTORY-MELANGEUR;Melangeur;categorie-sptpa-machine;1;9000000;TRUE;TRUE;piece
+INVENTORY-TORREFACTEUR;Torrefacteur;categorie-sptpa-machine;1;8550000;TRUE;TRUE;piece
+INVENTORY-CHAINE-DE-PRODUCTION-MAΪS;Maϊs;categorie-sptpa-machine;1;;TRUE;TRUE;piece
+INVENTORY-CYNCLONE-INOXYDABLE;Cynclone Inoxydable;categorie-sptpa-machine;2;7500000;TRUE;TRUE;piece
+INVENTORY-CHAINE-DE-PRODUCTION-RIZ;Riz;categorie-sptpa-machine;1;;TRUE;TRUE;piece
+;;;;;;;
+;;;;;;;
+##mBInventory;;;;;;;
+code;name;category;quantity;cost;active;visible;unit
+INVENTORY-FARINE-DE-MAΪS-DE-25KG;Farine de maïs de 25kg;categorie-sptpa-produit-finie;0;;TRUE;TRUE;piece
+INVENTORY-FARINE-DE-MAΪS-10KG;Farine de maïs de 10kg;categorie-sptpa-produit-finie;0;;TRUE;TRUE;piece
+INVENTORY-FARINE-DE-MAΪS-5KG;Farine de maïs de 5kg;categorie-sptpa-produit-finie;0;;TRUE;TRUE;piece
+INVENTORY-FARINE-DE-BOULLIE-DE-1KG;Farine de boullie de 1kg;categorie-sptpa-produit-finie;0;;TRUE;TRUE;piece
+INVENTORY-FARINE-DE-BOULLIE-DE-500G;Farine de boullie de 500g;categorie-sptpa-produit-finie;0;;TRUE;TRUE;piece
+;;;;;;;
+;;;;;;;
+##mBInventory;;;;;;;
+code;name;category;quantity;cost;active;visible;unit
+INVENTORY-SON-DE-MAΪS-QUALITE-1;Son de maïs qualité 1;categorie-sptpa-son-maïs;0;;TRUE;TRUE;kg
+INVENTORY-SON-DE-MAΪS-QUALITE-2;Son de maïs qualité 2;categorie-sptpa-son-maïs;0;;TRUE;TRUE;kg
+;;;;;;;
+;;;;;;;
+;;;;;;;
+##mBInventory;;;;;;;
+code;name;category;quantity;cost;active;visible;unit
+INVENTORY-MACHINE-A-COUDRE;Machine à coudre;categorie-sptpa-matériel;1;500000;TRUE;TRUE;piece
+INVENTORY-BALANCE-ELECTRONIQUE;Balance electronique;categorie-sptpa-matériel;1;600000;TRUE;TRUE;piece
+INVENTORY-BALANCE-ZHUSHENG;Balance zhusheng;categorie-sptpa-matériel;1;1000000;TRUE;TRUE;piece
+IMVENTORY-ALLONGE;Allonge;categorie-sptpa-matériel;1;20000;TRUE;TRUE;piece
+INVENTORY-TABLE-DE-BUREAU;Table de bureau;categorie-sptpa-matériel;1;60000;TRUE;TRUE;piece
+INVENTORY-CHAISE;Chaise;categorie-sptpa-matériel;1;15000;TRUE;TRUE;piece
+INVENTORY-UNIFORME;Uniforme;categorie-sptpa-matériel;9;10000;TRUE;TRUE;piece
+INVENTORY-BOTUNE;Botune;categorie-sptpa-matériel;6;15000;TRUE;TRUE;piece
+INVENTORY-MARMITE;Marmite;categorie-sptpa-matériel;1;60000;TRUE;TRUE;piece
+INVENTORY-BECHE;Beche;categorie-sptpa-matériel;4;6000;TRUE;TRUE;piece
+;;;;;;;
+;;;;;;;
+##mBInventory;;;;;;;
+code;name;category;quantity;cost;active;visible;unit
+INVENTORY-MERCEDES-BENZ-3236;Mercedes benz 3236;categorie-sptpa-automobile;1;;TRUE;TRUE;piece
+;;;;;;;
+;;;;;;;
+;;;;;;;
+##mBInventory;;;;;;;
+code;name;category;quantity;cost;active;visible;unit
+INVENTORY-BATIMENT;Batiment;categorie-sptpa-batiment;3;;TRUE;TRUE;piece
+;;;;;;;
+;;;;;;;
+##mBInventory;;;;;;;
+code;name;category;quantity;cost;active;visible;unit
+INVENTORY-DEPLACEMENT;deplacement;categorie-sptpa-depense;2;85500;TRUE;TRUE;piece
+INVENTORY-MAIN D_OEUVRE;Main d_oeuvre;categorie-sptpa-depense;6;101500;TRUE;TRUE;piece
+INVENTORY-RATION;Ration;categorie-sptpa-depense;2;21000;TRUE;TRUE;piece
+INVENTORY-UMUSEGETERA;Umusegetera;categorie-sptpa-depense;1;7000;TRUE;TRUE;piece
+INVENTORY-DECHARGEMENT;Dechargement;categorie-sptpa-depense;10;10500;TRUE;TRUE;piece
+INVENTORY-AMAGUNIRA;Amagunira;categorie-sptpa-depense;40;800;TRUE;TRUE;piece
+INVENTORY-SHITING;Shiting;categorie-sptpa-depense;1;25000;TRUE;TRUE;piece

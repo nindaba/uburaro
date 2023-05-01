@@ -8,7 +8,10 @@ import bi.manager.core.types.client.MBRentContractType;
 import bi.manager.core.types.client.MBRentOrderType;
 import bi.uburaro.core.services.TypeService;
 import bi.uburaro.initialdata.mappers.impl.AbstractTypeMapper;
+import org.apache.commons.lang3.StringUtils;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -39,8 +42,8 @@ public class MBRentPropertyTypeMapper extends AbstractTypeMapper<MBRentPropertyT
                 VISIBLE, value -> target.setVisible(Boolean.valueOf(value)),
                 NAME, target::setName,
                 ADDRESS, target::setAddress,
-                UNIT, value -> target.setCost(Integer.parseInt(value)),
-                COST, value -> target.setCost(Long.parseLong(value))
+                COST, value -> target.setCost(Integer.parseInt(value)),
+                UNIT, value -> target.setUnit(Integer.parseInt(value))
         ));
 
         fieldsMapper.putAll(Map.of(
