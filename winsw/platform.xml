@@ -1,7 +1,0 @@
-<service>
-    <id>platform-1.0</id>
-    <name>Platform</name>
-    <description>Uburaro Backoffice Platform Service</description>
-    <executable>java</executable>
-    <arguments>-jar c:/uburaro/platform.jar</arguments>
-</service>
