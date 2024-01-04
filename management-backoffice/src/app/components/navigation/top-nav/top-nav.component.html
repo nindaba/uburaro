@@ -1,0 +1,53 @@
+<mb-confirm></mb-confirm>
+<div class="top-nav">
+    <mb-breadcrumbs></mb-breadcrumbs>
+    <div class="row nodes">
+        <div class="col nav-left">
+            <a class="btn" translate onclick = "window.history.go(-1)">
+                <div class="mb-icon left-arrow"></div>
+                {{getName('back')}}
+            </a>
+            <a  class="btn btn-icon" translate *ngIf="isEnabled('add')" (click)="add()">
+                <div class="mb-icon plus"></div>
+                {{getName('add')}}
+            </a>
+            <a class="btn btn-icon" translate *ngIf="isEnabled('delete')" (click)="delete()">
+                <div class="mb-icon delete"></div>
+                {{getName('delete')}}
+            </a>
+
+            <a class="btn btn-icon" translate *ngIf="isEnabled('download')" [href]="$downloadLink | async" target="_blank">
+                <div class="mb-icon download"></div>
+                {{getName('download')}}
+            </a>
+
+            <a class="btn btn-icon" translate *ngIf="isEnabled('use')">
+                <div class="mb-icon toggle {{facilitySelectedClass}}" (click)="facilitySelected()"></div>
+                {{getName('use')}}
+            </a>
+
+            <ng-container *ngIf="$formChanged | async">
+                <a class="btn danger" (click)="discard()" translate >{{getName('discard')}}</a>
+                <button class="btn primary" (click)="save()" translate >{{getName('save')}}</button>
+            </ng-container>
+
+        </div>
+        <div class="col nav-right">
+            <form [formGroup]="dateRangeFrom" class="d-flex gap-1">
+                <div class="input-grp label-front" *ngIf="isEnabled('from')">
+                    <span class="input-label">{{getName('from') | translate}}</span>
+                    <input formControlName="from" type="date" class="input-date nav-search" min="2021-01-01">
+                </div>
+                <div class="input-grp label-front" *ngIf="isEnabled('to')">
+                    <span class="input-label">{{getName('to')|translate}}</span>
+                    <input formControlName="to" type="date" class="input-date nav-search" min="2021-01-01" placeholder="{{getName('save')}}">
+                </div>
+            </form>
+            <div class="input-grp label-front">
+                <input type="text" class="input-text nav-search mb-icon search"
+                       placeholder="{{getName('search') | translate}}" [formControl]="searchFrom">
+            </div>
+
+        </div>
+    </div>
+</div>

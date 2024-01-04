@@ -1,7 +1,6 @@
 package bi.uburaro.core.repositories;
 
 import bi.uburaro.core.types.ItemType;
-import bi.uburaro.core.types.PrincipalType;
 import bi.uburaro.core.types.groups.GroupType;
 
 public interface GroupRepository<TYPE extends GroupType> extends ItemRepository<TYPE> {

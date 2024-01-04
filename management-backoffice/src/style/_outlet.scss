@@ -1,0 +1,108 @@
+.attributes, .capital{
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.relations {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: calc($spacing * 2);
+
+  mb-inventory-orders {
+    width: 100%;
+  }
+
+}
+
+.details {
+  &-page {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing;
+
+    .attributes {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      gap: calc(2 * $spacing);
+
+      > div, > mb-input-drop-down {
+        width: $input-width;
+      }
+    }
+
+    &.category {
+      .inventory {
+        width: 50%;
+      }
+    }
+    &.landing{
+      height: calc(100vh - $top-nav-height);
+      overflow-y: hidden;
+
+      .head {
+        position: sticky;
+        z-index: 1000;
+        display: flex;
+        flex-direction: row;
+        background-color: white;
+        box-shadow: $light-grey 2px;
+        align-items: flex-end;
+        padding-left: $spacing;
+        padding-bottom: 2px;
+        height: 50px;
+        .btn-tab{
+          font-size: 14px;
+        }
+      }
+      .details-invoices{
+        height: calc(100% - 50px);
+        overflow-y: auto;
+      }
+    }
+  }
+
+  &-cart, &-contract {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    border: solid 2px $border-color;
+
+    .title-cartbtn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .content {
+      &-top, &-middle{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 20px;
+        gap: calc(2 * $spacing);
+
+        > div, > mb-input-drop-down {
+          width: $input-width;
+        }
+        .area{
+          width: 400px;
+        }
+      }
+
+      &-bottom {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 20px;
+        gap: calc(2 * $spacing);
+        justify-content: flex-end;
+      }
+    }
+  }
+}

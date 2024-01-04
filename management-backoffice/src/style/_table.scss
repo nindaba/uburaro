@@ -1,0 +1,39 @@
+.table{
+  > :not(caption) > * > * {
+    border-bottom-width: $table-border-width;
+  }
+  thead{
+    position: sticky;
+    top: 0;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: $dark-grey;
+    vertical-align: middle;
+    height: 80px;
+    background-color: white;
+
+    th{
+      font-weight: 500;
+      border-bottom: none;
+    }
+  }
+  tbody{
+    tr{
+      font-weight: normal;
+      color:$font-color;
+      font-size: 13px;
+      &:hover{
+        cursor: pointer;
+        border-color: $primary;
+      }
+      th{
+         width: 30px;
+       }
+      &.total{
+        font-weight: 600;
+
+      }
+    }
+
+  }
+}

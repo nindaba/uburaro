@@ -1,0 +1,164 @@
+{
+  "side-nav": {
+    "main-nodes": {
+      "nodes": [
+        {
+          "icon": "home",
+          "name": "nodes.name.home",
+          "routeId": "dashboard"
+        },
+        {
+          "icon": "facilities",
+          "name": "nodes.name.facilities",
+          "routeId": "facilities"
+        }
+      ]
+    },
+    "child-nodes": {
+      "title": "child-node.title",
+      "nodes": [
+        {
+          "icon": "clients",
+          "name": "nodes.name.clients",
+          "routeId": "clients"
+        },
+        {
+          "icon": "categories",
+          "name": "nodes.name.categories",
+          "routeId": "categories"
+        },
+        {
+          "icon": "store",
+          "name": "nodes.name.stock",
+          "routeId": "inventories"
+        },
+        {
+          "icon": "building",
+          "name": "nodes.name.rents",
+          "routeId": "rents"
+        },
+        {
+          "icon": "report",
+          "name": "nodes.name.reports",
+          "routeId": "reports"
+        }
+      ]
+    }
+  },
+  "top-nav": {
+    "description": "This nodes configurations are not iterated through like the above. this are used for configs only ",
+    "nodes": [
+      {
+        "id": "back",
+        "name": "nodes.name.back"
+      },
+      {
+        "id": "search",
+        "name": "nodes.name.search"
+      },
+      {
+        "id": "add",
+        "name": "nodes.name.add",
+        "disabledOn": [
+          "reports"
+        ]
+      },
+      {
+        "id": "delete",
+        "name": "nodes.name.delete",
+        "disabledOn": [
+          "reports",
+          "dashboard"
+        ]
+      },
+      {
+        "id": "save",
+        "name": "nodes.name.save"
+      },
+      {
+        "id": "discard",
+        "name": "nodes.name.discard"
+      },
+      {
+        "id": "download",
+        "name": "label.download",
+        "disabledOn": [
+          "dashboard"
+        ]
+      },
+      {
+        "id": "use",
+        "name": "nodes.name.use",
+        "routeId": "facilities",
+        "disabledOn": [
+          "clients",
+          "categories",
+          "inventories",
+          "rents",
+          "reports",
+          "dashboard"
+        ]
+      },
+      {
+        "id": "from",
+        "name": "nodes.name.from",
+        "routeId": "report",
+        "disabledOn": [
+          "clients",
+          "categories",
+          "inventories",
+          "rents",
+          "facilities",
+          "dashboard"
+        ]
+      },
+      {
+        "id": "to",
+        "name": "nodes.name.to",
+        "routeId": "report",
+        "disabledOn": [
+          "clients",
+          "categories",
+          "inventories",
+          "rents",
+          "facilities",
+          "dashboard"
+        ]
+      }
+    ]
+  },
+  "report-tabs": {
+    "nodes": [
+      {
+        "name": "nodes.name.capital",
+        "routeId": "reports/capital",
+        "active": true
+      },
+      {
+        "name": "nodes.name.clients",
+        "routeId": "reports/clients"
+      },
+      {
+        "name": "nodes.name.inventories",
+        "routeId": "reports/inventories"
+      },
+      {
+        "name": "nodes.name.rents",
+        "routeId": "reports/rents"
+      }
+
+    ]
+  },
+  "clientDetailsTabs":{
+    "nodes": [
+      {
+        "name": "label.details",
+        "routeId": "code/details"
+      },
+      {
+        "name": "nodes.name.invoices",
+        "routeId": "code/invoices"
+      }
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+package bi.manager.core.types.client;
+
+import bi.manager.core.types.MBRentPropertyType;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import java.time.LocalDate;
+
+import static bi.uburaro.core.UburaroCoreConstants.TABLE_PREFIX;
+
+@Data
+@EqualsAndHashCode(callSuper = true, exclude = {"rentProperty","contract"})
+@ToString(callSuper = true, exclude = {"rentProperty","contract"})
+@NoArgsConstructor
+@Entity(name = MBRentOrderType.ITEM_TYPE)
+public class MBRentOrderType extends MBOrderType {
+    public static final String ITEM_TYPE = "mBRentOrder";
+    public static final String RENT_PROPERTY = "rentProperty";
+    public static final String FROM = "from";
+    public static final String TO = "to";
+    public static final String CONTRACT = "contract";
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private MBRentPropertyType rentProperty;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private MBRentContractType contract;
+
+    @Column(name = TABLE_PREFIX+FROM)
+    private LocalDate from;
+    @Column(name = TABLE_PREFIX+TO)
+    private LocalDate to;
+}

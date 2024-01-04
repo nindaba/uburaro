@@ -1,0 +1,10 @@
+<div *ngIf="showing | async as notification" class="d-flex flex-row notification notification-{{notification.status}}">
+    <div class="message">
+        {{notification.message || '' | translate}}
+    </div>
+    <div>
+        <a class="btn" (click)="close()">
+            <div class="mb-icon cross active"></div>
+        </a>
+    </div>
+</div>

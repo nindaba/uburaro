@@ -1,0 +1,50 @@
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: inherit;
+  height: calc(100vh - 80px);
+  font-size: 16px;
+  font-weight: 500;
+
+  .child-nodes {
+    .title {
+      color: $dark-grey;
+    }
+
+  }
+
+  .main-nodes {
+    padding-bottom: 20px;
+  }
+
+  .nav-node {
+    height: 54px;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 10px;
+    &:hover{
+      cursor: pointer;
+      color: $primary;
+      .btn-base{
+        background-color: $light-green;
+      }
+    }
+    .btn-base{
+      width: 48px;
+      height: 44px;
+      background-color: white;
+      border-radius: 8px;
+    }
+    &.active{
+      color: $primary;
+      .btn-base{
+        background-color: $primary;
+      }
+    }
+  }
+
+}

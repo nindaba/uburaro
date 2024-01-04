@@ -1,0 +1,37 @@
+{
+  "facilities": {
+    "heads": [
+      "label.code",
+      "label.facility.alias",
+      "label.facility.capital"
+    ]
+  },
+  "category": {
+    "heads": [
+      "label.code",
+      "label.name"
+    ]
+  },
+  "inventory": {
+    "heads": [
+      "label.code",
+      "label.name",
+      "label.quantity"
+    ]
+  },
+  "client": {
+    "heads": [
+      "label.code",
+      "label.client.name",
+      "label.client.debt"
+    ]
+  },
+  "rent": {
+    "heads": [
+      "label.code",
+      "label.rent.property",
+      "label.client.name",
+      "label.cost"
+    ]
+  }
+}

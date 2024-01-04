@@ -1,0 +1,66 @@
+{
+  "capital": {
+    "heads": [
+      "label.entry.date",
+      "label.amount",
+      "label.entry.type",
+      "label.entry.desc"
+    ]
+  },
+  "clients": {
+    "client": [
+      "label.client.name",
+      "label.client.debt"
+    ],
+    "invoice": [
+      "label.entry.date",
+      "label.client.name",
+      "label.amount",
+      "label.entry.paymentType",
+      "label.entry.desc"
+    ]
+  },
+  "rents": {
+    "contract": [
+      "contract.code",
+      "label.rent.property",
+      "label.client.name",
+      "label.rent.duration",
+      "label.cost"
+    ],
+    "order": [
+      "label.order.date",
+      "label.order.number",
+      "label.order.item",
+      "label.cost",
+      "label.quantity",
+      "label.total"
+    ]
+  },
+  "inventories": {
+    "inOrders": [
+      "label.order.date",
+      "label.order.number",
+      "label.order.item",
+      "label.cost",
+      "label.quantity",
+      "label.total"
+    ],
+    "outOrders": [
+      "label.order.date",
+      "label.order.number",
+      "label.order.item",
+      "label.cost",
+      "label.quantity",
+      "label.total"
+    ],
+    "soldOrders": [
+      "label.order.date",
+      "label.order.number",
+      "label.order.item",
+      "label.cost",
+      "label.quantity",
+      "label.total"
+    ]
+  }
+}

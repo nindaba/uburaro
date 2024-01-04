@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd ">
+
+    <import resource="manager-core-spring.xml"/>
+    <import resource="uburaro-initialdata-spring.xml"/>
+
+    <alias name="mBInitialDataFacade" alias="initialDataFacade"/>
+    <bean id="mBInitialDataFacade" class="bi.uburaro.facade.facades.impl.DefaultInitialDataFacade">
+        <constructor-arg name="dataImporterService" ref="dataImporterService"/>
+    </bean>
+
+    <bean id="capitalPdfReportFacade" class="bi.manager.facade.facades.impl.jasper.MBAbstractPdfReportFacade">
+        <constructor-arg name="report" value="classpath:jasper/capital-report.jrxml"/>
+    </bean>
+
+    <bean id="clientPdfReportFacade" class="bi.manager.facade.facades.impl.jasper.MBAbstractPdfReportFacade">
+        <constructor-arg name="report" value="classpath:jasper/client-report.jrxml"/>
+    </bean>
+
+    <bean id="inventoryPdfReportFacade" class="bi.manager.facade.facades.impl.jasper.MBAbstractPdfReportFacade">
+        <constructor-arg name="report" value="classpath:jasper/inventory-report.jrxml"/>
+    </bean>
+
+    <bean id="rentPdfReportFacade" class="bi.manager.facade.facades.impl.jasper.MBAbstractPdfReportFacade">
+        <constructor-arg name="report" value="classpath:jasper/rent-report.jrxml"/>
+    </bean>
+</beans>

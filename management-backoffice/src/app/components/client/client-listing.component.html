@@ -1,0 +1,13 @@
+<mb-listing [heads]="heads" *ngIf="($searchResult | async) || ($clients | async) as clients"
+            (selectedAll)="selectAll(clients)" [checkedAll]="headerCheck">
+
+    <tr *ngFor="let client of clients ">
+        <th scope="row">
+            <input class="primary" type="checkbox"
+                   [checked]="headerCheck || isSelected(client)" (change)="selectionChanged(client)">
+        </th>
+        <td [routerLink]="[client.code]">{{client.code}}</td>
+        <td [routerLink]="[client.code]">{{client.name}}</td>
+        <td [routerLink]="[client.code]">{{client.totalDebt}}</td>
+    </tr>
+</mb-listing>

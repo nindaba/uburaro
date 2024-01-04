@@ -1,0 +1,69 @@
+package bi.manager.facade.facades;
+
+import bi.manager.facade.data.*;
+
+import java.util.Collection;
+import java.util.Set;
+
+public interface MBClientFacade {
+
+    /**
+     * Get all the clients who belong to the {@code facilityCode} and are active
+     *
+     * @param allFields
+     * @param facilityCode
+     * @return collection of clients
+     */
+    Collection<MBClientData> getClientsByFacilityCode(String facilityCode, boolean allFields);
+
+    /**
+     * Gets a client by {@code code}
+     *
+     * @param allFields
+     * @param code
+     * @return client
+     */
+    MBClientData getClientByCode(String code, boolean allFields);
+
+    /**
+     * Deletes all the clients who belong to {@code  codes} s
+     * imply by setting inactivating them {@code client.setActive(false)}
+     *
+     * @param codes
+     */
+    void deleteClients(Set<String> codes);
+
+    /**
+     * Update or create a client,
+     * if the client is found already, an update will take place
+     * but if the client code is not registered, it will update the client
+     *
+     */
+    void updateClient(MBClientData client);
+
+    /**
+     * Deletes orders <br>
+     * by checking the order number prefix and determine which facade should delete the order<br>
+     * either {@link MBInventoryOrderFacade} or {@link MBRentOrderFacade}
+     * @param orderNumbers
+     */
+    void deleteOrders(Set<String> orderNumbers);
+
+    /**
+     *Gets facility client report, within the date range {@code range}
+     * 
+     * @param facility
+     * @param range
+     * @return
+     */
+    MBClientReportData getClientsReport(String facility, MBDateRangeData range);
+
+    /**
+     *Gets a client report with invoices paged like {@link #getClientsReport(String, MBDateRangeData)}
+     * 
+     * @param facility
+     * @param range
+     * @return
+     */
+    MBClientReportData getClientsReport(String facility, MBDateRangeData range, MBPageableData pageable);
+}

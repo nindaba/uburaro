@@ -1,0 +1,17 @@
+.main-component {
+  .row {
+    height: 100vh;
+    overflow-y: hidden;
+    > div {
+    }
+    .col-10 {
+      .router-outlet{
+        height: calc(100vh - $top-nav-height);
+        overflow-y: auto;
+      }
+    }
+  }
+}
+.primary-text{
+  color: $primary;
+}

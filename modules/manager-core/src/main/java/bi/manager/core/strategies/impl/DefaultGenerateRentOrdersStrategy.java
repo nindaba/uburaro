@@ -22,15 +22,13 @@ public class DefaultGenerateRentOrdersStrategy implements GenerateRentOrdersStra
     protected final MBRentContractRepository rentContractRepository;
     protected final MBRentOrderService rentOrderService;
 
-
-    public DefaultGenerateRentOrdersStrategy(MBRentContractRepository rentContractRepository, MBRentOrderService rentOrderService) {
+    public DefaultGenerateRentOrdersStrategy(final MBRentContractRepository rentContractRepository, final MBRentOrderService rentOrderService) {
         this.rentContractRepository = rentContractRepository;
         this.rentOrderService = rentOrderService;
     }
 
     @Override
     public Collection<MBRentContractType> generateOrders() {
-        System.out.println(this.rentContractRepository.findMBRentContractTypesByNextOrderDateBefore(LocalDate.now()).stream().map(b -> b.getCode()).collect(Collectors.toList()));
         return this.rentContractRepository.findMBRentContractTypesByNextOrderDateBefore(LocalDate.now()).stream()
                 .filter(ItemType::isActive)
                 .filter(contract -> contract.getRentProperty().getCurrentContract() == contract)
@@ -39,13 +37,12 @@ public class DefaultGenerateRentOrdersStrategy implements GenerateRentOrdersStra
                 .collect(Collectors.toList());
     }
 
-    protected void createOrdersAndSchedule(MBRentContractType contract) {
+    protected void createOrdersAndSchedule(final MBRentContractType contract) {
         while (this.canScheduleNextOrder(contract)) {
             createOrder(contract);
             this.scheduleNextOrderDate(contract);
         }
     }
-
     protected boolean canScheduleNextOrder(final MBRentContractType contract) {
         return contract.getRentProperty().getCurrentContract() != null
                 && contract.getNextOrderDate().isBefore(LocalDate.now());

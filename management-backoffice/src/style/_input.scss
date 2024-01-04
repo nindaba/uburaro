@@ -1,0 +1,127 @@
+.input-grp {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  label{
+    color: $gray-600;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .down{
+    position: absolute;
+    top: 60px;
+    z-index: 1000;
+    width: $input-width;
+    max-height: 400px;
+    overflow-y: scroll;
+    box-shadow: 2px 2px #F8F9FA;
+    border: solid 2px $border-color;
+    margin-left: -1px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: white;
+  }
+  &.label-front {
+    flex-direction: row;
+    align-items: center;
+
+    .input-label {
+      background-color: #D3D6DA66;
+      padding: 0 6px 0 6px;
+      border: solid 2px $border-color;
+      border-bottom-left-radius: 4px;
+      border-top-left-radius: 4px;
+      height: 30px;
+    }
+
+    .btn {
+      margin-left: 6px;
+      height: 27px;
+    }
+  }
+
+  > input, textarea,select{
+    border: solid 2px $border-color;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 14px;
+    margin-left: -2px;
+    color: $font-color;
+
+    &.ng-touched{
+      &.ng-invalid{
+        border-color: $danger;
+      }
+    }
+
+    &:focus {
+      outline-color: $dark-grey;
+    }
+
+    &.input-text,&.input-select {
+      height: 30px;
+      max-width: 280px;
+      &.nav-search {
+        min-width: 280px;
+        height: 30px;
+        background-position: 98%;
+        padding-right: 24px;
+      }
+    }
+    &.input-select{
+      padding: 0 0 0 6px;
+    }
+    &.input-date {
+        height: 30px;
+    }
+  }
+}
+
+.input-pagination{
+  width: 60px;
+  height: 20px;
+  text-align: center;
+  border: solid 2px $border-color;
+  border-radius: 4px;
+  color: $font-color;
+  font-size: 12px;
+  font-weight: 500;
+
+  &:focus {
+    outline-color: $dark-grey;
+  }
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  border-radius: 4px;
+  border: solid 2px $border-color;
+  display: grid;
+  place-content: center;
+  &.lg{
+    width: 24px;
+  }
+
+  &:checked::before {
+    background-size: 12px;
+    background-image: url("data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20width%3D%22122.877px%22%20height%3D%22101.052px%22%20viewBox%3D%220%200%20122.877%20101.052%22%20enable-background%3D%22new%200%200%20122.877%20101.052%22%20xml%3Aspace%3D%22preserve%22%3E%3Cg%3E%3Cpath%20d%3D%22M4.43%2C63.63c-2.869-2.755-4.352-6.42-4.427-10.11c-0.074-3.689%2C1.261-7.412%2C4.015-10.281%20c2.752-2.867%2C6.417-4.351%2C10.106-4.425c3.691-0.076%2C7.412%2C1.255%2C10.283%2C4.012l24.787%2C23.851L98.543%2C3.989l1.768%2C1.349l-1.77-1.355%20c0.141-0.183%2C0.301-0.339%2C0.479-0.466c2.936-2.543%2C6.621-3.691%2C10.223-3.495V0.018l0.176%2C0.016c3.623%2C0.24%2C7.162%2C1.85%2C9.775%2C4.766%20c2.658%2C2.965%2C3.863%2C6.731%2C3.662%2C10.412h0.004l-0.016%2C0.176c-0.236%2C3.558-1.791%2C7.035-4.609%2C9.632l-59.224%2C72.09l0.004%2C0.004%20c-0.111%2C0.141-0.236%2C0.262-0.372%2C0.368c-2.773%2C2.435-6.275%2C3.629-9.757%2C3.569c-3.511-0.061-7.015-1.396-9.741-4.016L4.43%2C63.63%20L4.43%2C63.63z%22%20fill%3D%22%23198754%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &::before {
+    content: "";
+    height: 16px;
+    width: 16px;
+    background-image: none;
+  }
+}
+
+form{
+  &.ng-invalid{
+    .ng-touched{
+      color: $danger;
+    }
+  }
+}

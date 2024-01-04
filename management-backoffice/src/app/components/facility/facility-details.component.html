@@ -1,0 +1,104 @@
+<div class="facility-details" *ngIf="($facility | async ) || true">
+    <div class="attributes">
+        <span class="mb-title" translate>label.details</span>
+        <form class="attributes d-flex justify-content-between flex-wrap" [formGroup]="itemForm">
+            <div class="input-grp">
+                <label for="code" class="" translate>label.code.required</label>
+                <input id="code" formControlName="code" type="text" class="input-text"
+                       placeholder="{{'label.code' | translate}}"/>
+            </div>
+            <div class="input-grp">
+                <label for="name" class="" translate>label.name.required</label>
+                <input id="name" formControlName="name" type="text" class="input-text"
+                       placeholder="{{'label.name' | translate}}"/>
+            </div>
+            <div class="input-grp">
+                <label for="alias" class="" translate>label.facility.alias</label>
+                <input id="alias" formControlName="alias" type="text" class="input-text"
+                       placeholder="{{'label.facility.alias' | translate}}"/>
+            </div>
+            <div class="input-grp">
+                <label for="address" class="" translate>label.facility.address</label>
+                <input id="address" formControlName="address" type="text" class="input-text"
+                       placeholder="{{'label.facility.address' | translate}}"/>
+            </div>
+        </form>
+    </div>
+    <div class="capital" *ngIf="$capital | async as capital">
+        <span class="mb-title" translate>label.facility.capital</span>
+        <div class="d-flex flex-row justify-content-between">
+            <div class="capital-add">
+                <div class="d-block">
+                    <div class="input-grp">
+                        <label for="capital" class="">ADD CAPITAL</label>
+                        <input type="number" class="input-text" id="capital" [formControl]="newCapital">
+                    </div>
+                    <div class="input-grp area mt-3">
+                        <label for="description" class="" translate>label.capital.desc</label>
+                        <textarea id="description" type="text"
+                                  placeholder="{{'label.capital.desc' | translate}}"
+                                  [formControl]="capitalDescription">
+                        </textarea>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <a class="btn btn-icon" translate>
+                        <div class="mb-icon toggle {{capitalType == 'EXTERNAL' ? 'active' : ''}}"
+                             (click)="selectExternal()"></div>
+                        capital.type.external
+                    </a>
+                    <a class="btn primary btn-sm" (click)="addCapital()">Add</a>
+                </div>
+            </div>
+            <div class="value">
+                <span class="value-amount">{{capital?.currentValue || 0 | currency : '':'':'1.0-0'}}</span>
+                <h3 class="value-currency">FBU</h3>
+            </div>
+        </div>
+    </div>
+    <div class="relations" *ngIf="$facility | async as facility">
+        <mb-relation [title]="categoryPage" [heads]="categoryHeads" [allLink]="[categoryPage]"
+                     [createLink]="[categoryPage,'new']">
+            <ng-container *ngIf="facility?.categories?.length; else emptyCategory">
+                <tr *ngFor="let category of facility.categories">
+                    <td>
+                        {{category.name}}
+                    </td>
+                    <td>{{category.inventories || [] | calcTotalCost | currency : '':'':'1.0-0'}}</td>
+                </tr>
+            </ng-container>
+            <ng-template #emptyCategory>
+                <mb-empty target="category"/>
+            </ng-template>
+        </mb-relation>
+
+        <mb-relation [title]="clientPage" [heads]="clientHeads" [allLink]="[clientPage]"
+                     [createLink]="[clientPage,'new']">
+            <ng-container *ngIf="facility?.clients?.length; else emptyClients">
+                <tr *ngFor="let client of facility.clients">
+                    <td>
+                        {{client.name}}
+                    </td>
+                    <td>{{client.totalDebt || 0 | currency : '':'':'1.0-0'}}</td>
+                </tr>
+            </ng-container>
+            <ng-template #emptyClients>
+                <mb-empty [target]="clientPage"/>
+            </ng-template>
+        </mb-relation>
+
+        <mb-relation [title]="rentPage" [heads]="rentHeads" [allLink]="[rentPage]" [createLink]="[rentPage,'new']">
+            <ng-container *ngIf=" $rents | async ; else emptyRents">
+                <tr *ngFor="let rent of $rents | async">
+                    <td>
+                        {{rent.name}}
+                    </td>
+                    <td>{{rent.cost || 0 | currency : '':'':'1.0-0'}}}</td>
+                </tr>
+            </ng-container>
+            <ng-template #emptyRents>
+                <mb-empty [target]="rentPage"/>
+            </ng-template>
+        </mb-relation>
+    </div>
+</div>

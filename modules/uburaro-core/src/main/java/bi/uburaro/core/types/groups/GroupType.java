@@ -11,13 +11,13 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-import static bi.uburaro.core.UburaroCoreConstants.DATABASE_KEYWORDS_PREFIX;
+import static bi.uburaro.core.UburaroCoreConstants.TABLE_PREFIX;
 
 @Data
 @EqualsAndHashCode(callSuper = true, exclude = {"reservations"})
 @NoArgsConstructor
 @Entity
-@Table(name = DATABASE_KEYWORDS_PREFIX + GroupType.ITEM_TYPE)
+@Table(name = TABLE_PREFIX + GroupType.ITEM_TYPE)
 @Inheritance(strategy = InheritanceType.JOINED)
 public class GroupType extends ItemType {
     public static final String ITEM_TYPE = "group";

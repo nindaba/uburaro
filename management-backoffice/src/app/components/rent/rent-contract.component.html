@@ -1,0 +1,48 @@
+<div class="contract">
+    <div class="details">
+        <input id="contract-{{contract?.code}}" class="primary" type="checkbox" (click)="selectContract()" [checked]="isSelected()">
+        <span class="code">
+            <label for="contract-{{contract?.code}}" translate>contract.code</label>
+            <span>{{contract?.code}}</span>
+        </span>
+        <span class="name">
+            <label translate>label.client.name</label>
+            <span>{{contract?.client?.name}}</span>
+        </span>
+        <div class="date-status">
+            <div class="contract-date">
+                <span>
+                    <label translate>label.from</label>
+                    <span>{{contract?.from | date: 'dd/MM/yyyy'}}</span>
+                </span>
+                <span>
+                    <label translate>label.to</label>
+                    <span>{{contract?.to  | date: 'dd/MM/yyyy'}}</span>
+                </span>
+            </div>
+            <div class="status">
+                <span class="progress" style="{{progressStyle}}"></span>
+            </div>
+        </div>
+
+        <div class="controls d-flex flex-row justify-content-end">
+            <a class="btn" translate *ngIf="false">
+                <div class="mb-icon download"></div>
+                label.download
+            </a>
+            <ng-container *ngIf="contract?.hasOrders else noOrders">
+                <a class="btn btn-icon" [ngClass]="(showAll | async ) ? 'd-none': ''" (click)="expand()" translate>
+                    <div class="mb-icon mb-icon-green expand"></div>
+                </a>
+                <a class="btn btn-icon" [ngClass]="(showAll | async ) ? '': 'd-none'" (click)="shrink()" translate>
+                    <div class="mb-icon mb-icon-green shrink"></div>
+                </a>
+            </ng-container>
+            <ng-template #noOrders>
+                <div>no orders</div>
+            </ng-template>
+        </div>
+    </div>
+    <mb-rent-orders [ngClass]="(showAll | async) && contract?.hasOrders ? '': 'd-none'"
+                    [clientPage]="isClientPage" [contract]="contract?.code || ''"></mb-rent-orders>
+</div>

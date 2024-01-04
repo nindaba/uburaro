@@ -8,7 +8,7 @@ public class ItemData {
     private boolean active;
     private boolean visible;
     private Date dateCreated;
-    private List<ModificationLogData> modificationLogData;
+    private List<ModificationLogData> modificationLogs;
 
     public String getCode() {
         return code;
@@ -42,11 +42,12 @@ public class ItemData {
         this.dateCreated = dateCreated;
     }
 
-    public List<ModificationLogData> getModificationLogData() {
-        return modificationLogData;
+    public List<ModificationLogData> getModificationLogs() {
+        return modificationLogs;
     }
 
-    public void setModificationLogData(List<ModificationLogData> modificationLogData) {
-        this.modificationLogData = modificationLogData;
+    public void setModificationLogs(List<ModificationLogData> modificationLogData) {
+        this.modificationLogs = modificationLogData;
     }
+
 }

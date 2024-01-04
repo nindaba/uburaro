@@ -1,0 +1,44 @@
+<ng-container *ngIf="$notif | async"></ng-container>
+<div class="details-page rent">
+    <div class="attributes">
+        <span class="mb-title" translate>label.details</span>
+        <form class="attributes d-flex flex-wrap" [formGroup]="itemForm">
+            <div class="input-grp">
+                <label for="code" class="" translate>label.code</label>
+                <input id="code" formControlName="code" type="text" class="input-text"
+                       placeholder="{{'label.code' | translate}}"/>
+            </div>
+            <div class="input-grp">
+                <label for="name" class="" translate>label.name</label>
+                <input id="name" formControlName="name" type="text" class="input-text"
+                       placeholder="{{'label.name' | translate}}"/>
+            </div>
+            <div class="input-grp">
+                <label for="client" class="" translate>label.current.client.name</label>
+                <input id="client" formControlName="currentClient" type="text" class="input-text"
+                       placeholder="{{'label.current.client.name' | translate}}"/>
+            </div>
+            <div class="input-grp">
+                <label for="address" class="" translate>label.rent.address</label>
+                <input id="address" formControlName="address" type="text" class="input-text"
+                       placeholder="{{'label.rent.address' | translate}}"/>
+            </div>
+            <div class="input-grp">
+                <label for="cost" class="" translate>label.cost</label>
+                <input id="cost" formControlName="cost" type="number" class="input-text"
+                       placeholder="{{'label.cost' | translate}}"/>
+            </div>
+            <mb-input-drop-down
+                    [relatedItem]="{name: 'unitType', parentPage: ''}"
+                    [$items]="$unitTypes"
+                    [formDetails]="unitForm"
+            ></mb-input-drop-down>
+        </form>
+    </div>
+    <mb-create-contract *ngIf="$rent | async" [property]="$rent"></mb-create-contract>
+
+    <div class="details-contract list">
+        <span class="mb-title" translate>label.list.contract</span>
+        <mb-rent-contract *ngFor="let contract of ($rent | async)?.contracts" [contract]="contract"/>
+    </div>
+</div>

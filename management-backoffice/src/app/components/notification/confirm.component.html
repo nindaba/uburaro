@@ -1,0 +1,19 @@
+<ng-container *ngIf="routerChanged | async "/>
+<ng-container *ngIf="$onDelete | async "/>
+<div class="notification-confirm"  *ngIf="$confirmDelete | async">
+    <div class="mb-3 h6">{{'message.confirm.delete' | translate}}</div>
+    <div class="orders-chips">
+        <div class="btn chip" *ngFor="let item of orders || items">
+            <span class="chip-text">{{item}}</span>
+            <a class="btn mb-icon btn-close text-light" (click)="remove(item)"></a>
+        </div>
+    </div>
+    <div class="content-bottom d-flex justify-content-end gap-3 mt-3">
+        <button type="button" class="btn btn-sm" translate (click)="confirmationDone()">
+            nodes.name.discard
+        </button>
+        <button type="button" class="btn danger btn-sm" translate (click)="confirmed()">
+            btn.name.delete
+        </button>
+    </div>
+</div>

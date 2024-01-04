@@ -1,0 +1,38 @@
+.details-report {
+  height: inherit;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing;
+
+  .head {
+    position: sticky;
+    z-index: 1000;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    align-items: flex-end;
+    padding-left: $spacing;
+    padding-bottom: 2px;
+    height: 40px;
+  }
+
+  .report {
+    overflow-y: auto;
+    height: calc(100% - 60px);
+  }
+}
+
+.report-clients{
+  &-debt{
+    margin-bottom: $spacing;
+    mb-relation{
+      width: 50%;
+    }
+    .total{
+      margin-top: -$spacing;
+      padding-left: $spacing;
+    }
+  }
+
+}

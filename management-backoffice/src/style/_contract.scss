@@ -1,0 +1,71 @@
+.details-contract {
+  &.list {
+    border: none;
+    width: 100%;
+    gap: $spacing;
+  }
+}
+
+.contract {
+  border: solid 2px $border-color;
+  border-radius: 8px;
+  padding: $spacing;
+
+  .details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-height: 40px;
+    justify-content: space-between;
+    font-size: 14px;
+
+    .code{
+      display: flex;
+      flex-direction: column;
+      flex: .2;
+    }
+    .name{
+      flex: .5;
+      display: flex;
+      flex-direction: column;
+    }
+    .controls{
+      flex: .2;
+    }
+
+    label {
+      color: $dark-grey;
+      text-transform: uppercase;
+    }
+
+    label:after {
+      content: ":";
+      margin-right: 6px;
+      margin-left: 6px;
+    }
+
+    .date-status {
+      display: flex;
+
+      flex-direction: column;
+      gap: 12px;
+
+      .contract-date {
+        display: flex;
+        gap: 12px;
+      }
+
+      .status {
+        height: 6px;
+        width: 100%;
+        background-color: $light-grey;
+        border-radius: 4px;
+
+        .progress {
+          height: inherit;
+          background-color: $primary;
+        }
+      }
+    }
+  }
+}

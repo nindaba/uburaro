@@ -1,0 +1,19 @@
+<div class="details-page landing">
+    <div class="head">
+        <a class="btn btn-tab" [routerLink]="[clientCode,'details']">
+            <span class="mb-title-tab" routerLinkActive="active">
+                {{'label.details' | translate}}
+            </span>
+        </a>
+        <a class="btn btn-tab" [routerLink]="[clientCode,'invoices']">
+            <span class="mb-title-tab" routerLinkActive="active">
+                {{'nodes.name.invoices' | translate}}
+                <span class="badge badge-green" *ngIf="ordersInInvoice | async as orders">{{orders}}</span>
+            </span>
+
+        </a>
+    </div>
+    <div class="details-invoices">
+        <router-outlet></router-outlet>
+    </div>
+</div>

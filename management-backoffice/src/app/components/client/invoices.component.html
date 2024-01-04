@@ -1,0 +1,7 @@
+<div class="details-page invoices" *ngIf="($notif | async) || true">
+    <mb-create-invoice></mb-create-invoice>
+    <div class="invoices-list">
+        <span class="mb-title" translate>nodes.name.invoices</span>
+        <mb-invoice *ngFor="let invoice of $invoices | async" [invoice]="invoice"></mb-invoice>
+    </div>
+</div>

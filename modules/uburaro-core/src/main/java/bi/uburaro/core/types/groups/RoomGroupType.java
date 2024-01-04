@@ -6,11 +6,12 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import java.util.HashSet;
 import java.util.Set;
-
-import static bi.uburaro.core.types.CompanyType.PREFERRED_ROOMS_GROUPS;
 
 @Data
 @EqualsAndHashCode(callSuper = true, exclude = {

@@ -1,0 +1,13 @@
+<mb-listing [heads] = "heads" *ngIf="($searchResult | async) || ($rents | async) as rentals"
+            (selectedAll)="selectAll(rentals)" [checkedAll] = "headerCheck">
+    <tr *ngFor="let rent of rentals">
+        <th scope="row">
+            <input class="primary" type="checkbox"
+                   [checked]="headerCheck || isSelected(rent)" (change)="selectionChanged(rent)">
+        </th>
+        <td [routerLink]="[rent.code]">{{rent.code}}</td>
+        <td [routerLink]="[rent.code]">{{rent.name}}</td>
+        <td [routerLink]="[rent.code]">{{rent.currentContract?.client?.name}}</td>
+        <td [routerLink]="[rent.code]">{{rent?.cost | currency : '':'':'1.0-0'}} FBU</td>
+    </tr>
+</mb-listing>

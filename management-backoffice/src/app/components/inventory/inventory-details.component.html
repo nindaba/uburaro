@@ -1,0 +1,39 @@
+<div class="details-page inventory" *ngIf="($inventory | async) || {} as inventory">
+    <div class="attributes">
+        <span class="mb-title" translate>label.details</span>
+        <form class="attributes d-flex flex-wrap" [formGroup]="itemForm">
+            <div class="input-grp">
+                <label for="code" class="" >{{'label.code'| translate}}*</label>
+                <input id="code" formControlName="code" type="text" class="input-text"
+                       placeholder="{{'label.code' | translate}}" required/>
+            </div>
+            <div class="input-grp">
+                <label for="name" class="" >{{'label.name'| translate}}*</label>
+                <input id="name" formControlName="name" type="text" class="input-text"
+                       placeholder="{{'label.name' | translate}}" required/>
+            </div>
+            <mb-input-drop-down
+                    [relatedItem]="{name: 'category', parentPage: 'categories'}"
+                    [$items]="$categories"
+                    [formDetails]="categoryForm"
+            ></mb-input-drop-down>
+            <div class="input-grp">
+                <label for="quantity" class="" translate>label.quantity</label>
+                <input id="quantity" formControlName="quantity" type="number" class="input-text"
+                       placeholder="{{'label.quantity' | translate}}"/>
+            </div>
+            <div class="input-grp">
+                <label for="cost" class="" translate>label.cost.latest</label>
+                <input id="cost" formControlName="cost" type="number" class="input-text"
+                       placeholder="{{'label.cost.latest' | translate}}"/>
+            </div>
+            <div class="input-grp">
+                <label for="unit" class="" translate>label.unit</label>
+                <input id="unit" formControlName="unit" type="text" class="input-text"
+                       placeholder="{{'label.unit' | translate}}"/>
+            </div>
+        </form>
+    </div>
+    <mb-inventory-cart [$inventory]="$inventory"></mb-inventory-cart>
+    <mb-inventory-orders></mb-inventory-orders>
+</div>

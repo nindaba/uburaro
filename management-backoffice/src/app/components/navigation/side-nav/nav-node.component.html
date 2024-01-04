@@ -1,0 +1,6 @@
+<div class="nav-node" [ngClass]="getActiveClass()"  (click)="onClick()">
+    <div class="btn-base">
+        <div class="mb-icon node-icon {{node.icon}} " [ngClass]="getActiveClass()"></div>
+    </div>
+    <div class="name" translate>{{node.name}}</div>
+</div>

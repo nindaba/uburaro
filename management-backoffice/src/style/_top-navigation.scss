@@ -1,0 +1,95 @@
+.top-nav {
+  display: flex;
+  flex-direction: column;
+  height: $top-nav-height;
+
+
+  .crumbs {
+    display: flex;
+    gap: 8px;
+
+    .facility-selector {
+      position: absolute;
+      top: 20%;
+      left: calc(50% - 150px);
+      border: solid 1px $border-color;
+      opacity: .99;
+      box-shadow: 0 0 10px 0 #a2a2a2;
+      width: 300px;
+      max-height: 500px;
+      background-color: $bg-color;
+      border-radius: 8px;
+      display: none;
+      padding: 20px;
+      font-weight: 500;
+      font-size: 12px;
+      z-index: 1000;
+
+
+      .content {
+        height: inherit;
+        &-top {
+          margin-bottom: 16px;
+          .nav-search {
+            min-width: 100%;
+            margin-top: 8px;
+          }
+          .title{
+            font-size: 16px;
+            color: $primary;
+          }
+        }
+        &-table{
+          height: 100%;
+          overflow-y: scroll;
+        }
+        &-bottom {
+          margin-top: 8px;
+          direction: rtl;
+          .btn {
+            padding: 12px;
+            color: $white;
+          }
+        }
+      }
+
+      &.active {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+
+    .btn {
+      color: $primary;
+      font-weight: 500;
+      text-transform: capitalize;
+      padding: 0;
+
+      &:hover {
+        font-weight: 700;
+      }
+    }
+    .selected-facility {
+      .btn{
+        font-weight: 700;
+      }
+    }
+  }
+
+  .nav {
+    &-right {
+      display: flex;
+      align-items: center;
+      justify-content: right;
+      gap: 10px;
+    }
+
+    &-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+
+}

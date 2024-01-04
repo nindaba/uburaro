@@ -1,0 +1,23 @@
+<mb-relation title="orders" [heads]="orderHeads">
+    <tr *ngFor="let order of orders">
+        <td>{{order.orderDate | date: 'dd/MM/yyyy'}}</td>
+        <td>{{order.orderNumber}}</td>
+        <td>{{order.itemName}}</td>
+        <td>{{order.cost}}</td>
+        <td>{{order.quantity}}</td>
+        <td>
+            <div class="d-flex flex-row justify-content-between align-items-center">
+                {{order.quantity * order.cost | currency : '':'':'1.0-0'}} FBU
+                <div class="mb-icon mb-icon-green tick" *ngIf="order.paid"></div>
+            </div>
+        </td>
+    </tr>
+    <tr class="total">
+        <td>{{'total' | uppercase}}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>{{orders | calcTotal : 'quantity'}}</td>
+        <td>{{orders | calcTotalCost | currency : '':'':'1.0-0'}} FBU</td>
+    </tr>
+</mb-relation>

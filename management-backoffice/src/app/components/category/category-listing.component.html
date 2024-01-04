@@ -1,0 +1,11 @@
+<mb-listing [heads] = "heads" *ngIf="($searchResult | async) || ($categories | async) as categories"
+            (selectedAll)="selectAll(categories)" [checkedAll] = "headerCheck">
+    <tr *ngFor="let category of categories">
+        <th scope="row">
+            <input class="primary" type="checkbox"
+                   [checked]="headerCheck || isSelected(category)" (change)="selectionChanged(category)">
+        </th>
+        <td [routerLink]="[category.code]">{{category.code}}</td>
+        <td [routerLink]="[category.code]">{{category.name}}</td>
+    </tr>
+</mb-listing>

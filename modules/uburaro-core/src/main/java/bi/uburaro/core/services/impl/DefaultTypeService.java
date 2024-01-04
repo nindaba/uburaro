@@ -46,13 +46,13 @@ public class DefaultTypeService implements TypeService {
         try {
             String type = (String) typeClass.getField(UburaroCoreConstants.ITEM_TYPE).get(null);
             TYPE instance = typeClass.getConstructor().newInstance();
-            instance.setPrimaryKey(primaryKeyGeneratorStrategy.generateKey(type));
+            instance.setPrimaryKey(primaryKeyGeneratorStrategy.generatePrimaryKey(type));
 
             Date dateModified = new Date();
             instance.setDateModified(dateModified);
             ModificationLogType logType = new ModificationLogType();
             String modificationKey = (String) ModificationLogType.class.getField(UburaroCoreConstants.ITEM_TYPE).get(null);
-            logType.setPrimaryKey(primaryKeyGeneratorStrategy.generateKey(modificationKey));
+            logType.setPrimaryKey(primaryKeyGeneratorStrategy.generatePrimaryKey(modificationKey));
             logType.setModifiedItem(type);
             logType.setDateModified(dateModified);
 
@@ -63,9 +63,10 @@ public class DefaultTypeService implements TypeService {
 //            if(logType.getUser() == null){
 //                logType.setUser(sessionService.getAnonymousUser());
 //            }
+            save(logType);
             instance.setModificationLogs(Set.of(logType));
 
-            return instance;
+            return (TYPE) itemRepository.save(instance);
         } catch (InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchFieldException |
                  NoSuchMethodException e) {
             log.debug(ERROR_RESPONSE, typeClass::getName);
@@ -124,6 +125,11 @@ public class DefaultTypeService implements TypeService {
                 .deleteByCodeAndPrimaryKeyItemType(code, typeClass.getName());
     }
 
+    @Override
+    public <TYPE extends ItemType> void delete(TYPE item) {
+        repositoryResolverStrategy.resolveRepository(item.getClass()).delete(item);
+    }
+
     /**
      * Creates a new Instance of modification log and set up the dates and user and the type;
      *
@@ -133,7 +139,7 @@ public class DefaultTypeService implements TypeService {
     public ModificationLogType createModificationLog(String type) {
 
         ModificationLogType logType = new ModificationLogType();
-        logType.setPrimaryKey(primaryKeyGeneratorStrategy.generateKey(ModificationLogType.ITEM_TYPE));
+        logType.setPrimaryKey(primaryKeyGeneratorStrategy.generatePrimaryKey(ModificationLogType.ITEM_TYPE));
 
         logType.setModifiedItem(type);
         logType.setDateModified(new Date());

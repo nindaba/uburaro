@@ -1,0 +1,47 @@
+<div class="crumbs">
+    <div class="selected-facility" *ngIf="$facility | async as facility">
+        <div class="btn" (click)="toggleFacilitySelector()">
+            <i class="mb-icon facilities mb-icon-green mb-icon-small"></i>
+            <span >{{facility | translate}}</span>
+            <i class="mb-icon drop-down"></i>
+        </div>
+        <div class="facility-selector" [ngClass]="$showFacilitySelectorClass | async">
+            <div class="content-top">
+                <span class="title" translate>facility.selector.title</span>
+                <div class="input-grp">
+                    <input type="text" class="input-text nav-search mb-icon search"
+                           placeholder="{{'nodes.name.search' | translate}}" [formControl]="pattern">
+                </div>
+            </div>
+            <div class="content-table">
+                <table class="table" *ngIf="($searchResults | async) || ($facilities | async) as facilities else empty">
+                    <tbody>
+                     <tr *ngFor="let facility of facilities" (click)="selectFacility(facility.code)">
+                         <td>{{facility.name}}</td>
+                     </tr>
+                    </tbody>
+                </table>
+                <ng-template translate #empty>
+                    <div class="d-flex flex-row justify-content-around align-items-center">
+                        <span translate>facility.empty</span>
+                        <a class="btn" [routerLink]="['facilities','new']" translate>label.facility.add</a>
+                    </div>
+                </ng-template>
+            </div>
+
+            <div class="content-bottom">
+                <button type="button" class="btn primary btn-sm" translate (click)="toggleFacilitySelector()">
+                    btn.name.close
+                </button>
+            </div>
+        </div>
+    </div>
+    <ng-container *ngIf="pageRoute | async as pageDetails">
+        <a class="part-1 btn" [routerLink]="[pageDetails.page]">
+            {{pageDetails.page}}
+        </a>
+        <a class="part-2 btn" *ngIf="pageDetails.details" [routerLink]="[pageDetails.page,pageDetails.details]">
+            / {{pageDetails.details}}
+        </a>
+    </ng-container>
+</div>

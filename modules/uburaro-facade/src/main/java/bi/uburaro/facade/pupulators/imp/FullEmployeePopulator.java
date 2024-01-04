@@ -13,7 +13,7 @@ public class FullEmployeePopulator implements Populator<EmployeeType, EmployeeDa
     @Override
     public void populate(final EmployeeType source, final EmployeeData target) {
         target.setAuthorities(source.getEmployeeGroups().stream()
-                .filter(ItemType::getActive)
+                .filter(ItemType::isActive)
                 .map(GroupType::getGroupName)
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList()));

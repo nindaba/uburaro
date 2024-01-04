@@ -1,0 +1,55 @@
+.btn {
+  border-radius: 4px;
+  border: none;
+  height: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  gap: 8px;
+
+  &-sm {
+    width: fit-content;
+  }
+
+  &.primary {
+    background-color: $primary;
+    color: white;
+  }
+
+  &.danger {
+    background-color: $danger;
+    color: white;
+  }
+  &.chip{
+    background-color: $light-green;
+    border-radius: 20px;
+    width: fit-content;
+
+    .chip-text{
+      width: 100%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+  .badge{
+    &-green{
+      background-color: $primary;
+    }
+  }
+  &-pagination{
+    border-radius: 16px;
+    width: 28px;
+    height: 28px;
+    border: solid 2px $border-color;
+    &-active{
+      color: white;
+      background-color: $primary;
+    }
+    &:hover{
+      border-color: $primary;
+    }
+  }
+}

@@ -13,7 +13,10 @@ def MODULES = [
         'uburaro-core',
         'uburaro-facade',
         'uburaro-web',
-        'uburaro-initialdata'
+        'uburaro-initialdata',
+        'manager-core',
+        'manager-facade',
+        'manager-web',
 ]
 
 MODULES.each {module ->

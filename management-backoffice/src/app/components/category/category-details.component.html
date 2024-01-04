@@ -1,0 +1,32 @@
+<div class="details-page category" *ngIf="($category | async) || true">
+    <div class="attributes">
+        <span class="mb-title" translate>label.details</span>
+        <form class="attributes d-flex flex-wrap" [formGroup]="itemForm">
+            <div class="input-grp">
+                <label for="code" class="" >{{'label.code' | translate}}*</label>
+                <input id="code" formControlName="code" type="text" class="input-text"
+                       placeholder="{{'label.code' | translate}}" required/>
+            </div>
+            <div class="input-grp">
+                <label for="name" class="" >{{'label.name'| translate}}*</label>
+                <input id="name" formControlName="name" type="text" class="input-text"
+                       placeholder="{{'label.name' | translate}}" required/>
+            </div>
+        </form>
+    </div>
+    <div class="inventory" *ngIf="$category | async as category">
+        <mb-relation title="inventories" [heads]="inventoryHeads" [allLink]="['inventories']" [createLink]="['inventories','new']">
+            <ng-container *ngIf="category?.inventories?.length || 0 > 0; else empty">
+                <tr *ngFor="let inventory of category.inventories" [routerLink]="['/','inventories',inventory.code]">
+                    <td>
+                        {{inventory.name}}
+                    </td>
+                    <td>{{inventory.quantity}}</td>
+                </tr>
+            </ng-container>
+            <ng-template #empty>
+                <mb-empty target="inventory"/>
+            </ng-template>
+        </mb-relation>
+    </div>
+</div>
