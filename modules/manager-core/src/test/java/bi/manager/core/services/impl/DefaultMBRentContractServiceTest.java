@@ -1,8 +1,6 @@
 package bi.manager.core.services.impl;
 
 import bi.manager.core.services.MBClientService;
-import bi.manager.core.services.MBFacilityService;
-import bi.manager.core.services.MBRentService;
 import bi.manager.core.types.MBRentPropertyType;
 import bi.manager.core.types.client.MBClientType;
 import bi.manager.core.types.client.MBRentContractType;
@@ -34,10 +32,11 @@ class DefaultMBRentContractServiceTest {
     static final MBClientType CLIENT = new MBClientType();
     static final MBRentContractType CONTRACT = new MBRentContractType();
     static final LocalDate END_OF_CONTRACT = LocalDate.now();
-
+    static MBClientType CLIENT_SPY;
+    static MBRentPropertyType RENT_SPY;
+    static MBRentContractType CONTRACT_SPY;
     @InjectMocks
     DefaultMBRentContractService service;
-
     @Mock
     MBClientService clientService;
     @Mock
@@ -46,10 +45,6 @@ class DefaultMBRentContractServiceTest {
     GeneratedKeyRepository generatedKeyRepository;
     @Mock
     Environment environment;
-
-    static MBClientType CLIENT_SPY;
-    static MBRentPropertyType RENT_SPY;
-    static MBRentContractType CONTRACT_SPY;
 
     @BeforeEach
     void setUp() {
@@ -102,14 +97,14 @@ class DefaultMBRentContractServiceTest {
         CONTRACT.setCode(null);
 
         service.updateContract(CONTRACT);
-        verify(CONTRACT_SPY).setCode("CC-"+key.getGeneratedValue());
+        verify(CONTRACT_SPY).setCode("CC-" + key.getGeneratedValue());
         verify(CONTRACT_SPY).setRentProperty(RENT_SPY);
         verify(CONTRACT_SPY).setClient(CLIENT_SPY);
         verify(CONTRACT_SPY).setFrom(CONTRACT.getFrom());
         verify(CONTRACT_SPY).setTo(CONTRACT.getTo());
         verify(CONTRACT_SPY).setUnit(RENT.getUnit());
         verify(CONTRACT_SPY).setCostPerUnit(RENT.getCost());
-        verify(CONTRACT_SPY).setNextOrderDate(CONTRACT.getFrom().plusMonths(1));
+        verify(CONTRACT_SPY).setNextOrderDate(CONTRACT.getFrom());
         verify(CONTRACT_SPY).setContractFileName(CONTRACT.getContractFileName());
         verify(typeService).save(CONTRACT_SPY);
     }
@@ -122,7 +117,7 @@ class DefaultMBRentContractServiceTest {
         CONTRACT_SPY.setClient(CLIENT_SPY);
 
 
-        service.endContract(CONTRACT.getCode(),END_OF_CONTRACT);
+        service.endContract(CONTRACT.getCode(), END_OF_CONTRACT);
         verify(CONTRACT_SPY).setTo(END_OF_CONTRACT);
         verify(RENT_SPY).setCurrentContract(null);
         verify(typeService).save(CONTRACT_SPY);

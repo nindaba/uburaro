@@ -21,11 +21,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 import java.util.stream.Collectors;
-
-import static bi.manager.core.ManagerCoreConstants.RENT_UNIT_SCALE;
 
 @Service(value = "mBRentContractService")
 public class DefaultMBRentContractService extends AbstractMBTypeService<MBRentContractType> implements MBRentContractService {
@@ -47,6 +44,16 @@ public class DefaultMBRentContractService extends AbstractMBTypeService<MBRentCo
         this.environment = environment;
         this.generatedKeyRepository = generatedKeyRepository;
         this.rentContractRepository = rentContractRepository;
+    }
+
+    private static void populateCurrentContract(MBRentContractType target) {
+        LocalDate today = LocalDate.now();
+        MBRentPropertyType property = target.getRentProperty();
+        if ((target.getFrom().isBefore(today) || target.getFrom().equals(today))
+                && (target.getTo().isAfter(today) || target.getTo().equals(today))) {
+
+            property.setCurrentContract(target);
+        }
     }
 
     @Override
@@ -101,16 +108,6 @@ public class DefaultMBRentContractService extends AbstractMBTypeService<MBRentCo
         }
     }
 
-    private static void populateCurrentContract(MBRentContractType target) {
-        LocalDate today = LocalDate.now();
-        MBRentPropertyType property = target.getRentProperty();
-        if ((target.getFrom().isBefore(today) || target.getFrom().equals(today))
-                && (target.getTo().isAfter(today) || target.getTo().equals(today))) {
-
-            property.setCurrentContract(target);
-        }
-    }
-
     private void populateContract(MBRentContractType source, MBRentContractType target) {
         if (source.getUnit() > 0) {
             target.setUnit(source.getUnit());
@@ -122,11 +119,11 @@ public class DefaultMBRentContractService extends AbstractMBTypeService<MBRentCo
         } else {
             target.setCostPerUnit(target.getRentProperty().getCost());
         }
-        if(StringUtils.isNotEmpty(source.getContractFileName())){
+        if (StringUtils.isNotEmpty(source.getContractFileName())) {
             target.setContractFileName(source.getContractFileName());
         }
         if (target.getNextOrderDate() == null) {
-            target.setNextOrderDate(target.getFrom().plus(1,RENT_UNIT_SCALE.getOrDefault(target.getUnit(), ChronoUnit.MONTHS)));
+            target.setNextOrderDate(target.getFrom());
         }
     }
 

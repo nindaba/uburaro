@@ -43,9 +43,11 @@ public class DefaultGenerateRentOrdersStrategy implements GenerateRentOrdersStra
             this.scheduleNextOrderDate(contract);
         }
     }
+
     protected boolean canScheduleNextOrder(final MBRentContractType contract) {
         return contract.getRentProperty().getCurrentContract() != null
-                && contract.getNextOrderDate().isBefore(LocalDate.now());
+                && contract.getNextOrderDate().isBefore(LocalDate.now())
+                && contract.getNextOrderDate().isBefore(contract.getTo());
     }
 
     protected void createOrder(final MBRentContractType contract) {
@@ -54,8 +56,9 @@ public class DefaultGenerateRentOrdersStrategy implements GenerateRentOrdersStra
         final MBRentOrderType order = new MBRentOrderType();
         order.setContract(contract);
         order.setRentProperty(contract.getRentProperty());
-        order.setFrom(orderDate.minus(1, unit));
-        order.setTo(orderDate);
+        order.setFrom(orderDate);
+        order.setQuantity(1);
+        order.setTo(getNextOrderDate(contract).minus(1, unit));
         order.setOrderDate(LocalDate.now());
         order.setClient(contract.getClient());
         rentOrderService.placeOrder(order);
@@ -63,19 +66,20 @@ public class DefaultGenerateRentOrdersStrategy implements GenerateRentOrdersStra
 
     protected void scheduleNextOrderDate(final MBRentContractType contract) {
         if (contract.getNextOrderDate().isBefore(contract.getTo())) {
-            setNextOrderDate(contract);
+            contract.setNextOrderDate(getNextOrderDate(contract));
         } else {
             contract.getRentProperty().setCurrentContract(null);
         }
     }
 
-    private void setNextOrderDate(MBRentContractType contract) {
+    private LocalDate getNextOrderDate(final MBRentContractType contract) {
         LocalDate nextOrderDate = contract.getNextOrderDate()
                 .plus(1, RENT_UNIT_SCALE.getOrDefault(contract.getUnit(), DAYS));
 
         while (nextOrderDate.isAfter(contract.getTo())) {
             nextOrderDate = nextOrderDate.minusDays(1);
         }
-        contract.setNextOrderDate(nextOrderDate);
+
+        return nextOrderDate;
     }
 }
