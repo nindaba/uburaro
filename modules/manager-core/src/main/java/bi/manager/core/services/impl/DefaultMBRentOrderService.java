@@ -98,6 +98,7 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
         Page<MBRentOrderType> page = rentOrderRepository.findOrdersByFacilityAndDates(facility, from, to, pageable);
         return new MBPage<>(page);
     }
+
     @Override
     public Collection<MBRentOrderType> getOrderByFacilityCode(String facility, LocalDate from, LocalDate to) {
         return rentOrderRepository.findOrdersByFacilityAndDates(facility, from, to);
@@ -105,7 +106,7 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
 
     private void populateQuantity(final MBRentOrderType target) {
         final long quantity = RENT_UNIT_SCALE.getOrDefault(target.getUnit(), ChronoUnit.MONTHS).between(target.getFrom(), target.getTo());
-        target.setQuantity((int) quantity);
+        target.setQuantity((int) quantity != 0 ? (int) quantity : 1);
     }
 
     private void populateContract(final MBRentOrderType source, final MBRentOrderType target) {

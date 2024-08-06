@@ -9,7 +9,6 @@ import bi.uburaro.core.types.ItemType;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -46,19 +45,16 @@ public class DefaultGenerateRentOrdersStrategy implements GenerateRentOrdersStra
 
     protected boolean canScheduleNextOrder(final MBRentContractType contract) {
         return contract.getRentProperty().getCurrentContract() != null
-                && contract.getNextOrderDate().isBefore(LocalDate.now())
-                && contract.getNextOrderDate().isBefore(contract.getTo());
+                && contract.getNextOrderDate().isBefore(LocalDate.now());
     }
 
     protected void createOrder(final MBRentContractType contract) {
         final LocalDate orderDate = contract.getNextOrderDate();
-        final ChronoUnit unit = RENT_UNIT_SCALE.getOrDefault(contract.getUnit(), DAYS);
         final MBRentOrderType order = new MBRentOrderType();
         order.setContract(contract);
         order.setRentProperty(contract.getRentProperty());
         order.setFrom(orderDate);
-        order.setQuantity(1);
-        order.setTo(getNextOrderDate(contract).minus(1, unit));
+        order.setTo(getNextOrderDate(contract));
         order.setOrderDate(LocalDate.now());
         order.setClient(contract.getClient());
         rentOrderService.placeOrder(order);
