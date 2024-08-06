@@ -1,0 +1,7 @@
+<service>
+  <id>platform-3.0</id>
+  <name>PlatformUburaro</name>
+  <description>This is the backend for uburaro management</description>
+  <executable>java</executable>
+  <arguments>-jar platform-3.0.jar</arguments>
+</service>
