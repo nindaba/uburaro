@@ -62,6 +62,10 @@ chrome-profiler-events*.json
 !.vscode/extensions.json
 .history/*
 
+# IDE - fleet
+
+.fleet/
+
 # misc
 /.sass-cache
 /connect.lock
@@ -92,3 +96,4 @@ manager-app
 scripts/*-app
 platform/log
 
+uburaro.sql

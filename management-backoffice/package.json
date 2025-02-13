@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build:elect": "tsc -p tsconfig.elect.json",
-    "install": "ng build --base-href && npm run build:elect && electron-builder build --publish=never",
+    "build:exec": "ng build --base-href && npm run build:elect && electron-builder build --publish=never",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

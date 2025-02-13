@@ -42,38 +42,72 @@ class DefaultGenerateRentOrdersStrategyTest {
     void setUp() {
         CONTRACT.setCode("Code");
         CONTRACT.setFrom(LocalDate.now().minus(2, ChronoUnit.MONTHS));
-        CONTRACT.setNextOrderDate(LocalDate.now().minus(1, ChronoUnit.MONTHS));
+        CONTRACT.setNextOrderDate(CONTRACT.getFrom());
         CONTRACT.setTo(LocalDate.now());
         CONTRACT.setClient(CLIENT);
         CONTRACT.setRentProperty(RENT);
         CONTRACT.setUnit(30);
 
+        RENT.setCurrentContract(CONTRACT);
+
+    }
+
+
+    @Test
+    void shouldCreateOrderFromContract() {
+
+        // Given
+        var expectedOrder = new MBRentOrderType();
+        expectedOrder.setFrom(CONTRACT.getNextOrderDate());
+        expectedOrder.setTo(CONTRACT.getNextOrderDate().plusMonths(1));
+        expectedOrder.setClient(CLIENT);
+        expectedOrder.setRentProperty(RENT);
+        expectedOrder.setContract(CONTRACT);
+        expectedOrder.setOrderDate(CONTRACT.getNextOrderDate());
+
+        // When
+        var actualOrder = generate.createOrder(CONTRACT);
+
+        // Then
+        assertEquals(expectedOrder.getFrom(), CONTRACT.getNextOrderDate(), "Order should start from contract's next order date");
+        assertEquals(expectedOrder.getTo(), CONTRACT.getNextOrderDate().plusMonths(1), "Order should end at contract's new next order date");
+        assertEquals(expectedOrder.getClient(), actualOrder.getClient(), "Order should have same client as contract");
+        assertEquals(expectedOrder.getRentProperty(), actualOrder.getRentProperty(), "Order should have same property as contract");
+        assertEquals(expectedOrder.getOrderDate(), CONTRACT.getNextOrderDate(), "Order date should be the contract's next orderdate");
     }
 
     @Test
-    void createOrder() {
-        ORDER.setFrom(CONTRACT.getFrom());
-        ORDER.setTo(CONTRACT.getNextOrderDate());
-        ORDER.setClient(CLIENT);
-        ORDER.setRentProperty(RENT);
-        ORDER.setOrderDate(LocalDate.now());
-
-        doNothing().when(service).placeOrder(ORDER);
-        generate.createOrder(CONTRACT);
+    void shouldScheduleInitialOrder() {
+        doNothing().when(service).placeOrder(any());
+        generate.createOrdersAndSchedule(CONTRACT);
+        assertEquals(LocalDate.now(), CONTRACT.getNextOrderDate(), "Next order date should be set to current date");
     }
 
     @Test
-    void scheduleNextOrderDate() {
-        generate.scheduleNextOrderDate(CONTRACT);
-        assertEquals(LocalDate.now(),CONTRACT.getNextOrderDate());
+    void shouldScheduleOrderWithFutureEndDate() {
+        var nextOrderDate = LocalDate.of(2025,02,6);
+        doNothing().when(service).placeOrder(any());
+        CONTRACT.setNextOrderDate(nextOrderDate);
+        CONTRACT.setTo(nextOrderDate.plusMonths(12));
+        generate.createOrdersAndSchedule(CONTRACT);
+        assertEquals(nextOrderDate.plus(1, ChronoUnit.MONTHS), CONTRACT.getNextOrderDate(), "Next order date should be set to contract end date");
+    }
 
-        CONTRACT.setTo(LocalDate.now().plus(15,ChronoUnit.DAYS));
-        generate.scheduleNextOrderDate(CONTRACT);
-        assertEquals(LocalDate.now().plus(15, ChronoUnit.DAYS),CONTRACT.getNextOrderDate());
-
-        //terminate contract when order date was equal to getTo()
+    @Test
+    void shouldScheduleOrderAtContractEnd() {
         CONTRACT.setNextOrderDate(CONTRACT.getTo());
-        generate.scheduleNextOrderDate(CONTRACT);
+        generate.createOrdersAndSchedule(CONTRACT);
+        assertEquals(CONTRACT.getTo(), CONTRACT.getNextOrderDate(), "Next order date should remain at contract end date");
+    }
+
+    @Test
+    void shouldTerminateContractWhenOrderDateEqualsEndDate() {
+        CONTRACT.setNextOrderDate(CONTRACT.getTo());
+        generate.createOrdersAndSchedule(CONTRACT);
         verify(RENT).setCurrentContract(null);
     }
+
+
+
+
 }

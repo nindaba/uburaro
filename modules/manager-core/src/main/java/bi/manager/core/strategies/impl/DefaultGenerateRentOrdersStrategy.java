@@ -16,7 +16,7 @@ import static bi.manager.core.ManagerCoreConstants.RENT_UNIT_SCALE;
 import static java.time.temporal.ChronoUnit.DAYS;
 
 @Service(value = "generateRentOrdersStrategy")
-public class DefaultGenerateRentOrdersStrategy implements GenerateRentOrdersStrategy {
+class DefaultGenerateRentOrdersStrategy implements GenerateRentOrdersStrategy {
 
     protected final MBRentContractRepository rentContractRepository;
     protected final MBRentOrderService rentOrderService;
@@ -38,35 +38,36 @@ public class DefaultGenerateRentOrdersStrategy implements GenerateRentOrdersStra
 
     protected void createOrdersAndSchedule(final MBRentContractType contract) {
         while (this.canScheduleNextOrder(contract)) {
-            createOrder(contract);
-            this.scheduleNextOrderDate(contract);
+            rentOrderService.placeOrder(createOrder(contract));
+            contract.setNextOrderDate(getNextOrderDate(contract));
+        }
+
+        if (contract.getNextOrderDate().isEqual(contract.getTo())) {
+            contract.getRentProperty().setCurrentContract(null);
         }
     }
 
     protected boolean canScheduleNextOrder(final MBRentContractType contract) {
         return contract.getRentProperty().getCurrentContract() != null
-                && contract.getNextOrderDate().isBefore(LocalDate.now());
+               && contract.getNextOrderDate().isBefore(contract.getTo())
+               && contract.getNextOrderDate().isBefore(LocalDate.now());
     }
 
-    protected void createOrder(final MBRentContractType contract) {
+    protected MBRentOrderType createOrder(final MBRentContractType contract) {
         final LocalDate orderDate = contract.getNextOrderDate();
         final MBRentOrderType order = new MBRentOrderType();
+
         order.setContract(contract);
         order.setRentProperty(contract.getRentProperty());
         order.setFrom(orderDate);
         order.setTo(getNextOrderDate(contract));
-        order.setOrderDate(LocalDate.now());
+        order.setOrderDate(orderDate);
         order.setClient(contract.getClient());
-        rentOrderService.placeOrder(order);
+
+        return order;
     }
 
-    protected void scheduleNextOrderDate(final MBRentContractType contract) {
-        if (contract.getNextOrderDate().isBefore(contract.getTo())) {
-            contract.setNextOrderDate(getNextOrderDate(contract));
-        } else {
-            contract.getRentProperty().setCurrentContract(null);
-        }
-    }
+
 
     private LocalDate getNextOrderDate(final MBRentContractType contract) {
         LocalDate nextOrderDate = contract.getNextOrderDate()

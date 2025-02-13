@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Collection;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -86,7 +87,6 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
 
         populateOrder(order, rentOrder);
         populateContract(order, rentOrder);
-        populateQuantity(rentOrder);
         populateClient(order, rentOrder);
         chargeClient(rentOrder);
         addIncome(rentOrder);
@@ -104,9 +104,28 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
         return rentOrderRepository.findOrdersByFacilityAndDates(facility, from, to);
     }
 
-    private void populateQuantity(final MBRentOrderType target) {
-        final long quantity = RENT_UNIT_SCALE.getOrDefault(target.getUnit(), ChronoUnit.MONTHS).between(target.getFrom(), target.getTo());
-        target.setQuantity((int) quantity != 0 ? (int) quantity : 1);
+    private void populateQuantityAndCost(final MBRentOrderType target, final long cost) {
+        final ChronoUnit unit = RENT_UNIT_SCALE.getOrDefault(target.getUnit(), ChronoUnit.MONTHS);
+        final long quantity = unit.between(target.getFrom(), target.getTo());
+
+        if(quantity > 0 ){
+            target.setQuantity((int)quantity);
+            target.setCost(cost);
+        }
+
+        else{
+            final long smallerQuantity = Map
+            .of(ChronoUnit.MONTHS,ChronoUnit.DAYS,ChronoUnit.YEARS,ChronoUnit.MONTHS)
+            .get(unit)
+            .between(target.getFrom(), target.getTo());
+
+            target.setQuantity((int) smallerQuantity);
+
+            long newCost = cost / target.getUnit();
+            newCost = Math.round(newCost / 100d)*100;
+
+            target.setCost(newCost);
+        }
     }
 
     private void populateContract(final MBRentOrderType source, final MBRentOrderType target) {
@@ -125,11 +144,15 @@ public class DefaultMBRentOrderService extends AbstractOrderService implements M
             target.setUnit(source.getUnit());
         }
 
+
+        long cost;
         if (source.getCost() == 0) {
-            target.setCost(contract.getCostPerUnit());
+            cost = contract.getCostPerUnit();
         } else {
-            target.setCost(source.getCost());
+            cost = source.getCost();
         }
+
+        populateQuantityAndCost(target, cost);
     }
 
     private void addIncome(final MBRentOrderType rentOrder) {

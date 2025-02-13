@@ -8,9 +8,9 @@ group = 'bi.uburaro'
 version = '3.0'
 sourceCompatibility = '11'
 
-childProjects.forEach((name, project) ->
+childProjects.forEach{ name, project ->
         project.buildDir = buildDir.path + '/modules/' + name
-)
+}
 
 repositories {
     mavenCentral()
