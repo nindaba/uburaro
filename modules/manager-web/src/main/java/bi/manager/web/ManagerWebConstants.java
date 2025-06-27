@@ -5,9 +5,10 @@ public interface ManagerWebConstants {
 
         String allFields = "allFields";
         String report = "/report";
+        String path = "manager-api/";
 
         interface Facility {
-            String endpoint = "facilities";
+            String endpoint = path + "facilities";
             String facility = endpoint + "/{code}";
             String facilityCode = "/{code}";
             String capital = facility + "/capital";
@@ -42,7 +43,7 @@ public interface ManagerWebConstants {
         }
 
         interface Orders {
-            String endpoint = "orders";
+            String endpoint = path + "orders";
             String clientOrders = Client.client + "/" + endpoint;
 
             interface Inventory {
@@ -66,11 +67,11 @@ public interface ManagerWebConstants {
         }
 
         interface DataImport {
-            String endpoint = "data-import";
+            String endpoint = path + "data-import";
         }
 
         interface Summary {
-            String endpoint = "/facilities/{code}";
+            String endpoint = path + "/facilities/{code}";
             String capital = "/capital-summary";
         }
 
