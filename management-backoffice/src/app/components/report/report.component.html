@@ -1,8 +1,8 @@
 <div class="details-report">
     <div class="head">
         <a class="rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2 cursor-pointer" *ngFor="let tab of tabs"
-           routerLink="../{{tab.routeId}}" > {/* Applied base btn styles for now; btn-tab needs specific migration */}
-            <span class="mb-title-tab" routerLinkActive="active"> {/* mb-title-tab needs review; active state needs review */}
+           routerLink="../{{tab.routeId}}" >
+            <span class="mb-title-tab" routerLinkActive="active">
                 {{tab.name || 'tab' | translate}}
             </span>
         </a>

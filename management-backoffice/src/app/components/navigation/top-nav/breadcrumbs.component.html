@@ -8,7 +8,7 @@
         <div class="facility-selector" [ngClass]="$showFacilitySelectorClass | async">
             <div class="content-top">
                 <span class="title" translate>facility.selector.title</span>
-                <div class="input-grp">
+                <div class="relative flex flex-col">
                     <input type="text" class="input-text nav-search mb-icon search"
                            placeholder="{{'nodes.name.search' | translate}}" [formControl]="pattern">
                 </div>

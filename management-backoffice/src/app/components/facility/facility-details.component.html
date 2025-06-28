@@ -2,23 +2,23 @@
     <div class="attributes">
         <span class="mb-title" translate>label.details</span>
         <form class="attributes flex justify-between flex-wrap" [formGroup]="itemForm">
-            <div class="input-grp">
-                <label for="code" class="" translate>label.code.required</label>
+            <div class="relative flex flex-col">
+                <label for="code" class="text-gray-600 text-xs font-medium mb-[6px]" translate>label.code.required</label>
                 <input id="code" formControlName="code" type="text" class="input-text"
                        placeholder="{{'label.code' | translate}}"/>
             </div>
-            <div class="input-grp">
-                <label for="name" class="" translate>label.name.required</label>
+            <div class="relative flex flex-col">
+                <label for="name" class="text-gray-600 text-xs font-medium mb-[6px]" translate>label.name.required</label>
                 <input id="name" formControlName="name" type="text" class="input-text"
                        placeholder="{{'label.name' | translate}}"/>
             </div>
-            <div class="input-grp">
-                <label for="alias" class="" translate>label.facility.alias</label>
+            <div class="relative flex flex-col">
+                <label for="alias" class="text-gray-600 text-xs font-medium mb-[6px]" translate>label.facility.alias</label>
                 <input id="alias" formControlName="alias" type="text" class="input-text"
                        placeholder="{{'label.facility.alias' | translate}}"/>
             </div>
-            <div class="input-grp">
-                <label for="address" class="" translate>label.facility.address</label>
+            <div class="relative flex flex-col">
+                <label for="address" class="text-gray-600 text-xs font-medium mb-[6px]" translate>label.facility.address</label>
                 <input id="address" formControlName="address" type="text" class="input-text"
                        placeholder="{{'label.facility.address' | translate}}"/>
             </div>
@@ -29,12 +29,12 @@
         <div class="flex flex-row justify-between">
             <div class="capital-add">
                 <div class="block">
-                    <div class="input-grp">
-                        <label for="capital" class="">ADD CAPITAL</label>
+                    <div class="relative flex flex-col">
+                        <label for="capital" class="text-gray-600 text-xs font-medium mb-[6px]">ADD CAPITAL</label>
                         <input type="number" class="input-text" id="capital" [formControl]="newCapital">
                     </div>
-                    <div class="input-grp area mt-3">
-                        <label for="description" class="" translate>label.capital.desc</label>
+                    <div class="relative flex flex-col area mt-3">
+                        <label for="description" class="text-gray-600 text-xs font-medium mb-[6px]" translate>label.capital.desc</label>
                         <textarea id="description" type="text"
                                   placeholder="{{'label.capital.desc' | translate}}"
                                   [formControl]="capitalDescription">

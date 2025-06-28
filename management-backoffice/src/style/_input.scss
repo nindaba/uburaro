@@ -1,26 +1,38 @@
+/*
 .input-grp {
-  position: relative;
-  display: flex;
-  flex-direction: column;
+  position: relative; // Migrated: relative
+  display: flex; // Migrated: flex
+  flex-direction: column; // Migrated: flex-col
   label{
-    color: $gray-600;
-    font-size: 12px;
-    font-weight: 500;
-    margin-bottom: 6px;
+    color: $gray-600; // Migrated: text-gray-600
+    font-size: 12px; // Migrated: text-xs
+    font-weight: 500; // Migrated: font-medium
+    margin-bottom: 6px; // Migrated: mb-[6px]
   }
-  .down{
-    position: absolute;
-    top: 60px;
-    z-index: 1000;
-    width: $input-width;
-    max-height: 400px;
-    overflow-y: scroll;
-    box-shadow: 2px 2px #F8F9FA;
-    border: solid 2px $border-color;
-    margin-left: -1px;
-    padding: 20px;
-    border-radius: 8px;
-    background-color: white;
+*/
+.input-grp { // Keep the shell for other nested rules not yet migrated
+  // Styles for .input-grp direct children like label have been migrated.
+  // Basic .input-grp container styles (relative, flex flex-col) also migrated.
+
+  /*
+  .down{ // Styles for .down dropdown panel
+    position: absolute; // Migrated: absolute
+    top: 60px; // Migrated: top-[60px]
+    z-index: 1000; // Migrated: z-30 (example, actual value may vary)
+    width: $input-width; // Migrated: w-input (240px)
+    max-height: 400px; // Migrated: max-h-[400px]
+    overflow-y: scroll; // Migrated: overflow-y-auto
+    box-shadow: 2px 2px #F8F9FA; // Migrated: shadow-[2px_2px_0px_0px_#F8F9FA]
+    border: solid 2px $border-color; // Migrated: border-2 border-border-color
+    margin-left: -1px; // Migrated: -ml-px
+    padding: 20px; // Migrated: p-5
+    border-radius: 8px; // Migrated: rounded-lg
+    background-color: white; // Migrated: bg-white
+  }
+  */
+  .down {
+    // Styles for .down have been migrated to Tailwind and applied directly
+    // in input-drop-down.component.html
   }
   &.label-front {
     flex-direction: row;

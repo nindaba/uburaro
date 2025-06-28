@@ -14,6 +14,7 @@ module.exports = {
         'font-color': '#4B4B4B', // From _variable.scss, might be useful
         'bg-color': '#F8F9FA',   // From _variable.scss, might be useful
         pink: 'rgba(227, 74, 74, 0.5)',
+        'border-color': '#D3D6DA', // Added from _variable.scss ($light-grey)
       },
       spacing: {
         'spacing': '20px', // For $spacing

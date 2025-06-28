@@ -1,10 +1,10 @@
-<div class="input-grp" [formGroup]="formDetails">
-    <label for="{{relatedItem.name}}" class="" translate>label.{{relatedItem.name}}.name</label>
+<div class="relative flex flex-col" [formGroup]="formDetails">
+    <label for="{{relatedItem.name}}" class="text-gray-600 text-xs font-medium mb-[6px]" translate>label.{{relatedItem.name}}.name</label>
     <input id="{{relatedItem.name}}" formControlName="name" type="text" class="input-text"
            placeholder="{{'label.'+relatedItem.name+'.name' | translate}}"
            (focus)="onFocus()" (focusout)="onUnFocus()"/>
 
-    <div class="down" *ngIf="$showDrop | async">
+    <div class="absolute top-[60px] z-30 w-input max-h-[400px] overflow-y-auto shadow-[2px_2px_0px_0px_#F8F9FA] border-2 border-border-color -ml-px p-5 rounded-lg bg-white" *ngIf="$showDrop | async">
         <ng-container *ngIf="($itemSearchResults |async)||($items |async) as items else empty">
             <table class="table" *ngIf="items.length > 0 else empty">
                 <tbody>

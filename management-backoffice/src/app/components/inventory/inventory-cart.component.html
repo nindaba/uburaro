@@ -2,8 +2,8 @@
     <mb-expand-shrink title="inventory.order.title" [creating]="creating"></mb-expand-shrink>
     <form (ngSubmit)="orderPlaced()" [formGroup]="inventoryOrderForm" [ngClass]="(creating | async) ? '': 'hidden'">
         <div class="content-top">
-            <div class="input-grp">
-                <label for="date" class="">{{'label.order.date'| translate}}*</label>
+            <div class="relative flex flex-col">
+                <label for="date" class="text-gray-600 text-xs font-medium mb-[6px]">{{'label.order.date'| translate}}*</label>
                 <input id="date" type="date" formControlName="orderDate" class="input-date" min="2021-01-01" required>
             </div>
             <mb-input-drop-down
@@ -20,20 +20,20 @@
 
         <div class="content-middle">
 
-            <div class="input-grp">
-                <label for="name" class="" translate>label.name</label>
+            <div class="relative flex flex-col">
+                <label for="name" class="text-gray-600 text-xs font-medium mb-[6px]" translate>label.name</label>
                 <input id="name" formControlName="itemName" type="text" class="input-text"
                        placeholder="{{'label.name' | translate}}"/>
             </div>
 
-            <div class="input-grp">
-                <label for="quantity" class="">{{'label.quantity'| translate}}*</label>
+            <div class="relative flex flex-col">
+                <label for="quantity" class="text-gray-600 text-xs font-medium mb-[6px]">{{'label.quantity'| translate}}*</label>
                 <input id="quantity" formControlName="quantity" type="number" class="input-text"
                        placeholder="{{'label.quantity' | translate}}" min="1"/>
             </div>
 
-            <div class="input-grp">
-                <label for="cost" class="">{{'label.cost'| translate}}*</label>
+            <div class="relative flex flex-col">
+                <label for="cost" class="text-gray-600 text-xs font-medium mb-[6px]">{{'label.cost'| translate}}*</label>
                 <input id="cost" formControlName="cost" type="number" class="input-text"
                        placeholder="{{'label.cost' | translate}}" min="0"/>
             </div>

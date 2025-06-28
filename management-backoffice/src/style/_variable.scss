@@ -13,5 +13,6 @@ $side-nav-left-margin: 30px;
 $top-nav-height: 80px;
 $table-border-width: 2px;
 $input-width : 240px;
+$border-color: $light-grey; // Added to fix build error, using existing light-grey
 
 

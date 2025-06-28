@@ -2,12 +2,12 @@
     <span class="mb-title">{{'label.create.invoice' | translate}}</span>
     <form (ngSubmit)="createInvoice()" [formGroup]="invoiceForm">
         <div class="content-top">
-            <div class="input-grp">
-                <label for="invoicedate" class="">{{'label.invoice.date'| translate}}*</label>
+            <div class="relative flex flex-col">
+                <label for="invoicedate" class="text-gray-600 text-xs font-medium mb-[6px]">{{'label.invoice.date'| translate}}*</label>
                 <input id="invoicedate" type="date" formControlName="dateCreated" class="input-date" min="2021-01-01" required>
             </div>
-            <div class="input-grp">
-                <label for="amount" class="">{{'label.amount'| translate}}*</label>
+            <div class="relative flex flex-col">
+                <label for="amount" class="text-gray-600 text-xs font-medium mb-[6px]">{{'label.amount'| translate}}*</label>
                 <input id="amount" type="number" formControlName="amount" class="input-text" required>
             </div>
             <mb-input-drop-down
@@ -15,8 +15,8 @@
                     [$items]="paymentTypes"
                     [formDetails]="paymentForm"
             ></mb-input-drop-down>
-            <div class="input-grp area">
-                <label for="description" class="" translate>label.invoice.desc</label>
+            <div class="relative flex flex-col area">
+                <label for="description" class="text-gray-600 text-xs font-medium mb-[6px]" translate>label.invoice.desc</label>
                 <textarea id="description" type="text"
                        placeholder="{{'label.invoice.desc' | translate}}"
                           formControlName="description">
