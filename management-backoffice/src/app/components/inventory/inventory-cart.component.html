@@ -1,6 +1,6 @@
 <div class="details-cart">
     <mb-expand-shrink title="inventory.order.title" [creating]="creating"></mb-expand-shrink>
-    <form (ngSubmit)="orderPlaced()" [formGroup]="inventoryOrderForm" [ngClass]="(creating | async) ? '': 'd-none'">
+    <form (ngSubmit)="orderPlaced()" [formGroup]="inventoryOrderForm" [ngClass]="(creating | async) ? '': 'hidden'">
         <div class="content-top">
             <div class="input-grp">
                 <label for="date" class="">{{'label.order.date'| translate}}*</label>
@@ -40,7 +40,7 @@
 
         </div>
         <div class="content-bottom">
-            <button class="btn primary" type="submit" translate>label.order.place</button>
+            <button class="bg-primary text-white rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2" type="submit" translate>label.order.place</button>
         </div>
     </form>
 </div>

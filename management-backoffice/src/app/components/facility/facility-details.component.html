@@ -1,7 +1,7 @@
 <div class="facility-details" *ngIf="($facility | async ) || true">
     <div class="attributes">
         <span class="mb-title" translate>label.details</span>
-        <form class="attributes d-flex justify-content-between flex-wrap" [formGroup]="itemForm">
+        <form class="attributes flex justify-between flex-wrap" [formGroup]="itemForm">
             <div class="input-grp">
                 <label for="code" class="" translate>label.code.required</label>
                 <input id="code" formControlName="code" type="text" class="input-text"
@@ -26,9 +26,9 @@
     </div>
     <div class="capital" *ngIf="$capital | async as capital">
         <span class="mb-title" translate>label.facility.capital</span>
-        <div class="d-flex flex-row justify-content-between">
+        <div class="flex flex-row justify-between">
             <div class="capital-add">
-                <div class="d-block">
+                <div class="block">
                     <div class="input-grp">
                         <label for="capital" class="">ADD CAPITAL</label>
                         <input type="number" class="input-text" id="capital" [formControl]="newCapital">
@@ -42,12 +42,12 @@
                     </div>
                 </div>
                 <div class="buttons">
-                    <a class="btn btn-icon" translate>
+                    <a class="rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2" translate>
                         <div class="mb-icon toggle {{capitalType == 'EXTERNAL' ? 'active' : ''}}"
                              (click)="selectExternal()"></div>
                         capital.type.external
                     </a>
-                    <a class="btn primary btn-sm" (click)="addCapital()">Add</a>
+                    <a class="bg-primary text-white rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2 w-fit" (click)="addCapital()">Add</a>
                 </div>
             </div>
             <div class="value">

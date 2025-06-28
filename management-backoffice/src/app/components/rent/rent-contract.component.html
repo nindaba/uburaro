@@ -25,16 +25,16 @@
             </div>
         </div>
 
-        <div class="controls d-flex flex-row justify-content-end">
-            <a class="btn" translate *ngIf="false">
+        <div class="controls flex flex-row justify-end">
+            <a class="rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2" translate *ngIf="false">
                 <div class="mb-icon download"></div>
                 label.download
             </a>
             <ng-container *ngIf="contract?.hasOrders else noOrders">
-                <a class="btn btn-icon" [ngClass]="(showAll | async ) ? 'd-none': ''" (click)="expand()" translate>
+                <a class="rounded flex items-center justify-center h-[26px] w-[26px] cursor-pointer" [ngClass]="(showAll | async ) ? 'hidden': ''" (click)="expand()" translate>
                     <div class="mb-icon mb-icon-green expand"></div>
                 </a>
-                <a class="btn btn-icon" [ngClass]="(showAll | async ) ? '': 'd-none'" (click)="shrink()" translate>
+                <a class="rounded flex items-center justify-center h-[26px] w-[26px] cursor-pointer" [ngClass]="(showAll | async ) ? '': 'hidden'" (click)="shrink()" translate>
                     <div class="mb-icon mb-icon-green shrink"></div>
                 </a>
             </ng-container>
@@ -43,6 +43,6 @@
             </ng-template>
         </div>
     </div>
-    <mb-rent-orders [ngClass]="(showAll | async) && contract?.hasOrders ? '': 'd-none'"
+    <mb-rent-orders [ngClass]="(showAll | async) && contract?.hasOrders ? '': 'hidden'"
                     [clientPage]="isClientPage" [contract]="contract?.code || ''"></mb-rent-orders>
 </div>

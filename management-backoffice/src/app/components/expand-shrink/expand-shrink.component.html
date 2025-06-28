@@ -1,10 +1,10 @@
 <div class="title-cartbtn">
     <span class="mb-title">{{title | translate}}</span>
     <div>
-        <a class="btn btn-icon" [ngClass]="(creating | async ) ? 'd-none': ''" (click)="expand()" translate>
+        <a class="rounded flex items-center justify-center h-[26px] w-[26px]" [ngClass]="(creating | async ) ? 'hidden': ''" (click)="expand()" translate>
             <div class="mb-icon mb-icon-green expand"></div>
         </a>
-        <a class="btn btn-icon" [ngClass]="(creating | async ) ? '': 'd-none'" (click)="shrink()" translate>
+        <a class="rounded flex items-center justify-center h-[26px] w-[26px]" [ngClass]="(creating | async ) ? '': 'hidden'" (click)="shrink()" translate>
             <div class="mb-icon mb-icon-green shrink"></div>
         </a>
     </div>

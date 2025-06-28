@@ -1,4 +1,7 @@
-@import "../node_modules/bootstrap/scss/bootstrap";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import "style/backoffice";
 html, body {
   height: 100vh !important;

@@ -1,6 +1,6 @@
 <div class="details-contract create">
     <mb-expand-shrink title="label.contract.create" [creating]="creating"></mb-expand-shrink>
-    <form (ngSubmit)="createContract()" [formGroup]="contractForm" [ngClass]="(creating | async) ? '': 'd-none'">
+    <form (ngSubmit)="createContract()" [formGroup]="contractForm" [ngClass]="(creating | async) ? '': 'hidden'">
         <div class="content-top">
             <div class="input-grp">
                 <label for="from" class="" >{{'label.from'| translate}}*</label>
@@ -34,9 +34,9 @@
 
         </div>
         <div class="content-bottom">
-            <input type="file" class="d-none" #contractFile (change)="uploadContract(contractFile)">
-            <span class="btn" (click)="contractFile.click()"><a class="mb-icon add-file"></a>{{contractFileNameControl.getRawValue() | translate}}</span>
-            <button class="btn primary" type="submit" translate>btn.name.create</button>
+            <input type="file" class="hidden" #contractFile (change)="uploadContract(contractFile)">
+            <span class="rounded h-[26px] inline-flex items-center justify-center text-xs font-bold gap-2 px-2 cursor-pointer" (click)="contractFile.click()"><a class="mb-icon add-file"></a>{{contractFileNameControl.getRawValue() | translate}}</span>
+            <button class="bg-primary text-white rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2" type="submit" translate>btn.name.create</button>
         </div>
     </form>
 </div>

@@ -26,12 +26,12 @@
         </div>
         <div class="content-bottom">
             <div class="orders-chips">
-                <div class="btn chip" *ngFor="let order of orders">
+                <div class="bg-light-green rounded-full w-fit flex items-center text-xs font-bold gap-2 px-2 h-[26px]" *ngFor="let order of orders">
                     {{order.orderNumber}} : {{order.cost*order.quantity | currency :'': '': '1.0-0'}}FBU
-                    <a class="btn mb-icon btn-close text-light" (click)="remove(order)"></a>
+                    <a class="rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2 mb-icon btn-close text-light" (click)="remove(order)"></a>
                 </div>
             </div>
-            <button class="btn primary" type="submit" translate>btn.name.create</button>
+            <button class="bg-primary text-white rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2" type="submit" translate>btn.name.create</button>
         </div>
     </form>
 </div>
