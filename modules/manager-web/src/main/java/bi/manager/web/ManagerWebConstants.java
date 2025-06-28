@@ -43,8 +43,9 @@ public interface ManagerWebConstants {
         }
 
         interface Orders {
+
             String endpoint = path + "orders";
-            String clientOrders = Client.client + "/" + endpoint;
+            String clientOrders = Client.client + "/orders";
 
             interface Inventory {
                 String endpoint = Orders.endpoint + "/inventory";
