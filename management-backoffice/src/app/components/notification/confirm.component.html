@@ -1,7 +1,7 @@
 <ng-container *ngIf="routerChanged | async "/>
 <ng-container *ngIf="$onDelete | async "/>
 <div class="notification-confirm"  *ngIf="$confirmDelete | async">
-    <div class="mb-3 text-xl font-semibold">{{'message.confirm.delete' | translate}}</div> {/* Replaced h6 with Tailwind text utilities */}
+    <div class="mb-3 text-xl font-semibold">{{'message.confirm.delete' | translate}}</div>
     <div class="orders-chips">
         <div class="bg-light-green rounded-full w-fit flex items-center text-xs font-bold gap-2 px-2 h-[26px]" *ngFor="let item of orders || items">
             <span class="w-full overflow-hidden text-ellipsis whitespace-nowrap">{{item}}</span>
@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="content-bottom flex justify-end gap-3 mt-3">
-        <button type="button" class="rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2 w-fit" translate (click)="confirmationDone()"> {/* Consider adding bg-gray-200 or similar if a background is desired */}
+        <button type="button" class="rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2 w-fit" translate (click)="confirmationDone()">
             nodes.name.discard
         </button>
         <button type="button" class="bg-danger text-white rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2 w-fit" translate (click)="confirmed()">

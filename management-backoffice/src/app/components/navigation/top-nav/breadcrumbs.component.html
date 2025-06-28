@@ -1,6 +1,6 @@
 <div class="crumbs">
     <div class="selected-facility" *ngIf="$facility | async as facility">
-        <div class="rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2 cursor-pointer" (click)="toggleFacilitySelector()"> {/* Added cursor-pointer as it's clickable */}
+        <div class="rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2 cursor-pointer" (click)="toggleFacilitySelector()">
             <i class="mb-icon facilities mb-icon-green mb-icon-small"></i>
             <span >{{facility | translate}}</span>
             <i class="mb-icon drop-down"></i>
@@ -37,10 +37,10 @@
         </div>
     </div>
     <ng-container *ngIf="pageRoute | async as pageDetails">
-        <a class="part-1 rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2" [routerLink]="[pageDetails.page]"> {/* part-1 class needs review */}
+        <a class="part-1 rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2" [routerLink]="[pageDetails.page]">
             {{pageDetails.page}}
         </a>
-        <a class="part-2 rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2" *ngIf="pageDetails.details" [routerLink]="[pageDetails.page,pageDetails.details]"> {/* part-2 class needs review */}
+        <a class="part-2 rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2" *ngIf="pageDetails.details" [routerLink]="[pageDetails.page,pageDetails.details]">
             / {{pageDetails.details}}
         </a>
     </ng-container>

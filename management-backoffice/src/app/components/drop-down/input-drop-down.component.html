@@ -15,7 +15,7 @@
             </table>
         </ng-container>
         <ng-template translate #empty>
-            <div class="flex flex-row justify-between items-center primary-text"> {/* primary-text needs review */}
+            <div class="flex flex-row justify-between items-center primary-text">
                 <span translate>label.{{relatedItem.name}}.empty</span>
                 <a class="bg-primary text-white rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2 w-fit" [routerLink]="[relatedItem.parentPage,'new']"
                    translate>label.{{relatedItem.name}}.add</a>

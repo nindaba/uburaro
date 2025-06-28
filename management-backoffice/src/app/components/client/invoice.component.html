@@ -1,5 +1,5 @@
 <div class="invoice">
-    <div class="flex flex-row justify-between border-b"> {/* Assuming border-1 was 1px, border-b is Tailwind's default 1px */}
+    <div class="flex flex-row justify-between border-b">
         <div class="flex gap-3 mb-3 ">
             <input id="invoiceCheck-{{invoice?.invoiceNumber}}" class="primary lg" type="checkbox" (click)="selectInvoice()" [checked]="isSelected()">
             <label for="invoiceCheck-{{invoice?.invoiceNumber}}" class="code font-bold "
@@ -24,23 +24,23 @@
         </div>
     </div>
     <div class="flex flex-col">
-        <div class="details"> {/* 'details' class might have its own styles, to be reviewed later */}
-            <span class="amount"> {/* 'amount' class might have its own styles, to be reviewed later */}
+        <div class="details">
+            <span class="amount">
             <label translate>label.amount</label>
             <span>{{invoice?.amount | currency : '': '': '1.0-0'}} FBU</span>
         </span>
-            <div class="date-status"> {/* 'date-status' class might have its own styles, to be reviewed later */}
+            <div class="date-status">
             <span>
                 <label translate>label.invoice.date</label>
                 <span>{{invoice?.dateCreated | date: 'dd/MM/yyyy'}}</span>
             </span>
             </div>
-            <span class="payment-type"> {/* 'payment-type' class might have its own styles, to be reviewed later */}
+            <span class="payment-type">
                 <label translate>label.payment.type.name</label>
                 <span>{{invoice?.paymentMode}}</span>
             </span>
         </div>
-        <div class="details justify-start"> {/* 'details' class - to be reviewed; 'justify-start' is Tailwind (was missing flex before) -> should be 'flex justify-start' or just 'justify-start' if parent is flex */}
+        <div class="details justify-start">
             <div class="flex flex-row" *ngIf="invoice?.description">
                 <label translate>label.invoice.desc</label>
                 <div>{{invoice?.description}}</div>

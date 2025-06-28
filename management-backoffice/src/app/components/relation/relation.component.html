@@ -1,5 +1,5 @@
 <div class="mb-relation">
-    <span class="title flex justify-between items-center"> {/* Added items-center for vertical alignment if needed */}
+    <span class="title flex justify-between items-center">
         <span class="mb-title" translate>nodes.name.{{title}}  </span>
         <mb-pagination *ngIf="pageForm" [pageForm]="pageForm" [pages]="pages"></mb-pagination>
         <a class="bg-primary text-white rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2 cursor-pointer" *ngIf="createLink.length" translate (click)="createNew()">btn.name.create</a>
@@ -18,7 +18,7 @@
         </table>
     </div>
     <div class="content-bottom" *ngIf="allLink.length">
-        <a class="rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2 text-primary cursor-pointer" translate (click)="showAll()"> {/* Assuming primary-text maps to text-primary */}
+        <a class="rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2 text-primary cursor-pointer" translate (click)="showAll()">
             <div class="mb-icon left-right mb-icon-green"></div>
             btn.name.all
         </a>
