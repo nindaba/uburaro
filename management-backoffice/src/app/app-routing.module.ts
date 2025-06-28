@@ -23,8 +23,7 @@ import { CLIENTS_ROUTE, INVENTORIES_ROUTE } from "./components/navigation/naviga
 const routes: Routes = [
   {
     path: "",
-    pathMatch: "full",
-    redirectTo: "facilities" //todo: to be changed to dashboard
+    component: FacilityListingComponent
   },
   {
     path: "facilities",

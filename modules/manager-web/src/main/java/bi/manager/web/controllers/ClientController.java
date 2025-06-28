@@ -33,7 +33,8 @@ public class ClientController {
     protected MBPdfReportFacade pdfReportFacade;
 
     @GetMapping
-    public Collection<MBClientData> getClientsByFacility(@PathVariable String code, @RequestParam(required = false) boolean allFields) {
+    public Collection<MBClientData> getClientsByFacility(@PathVariable String code,
+            @RequestParam(required = false) boolean allFields) {
         return facade.getClientsByFacilityCode(code, allFields);
     }
 
@@ -43,7 +44,8 @@ public class ClientController {
     }
 
     @GetMapping(value = client)
-    public MBClientData getClient(@PathVariable String code, @RequestParam(required = false) boolean allFields, @PathVariable String clientCode) {
+    public MBClientData getClient(@PathVariable String code, @RequestParam(required = false) boolean allFields,
+            @PathVariable String clientCode) {
         return facade.getClientByCode(clientCode, allFields);
     }
 
@@ -66,15 +68,16 @@ public class ClientController {
     }
 
     @DeleteMapping(value = ManagerWebConstants.Controller.Orders.clientOrders)
-    public void deleteOrders(@RequestParam(name = "codes") Set<String> orderNumbers, @PathVariable String clientCode, @PathVariable String code) {
+    public void deleteOrders(@RequestParam(name = "codes") Set<String> orderNumbers, @PathVariable String clientCode,
+            @PathVariable String code) {
         facade.deleteOrders(orderNumbers);
     }
 
     @GetMapping(value = "/pdf")
     public void getPdfReport(@PathVariable String code,
-                             @RequestParam Date from,
-                             @RequestParam Date to,
-                             HttpServletResponse response) throws IOException {
+            @RequestParam Date from,
+            @RequestParam Date to,
+            HttpServletResponse response) throws IOException {
 
         final MBDateRangeData range = new MBDateRangeData();
         final MBClientJRData report = new MBClientJRData();
