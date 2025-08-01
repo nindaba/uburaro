@@ -1,14 +1,14 @@
 <div class="details-page landing">
     <div class="head">
-        <a class="btn btn-tab" [routerLink]="[clientCode,'details']">
+        <a class="rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2" [routerLink]="[clientCode,'details']">
             <span class="mb-title-tab" routerLinkActive="active">
                 {{'label.details' | translate}}
             </span>
         </a>
-        <a class="btn btn-tab" [routerLink]="[clientCode,'invoices']">
+        <a class="rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2" [routerLink]="[clientCode,'invoices']">
             <span class="mb-title-tab" routerLinkActive="active">
                 {{'nodes.name.invoices' | translate}}
-                <span class="badge badge-green" *ngIf="ordersInInvoice | async as orders">{{orders}}</span>
+                <span class="bg-primary text-white text-xs px-2 py-0.5 rounded-full" *ngIf="ordersInInvoice | async as orders">{{orders}}</span>
             </span>
 
         </a>

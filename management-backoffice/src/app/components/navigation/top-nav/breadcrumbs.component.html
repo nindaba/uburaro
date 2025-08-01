@@ -1,6 +1,6 @@
 <div class="crumbs">
     <div class="selected-facility" *ngIf="$facility | async as facility">
-        <div class="btn" (click)="toggleFacilitySelector()">
+        <div class="rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2 cursor-pointer" (click)="toggleFacilitySelector()">
             <i class="mb-icon facilities mb-icon-green mb-icon-small"></i>
             <span >{{facility | translate}}</span>
             <i class="mb-icon drop-down"></i>
@@ -8,7 +8,7 @@
         <div class="facility-selector" [ngClass]="$showFacilitySelectorClass | async">
             <div class="content-top">
                 <span class="title" translate>facility.selector.title</span>
-                <div class="input-grp">
+                <div class="relative flex flex-col">
                     <input type="text" class="input-text nav-search mb-icon search"
                            placeholder="{{'nodes.name.search' | translate}}" [formControl]="pattern">
                 </div>
@@ -22,25 +22,25 @@
                     </tbody>
                 </table>
                 <ng-template translate #empty>
-                    <div class="d-flex flex-row justify-content-around align-items-center">
+                    <div class="flex flex-row justify-around items-center">
                         <span translate>facility.empty</span>
-                        <a class="btn" [routerLink]="['facilities','new']" translate>label.facility.add</a>
+                        <a class="rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2" [routerLink]="['facilities','new']" translate>label.facility.add</a>
                     </div>
                 </ng-template>
             </div>
 
             <div class="content-bottom">
-                <button type="button" class="btn primary btn-sm" translate (click)="toggleFacilitySelector()">
+                <button type="button" class="bg-primary text-white rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2 w-fit" translate (click)="toggleFacilitySelector()">
                     btn.name.close
                 </button>
             </div>
         </div>
     </div>
     <ng-container *ngIf="pageRoute | async as pageDetails">
-        <a class="part-1 btn" [routerLink]="[pageDetails.page]">
+        <a class="part-1 rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2" [routerLink]="[pageDetails.page]">
             {{pageDetails.page}}
         </a>
-        <a class="part-2 btn" *ngIf="pageDetails.details" [routerLink]="[pageDetails.page,pageDetails.details]">
+        <a class="part-2 rounded h-[26px] flex items-center justify-center text-xs font-bold gap-2 px-2" *ngIf="pageDetails.details" [routerLink]="[pageDetails.page,pageDetails.details]">
             / {{pageDetails.details}}
         </a>
     </ng-container>

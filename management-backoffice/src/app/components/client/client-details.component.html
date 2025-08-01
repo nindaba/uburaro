@@ -4,19 +4,19 @@
 <div class="details-page client">
     <div class="attributes">
         <span class="mb-title" translate>label.details</span>
-        <form class="attributes d-flex flex-wrap" [formGroup]="itemForm">
-            <div class="input-grp">
-                <label for="code" class="" translate>label.code.required</label>
+        <form class="attributes flex flex-wrap" [formGroup]="itemForm">
+            <div class="relative flex flex-col">
+                <label for="code" class="text-gray-600 text-xs font-medium mb-[6px]" translate>label.code.required</label>
                 <input id="code" formControlName="code" type="text" class="input-text"
                        placeholder="{{'label.code' | translate}}" required/>
             </div>
-            <div class="input-grp">
-                <label for="name" class="" translate>label.name.required</label>
+            <div class="relative flex flex-col">
+                <label for="name" class="text-gray-600 text-xs font-medium mb-[6px]" translate>label.name.required</label>
                 <input id="name" formControlName="name" type="text" class="input-text"
                        placeholder="{{'label.name' | translate}}" required/>
             </div>
-            <div class="input-grp">
-                <label for="address" class="" translate>label.client.address</label>
+            <div class="relative flex flex-col">
+                <label for="address" class="text-gray-600 text-xs font-medium mb-[6px]" translate>label.client.address</label>
                 <input id="address" formControlName="address" type="text" class="input-text"
                        placeholder="{{'label.client.address' | translate}}"/>
             </div>
@@ -25,7 +25,7 @@
     <ng-container *ngIf="$client | async as client">
         <div class="value">
             <div class="value-amount">
-                <span class="me-5">{{'label.client.debt' | translate}}</span>
+                <span class="mr-12">{{'label.client.debt' | translate}}</span>
                 <span>{{client?.totalDebt || 0 | currency : '':'':'1.0-0'}}</span>
             </div>
             <h3 class="value-currency">FBU</h3>

@@ -1,6 +1,14 @@
-<div class="nav-node" [ngClass]="getActiveClass()"  (click)="onClick()">
-    <div class="btn-base">
-        <div class="mb-icon node-icon {{node.icon}} " [ngClass]="getActiveClass()"></div>
+<div
+    class="group nav-node flex flex-row items-center h-[54px] w-fit gap-[14px] pb-[10px] cursor-pointer hover:text-primary"
+    [class.text-primary]="isActive"
+    (click)="onClick()">
+    <div
+        class="btn-base w-12 h-11 rounded-lg flex items-center justify-center"
+        [class.bg-primary]="isActive"
+        [class.group-hover:bg-primary]="isActive"
+        [class.bg-white]="!isActive"
+        [class.group-hover:bg-light-green]="!isActive">
+        <div class="mb-icon node-icon {{node.icon}}" [class.active]="isActive"></div>
     </div>
     <div class="name" translate>{{node.name}}</div>
 </div>

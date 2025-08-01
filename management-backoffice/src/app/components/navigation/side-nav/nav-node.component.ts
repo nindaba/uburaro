@@ -18,7 +18,11 @@ export class NavNodeComponent{
     public constructor(private service: SideNavService, private router: Router, private breadService: BreadcrumbsService) {
     }
 
-    getActiveClass() {
+    get isActive(): boolean {
+        return !!this.node?.active;
+    }
+
+    getActiveClass() { // This method might still be used by [ngClass] on the icon, or can be removed if not.
         return this.node.active ? "active" : "";
     }
 
